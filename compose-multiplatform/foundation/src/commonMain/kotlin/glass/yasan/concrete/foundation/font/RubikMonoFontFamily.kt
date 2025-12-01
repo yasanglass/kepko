@@ -10,5 +10,5 @@ import org.jetbrains.compose.resources.Font
 
 @Composable
 public fun rubikMonoFontFamily(): FontFamily = FontFamily(
-    Font(Res.font.rubik_mono, FontWeight.Black, FontStyle.Normal),
+    Font(Res.font.rubik_mono),
 )
