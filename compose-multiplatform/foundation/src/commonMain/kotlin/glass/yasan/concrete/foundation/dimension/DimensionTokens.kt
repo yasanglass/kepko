@@ -1,9 +1,9 @@
-package glass.yasan.concrete.foundation.size
+package glass.yasan.concrete.foundation.dimension
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-internal object SizeTokens {
+internal object DimensionTokens {
 
     val borderStrokeWidth: Dp = 2.dp
 }

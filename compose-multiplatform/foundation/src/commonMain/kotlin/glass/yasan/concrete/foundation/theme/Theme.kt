@@ -8,19 +8,19 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import glass.yasan.concrete.foundation.color.Colors
 import glass.yasan.concrete.foundation.color.LocalColors
-import glass.yasan.concrete.foundation.size.LocalSizes
-import glass.yasan.concrete.foundation.size.Sizes
+import glass.yasan.concrete.foundation.dimension.Dimensions
+import glass.yasan.concrete.foundation.dimension.LocalDimensions
 import glass.yasan.concrete.foundation.typography.rubikTypography
 
 @Composable
 public fun ConcreteTheme(
     colors: Colors = ConcreteTheme.colors,
-    sizes: Sizes = ConcreteTheme.sizes,
+    dimensions: Dimensions = ConcreteTheme.dimensions,
     typography: Typography = rubikTypography(),
     content: @Composable () -> Unit,
 ) {
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
-    val rememberedSizes = remember { sizes.copy() }.apply { updateSizesFrom(sizes) }
+    val rememberedDimensions = remember { dimensions.copy() }.apply { updateDimensionsFrom(dimensions) }
 
     MaterialTheme(
         colorScheme = colors.toMaterial3Colors(),
@@ -28,7 +28,7 @@ public fun ConcreteTheme(
     ) {
         CompositionLocalProvider(
             LocalColors provides rememberedColors,
-            LocalSizes provides rememberedSizes,
+            LocalDimensions provides rememberedDimensions,
             content = content
         )
     }
@@ -41,8 +41,8 @@ public object ConcreteTheme {
         @ReadOnlyComposable
         get() = LocalColors.current
 
-    public val sizes: Sizes
+    public val dimensions: Dimensions
         @Composable
         @ReadOnlyComposable
-        get() = LocalSizes.current
+        get() = LocalDimensions.current
 }

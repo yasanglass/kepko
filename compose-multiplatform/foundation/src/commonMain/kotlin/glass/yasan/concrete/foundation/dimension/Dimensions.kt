@@ -1,4 +1,4 @@
-package glass.yasan.concrete.foundation.size
+package glass.yasan.concrete.foundation.dimension
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -6,24 +6,24 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
 
 @Immutable
-public class Sizes(
+public class Dimensions(
     public var borderStrokeWidth: Dp,
 ) {
 
     public fun copy(
         borderStrokeWidth: Dp = this.borderStrokeWidth,
-    ): Sizes = Sizes(
+    ): Dimensions = Dimensions(
         borderStrokeWidth = borderStrokeWidth,
     )
 
-    public fun updateSizesFrom(
-        other: Sizes,
+    public fun updateDimensionsFrom(
+        other: Dimensions,
     ) {
         borderStrokeWidth = other.borderStrokeWidth
     }
 }
 
-internal val LocalSizes: ProvidableCompositionLocal<Sizes> =
+internal val LocalDimensions: ProvidableCompositionLocal<Dimensions> =
     compositionLocalOf {
-        sizes()
+        dimensions()
     }
