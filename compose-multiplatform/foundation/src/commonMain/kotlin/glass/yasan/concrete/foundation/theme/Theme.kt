@@ -1,6 +1,7 @@
 package glass.yasan.concrete.foundation.theme
 
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
@@ -9,11 +10,13 @@ import glass.yasan.concrete.foundation.color.Colors
 import glass.yasan.concrete.foundation.color.LocalColors
 import glass.yasan.concrete.foundation.size.LocalSizes
 import glass.yasan.concrete.foundation.size.Sizes
+import glass.yasan.concrete.foundation.typography.rubikTypography
 
 @Composable
 public fun ConcreteTheme(
     colors: Colors = ConcreteTheme.colors,
     sizes: Sizes = ConcreteTheme.sizes,
+    typography: Typography = rubikTypography(),
     content: @Composable () -> Unit,
 ) {
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
@@ -21,6 +24,7 @@ public fun ConcreteTheme(
 
     MaterialTheme(
         colorScheme = colors.toMaterial3Colors(),
+        typography = typography,
     ) {
         CompositionLocalProvider(
             LocalColors provides rememberedColors,
