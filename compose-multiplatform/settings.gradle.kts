@@ -15,5 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "concrete"
 include(":foundation")
+include(":component")
 include(":sample")
 include(":sample:composeApp")
