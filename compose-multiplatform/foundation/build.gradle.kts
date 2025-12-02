@@ -45,7 +45,7 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(compose.components.resources)
@@ -57,10 +57,28 @@ kotlin {
                 implementation(compose.ui)
             }
         }
-        jvmMain {
+
+        val nonAndroidMain by creating {
+            dependsOn(commonMain)
+        }
+
+        val jvmMain by getting {
+            dependsOn(nonAndroidMain)
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
+        }
+
+        val jsMain by getting {
+            dependsOn(nonAndroidMain)
+        }
+
+        val wasmJsMain by getting {
+            dependsOn(nonAndroidMain)
+        }
+
+        val iosMain by getting {
+            dependsOn(nonAndroidMain)
         }
     }
 }
