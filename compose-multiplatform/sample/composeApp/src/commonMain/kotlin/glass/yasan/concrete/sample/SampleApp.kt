@@ -18,6 +18,7 @@ import glass.yasan.concrete.foundation.font.rubikMonoFontFamily
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import org.jetbrains.compose.resources.stringResource
 
+@Preview
 @Composable
 fun SampleApp() {
     ConcreteTheme {
