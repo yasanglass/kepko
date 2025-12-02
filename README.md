@@ -6,4 +6,5 @@ A work-in-progress design system for Compose Multiplatform.
 
 ```kotlin
 implementation("glass.yasan.concrete:foundation:<version>")
+implementation("glass.yasan.concrete:component:<version>")
 ```
