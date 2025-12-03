@@ -42,7 +42,11 @@ public data class Colors(
         val inverseForeground: Color,
         val inverseMidground: Color,
         val inverseBackground: Color,
-    )
+    ) {
+
+        val outline: Color = background
+
+    }
 
 }
 
