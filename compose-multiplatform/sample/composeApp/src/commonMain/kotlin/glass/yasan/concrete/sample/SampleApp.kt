@@ -1,14 +1,17 @@
 package glass.yasan.concrete.sample
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.concrete.component.TextMono
@@ -31,12 +34,16 @@ fun SampleApp() {
                 .background(ConcreteTheme.colors.layer.midground),
         ) {
             Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(ConcreteTheme.colors.layer.foreground)
                     .padding(16.dp),
             ) {
+                ColorBox(ConcreteTheme.colors.accent.primaryDark)
+                ColorBox(ConcreteTheme.colors.accent.primary)
+                ColorBox(ConcreteTheme.colors.accent.primaryLight)
                 TextMono(
                     text = stringResource(Res.string.app_title).uppercase(),
                     prominence = SUBTLE,
@@ -51,7 +58,20 @@ fun SampleApp() {
                     prominence = SUBTLE,
                     fontSize = 32.sp,
                 )
+                ColorBox(ConcreteTheme.colors.accent.secondaryLight)
+                ColorBox(ConcreteTheme.colors.accent.secondary)
+                ColorBox(ConcreteTheme.colors.accent.secondaryDark)
             }
         }
     }
+}
+
+@Composable
+private fun ColorBox(color: Color) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .requiredHeight(64.dp)
+            .background(color)
+    )
 }

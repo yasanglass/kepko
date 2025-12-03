@@ -18,6 +18,14 @@ public data class Colors(
         val tertiary: Color = secondary,
     ) {
 
+        val primaryDark: Color = primary.darken()
+        val secondaryDark: Color = secondary.darken()
+        val tertiaryDark: Color = tertiary.darken()
+
+        val primaryLight: Color = primary.lighten()
+        val secondaryLight: Color = secondary.lighten()
+        val tertiaryLight: Color = tertiary.lighten()
+
         val onPrimary: Color = primary.toContentColor()
         val onSecondary: Color = secondary.toContentColor()
         val onTertiary: Color = tertiary.toContentColor()
