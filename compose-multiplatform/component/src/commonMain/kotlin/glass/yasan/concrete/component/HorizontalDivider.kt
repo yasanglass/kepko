@@ -10,7 +10,7 @@ import androidx.compose.material3.HorizontalDivider as Material3HorizontalDivide
 
 @ExperimentalConcreteApi
 @Composable
-public fun Divider(
+public fun HorizontalDivider(
     modifier: Modifier = Modifier,
     color: Color = ConcreteTheme.colors.layer.background,
     thickness: Dp = ConcreteTheme.dimensions.borderStrokeWidth,
