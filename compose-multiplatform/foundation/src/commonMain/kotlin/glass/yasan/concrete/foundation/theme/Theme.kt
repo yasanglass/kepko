@@ -11,9 +11,7 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import glass.yasan.concrete.foundation.color.ColorTokens
 import glass.yasan.concrete.foundation.color.Colors
-import glass.yasan.concrete.foundation.color.Colors.Companion.container
 import glass.yasan.concrete.foundation.color.LocalColors
-import glass.yasan.concrete.foundation.color.contentColor
 import glass.yasan.concrete.foundation.color.rememberAccent
 import glass.yasan.concrete.foundation.dimension.Dimensions
 import glass.yasan.concrete.foundation.dimension.LocalDimensions
@@ -68,26 +66,26 @@ private fun createMaterial3ColorScheme(
 ): ColorScheme = colorScheme.copy(
     background = layer.midground,
     inverseOnSurface = layer.foreground,
-    inversePrimary = contentColor(accent.primary),
+    inversePrimary = accent.onPrimary,
     inverseSurface = layer.inverseForeground,
     onBackground = content.normal,
     onError = Color.Unspecified,
     onErrorContainer = Color.Unspecified,
-    onPrimary = contentColor(accent.primary),
-    onPrimaryContainer = contentColor(accent.primary),
-    onSecondary = contentColor(accent.secondary),
-    onSecondaryContainer = contentColor(accent.secondary),
+    onPrimary = accent.onPrimary,
+    onPrimaryContainer = accent.onPrimary,
+    onSecondary = accent.onSecondary,
+    onSecondaryContainer = accent.onSecondary,
     onSurface = content.normal,
     onSurfaceVariant = content.normal,
-    onTertiary = contentColor(accent.tertiary),
-    onTertiaryContainer = contentColor(accent.tertiary),
+    onTertiary = accent.onTertiary,
+    onTertiaryContainer = accent.onTertiary,
     outline = layer.background,
     outlineVariant = layer.background,
     primary = accent.primary,
-    primaryContainer = accent.primary.container(),
+    primaryContainer = accent.primaryContainer,
     scrim = layer.foreground,
     secondary = accent.secondary,
-    secondaryContainer = accent.secondary.container(),
+    secondaryContainer = accent.secondaryContainer,
     surface = layer.foreground,
     surfaceBright = layer.foreground,
     surfaceContainer = layer.midground,
@@ -99,5 +97,5 @@ private fun createMaterial3ColorScheme(
     surfaceTint = layer.midground,
     surfaceVariant = layer.midground,
     tertiary = accent.tertiary,
-    tertiaryContainer = accent.tertiary.container(),
+    tertiaryContainer = accent.tertiaryContainer,
 )
