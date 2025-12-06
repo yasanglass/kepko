@@ -17,12 +17,10 @@ import androidx.compose.ui.unit.sp
 import glass.yasan.concrete.component.TextMono
 import glass.yasan.concrete.composeapp.generated.resources.Res
 import glass.yasan.concrete.composeapp.generated.resources.app_title
-import glass.yasan.concrete.foundation.annotation.ExperimentalConcreteApi
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalConcreteApi::class)
 @Preview
 @Composable
 fun SampleApp() {

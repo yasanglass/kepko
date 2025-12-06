@@ -2,16 +2,13 @@ package glass.yasan.concrete.foundation.color
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
-import glass.yasan.concrete.foundation.annotation.ExperimentalConcreteApi
 
 private const val CONTAINER_ALPHA = 0.75f
 private const val LUMINANCE_THRESHOLD = 0.5f
 private const val LUMINANCE_ADJUSTMENT_DEFAULT = 0.25f
 
-@ExperimentalConcreteApi
 public fun Color.container(): Color = copy(alpha = CONTAINER_ALPHA)
 
-@ExperimentalConcreteApi
 public fun Color.content(): Color =
     if (luminance() > LUMINANCE_THRESHOLD) {
         Color.Black
@@ -19,14 +16,12 @@ public fun Color.content(): Color =
         Color.White
     }
 
-@ExperimentalConcreteApi
 public fun Color.darken(factor: Float = LUMINANCE_ADJUSTMENT_DEFAULT): Color {
     val hsl = toHsl()
     hsl[2] = (hsl[2] - factor).coerceIn(0f, 1f)
     return hslToColor(hsl, alpha)
 }
 
-@ExperimentalConcreteApi
 public fun Color.lighten(factor: Float = LUMINANCE_ADJUSTMENT_DEFAULT): Color {
     val hsl = toHsl()
     hsl[2] = (hsl[2] + factor).coerceIn(0f, 1f)
