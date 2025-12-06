@@ -16,16 +16,20 @@ import glass.yasan.concrete.foundation.dimension.Dimensions
 import glass.yasan.concrete.foundation.dimension.LocalDimensions
 import glass.yasan.concrete.foundation.typography.rubikTypography
 
+/**
+ * @param isDynamicAccentAllowed Whether to use dynamic accent colors if available.
+ */
 @Composable
 public fun ConcreteTheme(
     primary: Color = ColorTokens.primary,
     secondary: Color = primary,
     tertiary: Color = secondary,
     isDark: Boolean = isSystemInDarkTheme(),
+    isDynamicAccentAllowed: Boolean = true,
     dimensions: Dimensions = ConcreteTheme.dimensions,
     content: @Composable () -> Unit,
 ) {
-    val accent = rememberAccent(isDark, primary, secondary, tertiary)
+    val accent = rememberAccent(isDynamicAccentAllowed, isDark, primary, secondary, tertiary)
 
     val colors = Colors(
         isDark = isDark,

@@ -51,25 +51,37 @@ internal val LocalColors: ProvidableCompositionLocal<Colors> =
         )
     }
 
-internal data class DynamicAccent(
+internal data class Accent(
     val primary: Color,
     val secondary: Color,
     val tertiary: Color,
 )
 
 @Composable
-internal expect fun rememberDynamicAccent(isDark: Boolean): DynamicAccent?
+internal expect fun rememberDynamicAccent(isDark: Boolean): Accent?
 
 @Composable
 internal fun rememberAccent(
+    isDynamicAccentAllowed: Boolean,
     isDark: Boolean,
     primary: Color,
     secondary: Color,
     tertiary: Color,
-): DynamicAccent = rememberDynamicAccent(isDark) ?: remember(primary, secondary, tertiary) {
-    DynamicAccent(
-        primary = primary,
-        secondary = secondary,
-        tertiary = tertiary,
-    )
+): Accent {
+    val dynamicAccent = if (isDynamicAccentAllowed) {
+        rememberDynamicAccent(isDark)
+    } else {
+        null
+    }
+
+    return dynamicAccent ?: remember(primary, secondary, tertiary) {
+        Accent(
+            primary = primary,
+            secondary = secondary,
+            tertiary = tertiary,
+        )
+    }
 }
+
+@Composable
+public expect fun isDynamicAccentSupported(): Boolean
