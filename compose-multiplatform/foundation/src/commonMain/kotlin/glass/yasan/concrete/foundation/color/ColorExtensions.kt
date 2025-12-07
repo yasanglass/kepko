@@ -5,13 +5,10 @@ import androidx.compose.ui.graphics.luminance
 import glass.yasan.toolkit.compose.color.darken
 import glass.yasan.toolkit.compose.color.lighten
 
-private const val CONTAINER_ALPHA = 0.75f
-private const val LUMINANCE_THRESHOLD = 0.5f
-
-public fun Color.container(): Color = copy(alpha = CONTAINER_ALPHA)
+public fun Color.container(): Color = copy(alpha = 0.75f)
 
 public fun Color.content(): Color =
-    if (luminance() > LUMINANCE_THRESHOLD) {
+    if (luminance() > 0.5f) {
         Color.Black
     } else {
         Color.White
