@@ -8,21 +8,30 @@ import androidx.compose.ui.graphics.Color
 
 public class Colors internal constructor(
     isDark: Boolean,
+
     public val primary: Color,
     public val secondary: Color = primary,
     public val tertiary: Color = secondary,
+
+    public val onPrimary: Color = primary.content(),
+    public val onSecondary: Color = secondary.content(),
+    public val onTertiary: Color = tertiary.content(),
 
     public val primaryHigh: Color = primary.heighten(isDark),
     public val secondaryHigh: Color = secondary.heighten(isDark),
     public val tertiaryHigh: Color = tertiary.heighten(isDark),
 
+    public val onPrimaryHigh: Color = primaryHigh.content(),
+    public val onSecondaryHigh: Color = secondaryHigh.content(),
+    public val onTertiaryHigh: Color = tertiaryHigh.content(),
+
     public val primaryLow: Color = primary.lower(isDark),
     public val secondaryLow: Color = secondary.lower(isDark),
     public val tertiaryLow: Color = tertiary.lower(isDark),
 
-    public val onPrimary: Color = primary.content(),
-    public val onSecondary: Color = secondary.content(),
-    public val onTertiary: Color = tertiary.content(),
+    public val onPrimaryLow: Color = primaryLow.content(),
+    public val onSecondaryLow: Color = secondaryLow.content(),
+    public val onTertiaryLow: Color = tertiaryLow.content(),
 
     public val content: Color = ColorTokens.content(isDark),
     public val contentSubtle: Color = ColorTokens.contentSubtle(isDark),
