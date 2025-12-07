@@ -12,7 +12,7 @@ import androidx.compose.foundation.border as ComposeFoundationBorder
 
 @Composable
 public fun Modifier.border(
-    color: Color,
+    color: Color = ConcreteTheme.colors.background,
     shape: Shape = RectangleShape,
 ): Modifier =
     ComposeFoundationBorder(
