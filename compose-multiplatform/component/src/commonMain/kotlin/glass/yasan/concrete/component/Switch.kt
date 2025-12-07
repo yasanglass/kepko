@@ -11,10 +11,12 @@ public fun Switch(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     Material3Switch(
         checked = checked,
         onCheckedChange = onCheckedChange,
+        enabled = enabled,
         colors = Material3SwitchDefaults.colors(
             // Thumb color
             checkedThumbColor = ConcreteTheme.colors.primary,
