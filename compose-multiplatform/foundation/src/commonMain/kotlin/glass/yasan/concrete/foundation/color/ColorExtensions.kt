@@ -5,8 +5,6 @@ import androidx.compose.ui.graphics.luminance
 import glass.yasan.toolkit.compose.color.darken
 import glass.yasan.toolkit.compose.color.lighten
 
-public fun Color.container(): Color = copy(alpha = 0.75f)
-
 public fun Color.content(): Color =
     if (luminance() > 0.5f) {
         Color.Black

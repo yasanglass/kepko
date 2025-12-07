@@ -20,10 +20,6 @@ public class Colors internal constructor(
     public val secondaryLow: Color = secondary.lower(isDark),
     public val tertiaryLow: Color = tertiary.lower(isDark),
 
-    public val primaryContainer: Color = primary.container(),
-    public val secondaryContainer: Color = secondary.container(),
-    public val tertiaryContainer: Color = tertiary.container(),
-
     public val onPrimary: Color = primary.content(),
     public val onSecondary: Color = secondary.content(),
     public val onTertiary: Color = tertiary.content(),
