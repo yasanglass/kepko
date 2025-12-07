@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.unit.Dp
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import androidx.compose.foundation.border as ComposeFoundationBorder
 
@@ -14,10 +15,11 @@ import androidx.compose.foundation.border as ComposeFoundationBorder
 public fun Modifier.border(
     color: Color = ConcreteTheme.colors.background,
     shape: Shape = RectangleShape,
+    width: Dp = ConcreteTheme.dimensions.borderStrokeWidth,
 ): Modifier =
     ComposeFoundationBorder(
-        width = ConcreteTheme.dimensions.borderStrokeWidth,
-        brush = SolidColor(color),
+        width = width,
+        brush = SolidColor(value = color),
         shape = shape,
     )
 
@@ -25,9 +27,10 @@ public fun Modifier.border(
 public fun Modifier.border(
     brush: Brush,
     shape: Shape = RectangleShape,
+    width: Dp = ConcreteTheme.dimensions.borderStrokeWidth,
 ): Modifier =
     ComposeFoundationBorder(
-        width = ConcreteTheme.dimensions.borderStrokeWidth,
+        width = width,
         brush = brush,
         shape = shape,
     )
