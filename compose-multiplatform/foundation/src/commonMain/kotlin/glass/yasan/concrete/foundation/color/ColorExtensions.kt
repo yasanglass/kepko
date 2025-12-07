@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.luminance
 
 private const val CONTAINER_ALPHA = 0.75f
 private const val LUMINANCE_THRESHOLD = 0.5f
-private const val LUMINANCE_ADJUSTMENT_DEFAULT = 0.25f
+private const val LUMINANCE_ADJUSTMENT_DEFAULT = 0.075f
 
 public fun Color.container(): Color = copy(alpha = CONTAINER_ALPHA)
 
