@@ -109,8 +109,19 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "glass.yasan.concrete.sample"
+            packageName = "Concrete"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("src/jvmMain/resources/app_icon.icns"))
+                bundleID = "glass.yasan.concrete.sample"
+                dockName = "Concrete"
+            }
+            windows {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
+            }
+            linux {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
+            }
         }
     }
 }
