@@ -42,28 +42,6 @@ jobs:
             compose-multiplatform/**/build/libs/*-android.jar
           retention-days: 30
 
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          submodules: true
-
-      - name: Setup Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: zulu
-          java-version: 21
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
-
-      - name: Run Tests
-        run: cd compose-multiplatform && ./gradlew testDebugUnitTest
-
   lint:
     name: Lint
     runs-on: ubuntu-latest

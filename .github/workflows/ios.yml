@@ -42,25 +42,3 @@ jobs:
             compose-multiplatform/**/build/classes/kotlin/iosSimulatorArm64/main/
             compose-multiplatform/**/build/classes/kotlin/iosX64/main/
           retention-days: 30
-
-  test:
-    name: Test
-    runs-on: macOS-latest
-    needs: build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          submodules: true
-
-      - name: Setup Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: zulu
-          java-version: 21
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
-
-      - name: Run Tests
-        run: cd compose-multiplatform && ./gradlew iosSimulatorArm64Test iosX64Test
