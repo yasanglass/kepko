@@ -35,6 +35,7 @@ public class Colors internal constructor(
 
     public val content: Color = ColorTokens.content(isDark),
     public val contentSubtle: Color = ColorTokens.contentSubtle(isDark),
+    public val contentDisabled: Color = ColorTokens.contentDisabled(isDark),
 
     public val inverseContent: Color = ColorTokens.content(!isDark),
     public val inverseContentSubtle: Color = ColorTokens.contentSubtle(!isDark),
