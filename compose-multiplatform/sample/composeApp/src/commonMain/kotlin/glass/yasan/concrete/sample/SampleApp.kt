@@ -69,9 +69,10 @@ fun SampleApp() {
                 ColorPalette()
                 Spacer(Modifier.height(12.dp))
                 DarkThemeSwitch(isDarkTheme)
-                if (isDynamicAccentSupported) {
-                    DynamicAccentColorsSwitch(isDynamicAccentAllowed)
-                }
+                DynamicAccentColorsSwitch(
+                    isDynamicAccentAllowed = isDynamicAccentAllowed,
+                    isDynamicAccentSupported = isDynamicAccentSupported,
+                )
             }
         }
     }
@@ -139,12 +140,13 @@ private fun DarkThemeSwitch(isDarkTheme: MutableState<Boolean>) {
 @Composable
 private fun DynamicAccentColorsSwitch(
     isDynamicAccentAllowed: MutableState<Boolean>,
+    isDynamicAccentSupported: Boolean,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {
+            .clickable(enabled = isDynamicAccentSupported) {
                 isDynamicAccentAllowed.value = !isDynamicAccentAllowed.value
             }
     ) {
@@ -155,6 +157,7 @@ private fun DynamicAccentColorsSwitch(
         Switch(
             checked = isDynamicAccentAllowed.value,
             onCheckedChange = { isDynamicAccentAllowed.value = it },
+            enabled = isDynamicAccentSupported,
         )
     }
 }
