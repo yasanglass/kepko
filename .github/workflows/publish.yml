@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: 21
+          java-version: 17
 
       - name: Publish to MavenCentral
         run: cd compose-multiplatform && ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
