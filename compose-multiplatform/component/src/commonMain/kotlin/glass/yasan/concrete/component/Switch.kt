@@ -26,9 +26,9 @@ public fun Switch(
         onCheckedChange = onCheckedChange,
         enabled = enabled,
         colors = Material3SwitchDefaults.colors(
-            checkedBorderColor = ConcreteTheme.colors.primary,
+            checkedBorderColor = ConcreteTheme.colors.content,
             checkedThumbColor = ConcreteTheme.colors.foreground,
-            checkedTrackColor = ConcreteTheme.colors.primary,
+            checkedTrackColor = ConcreteTheme.colors.content,
             disabledCheckedBorderColor = ConcreteTheme.colors.contentDisabled,
             disabledCheckedThumbColor = ConcreteTheme.colors.contentDisabled,
             disabledCheckedTrackColor = ConcreteTheme.colors.midground,
