@@ -31,7 +31,6 @@ import glass.yasan.concrete.component.TextMono
 import glass.yasan.concrete.component.border
 import glass.yasan.concrete.composeapp.generated.resources.Res
 import glass.yasan.concrete.composeapp.generated.resources.app_title
-import glass.yasan.concrete.foundation.color.isDynamicAccentSupported
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -40,15 +39,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun SampleApp() {
     val isSystemInDarkTheme = isSystemInDarkTheme()
-    val isDynamicAccentSupported = isDynamicAccentSupported()
 
     val isDarkTheme = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
-    val isDynamicAccentAllowed = rememberSaveable { mutableStateOf(isDynamicAccentSupported) }
     val sliderValue = rememberSaveable { mutableStateOf(0.5f) }
 
     ConcreteTheme(
         isDark = isDarkTheme.value,
-        isDynamicAccentAllowed = isDynamicAccentAllowed.value,
     ) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -69,13 +65,6 @@ fun SampleApp() {
             item { ColorPaletteContent() }
             item { Spacer(Modifier.height(12.dp)) }
             item { DarkThemeSwitch(isDarkTheme) }
-            item { HorizontalDivider() }
-            item {
-                DynamicAccentColorsSwitch(
-                    isDynamicAccentAllowed = isDynamicAccentAllowed,
-                    isDynamicAccentSupported = isDynamicAccentSupported,
-                )
-            }
             item { HorizontalDivider() }
             item { Spacer(Modifier.height(12.dp)) }
             item {
@@ -109,29 +98,9 @@ private data class ColorItem(
 private fun ColorPaletteContent() {
     ColorsRow(
         listOf(
-            ColorItem(ConcreteTheme.colors.primaryHigh, ConcreteTheme.colors.onPrimaryHigh, "primaryHigh"),
-            ColorItem(ConcreteTheme.colors.primary, ConcreteTheme.colors.onPrimary, "primary"),
-            ColorItem(ConcreteTheme.colors.primaryLow, ConcreteTheme.colors.onPrimaryLow, "primary Low"),
-        )
-    )
-    ColorsRow(
-        listOf(
-            ColorItem(ConcreteTheme.colors.secondaryHigh, ConcreteTheme.colors.onSecondaryHigh, "Secondary High"),
-            ColorItem(ConcreteTheme.colors.secondary, ConcreteTheme.colors.onSecondary, "Secondary"),
-            ColorItem(ConcreteTheme.colors.secondaryLow, ConcreteTheme.colors.onSecondaryLow, "Secondary Low"),
-        )
-    )
-    ColorsRow(
-        listOf(
-            ColorItem(ConcreteTheme.colors.tertiaryHigh, ConcreteTheme.colors.onTertiaryHigh, "Tertiary High"),
-            ColorItem(ConcreteTheme.colors.tertiary, ConcreteTheme.colors.onTertiary, "Tertiary"),
-            ColorItem(ConcreteTheme.colors.tertiaryLow, ConcreteTheme.colors.onTertiaryLow, "Tertiary Low"),
-        )
-    )
-    ColorsRow(
-        listOf(
             ColorItem(ConcreteTheme.colors.content, ConcreteTheme.colors.foreground, "Content"),
             ColorItem(ConcreteTheme.colors.contentSubtle, ConcreteTheme.colors.foreground, "Content Subtle"),
+            ColorItem(ConcreteTheme.colors.contentDisabled, ConcreteTheme.colors.foreground, "Content Disabled"),
         )
     )
     ColorsRow(
@@ -165,31 +134,6 @@ private fun DarkThemeSwitch(isDarkTheme: MutableState<Boolean>) {
 }
 
 @Composable
-private fun DynamicAccentColorsSwitch(
-    isDynamicAccentAllowed: MutableState<Boolean>,
-    isDynamicAccentSupported: Boolean,
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(enabled = isDynamicAccentSupported) {
-                isDynamicAccentAllowed.value = !isDynamicAccentAllowed.value
-            }
-    ) {
-        Text(
-            text = "Dynamic Accent Colors",
-        )
-        Spacer(Modifier.weight(1f))
-        Switch(
-            checked = isDynamicAccentAllowed.value,
-            onCheckedChange = { isDynamicAccentAllowed.value = it },
-            enabled = isDynamicAccentSupported,
-        )
-    }
-}
-
-@Composable
 private fun ColorsRow(colors: List<ColorItem>) {
     Row(
         modifier = Modifier
@@ -201,7 +145,7 @@ private fun ColorsRow(colors: List<ColorItem>) {
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .weight(1f)
-                    .height(100.dp)
+                    .height(256.dp)
                     .background(item.color)
                     .border(color = ConcreteTheme.colors.background),
             ) {

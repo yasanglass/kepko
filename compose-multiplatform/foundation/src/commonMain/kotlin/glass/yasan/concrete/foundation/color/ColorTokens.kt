@@ -4,8 +4,6 @@ import androidx.compose.ui.graphics.Color
 
 public object ColorTokens {
 
-    public val primary: Color = Color(0xFF006970)
-
     private val foregroundLight: Color = Color(0xFFFFFFFF)
     private val midgroundLight: Color = Color(0xFFEEEEEE)
     private val backgroundLight: Color = Color(0xFFD8D8D8)
