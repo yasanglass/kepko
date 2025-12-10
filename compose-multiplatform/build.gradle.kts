@@ -13,7 +13,10 @@ plugins {
 detekt {
     buildUponDefaultConfig = true
     allRules = false
-    config.setFrom("$projectDir/detekt/detekt.yml")
+    config.setFrom(
+        "$projectDir/detekt/detekt.yml",
+        "$projectDir/detekt/detekt-concrete.yml",
+    )
     autoCorrect = true
 }
 
@@ -26,7 +29,10 @@ fun Project.configureDetekt() {
     apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
         buildUponDefaultConfig = true
-        config.setFrom("$rootDir/detekt/detekt.yml")
+        config.setFrom(
+            "$rootDir/detekt/detekt.yml",
+            "$rootDir/detekt/detekt-concrete.yml",
+        )
         source.from(
             "src/androidMain/kotlin",
             "src/androidTest/kotlin",
