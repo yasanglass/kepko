@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.Dp
 
 public data class Dimensions(
     val borderThickness: Dp,
+    val iconSize: Dp,
 )
 
 internal val LocalDimensions: ProvidableCompositionLocal<Dimensions> =
