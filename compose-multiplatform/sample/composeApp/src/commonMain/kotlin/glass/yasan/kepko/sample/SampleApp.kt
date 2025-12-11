@@ -32,6 +32,7 @@ import glass.yasan.kepko.component.border
 import glass.yasan.kepko.composeapp.generated.resources.Res
 import glass.yasan.kepko.composeapp.generated.resources.app_title
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.toolkit.compose.color.toContentColor
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -55,6 +56,7 @@ fun SampleApp() {
                 .fillMaxSize()
                 .padding(16.dp),
         ) {
+            item { Spacer(Modifier.height(12.dp)) }
             item {
                 TextMono(
                     text = stringResource(Res.string.app_title).uppercase(),
@@ -88,26 +90,20 @@ fun SampleApp() {
     }
 }
 
-private data class ColorItem(
-    val color: Color,
-    val onColor: Color,
-    val name: String,
-)
-
 @Composable
 private fun ColorPaletteContent() {
     ColorsRow(
-        listOf(
-            ColorItem(KepkoTheme.colors.content, KepkoTheme.colors.foreground, "Content"),
-            ColorItem(KepkoTheme.colors.contentSubtle, KepkoTheme.colors.foreground, "Content Subtle"),
-            ColorItem(KepkoTheme.colors.contentDisabled, KepkoTheme.colors.foreground, "Content Disabled"),
+        arrayOf(
+            KepkoTheme.colors.content to "Content",
+            KepkoTheme.colors.contentSubtle to "Content Subtle",
+            KepkoTheme.colors.contentDisabled to "Content Disabled",
         )
     )
     ColorsRow(
-        listOf(
-            ColorItem(KepkoTheme.colors.foreground, KepkoTheme.colors.content, "Foreground"),
-            ColorItem(KepkoTheme.colors.midground, KepkoTheme.colors.content, "Midground"),
-            ColorItem(KepkoTheme.colors.background, KepkoTheme.colors.content, "Background"),
+        arrayOf(
+            KepkoTheme.colors.foreground to "Foreground",
+            KepkoTheme.colors.midground to "Midground",
+            KepkoTheme.colors.background to "Background",
         )
     )
 }
@@ -134,24 +130,24 @@ private fun DarkThemeSwitch(isDarkTheme: MutableState<Boolean>) {
 }
 
 @Composable
-private fun ColorsRow(colors: List<ColorItem>) {
+private fun ColorsRow(colorsWithNames: Array<Pair<Color, String>>) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
     ) {
-        colors.forEach { item ->
+        colorsWithNames.forEach {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .weight(1f)
                     .height(256.dp)
-                    .background(item.color)
+                    .background(it.first)
                     .border(color = KepkoTheme.colors.background),
             ) {
                 Text(
-                    text = item.name,
-                    color = item.onColor,
+                    text = it.second,
+                    color = it.first.toContentColor(),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(16.dp),
                 )
