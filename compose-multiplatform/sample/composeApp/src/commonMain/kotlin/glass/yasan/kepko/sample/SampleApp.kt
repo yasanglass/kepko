@@ -91,6 +91,14 @@ fun SampleApp() {
 private fun ColorPaletteContent() {
     ColorsRow(
         arrayOf(
+            KepkoTheme.colors.success,
+            KepkoTheme.colors.information,
+            KepkoTheme.colors.caution,
+            KepkoTheme.colors.danger,
+        )
+    )
+    ColorsRow(
+        arrayOf(
             KepkoTheme.colors.content,
             KepkoTheme.colors.contentSubtle,
             KepkoTheme.colors.contentDisabled,

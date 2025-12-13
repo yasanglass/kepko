@@ -9,6 +9,18 @@ import androidx.compose.ui.graphics.Color
 public class Colors internal constructor(
     isDark: Boolean,
 
+    public val success: Color = ColorTokens.success,
+    public val onSuccess: Color = ColorTokens.onSuccess,
+
+    public val information: Color = ColorTokens.information,
+    public val onInformation: Color = ColorTokens.onInformation,
+
+    public val caution: Color = ColorTokens.caution,
+    public val onCaution: Color = ColorTokens.onCaution,
+
+    public val danger: Color = ColorTokens.danger,
+    public val onDanger: Color = ColorTokens.onDanger,
+
     public val content: Color = ColorTokens.content(isDark),
     public val contentSubtle: Color = ColorTokens.contentSubtle(isDark),
     public val contentDisabled: Color = ColorTokens.contentDisabled(isDark),
