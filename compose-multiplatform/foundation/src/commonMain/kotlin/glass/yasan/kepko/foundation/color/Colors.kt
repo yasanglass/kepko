@@ -1,5 +1,6 @@
 package glass.yasan.kepko.foundation.color
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
@@ -44,3 +45,25 @@ internal val LocalColors: ProvidableCompositionLocal<Colors> =
             isDark = false,
         )
     }
+
+@Composable
+public fun Colors.getSemanticColors(): Array<Color> = arrayOf(
+    success,
+    information,
+    caution,
+    danger,
+)
+
+@Composable
+public fun Colors.getLayerColors(): Array<Color> = arrayOf(
+    foreground,
+    midground,
+    background,
+)
+
+@Composable
+public fun Colors.getContentColors(): Array<Color> = arrayOf(
+    content,
+    contentSubtle,
+    contentDisabled,
+)
