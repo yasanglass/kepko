@@ -26,11 +26,11 @@ public object ColorTokens {
     internal val information: Color = Color(0xFF0057B8)
     internal val onInformation: Color = Color(0xFFFFFFFF)
 
-    internal val caution: Color = Color(0xFFD00036)
-    internal val onCaution: Color = Color(0xFFFFFFFF)
+    internal val caution: Color = Color(0xFFFF9900)
+    internal val onCaution: Color = Color(0xFF000000)
 
-    internal val danger: Color = Color(0xFFFF9900)
-    internal val onDanger: Color = Color(0xFF000000)
+    internal val danger: Color = Color(0xFFD00036)
+    internal val onDanger: Color = Color(0xFFFFFFFF)
 
 
     internal fun foreground(isDark: Boolean): Color = if (isDark) foregroundDark else foregroundLight
