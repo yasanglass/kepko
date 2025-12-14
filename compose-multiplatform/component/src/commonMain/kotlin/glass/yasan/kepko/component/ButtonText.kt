@@ -17,56 +17,65 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.border.borderStrokeFor
-import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.compose.material3.Button as Material3Button
-import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
 
 @Composable
-public fun Button(
+public fun ButtonText(
+    text: String,
     onClick: () -> Unit,
-    content: @Composable RowScope.() -> Unit,
     modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier.padding(8.dp),
     containerColor: Color = KepkoTheme.colors.content,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
     shape: Shape = CircleShape,
+    textAlign: TextAlign = TextAlign.Center,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
+    leadingContent: @Composable RowScope.() -> Unit = {},
+    trailingContent: @Composable RowScope.() -> Unit = {},
 ) {
-    ProvideLocalContentColor(
-        color = contentColor,
-    ) {
-        Material3Button(
-            onClick = onClick,
-            modifier = modifier,
-            enabled = enabled,
-            shape = shape,
-            border = border,
-            elevation = elevation,
-            contentPadding = contentPadding,
-            interactionSource = interactionSource,
-            content = content,
-            colors = Material3ButtonDefaults.buttonColors(
-                containerColor = containerColor,
-                disabledContainerColor = containerColor.copy(alpha = 0.50f),
-                contentColor = contentColor,
-                disabledContentColor = contentColor.copy(alpha = 0.70f),
-            ),
-        )
-    }
+    Button(
+        onClick = onClick,
+        content = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = contentModifier,
+            ) {
+                leadingContent()
+                Text(
+                    text = text.uppercase(),
+                    textAlign = textAlign,
+                    maxLines = 1,
+                    modifier = Modifier.weight(1f),
+                )
+                trailingContent()
+            }
+        },
+        modifier = modifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        enabled = enabled,
+        shape = shape,
+        border = border,
+        elevation = elevation,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource
+    )
 }
 
 @Preview
 @Composable
-private fun ButtonPreview() {
+private fun ButtonTextPreview() {
     KepkoTheme {
         val containerColors = KepkoTheme.colors.getSemanticColors() +
                 KepkoTheme.colors.foreground +
@@ -84,28 +93,16 @@ private fun ButtonPreview() {
                         horizontal = 4.dp,
                     ),
                 ) {
-                    Button(
+                    ButtonText(
+                        text = "Enabled",
                         onClick = {},
                         containerColor = containerColor,
-                        content = {
-                            Text(
-                                text = "Enabled",
-                                maxLines = 1,
+                        leadingContent = {
+                            Icon(
+                                painter = painterResource(Res.drawable.ic_asterisk),
+                                contentDescription = null,
                             )
                         },
-                        modifier = Modifier.weight(1f),
-                    )
-                    Button(
-                        onClick = {},
-                        enabled = false,
-                        containerColor = containerColor,
-                        content = {
-                            Text(
-                                text = "Disabled",
-                                maxLines = 1,
-                            )
-                        },
-                        modifier = Modifier.weight(1f),
                     )
                 }
             }
