@@ -109,6 +109,12 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "glass.yasan.kepko.$artifactId"
+    generateResClass = auto
+}
+
 configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
     coordinates(artifactId = artifactId)
 }
