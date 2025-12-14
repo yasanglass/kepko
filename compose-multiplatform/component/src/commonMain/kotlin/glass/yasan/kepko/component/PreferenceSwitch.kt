@@ -64,10 +64,12 @@ public fun PreferenceSwitch(
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
     val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
+    val shape = RoundedCornerShape(32.dp)
 
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(32.dp))
+            .border(color = KepkoTheme.colors.background, shape)
+            .clip(shape)
             .clickable(
                 enabled = enabled,
                 onClick = { onCheckedChange(!checked) },
