@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.runtime.Composable
@@ -19,8 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.border.borderStrokeFor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
@@ -33,16 +34,17 @@ public fun ButtonText(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier.padding(8.dp),
+    contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.content,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
     shape: Shape = KepkoTheme.shapes.button,
-    textAlign: TextAlign = TextAlign.Center,
+    textAlign: TextAlign = TextAlign.Start,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
+    fillWidth: Boolean = true,
     leadingIcon: Painter?,
     trailingIcon: Painter?,
 ) {
@@ -60,6 +62,7 @@ public fun ButtonText(
         elevation = elevation,
         contentPadding = contentPadding,
         interactionSource = interactionSource,
+        fillWidth = fillWidth,
         leadingContent = {
             leadingIcon?.let { painter ->
                 Icon(
@@ -84,16 +87,107 @@ public fun ButtonText(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier.padding(8.dp),
+    contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.content,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
-    shape: Shape = CircleShape,
-    textAlign: TextAlign = TextAlign.Center,
+    shape: Shape = KepkoTheme.shapes.button,
+    textAlign: TextAlign = TextAlign.Start,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
+    fillWidth: Boolean = true,
+    leadingIcon: Painter?,
+) {
+    ButtonText(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        contentModifier = contentModifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        enabled = enabled,
+        shape = shape,
+        textAlign = textAlign,
+        border = border,
+        elevation = elevation,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource,
+        fillWidth = fillWidth,
+        leadingContent = {
+            leadingIcon?.let { painter ->
+                Icon(
+                    painter = painter,
+                    contentDescription = null,
+                )
+            }
+        },
+        trailingContent = {},
+    )
+}
+
+@Composable
+public fun ButtonText(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
+    containerColor: Color = KepkoTheme.colors.content,
+    contentColor: Color = contentColorFor(containerColor),
+    enabled: Boolean = true,
+    shape: Shape = KepkoTheme.shapes.button,
+    textAlign: TextAlign = TextAlign.Start,
+    border: BorderStroke? = borderStrokeFor(containerColor),
+    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
+    contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
+    interactionSource: MutableInteractionSource? = null,
+    fillWidth: Boolean = true,
+    leadingIcon: ImageVector?,
+) {
+    ButtonText(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        contentModifier = contentModifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        enabled = enabled,
+        shape = shape,
+        textAlign = textAlign,
+        border = border,
+        elevation = elevation,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource,
+        fillWidth = fillWidth,
+        leadingContent = {
+            leadingIcon?.let { imageVector ->
+                Icon(
+                    imageVector = imageVector,
+                    contentDescription = null,
+                )
+            }
+        },
+        trailingContent = {},
+    )
+}
+
+@Composable
+public fun ButtonText(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
+    containerColor: Color = KepkoTheme.colors.content,
+    contentColor: Color = contentColorFor(containerColor),
+    enabled: Boolean = true,
+    shape: Shape = KepkoTheme.shapes.button,
+    textAlign: TextAlign = TextAlign.Start,
+    border: BorderStroke? = borderStrokeFor(containerColor),
+    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
+    contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
+    interactionSource: MutableInteractionSource? = null,
+    fillWidth: Boolean = true,
     leadingIcon: ImageVector?,
     trailingIcon: ImageVector?,
 ) {
@@ -111,6 +205,7 @@ public fun ButtonText(
         elevation = elevation,
         contentPadding = contentPadding,
         interactionSource = interactionSource,
+        fillWidth = fillWidth,
         leadingContent = {
             leadingIcon?.let { imageVector ->
                 Icon(
@@ -134,18 +229,19 @@ public fun ButtonText(
 public fun ButtonText(
     text: String,
     onClick: () -> Unit,
+    leadingContent: @Composable RowScope.() -> Unit,
     modifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier.padding(8.dp),
+    contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.content,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
-    shape: Shape = CircleShape,
-    textAlign: TextAlign = TextAlign.Center,
+    shape: Shape = KepkoTheme.shapes.button,
+    textAlign: TextAlign = TextAlign.Start,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
-    leadingContent: @Composable RowScope.() -> Unit = {},
+    fillWidth: Boolean = true,
     trailingContent: @Composable RowScope.() -> Unit = {},
 ) {
     Button(
@@ -153,14 +249,21 @@ public fun ButtonText(
         content = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = contentModifier,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .padding(vertical = 8.dp)
+                    .then(contentModifier),
             ) {
                 leadingContent()
                 Text(
                     text = text.uppercase(),
                     textAlign = textAlign,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium,
                     maxLines = 1,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .then(if (fillWidth) Modifier.weight(1f) else Modifier)
+                        .padding(horizontal = 8.dp),
                 )
                 trailingContent()
             }
@@ -176,6 +279,8 @@ public fun ButtonText(
         interactionSource = interactionSource
     )
 }
+
+
 
 @Preview
 @Composable

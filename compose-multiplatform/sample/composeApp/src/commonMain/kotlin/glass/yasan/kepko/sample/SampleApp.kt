@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.PreferenceSlider
@@ -29,9 +30,11 @@ import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.TextMono
 import glass.yasan.kepko.composeapp.generated.resources.Res
+import glass.yasan.kepko.composeapp.generated.resources.app_icon
 import glass.yasan.kepko.composeapp.generated.resources.app_title
 import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -84,6 +87,7 @@ fun SampleApp() {
                 )
             }
             preferenceRadioGroupSample()
+            buttonTextSample()
         }
     }
 }
@@ -104,6 +108,36 @@ fun LazyListScope.preferenceRadioGroupSample() {
             items = items,
             onSelect = { selected.value = it },
             annotation = PreferenceAnnotation.new,
+        )
+    }
+}
+
+fun LazyListScope.buttonTextSample() {
+    item {
+        ButtonText(
+            text = "ButtonText",
+            leadingIcon = painterResource(Res.drawable.app_icon),
+            trailingIcon = painterResource(Res.drawable.app_icon),
+            containerColor = KepkoTheme.colors.foreground,
+            onClick = {},
+        )
+    }
+    item {
+        ButtonText(
+            text = "ButtonText",
+            leadingIcon = painterResource(Res.drawable.app_icon),
+            trailingIcon = painterResource(Res.drawable.app_icon),
+            onClick = {},
+        )
+    }
+    item {
+        ButtonText(
+            text = "ButtonText",
+            containerColor = KepkoTheme.colors.caution,
+            leadingIcon = painterResource(Res.drawable.app_icon),
+            trailingIcon = painterResource(Res.drawable.app_icon),
+            onClick = {},
+            fillWidth = false,
         )
     }
 }
