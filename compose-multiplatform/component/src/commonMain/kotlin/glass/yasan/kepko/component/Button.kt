@@ -34,7 +34,7 @@ public fun Button(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier,
+    contentRowModifier: Modifier = Modifier,
     contentTextModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.content,
     contentColor: Color = contentColorFor(containerColor),
@@ -53,7 +53,7 @@ public fun Button(
         content = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = contentModifier,
+                modifier = contentRowModifier,
             ) {
                 leadingContent()
                 Text(
