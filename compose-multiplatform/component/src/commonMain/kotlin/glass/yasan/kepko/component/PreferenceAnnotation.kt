@@ -20,7 +20,7 @@ public class PreferenceAnnotation(
 
         public val new: PreferenceAnnotation = PreferenceAnnotation(
             text = { stringResource(Res.string.preference_annotation_new) },
-            containerColor = { KepkoTheme.colors.success },
+            containerColor = { KepkoTheme.colors.information },
         )
 
         public val experimental: PreferenceAnnotation = PreferenceAnnotation(
