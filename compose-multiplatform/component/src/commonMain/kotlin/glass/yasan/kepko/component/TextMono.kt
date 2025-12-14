@@ -25,6 +25,7 @@ public fun TextMono(
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
+    lineHeight: TextUnit = TextUnit.Unspecified,
 ) {
     Material3Text(
         text = text,
@@ -39,5 +40,6 @@ public fun TextMono(
         softWrap = softWrap,
         maxLines = maxLines,
         minLines = minLines,
+        lineHeight = lineHeight,
     )
 }

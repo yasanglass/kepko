@@ -24,6 +24,7 @@ public fun Text(
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
+    lineHeight: TextUnit = TextUnit.Unspecified,
 ) {
     Material3Text(
         text = text,
@@ -37,5 +38,6 @@ public fun Text(
         softWrap = softWrap,
         maxLines = maxLines,
         minLines = minLines,
+        lineHeight = lineHeight,
     )
 }
