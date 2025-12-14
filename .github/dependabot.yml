@@ -8,6 +8,8 @@ updates:
     timezone: "Europe/Prague"
   cooldown:
     default-days: 14
+    exclude:
+    - "glass.yasan.*"
   labels: 
     - 'compose multiplatform'
     - 'dependencies'
