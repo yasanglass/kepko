@@ -48,15 +48,6 @@ public fun Button(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier,
-        containerColor = containerColor,
-        contentColor = contentColor,
-        enabled = enabled,
-        shape = shape,
-        border = border,
-        elevation = elevation,
-        contentPadding = contentPadding,
-        interactionSource = interactionSource,
         content = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -71,24 +62,32 @@ public fun Button(
                 )
                 trailingContent()
             }
-        }
+        },
+        modifier = modifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        enabled = enabled,
+        shape = shape,
+        border = border,
+        elevation = elevation,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource
     )
 }
 
-@Suppress("LongParameterList")
 @Composable
-private fun Button(
+public fun Button(
     onClick: () -> Unit,
-    containerColor: Color,
-    contentColor: Color,
-    enabled: Boolean,
-    shape: Shape,
-    border: BorderStroke?,
-    elevation: ButtonElevation?,
-    contentPadding: PaddingValues,
-    interactionSource: MutableInteractionSource?,
     content: @Composable RowScope.() -> Unit,
     modifier: Modifier = Modifier,
+    containerColor: Color = KepkoTheme.colors.content,
+    contentColor: Color = contentColorFor(containerColor),
+    enabled: Boolean = true,
+    shape: Shape = CircleShape,
+    border: BorderStroke? = borderStrokeFor(containerColor),
+    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    interactionSource: MutableInteractionSource? = null,
 ) {
     ProvideLocalContentColor(
         color = contentColor,
@@ -115,7 +114,7 @@ private fun Button(
 
 @Preview
 @Composable
-private fun ButtonColorOptionsPreview() {
+private fun ButtonPreview() {
     KepkoTheme {
         val containerColors = KepkoTheme.colors.getSemanticColors() +
                 KepkoTheme.colors.foreground +
