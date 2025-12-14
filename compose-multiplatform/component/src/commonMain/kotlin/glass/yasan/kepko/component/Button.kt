@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.border.borderStrokeFor
 import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
@@ -72,6 +73,7 @@ public fun Button(
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
     shape: Shape = CircleShape,
+    textAlign: TextAlign = TextAlign.Center,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
@@ -96,7 +98,12 @@ public fun Button(
                 modifier = contentModifier,
             ) {
                 leadingContent()
-                Text(text.uppercase())
+                Text(
+                    text = text.uppercase(),
+                    textAlign = textAlign,
+                    maxLines = 1,
+                    modifier = Modifier.weight(1f),
+                )
                 trailingContent()
             }
         }
