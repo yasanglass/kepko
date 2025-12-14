@@ -31,41 +31,6 @@ import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
 @Composable
 public fun Button(
     text: String,
-    subtle: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    shape: Shape = CircleShape,
-    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
-    interactionSource: MutableInteractionSource? = null,
-    leadingContent: @Composable RowScope.() -> Unit = {},
-    trailingContent: @Composable RowScope.() -> Unit = {},
-) {
-    val containerColor = if (subtle) KepkoTheme.colors.foreground else KepkoTheme.colors.content
-    val contentColor: Color = contentColorFor(containerColor)
-
-    Button(
-        text = text,
-        onClick = onClick,
-        modifier = modifier,
-        contentModifier = contentModifier,
-        containerColor = containerColor,
-        contentColor = contentColor,
-        enabled = enabled,
-        shape = shape,
-        elevation = elevation,
-        contentPadding = contentPadding,
-        interactionSource = interactionSource,
-        leadingContent = leadingContent,
-        trailingContent = trailingContent,
-    )
-}
-
-@Composable
-public fun Button(
-    text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     contentModifier: Modifier = Modifier,
@@ -179,41 +144,6 @@ private fun ButtonColorOptionsPreview() {
                         onClick = {},
                         enabled = false,
                         containerColor = containerColor,
-                        modifier = Modifier.weight(1f),
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun ButtonSubtleOptionsPreview() {
-    KepkoTheme {
-        Column(
-            modifier = Modifier.background(KepkoTheme.colors.foreground)
-        ) {
-            arrayOf(false, true).forEach { subtle ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.padding(
-                        vertical = 2.dp,
-                        horizontal = 4.dp,
-                    ),
-                ) {
-                    Button(
-                        text = "Enabled",
-                        onClick = {},
-                        subtle = subtle,
-                        modifier = Modifier.weight(1f),
-                    )
-                    Button(
-                        text = "Disabled",
-                        onClick = {},
-                        enabled = false,
-                        subtle = subtle,
                         modifier = Modifier.weight(1f),
                     )
                 }
