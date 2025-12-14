@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -24,6 +25,7 @@ public fun Pill(
         text = text.uppercase(),
         fontSize = 10.sp,
         color = contentColor,
+        fontWeight = FontWeight.Medium,
         modifier = modifier
             .clip(shape = CircleShape)
             .background(color = containerColor)
