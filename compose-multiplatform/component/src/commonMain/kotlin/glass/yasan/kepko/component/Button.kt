@@ -24,6 +24,7 @@ import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.material3.Button as Material3Button
 import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
@@ -138,13 +139,19 @@ private fun ButtonPreview() {
                         onClick = {},
                         containerColor = containerColor,
                         modifier = Modifier.weight(1f),
+                        contentTextModifier = Modifier.weight(1f),
+                        leadingContent = {
+                            Icon(
+                                painter = painterResource(Res.drawable.ic_asterisk),
+                                contentDescription = null,
+                            )
+                        },
                     )
                     Button(
                         text = "Disabled",
                         onClick = {},
                         enabled = false,
                         containerColor = containerColor,
-                        modifier = Modifier.weight(1f),
                     )
                 }
             }
