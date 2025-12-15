@@ -214,9 +214,9 @@ private fun LazyListScope.examplePreferenceSlider() {
 private fun LazyListScope.examplePreferenceRadioGroup() {
     item {
         val items = listOf(
-            PreferenceRadioGroupItem { "Item 1" },
-            PreferenceRadioGroupItem { "Item 2" },
-            PreferenceRadioGroupItem { "Item 3" },
+            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem("item2") { "Item 2" },
+            PreferenceRadioGroupItem("item3") { "Item 3" },
         )
         val selected = remember { mutableStateOf(items.first()) }
 

@@ -67,6 +67,7 @@ public fun PreferenceRadioGroup(
 }
 
 public data class PreferenceRadioGroupItem(
+    val id: String,
     val title: @Composable () -> String
 )
 
@@ -80,9 +81,9 @@ private fun PreferenceRadioGroupPreview() {
     )
 
     val items = listOf(
-        PreferenceRadioGroupItem { "Item 1" },
-        PreferenceRadioGroupItem { "Item 2" },
-        PreferenceRadioGroupItem { "Item 3" },
+        PreferenceRadioGroupItem("item1") { "Item 1" },
+        PreferenceRadioGroupItem("item2") { "Item 2" },
+        PreferenceRadioGroupItem("item3") { "Item 3" },
     )
 
     KepkoTheme {
