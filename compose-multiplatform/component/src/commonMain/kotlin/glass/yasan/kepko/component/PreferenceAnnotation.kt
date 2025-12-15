@@ -21,9 +21,29 @@ public class PreferenceAnnotation(
             containerColor = { KepkoTheme.colors.information },
         )
 
+        public val preview: PreferenceAnnotation = PreferenceAnnotation(
+            text = { stringResource(Res.string.preference_annotation_preview) },
+            containerColor = { KepkoTheme.colors.content },
+        )
+
         public val experimental: PreferenceAnnotation = PreferenceAnnotation(
             text = { stringResource(Res.string.preference_annotation_experimental) },
             containerColor = { KepkoTheme.colors.caution },
+        )
+
+        public val beta: PreferenceAnnotation = PreferenceAnnotation(
+            text = { stringResource(Res.string.preference_annotation_beta) },
+            containerColor = { KepkoTheme.colors.caution },
+        )
+
+        public val alpha: PreferenceAnnotation = PreferenceAnnotation(
+            text = { stringResource(Res.string.preference_annotation_alpha) },
+            containerColor = { KepkoTheme.colors.danger },
+        )
+
+        public val legacy: PreferenceAnnotation = PreferenceAnnotation(
+            text = { stringResource(Res.string.preference_annotation_legacy) },
+            containerColor = { KepkoTheme.colors.danger },
         )
 
     }
