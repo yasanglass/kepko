@@ -28,7 +28,6 @@ KepkoTheme {
 - [Checkbox](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Checkbox.kt)
 - [HorizontalDivider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/HorizontalDivider.kt)
 - [Icon](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Icon.kt)
-- [Pill](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Pill.kt)
 - [PreferenceAnnotation](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceAnnotation.kt)
 - [PreferenceCheckbox](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceCheckbox.kt)
 - [PreferenceContainer](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceContainer.kt)
@@ -41,4 +40,5 @@ KepkoTheme {
 - [Switch](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Switch.kt)
 - [Text](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Text.kt)
 - [TextMono](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/TextMono.kt)
+- [TextPill](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/TextPill.kt)
 - [VerticalDivider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/VerticalDivider.kt)

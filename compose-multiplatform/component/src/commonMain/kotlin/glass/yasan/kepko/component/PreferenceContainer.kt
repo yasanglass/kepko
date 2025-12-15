@@ -82,7 +82,7 @@ public fun PreferenceContainer(
                     content()
                 }
                 annotation?.let {
-                    Pill(
+                    TextPill(
                         text = it.text(),
                         containerColor = it.containerColor(),
                         contentColor = it.contentColor(),
@@ -152,7 +152,7 @@ public fun PreferenceContainer(
                     )
                 }
                 annotation?.let {
-                    Pill(
+                    TextPill(
                         text = it.text(),
                         containerColor = it.containerColor(),
                         contentColor = it.contentColor(),
