@@ -72,6 +72,7 @@ public fun ButtonText(
                 Icon(
                     painter = painter,
                     contentDescription = null,
+                    modifier = Modifier.padding(end = 12.dp),
                 )
             }
         },
@@ -80,6 +81,7 @@ public fun ButtonText(
                 Icon(
                     painter = painter,
                     contentDescription = null,
+                    modifier = Modifier.padding(start = 12.dp),
                 )
             }
         },
@@ -129,6 +131,7 @@ public fun ButtonText(
                 Icon(
                     imageVector = imageVector,
                     contentDescription = null,
+                    modifier = Modifier.padding(end = 12.dp),
                 )
             }
         },
@@ -137,6 +140,7 @@ public fun ButtonText(
                 Icon(
                     imageVector = imageVector,
                     contentDescription = null,
+                    modifier = Modifier.padding(start = 12.dp),
                 )
             }
         },
@@ -186,7 +190,6 @@ public fun ButtonText(
                     maxLines = 1,
                     modifier = Modifier
                         .then(if (fillWidth) Modifier.weight(1f) else Modifier)
-                        .padding(horizontal = 12.dp),
                 )
                 trailingContent()
             }
@@ -216,13 +219,13 @@ private fun ButtonTextPreview() {
             modifier = Modifier.background(KepkoTheme.colors.foreground)
         ) {
             containerColors.forEach { containerColor ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.padding(
-                        vertical = 2.dp,
-                        horizontal = 4.dp,
-                    ),
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier
+                        .padding(
+                            vertical = 2.dp,
+                            horizontal = 4.dp,
+                        ),
                 ) {
                     ButtonText(
                         text = "Button Text",
@@ -230,6 +233,11 @@ private fun ButtonTextPreview() {
                         containerColor = containerColor,
                         leadingIcon = painterResource(Res.drawable.ic_asterisk),
                         trailingIcon = painterResource(Res.drawable.ic_asterisk),
+                    )
+                    ButtonText(
+                        text = "Button Text",
+                        onClick = {},
+                        containerColor = containerColor,
                     )
                 }
             }
