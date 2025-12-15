@@ -20,8 +20,8 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.border.borderStrokeFor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
@@ -40,6 +40,7 @@ public fun ButtonText(
     enabled: Boolean = true,
     shape: Shape = KepkoTheme.shapes.button,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
@@ -59,6 +60,7 @@ public fun ButtonText(
         enabled = enabled,
         shape = shape,
         textAlign = textAlign,
+        fontSize = fontSize,
         fontWeight = fontWeight,
         border = border,
         elevation = elevation,
@@ -95,6 +97,7 @@ public fun ButtonText(
     enabled: Boolean = true,
     shape: Shape = KepkoTheme.shapes.button,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
@@ -114,6 +117,7 @@ public fun ButtonText(
         enabled = enabled,
         shape = shape,
         textAlign = textAlign,
+        fontSize = fontSize,
         fontWeight = fontWeight,
         border = border,
         elevation = elevation,
@@ -150,6 +154,7 @@ public fun ButtonText(
     enabled: Boolean = true,
     shape: Shape = KepkoTheme.shapes.button,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
@@ -173,7 +178,7 @@ public fun ButtonText(
                 Text(
                     text = text.uppercase(),
                     textAlign = textAlign,
-                    fontSize = 16.sp,
+                    fontSize = fontSize,
                     fontWeight = fontWeight,
                     maxLines = 1,
                     modifier = Modifier
