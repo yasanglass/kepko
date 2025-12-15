@@ -62,6 +62,7 @@ public fun PreferenceContainer(
             modifier = Modifier.fillMaxWidth(),
         ) {
             Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.weight(1f).padding(vertical = 4.dp),
             ) {
                 Text(
