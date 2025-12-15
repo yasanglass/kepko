@@ -171,7 +171,10 @@ public fun ButtonText(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
-                    .padding(vertical = 8.dp)
+                    .padding(
+                        vertical = 8.dp,
+                        horizontal = 4.dp,
+                    )
                     .then(contentModifier),
             ) {
                 leadingContent()
@@ -183,7 +186,7 @@ public fun ButtonText(
                     maxLines = 1,
                     modifier = Modifier
                         .then(if (fillWidth) Modifier.weight(1f) else Modifier)
-                        .padding(horizontal = 8.dp),
+                        .padding(horizontal = 12.dp),
                 )
                 trailingContent()
             }
