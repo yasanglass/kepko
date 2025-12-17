@@ -13,6 +13,7 @@ plugins {
 kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-sensitive-resolution")
+        freeCompilerArgs.add("-opt-in=glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi")
     }
 
     androidTarget {
