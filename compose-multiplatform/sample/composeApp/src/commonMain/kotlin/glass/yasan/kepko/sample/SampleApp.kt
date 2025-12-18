@@ -91,7 +91,7 @@ fun SampleApp() {
             ) {
                 title()
                 colorPalette()
-                darkThemeSwitch(style)
+                stylePreference(style)
                 examplePreferenceSlider()
                 examplePreferenceCheckbox()
                 examplePreferenceSwitch()
@@ -474,11 +474,11 @@ private fun LazyListScope.exampleTextPill() {
     }
 }
 
-private fun LazyListScope.darkThemeSwitch(style: MutableState<ThemeStyle>) {
+private fun LazyListScope.stylePreference(style: MutableState<ThemeStyle>) {
     item {
         PreferenceRadioGroup(
             title = "Style",
-            items = ThemeStyle.entries.map { PreferenceRadioGroupItem(it.id) { it.name } },
+            items = ThemeStyle.entries.map { PreferenceRadioGroupItem(it.id) { it.title() } },
             selectedId = style.value.id,
             onSelectId = { style.value = ThemeStyle.fromId(it) ?: ThemeStyle.LIGHT },
         )

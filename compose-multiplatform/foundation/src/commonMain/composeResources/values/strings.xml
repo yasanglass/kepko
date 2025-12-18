@@ -1,0 +1,5 @@
+<resources>
+    <string name="theme_style_light">Light</string>
+    <string name="theme_style_dark">Dark</string>
+    <string name="theme_style_dark_amoled">Dark AMOLED</string>
+</resources>
