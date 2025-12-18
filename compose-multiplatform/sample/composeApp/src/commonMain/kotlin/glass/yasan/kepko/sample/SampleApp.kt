@@ -202,6 +202,15 @@ private fun LazyListScope.examplePreferenceRadioButton() {
             onClick = { radioButtonValue.value = radioButtonValue.value.not() },
         )
     }
+    item {
+        PreferenceRadioButton(
+            title = "PreferenceRadioButton",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            selected = true,
+            onClick = {},
+            enabled = false,
+        )
+    }
 }
 
 private fun LazyListScope.examplePreferenceSwitch() {
@@ -250,6 +259,15 @@ private fun LazyListScope.examplePreferenceSwitch() {
             onCheckedChange = { switchValue.value = it },
         )
     }
+    item {
+        PreferenceSwitch(
+            title = "PreferenceSwitch",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            checked = true,
+            onCheckedChange = {},
+            enabled = false,
+        )
+    }
 }
 
 
@@ -287,6 +305,15 @@ private fun LazyListScope.examplePreferenceCheckbox() {
             onCheckedChange = { checkboxValue.value = it },
         )
     }
+    item {
+        PreferenceCheckbox(
+            title = "PreferenceCheckbox",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            checked = true,
+            onCheckedChange = {},
+            enabled = false,
+        )
+    }
 }
 
 private fun LazyListScope.examplePreferenceSlider() {
@@ -322,6 +349,16 @@ private fun LazyListScope.examplePreferenceSlider() {
             value = sliderValue.value,
             onValueChange = { sliderValue.value = it },
             steps = 3,
+        )
+    }
+    item {
+        PreferenceSlider(
+            title = "PreferenceSlider",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            value = 0.5f,
+            onValueChange = {},
+            steps = 5,
+            enabled = false,
         )
     }
 }
@@ -371,6 +408,21 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
             selected = selected.value,
             items = items,
             onSelect = { selected.value = it },
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem("item2") { "Item 2" },
+        )
+
+        PreferenceRadioGroup(
+            title = "PreferenceRadioGroup",
+            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            selected = items.first(),
+            items = items,
+            onSelect = {},
+            enabled = false,
         )
     }
 }
@@ -457,6 +509,15 @@ private fun LazyListScope.exampleButtonText() {
             containerColor = KepkoTheme.colors.foreground,
             onClick = {},
             fillWidth = false,
+        )
+    }
+    item {
+        ButtonText(
+            text = "ButtonText",
+            leadingIcon = painterResource(Res.drawable.ic_bolt),
+            trailingIcon = painterResource(Res.drawable.ic_arrow_forward),
+            onClick = {},
+            enabled = false,
         )
     }
 }
