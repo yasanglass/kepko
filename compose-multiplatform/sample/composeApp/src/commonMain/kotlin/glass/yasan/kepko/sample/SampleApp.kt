@@ -363,6 +363,7 @@ private fun LazyListScope.examplePreferenceSlider() {
     }
 }
 
+@Suppress("LongMethod")
 private fun LazyListScope.examplePreferenceRadioGroup() {
     item { HorizontalDivider() }
     item {
@@ -384,7 +385,9 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
         val items = listOf(
             PreferenceRadioGroupItem("item1") { "Item 1" },
             PreferenceRadioGroupItem("item2") { "Item 2" },
-            PreferenceRadioGroupItem("item3") { "Item 3" },
+            PreferenceRadioGroupItem("item3", annotation = PreferenceAnnotation.new) { "Item 3" },
+            PreferenceRadioGroupItem("item4") { "Item 4" },
+            PreferenceRadioGroupItem("item5", annotation = PreferenceAnnotation.experimental) { "Item 5" },
         )
         val selected = remember { mutableStateOf(items.first()) }
 

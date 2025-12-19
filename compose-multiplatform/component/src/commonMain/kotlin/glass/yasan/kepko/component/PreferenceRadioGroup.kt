@@ -66,7 +66,7 @@ public fun PreferenceRadioGroup(
         indication = null,
         content = {
             Column {
-                items.forEach {
+                items.forEach { radioGroupItem ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
@@ -74,17 +74,26 @@ public fun PreferenceRadioGroup(
                             .clip(KepkoTheme.shapes.button)
                             .clickable(
                                 enabled = enabled,
-                                onClick = { onSelect(it) },
+                                onClick = { onSelect(radioGroupItem) },
                             ),
                     ) {
                         RadioButton(
-                            selected = selected == it,
-                            onClick = { onSelect(it) },
+                            selected = selected == radioGroupItem,
+                            onClick = { onSelect(radioGroupItem) },
                             enabled = enabled,
                         )
                         Text(
-                            text = it.title(),
+                            text = radioGroupItem.title(),
+                            modifier = Modifier.weight(1f),
                         )
+                        radioGroupItem.annotation?.let { itemAnnotation ->
+                            TextPill(
+                                text = itemAnnotation.text(),
+                                containerColor = itemAnnotation.containerColor(),
+                                contentColor = itemAnnotation.contentColor(),
+                                modifier = Modifier.padding(horizontal = 12.dp),
+                            )
+                        }
                     }
                 }
                 content()
@@ -95,6 +104,7 @@ public fun PreferenceRadioGroup(
 
 public data class PreferenceRadioGroupItem(
     val id: String,
+    val annotation: PreferenceAnnotation? = null,
     val title: @Composable () -> String
 )
 
@@ -109,7 +119,7 @@ private fun PreferenceRadioGroupPreview() {
 
     val items = listOf(
         PreferenceRadioGroupItem("item1") { "Item 1" },
-        PreferenceRadioGroupItem("item2") { "Item 2" },
+        PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
         PreferenceRadioGroupItem("item3") { "Item 3" },
     )
 
