@@ -54,6 +54,7 @@ import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -542,7 +543,7 @@ private fun LazyListScope.stylePreference(style: MutableState<ThemeStyle>) {
     item {
         PreferenceRadioGroup(
             title = "Style",
-            items = ThemeStyle.entries.map { PreferenceRadioGroupItem(it.id) { it.title() } },
+            items = ThemeStyle.asPreferenceRadioGroupItems(),
             selectedId = style.value.id,
             onSelectId = { style.value = ThemeStyle.fromId(it) ?: ThemeStyle.LIGHT },
         )
