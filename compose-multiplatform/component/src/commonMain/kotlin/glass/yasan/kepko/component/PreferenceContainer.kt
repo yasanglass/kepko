@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,13 +35,15 @@ public fun PreferenceContainer(
     annotation: PreferenceAnnotation? = null,
     interactionSource: MutableInteractionSource? = null,
     indication: Indication? = null,
-    content: @Composable () -> Unit,
+    content: @Composable (PaddingValues) -> Unit,
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
     val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
     val shape = RoundedCornerShape(32.dp)
+    val contentPadding = PaddingValues(horizontal = 24.dp)
 
     Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxWidth()
             .border(color = KepkoTheme.colors.outline, shape)
@@ -52,16 +55,14 @@ public fun PreferenceContainer(
                 onClick = onClick,
             )
             .background(KepkoTheme.colors.foreground)
-            .padding(
-                vertical = 12.dp,
-                horizontal = 24.dp,
-            ),
+            .padding(vertical = 16.dp),
     ) {
         Text(
             text = title,
             color = titleContentColor,
             fontWeight = FontWeight.Medium,
             fontSize = 16.sp,
+            modifier = Modifier.padding(contentPadding),
         )
         description?.let {
             Text(
@@ -69,17 +70,20 @@ public fun PreferenceContainer(
                 color = descriptionContentColor,
                 lineHeight = 16.sp,
                 fontSize = 12.sp,
+                modifier = Modifier.padding(contentPadding),
             )
         }
         ProvideLocalContentColor(titleContentColor) {
-            content()
+            content(contentPadding)
         }
         annotation?.let {
             TextPill(
                 text = it.text(),
                 containerColor = it.containerColor(),
                 contentColor = it.contentColor(),
-                modifier = Modifier.padding(vertical = 4.dp),
+                modifier = Modifier
+                    .padding(contentPadding)
+                    .padding(vertical = 4.dp),
             )
         }
     }

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -64,7 +65,7 @@ public fun PreferenceRadioGroup(
         modifier = modifier,
         interactionSource = null,
         indication = null,
-        content = {
+        content = { _: PaddingValues ->
             Column {
                 items.forEach { radioGroupItem ->
                     Row(
@@ -75,7 +76,8 @@ public fun PreferenceRadioGroup(
                             .clickable(
                                 enabled = enabled,
                                 onClick = { onSelect(radioGroupItem) },
-                            ),
+                            )
+                            .padding(horizontal = 12.dp),
                     ) {
                         RadioButton(
                             selected = selected == radioGroupItem,

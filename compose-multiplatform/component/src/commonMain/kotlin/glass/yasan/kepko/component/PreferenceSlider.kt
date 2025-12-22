@@ -4,6 +4,7 @@ import androidx.annotation.IntRange
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -35,8 +36,10 @@ public fun PreferenceSlider(
         modifier = modifier,
         interactionSource = null,
         indication = null,
-        content = {
-            Column {
+        content = { contentPadding: PaddingValues ->
+            Column(
+                modifier = Modifier.padding(contentPadding),
+            ) {
                 Slider(
                     value = value,
                     onValueChange = onValueChange,
