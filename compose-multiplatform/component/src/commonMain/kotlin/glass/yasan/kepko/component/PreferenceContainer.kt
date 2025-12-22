@@ -78,9 +78,7 @@ public fun PreferenceContainer(
         }
         annotation?.let {
             TextPill(
-                text = it.text(),
-                containerColor = it.containerColor(),
-                contentColor = it.contentColor(),
+                annotation = it,
                 modifier = Modifier
                     .padding(contentPadding)
                     .padding(vertical = 4.dp),
@@ -148,9 +146,7 @@ public fun PreferenceContainer(
                 }
                 annotation?.let {
                     TextPill(
-                        text = it.text(),
-                        containerColor = it.containerColor(),
-                        contentColor = it.contentColor(),
+                        annotation = it,
                         modifier = Modifier.padding(vertical = 4.dp),
                     )
                 }

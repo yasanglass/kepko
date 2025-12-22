@@ -90,9 +90,7 @@ public fun PreferenceRadioGroup(
                         )
                         radioGroupItem.annotation?.let { itemAnnotation ->
                             TextPill(
-                                text = itemAnnotation.text(),
-                                containerColor = itemAnnotation.containerColor(),
-                                contentColor = itemAnnotation.contentColor(),
+                                annotation = itemAnnotation,
                                 modifier = Modifier.padding(horizontal = 12.dp),
                             )
                         }

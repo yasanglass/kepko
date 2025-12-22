@@ -18,11 +18,26 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.takeOrElse
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.border.borderStrokeFor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
+
+@ExperimentalKepkoApi
+@Composable
+public fun TextPill(
+    annotation: PreferenceAnnotation,
+    modifier: Modifier = Modifier,
+) {
+    TextPill(
+        text = annotation.text(),
+        containerColor = annotation.containerColor(),
+        contentColor = annotation.contentColor(),
+        modifier = modifier,
+    )
+}
 
 @Composable
 public fun TextPill(
