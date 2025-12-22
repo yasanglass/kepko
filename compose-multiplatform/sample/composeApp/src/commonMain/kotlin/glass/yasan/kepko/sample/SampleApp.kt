@@ -30,7 +30,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.ButtonText
+import glass.yasan.kepko.component.CircularProgressIndicator
 import glass.yasan.kepko.component.HorizontalDivider
+import glass.yasan.kepko.component.LinearProgressIndicator
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.component.PreferenceCheckbox
 import glass.yasan.kepko.component.PreferenceRadioButton
@@ -100,6 +102,7 @@ fun SampleApp() {
                 examplePreferenceRadioGroup()
                 exampleButtonText()
                 exampleTextPill()
+                exampleProgressIndicator()
                 item { Spacer(Modifier.height(128.dp)) }
             }
         }
@@ -584,3 +587,8 @@ private fun RowScope.ColorBox(
     }
 }
 
+private fun LazyListScope.exampleProgressIndicator() {
+    item { HorizontalDivider() }
+    item { CircularProgressIndicator() }
+    item { LinearProgressIndicator() }
+}
