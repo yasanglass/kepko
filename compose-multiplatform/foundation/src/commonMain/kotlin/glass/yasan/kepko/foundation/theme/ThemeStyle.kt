@@ -3,8 +3,8 @@ package glass.yasan.kepko.foundation.theme
 import androidx.compose.runtime.Composable
 import glass.yasan.kepko.foundation.Res
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.foundation.theme_style_black
 import glass.yasan.kepko.foundation.theme_style_dark
-import glass.yasan.kepko.foundation.theme_style_dark_amoled
 import glass.yasan.kepko.foundation.theme_style_dark_solarized
 import glass.yasan.kepko.foundation.theme_style_light
 import glass.yasan.kepko.foundation.theme_style_light_solarized
@@ -25,10 +25,10 @@ public enum class ThemeStyle(
         isDark = true,
         title = { stringResource(Res.string.theme_style_dark) }
     ),
-    DARK_AMOLED(
-        id = "dark-amoled",
+    BLACK(
+        id = "black",
         isDark = true,
-        title = { stringResource(Res.string.theme_style_dark_amoled) }
+        title = { stringResource(Res.string.theme_style_black) }
     ),
     @ExperimentalKepkoApi
     SOLARIZED_LIGHT(

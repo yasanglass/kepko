@@ -17,13 +17,13 @@ public object ColorTokens {
     private val midgroundDark: Color = Color(0xFF121212)
     private val backgroundDark: Color = Color(0xFF000000)
 
-    private val foregroundDarkAmoled: Color = Color(0xFF000000)
-    private val midgroundDarkAmoled: Color = Color(0xFF000000)
-    private val backgroundDarkAmoled: Color = Color(0xFF121212)
+    private val foregroundBlack: Color = Color(0xFF000000)
+    private val midgroundDarkBlack: Color = Color(0xFF000000)
+    private val backgroundDarkBlack: Color = Color(0xFF121212)
 
     private val outlineLight: Color = backgroundLight
     private val outlineDark: Color = backgroundDark
-    private val outlineDarkAmoled: Color = Color(0x80A0A0A0)
+    private val outlineDarkBlack: Color = Color(0x80A0A0A0)
 
     private val foregroundLightSolarized: Color = Color(0xFFfdf6e3)
     private val midgroundLightSolarized: Color = Color(0xFFeee8d5)
@@ -66,42 +66,42 @@ public object ColorTokens {
     private val onDangerSolarized: Color = Color(0xFFfdf6e3)
 
     internal fun success(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> successStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> successStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> successSolarized
     }
 
     internal fun onSuccess(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> onSuccessStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onSuccessStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onSuccessSolarized
     }
 
     internal fun information(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> informationStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> informationStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> informationSolarized
     }
 
     internal fun onInformation(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> onInformationStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onInformationStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onInformationSolarized
     }
 
     internal fun caution(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> cautionStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> cautionStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> cautionSolarized
     }
 
     internal fun onCaution(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> onCautionStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onCautionStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onCautionSolarized
     }
 
     internal fun danger(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> dangerStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> dangerStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> dangerSolarized
     }
 
     internal fun onDanger(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> onDangerStandard
+        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onDangerStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onDangerSolarized
     }
 
@@ -109,7 +109,7 @@ public object ColorTokens {
     internal fun foreground(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> foregroundLight
         ThemeStyle.DARK -> foregroundDark
-        ThemeStyle.DARK_AMOLED -> foregroundDarkAmoled
+        ThemeStyle.BLACK -> foregroundBlack
         ThemeStyle.SOLARIZED_LIGHT -> foregroundLightSolarized
         ThemeStyle.SOLARIZED_DARK -> foregroundDarkSolarized
     }
@@ -117,7 +117,7 @@ public object ColorTokens {
     internal fun midground(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> midgroundLight
         ThemeStyle.DARK -> midgroundDark
-        ThemeStyle.DARK_AMOLED -> midgroundDarkAmoled
+        ThemeStyle.BLACK -> midgroundDarkBlack
         ThemeStyle.SOLARIZED_LIGHT -> midgroundLightSolarized
         ThemeStyle.SOLARIZED_DARK -> midgroundDarkSolarized
     }
@@ -125,7 +125,7 @@ public object ColorTokens {
     internal fun background(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> backgroundLight
         ThemeStyle.DARK -> backgroundDark
-        ThemeStyle.DARK_AMOLED -> backgroundDarkAmoled
+        ThemeStyle.BLACK -> backgroundDarkBlack
         ThemeStyle.SOLARIZED_LIGHT -> backgroundLightSolarized
         ThemeStyle.SOLARIZED_DARK -> backgroundDarkSolarized
     }
@@ -133,28 +133,28 @@ public object ColorTokens {
     internal fun outline(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> outlineLight
         ThemeStyle.DARK -> outlineDark
-        ThemeStyle.DARK_AMOLED -> outlineDarkAmoled
+        ThemeStyle.BLACK -> outlineDarkBlack
         ThemeStyle.SOLARIZED_LIGHT -> outlineLightSolarized
         ThemeStyle.SOLARIZED_DARK -> outlineDarkSolarized
     }
 
     internal fun content(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> contentLight
-        ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> contentDark
+        ThemeStyle.DARK, ThemeStyle.BLACK -> contentDark
         ThemeStyle.SOLARIZED_LIGHT -> contentLightSolarized
         ThemeStyle.SOLARIZED_DARK -> contentDarkSolarized
     }
 
     internal fun contentSubtle(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> contentSubtleLight
-        ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> contentSubtleDark
+        ThemeStyle.DARK, ThemeStyle.BLACK -> contentSubtleDark
         ThemeStyle.SOLARIZED_LIGHT -> contentSubtleLightSolarized
         ThemeStyle.SOLARIZED_DARK -> contentSubtleDarkSolarized
     }
 
     internal fun contentDisabled(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT -> contentDisabledLight
-        ThemeStyle.DARK, ThemeStyle.DARK_AMOLED -> contentDisabledDark
+        ThemeStyle.DARK, ThemeStyle.BLACK -> contentDisabledDark
         ThemeStyle.SOLARIZED_LIGHT -> contentDisabledLightSolarized
         ThemeStyle.SOLARIZED_DARK -> contentDisabledDarkSolarized
     }

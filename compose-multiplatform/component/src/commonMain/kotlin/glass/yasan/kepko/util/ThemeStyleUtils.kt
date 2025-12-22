@@ -12,7 +12,7 @@ public fun ThemeStyle.asPreferenceRadioGroupItem(): PreferenceRadioGroupItem = P
     annotation = when (this) {
         ThemeStyle.LIGHT -> null
         ThemeStyle.DARK -> null
-        ThemeStyle.DARK_AMOLED -> PreferenceAnnotation.new
+        ThemeStyle.BLACK -> PreferenceAnnotation.new
         ThemeStyle.SOLARIZED_LIGHT -> PreferenceAnnotation.experimental
         ThemeStyle.SOLARIZED_DARK -> PreferenceAnnotation.experimental
     },
