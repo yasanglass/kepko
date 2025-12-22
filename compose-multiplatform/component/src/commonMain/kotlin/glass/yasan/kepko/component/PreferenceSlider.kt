@@ -43,6 +43,7 @@ public fun PreferenceSlider(
                     onValueChangeFinished = onValueChangeFinished,
                     valueRange = valueRange,
                     steps = steps,
+                    enabled = enabled,
                 )
                 content()
             }
