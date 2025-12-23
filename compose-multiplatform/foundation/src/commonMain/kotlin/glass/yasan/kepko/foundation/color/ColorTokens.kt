@@ -23,7 +23,7 @@ public object ColorTokens {
 
     private val outlineLight: Color = backgroundLight
     private val outlineDark: Color = backgroundDark
-    private val outlineDarkBlack: Color = Color(0x80A0A0A0)
+    private val outlineDarkBlack: Color = Color(0xFF505050)
 
     private val foregroundLightSolarized: Color = Color(0xFFfdf6e3)
     private val midgroundLightSolarized: Color = Color(0xFFeee8d5)
