@@ -60,18 +60,20 @@ public fun AppIdentity(
             )
         }
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            if (extras.isNotEmpty()) {
-                TextPill(
-                    text = extrasString,
-                    containerColor = KepkoTheme.colors.background,
-                )
-            }
+        if (extras.isNotEmpty() || annotation != null) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                if (extras.isNotEmpty()) {
+                    TextPill(
+                        text = extrasString,
+                        containerColor = KepkoTheme.colors.background,
+                    )
+                }
 
-            annotation?.let {
-                TextPill(it)
+                annotation?.let {
+                    TextPill(it)
+                }
             }
         }
     }
@@ -79,36 +81,45 @@ public fun AppIdentity(
 
 @Preview
 @Composable
-private fun AppVersionBannerPreview() {
+private fun AppIdentityPreview() {
     KepkoTheme {
+        val title = "Kepko"
+        val versionName = "1.0.0"
+
         Foreground {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 AppIdentity(
-                    title = "Kepko",
+                    title = title,
+                    versionName = versionName,
                     icon = painterResource(resource = Res.drawable.ic_asterisk),
-                    versionName = "1.0.0",
-                    extras = arrayOf(100.toString(), "play", "flavor"),
-                )
-                HorizontalDivider()
-                AppIdentity(
-                    title = "Kepko",
-                    icon = painterResource(resource = Res.drawable.ic_asterisk),
-                    versionName = "1.0.0",
-                )
-                HorizontalDivider()
-                AppIdentity(
-                    title = "Kepko",
-                    versionName = "1.0.0",
-                    extras = arrayOf(100.toString(), "flavor"),
-                )
-                HorizontalDivider()
-                AppIdentity(
-                    title = "Kepko",
-                    versionName = "1.0.0",
                     extras = arrayOf(100.toString(), "flavor"),
                     annotation = PreferenceAnnotation.beta,
+                )
+                HorizontalDivider()
+                AppIdentity(
+                    title = title,
+                    icon = painterResource(resource = Res.drawable.ic_asterisk),
+                    versionName = versionName,
+                    extras = arrayOf("sega", "bodega", "2023"),
+                )
+                HorizontalDivider()
+                AppIdentity(
+                    title = title,
+                    icon = painterResource(resource = Res.drawable.ic_asterisk),
+                    versionName = "1.0.0",
+                )
+                HorizontalDivider()
+                AppIdentity(
+                    title = title,
+                    versionName = versionName,
+                    extras = arrayOf(100.toString(), "flavor"),
+                )
+                HorizontalDivider()
+                AppIdentity(
+                    title = title,
+                    versionName = versionName,
                 )
             }
         }
