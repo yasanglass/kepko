@@ -43,11 +43,13 @@ KepkoTheme {
   - [Button](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Button.kt)
   - [ButtonText](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/ButtonText.kt)
   - [Checkbox](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Checkbox.kt)
+  - [CircularProgressIndicator](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
   - [HorizontalDivider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/HorizontalDivider.kt)
   - [Icon](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Icon.kt)
-  - [Pill](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Pill.kt)
+  - [LinearProgressIndicator](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
   - [RadioButton](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/RadioButton.kt)
   - [Slider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Slider.kt)
+  - [Surface](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Surface.kt) (Foreground, Midground, Background)
   - [Switch](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Switch.kt)
   - [Text](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Text.kt)
   - [TextMono](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/TextMono.kt)
@@ -55,6 +57,7 @@ KepkoTheme {
   - [VerticalDivider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/VerticalDivider.kt)
 
 ### Preferences
+  - [AppIdentity](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/AppIdentity.kt)
   - [PreferenceCheckbox](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceCheckbox.kt)
   - [PreferenceContainer](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceContainer.kt)
   - [PreferenceRadioButton](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceRadioButton.kt)
