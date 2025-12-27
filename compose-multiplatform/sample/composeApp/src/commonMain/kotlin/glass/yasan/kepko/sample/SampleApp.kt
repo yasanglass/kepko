@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.component.AppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.CircularProgressIndicator
 import glass.yasan.kepko.component.HorizontalDivider
@@ -102,6 +103,7 @@ fun SampleApp() {
                 exampleButtonText()
                 exampleTextPill()
                 exampleProgressIndicator()
+                exampleAppIdentity()
                 item { Spacer(Modifier.height(128.dp)) }
             }
         }
@@ -567,6 +569,17 @@ private fun LazyListScope.exampleTextPill() {
                 modifier = Modifier.padding(top = 12.dp),
             )
         }
+    }
+}
+
+private fun LazyListScope.exampleAppIdentity() {
+    item { HorizontalDivider() }
+    item {
+        AppIdentity(
+            title = "Kepko",
+            versionName = "1.0.0",
+            icon = painterResource(Res.drawable.ic_eco),
+        )
     }
 }
 
