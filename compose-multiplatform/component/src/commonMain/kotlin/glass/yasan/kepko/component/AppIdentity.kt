@@ -28,6 +28,7 @@ public fun AppIdentity(
     icon: Painter? = null,
     iconTint: Color? = KepkoTheme.colors.content,
     extras: Array<String> = emptyArray(),
+    annotation: PreferenceAnnotation? = null,
     contentPadding: PaddingValues = PaddingValues(all = 16.dp),
 ) {
     val extrasString = remember {
@@ -59,11 +60,19 @@ public fun AppIdentity(
             )
         }
 
-        if (extras.isNotEmpty()) {
-            TextPill(
-                text = extrasString,
-                containerColor = KepkoTheme.colors.background,
-            )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            if (extras.isNotEmpty()) {
+                TextPill(
+                    text = extrasString,
+                    containerColor = KepkoTheme.colors.background,
+                )
+            }
+
+            annotation?.let {
+                TextPill(it)
+            }
         }
     }
 }
@@ -93,6 +102,13 @@ private fun AppVersionBannerPreview() {
                     title = "Kepko",
                     versionName = "1.0.0",
                     extras = arrayOf(100.toString(), "flavor"),
+                )
+                HorizontalDivider()
+                AppIdentity(
+                    title = "Kepko",
+                    versionName = "1.0.0",
+                    extras = arrayOf(100.toString(), "flavor"),
+                    annotation = PreferenceAnnotation.beta,
                 )
             }
         }

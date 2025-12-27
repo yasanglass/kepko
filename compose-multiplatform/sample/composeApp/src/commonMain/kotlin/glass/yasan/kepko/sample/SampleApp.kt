@@ -578,7 +578,9 @@ private fun LazyListScope.exampleAppIdentity() {
         AppIdentity(
             title = "Kepko",
             versionName = "1.0.0",
-            icon = painterResource(Res.drawable.ic_eco),
+            icon = painterResource(Res.drawable.ic_heart_smile),
+            extras = arrayOf("100", "beta"),
+            annotation = PreferenceAnnotation.preview,
         )
     }
 }
