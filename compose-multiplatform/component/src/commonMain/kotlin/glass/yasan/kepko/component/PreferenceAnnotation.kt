@@ -11,7 +11,7 @@ import org.jetbrains.compose.resources.stringResource
 @Immutable
 public class PreferenceAnnotation(
     public val text: @Composable () -> String,
-    public val containerColor: @Composable () -> Color,
+    public val containerColor: @Composable () -> Color = { KepkoTheme.colors.foreground },
     public val contentColor: @Composable () -> Color = { contentColorFor(containerColor()) },
     public val leadingIcon: @Composable (() -> Painter)? = null,
     public val trailingIcon: @Composable (() -> Painter)? = null,
