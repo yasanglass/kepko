@@ -50,7 +50,7 @@ KepkoTheme {
   - [LinearProgressIndicator](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
   - [RadioButton](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/RadioButton.kt)
   - [Slider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Slider.kt)
-  - [Surface](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Surface.kt) (Foreground, Midground, Background)
+  - [Surface](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Surface.kt)
   - [Switch](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Switch.kt)
   - [Text](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/Text.kt)
   - [TextMono](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/TextMono.kt)
