@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.kepko.component.AppIdentity
+import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.CircularProgressIndicator
 import glass.yasan.kepko.component.HorizontalDivider
@@ -575,7 +575,7 @@ private fun LazyListScope.exampleTextPill() {
 private fun LazyListScope.exampleAppIdentity() {
     item { HorizontalDivider() }
     item {
-        AppIdentity(
+        PreferenceAppIdentity(
             title = "Kepko",
             versionName = "1.0.0",
             icon = painterResource(Res.drawable.ic_heart_smile),

@@ -58,7 +58,7 @@ KepkoTheme {
   - [VerticalDivider](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/VerticalDivider.kt)
 
 ### Preferences
-  - [AppIdentity](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/AppIdentity.kt)
+  - [PreferenceAppIdentity](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceAppIdentity.kt)
   - [PreferenceCheckbox](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceCheckbox.kt)
   - [PreferenceContainer](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceContainer.kt)
   - [PreferenceRadioButton](compose-multiplatform/component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceRadioButton.kt)

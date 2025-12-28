@@ -21,7 +21,7 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-public fun AppIdentity(
+public fun PreferenceAppIdentity(
     title: String,
     versionName: String,
     modifier: Modifier = Modifier,
@@ -81,31 +81,31 @@ public fun AppIdentity(
 
 @PreviewWithTest
 @Composable
-internal fun AppIdentityLightPreview() {
+internal fun PreferenceAppIdentityLightPreview() {
     KepkoTheme(style = ThemeStyle.LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun AppIdentityDarkPreview() {
+internal fun PreferenceAppIdentityDarkPreview() {
     KepkoTheme(style = ThemeStyle.DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun AppIdentityBlackPreview() {
+internal fun PreferenceAppIdentityBlackPreview() {
     KepkoTheme(style = ThemeStyle.BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun AppIdentitySolarizedLightPreview() {
+internal fun PreferenceAppIdentitySolarizedLightPreview() {
     KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun AppIdentitySolarizedDarkPreview() {
+internal fun PreferenceAppIdentitySolarizedDarkPreview() {
     KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
 }
 
@@ -118,7 +118,7 @@ private fun PreviewContent() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            AppIdentity(
+            PreferenceAppIdentity(
                 title = title,
                 versionName = versionName,
                 icon = painterResource(resource = Res.drawable.ic_asterisk),
@@ -126,26 +126,26 @@ private fun PreviewContent() {
                 annotation = PreferenceAnnotation.beta,
             )
             HorizontalDivider()
-            AppIdentity(
+            PreferenceAppIdentity(
                 title = title,
                 icon = painterResource(resource = Res.drawable.ic_asterisk),
                 versionName = versionName,
                 extras = arrayOf("sega", "bodega", "2023"),
             )
             HorizontalDivider()
-            AppIdentity(
+            PreferenceAppIdentity(
                 title = title,
                 icon = painterResource(resource = Res.drawable.ic_asterisk),
                 versionName = "1.0.0",
             )
             HorizontalDivider()
-            AppIdentity(
+            PreferenceAppIdentity(
                 title = title,
                 versionName = versionName,
                 extras = arrayOf(100.toString(), "flavor"),
             )
             HorizontalDivider()
-            AppIdentity(
+            PreferenceAppIdentity(
                 title = title,
                 versionName = versionName,
             )
