@@ -44,14 +44,6 @@ import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextMono
 import glass.yasan.kepko.component.TextPill
-import glass.yasan.kepko.composeapp.generated.resources.Res
-import glass.yasan.kepko.composeapp.generated.resources.app_title
-import glass.yasan.kepko.composeapp.generated.resources.ic_arrow_forward
-import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
-import glass.yasan.kepko.composeapp.generated.resources.ic_eco
-import glass.yasan.kepko.composeapp.generated.resources.ic_family_star
-import glass.yasan.kepko.composeapp.generated.resources.ic_heart_smile
-import glass.yasan.kepko.composeapp.generated.resources.ic_new_releases
 import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme

@@ -1,26 +1,35 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.compose.hotreload)
 }
 
 kotlin {
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-sensitive-resolution")
         freeCompilerArgs.add("-opt-in=glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi")
     }
 
-    androidTarget {
+    androidLibrary {
+        namespace = "glass.yasan.kepko.sample"
+        compileSdk = libs.versions.sample.android.sdk.compile.get().toInt()
+        minSdk = libs.versions.sample.android.sdk.min.get().toInt()
+
+        androidResources.enable = true
+
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
     jvm()
 
     @OptIn(ExperimentalWasmDsl::class)
@@ -67,41 +76,13 @@ kotlin {
         androidMain {
             dependencies {
                 implementation(compose.preview)
-                implementation(libs.androidx.activity.compose)
             }
         }
     }
 }
 
-android {
-    namespace = "glass.yasan.kepko.sample"
-    compileSdk = libs.versions.sample.android.sdk.compile.get().toInt()
-
-    defaultConfig {
-        applicationId = "glass.yasan.kepko.sample"
-        minSdk = libs.versions.sample.android.sdk.min.get().toInt()
-        targetSdk = libs.versions.sample.android.sdk.target.get().toInt()
-        versionCode = 1
-        versionName = "1.0.0"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
-dependencies {
-    debugImplementation(compose.uiTooling)
+compose.resources {
+    packageOfResClass = "glass.yasan.kepko.sample"
 }
 
 compose.desktop {

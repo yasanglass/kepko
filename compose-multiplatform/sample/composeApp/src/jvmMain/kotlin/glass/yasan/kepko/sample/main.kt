@@ -4,9 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import glass.yasan.kepko.composeapp.generated.resources.Res
-import glass.yasan.kepko.composeapp.generated.resources.app_icon
-import glass.yasan.kepko.composeapp.generated.resources.app_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
