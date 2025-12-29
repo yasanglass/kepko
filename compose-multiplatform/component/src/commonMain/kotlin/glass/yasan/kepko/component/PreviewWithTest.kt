@@ -10,4 +10,4 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-public annotation class PreviewWithTest
+internal annotation class PreviewWithTest
