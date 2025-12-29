@@ -5,4 +5,6 @@
     <string name="preference_annotation_legacy">Legacy</string>
     <string name="preference_annotation_new">New</string>
     <string name="preference_annotation_preview">Preview</string>
+    <string name="go_back">Go back</string>
+    <string name="back">Back</string>
 </resources>
