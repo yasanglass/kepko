@@ -123,7 +123,7 @@ dependencies {
 }
 
 compose.resources {
-    publicResClass = false
+    publicResClass = true
     packageOfResClass = "glass.yasan.kepko.$artifactId"
     generateResClass = auto
 }
