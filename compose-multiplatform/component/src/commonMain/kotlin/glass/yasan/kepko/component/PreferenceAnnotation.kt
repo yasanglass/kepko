@@ -7,6 +7,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.resource.Res
+import glass.yasan.kepko.resource.preference_annotation_alpha
+import glass.yasan.kepko.resource.preference_annotation_beta
+import glass.yasan.kepko.resource.preference_annotation_experimental
+import glass.yasan.kepko.resource.preference_annotation_legacy
+import glass.yasan.kepko.resource.preference_annotation_new
+import glass.yasan.kepko.resource.preference_annotation_preview
 import org.jetbrains.compose.resources.stringResource
 
 @Immutable

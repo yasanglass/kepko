@@ -1,15 +1,15 @@
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val artifactId = "foundation"
+val artifactId = "resource"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
-    alias(libs.plugins.jetbrains.compose.hotreload)
 }
 
 kotlin {
@@ -18,8 +18,6 @@ kotlin {
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
-        freeCompilerArgs.add("-Xcontext-sensitive-resolution")
-        freeCompilerArgs.add("-opt-in=glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi")
     }
 
     androidTarget {
@@ -48,40 +46,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":resource"))
-
-                implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
-                implementation(compose.ui)
             }
-        }
-
-        val nonAndroidMain by creating {
-            dependsOn(commonMain)
-        }
-
-        val jvmMain by getting {
-            dependsOn(nonAndroidMain)
-            dependencies {
-                implementation(compose.desktop.currentOs)
-            }
-        }
-
-        val jsMain by getting {
-            dependsOn(nonAndroidMain)
-        }
-
-        val wasmJsMain by getting {
-            dependsOn(nonAndroidMain)
-        }
-
-        val iosMain by getting {
-            dependsOn(nonAndroidMain)
         }
     }
 }
@@ -101,11 +68,11 @@ android {
 }
 
 compose.resources {
-    publicResClass = false
+    publicResClass = true
     packageOfResClass = "glass.yasan.kepko.$artifactId"
     generateResClass = auto
 }
 
-configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
+configure<MavenPublishBaseExtension> {
     coordinates(artifactId = artifactId)
 }

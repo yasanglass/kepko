@@ -1,13 +1,13 @@
 package glass.yasan.kepko.foundation.theme
 
 import androidx.compose.runtime.Composable
-import glass.yasan.kepko.foundation.Res
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
-import glass.yasan.kepko.foundation.theme_style_black
-import glass.yasan.kepko.foundation.theme_style_dark
-import glass.yasan.kepko.foundation.theme_style_dark_solarized
-import glass.yasan.kepko.foundation.theme_style_light
-import glass.yasan.kepko.foundation.theme_style_light_solarized
+import glass.yasan.kepko.resource.Res
+import glass.yasan.kepko.resource.theme_style_black
+import glass.yasan.kepko.resource.theme_style_dark
+import glass.yasan.kepko.resource.theme_style_dark_solarized
+import glass.yasan.kepko.resource.theme_style_light
+import glass.yasan.kepko.resource.theme_style_light_solarized
 import org.jetbrains.compose.resources.stringResource
 
 public enum class ThemeStyle(

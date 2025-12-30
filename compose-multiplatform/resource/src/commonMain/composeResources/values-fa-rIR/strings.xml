@@ -1,0 +1,13 @@
+<resources>
+    <string name="theme_style_light">بتا</string>
+    <string name="theme_style_dark">تیره</string>
+    <string name="theme_style_black">سیاه (آمولد)</string>
+    <string name="theme_style_light_solarized">خورشیدی روشن</string>
+    <string name="theme_style_dark_solarized">خورشیدی تیره</string>
+    <string name="preference_annotation_alpha">آلفا</string>
+    <string name="preference_annotation_beta">بتا</string>
+    <string name="preference_annotation_experimental">آزمایشی</string>
+    <string name="preference_annotation_legacy">قدیمی</string>
+    <string name="preference_annotation_new">جدید</string>
+    <string name="preference_annotation_preview">پیش‌نمایش</string>
+</resources>
