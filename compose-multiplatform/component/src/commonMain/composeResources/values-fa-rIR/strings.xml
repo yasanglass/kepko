@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="preference_annotation_alpha">آلفا</string>
-    <string name="preference_annotation_beta">بتا</string>
-    <string name="preference_annotation_experimental">آزمایشی</string>
-    <string name="preference_annotation_legacy">قدیمی</string>
-    <string name="preference_annotation_new">جدید</string>
-    <string name="preference_annotation_preview">پیش‌نمایش</string>
-</resources>

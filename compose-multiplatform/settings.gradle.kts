@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "kepko"
+include(":resource")
 include(":foundation")
 include(":component")
 include(":sample")

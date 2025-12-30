@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="preference_annotation_alpha">Alpha</string>
-    <string name="preference_annotation_beta">Beta</string>
-    <string name="preference_annotation_experimental">Experimental</string>
-    <string name="preference_annotation_legacy">Legacy</string>
-    <string name="preference_annotation_new">New</string>
-    <string name="preference_annotation_preview">Preview</string>
-</resources>
