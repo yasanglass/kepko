@@ -6,7 +6,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import glass.yasan.kepko.composeapp.generated.resources.Res
 import glass.yasan.kepko.composeapp.generated.resources.app_icon
-import glass.yasan.kepko.composeapp.generated.resources.app_title
+import glass.yasan.kepko.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -16,7 +16,7 @@ fun main() {
 
         Window(
             onCloseRequest = ::exitApplication,
-            title = stringResource(Res.string.app_title),
+            title = stringResource(Res.string.app_name),
             icon = icon,
         ) {
             SampleApp()

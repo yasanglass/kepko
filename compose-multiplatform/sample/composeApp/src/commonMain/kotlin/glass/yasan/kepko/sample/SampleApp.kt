@@ -46,7 +46,7 @@ import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.composeapp.generated.resources.Res
 import glass.yasan.kepko.resource.ic_chevron_backward
 import glass.yasan.kepko.resource.ic_chevron_forward
-import glass.yasan.kepko.composeapp.generated.resources.app_title
+import glass.yasan.kepko.composeapp.generated.resources.app_name
 import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
 import glass.yasan.kepko.composeapp.generated.resources.ic_eco
 import glass.yasan.kepko.composeapp.generated.resources.ic_family_star
@@ -81,7 +81,7 @@ fun SampleApp() {
         )
 
         Scaffold(
-            title = stringResource(Res.string.app_title),
+            title = stringResource(Res.string.app_name),
         ) { contentPadding ->
             Box(
                 contentAlignment = Alignment.TopCenter,
