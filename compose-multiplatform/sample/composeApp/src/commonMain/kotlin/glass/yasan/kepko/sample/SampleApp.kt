@@ -67,7 +67,7 @@ import glass.yasan.kepko.resource.Res as KepkoRes
 fun SampleApp() {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val style = rememberSaveable {
-        mutableStateOf(ThemeStyle.fromDarkMode(isDark = isSystemInDarkTheme))
+        mutableStateOf(ThemeStyle.fromDarkTheme(isDark = isSystemInDarkTheme))
     }
 
     KepkoTheme(

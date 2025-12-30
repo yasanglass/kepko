@@ -48,9 +48,9 @@ public enum class ThemeStyle(
     public companion object {
 
         @Composable
-        public fun fromSystemDarkMode(): ThemeStyle = fromDarkMode(isDark = isSystemInDarkTheme())
+        public fun fromSystemDarkTheme(): ThemeStyle = fromDarkTheme(isDark = isSystemInDarkTheme())
 
-        public fun fromDarkMode(isDark: Boolean): ThemeStyle = if (isDark) DARK else LIGHT
+        public fun fromDarkTheme(isDark: Boolean): ThemeStyle = if (isDark) DARK else LIGHT
 
         public fun fromId(id: String): ThemeStyle? = entries.find { it.id == id }
 
