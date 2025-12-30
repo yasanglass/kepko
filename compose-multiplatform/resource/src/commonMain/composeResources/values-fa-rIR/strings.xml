@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="theme_style_light">بتا</string>
     <string name="theme_style_dark">تیره</string>
@@ -10,4 +11,6 @@
     <string name="preference_annotation_legacy">قدیمی</string>
     <string name="preference_annotation_new">جدید</string>
     <string name="preference_annotation_preview">پیش‌نمایش</string>
+    <string name="go_back">برگشت به عقب</string>
+    <string name="back">برگشت</string>
 </resources>
