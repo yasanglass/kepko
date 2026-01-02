@@ -44,9 +44,8 @@ import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.composeapp.generated.resources.Res
-import glass.yasan.kepko.resource.ic_chevron_backward
-import glass.yasan.kepko.resource.ic_chevron_forward
 import glass.yasan.kepko.composeapp.generated.resources.app_name
+import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
 import glass.yasan.kepko.composeapp.generated.resources.ic_eco
 import glass.yasan.kepko.composeapp.generated.resources.ic_family_star
@@ -60,7 +59,6 @@ import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import glass.yasan.kepko.resource.Res as KepkoRes
 
 @Preview
 @Composable
@@ -442,7 +440,7 @@ private fun LazyListScope.exampleButtonText() {
     item {
         ButtonText(
             text = "ButtonText",
-            leadingIcon = painterResource(KepkoRes.drawable.ic_chevron_backward),
+            leadingIcon = Icons.chevronBackward,
             trailingIcon = painterResource(Res.drawable.ic_bolt),
             containerColor = KepkoTheme.colors.foreground,
             annotation = PreferenceAnnotation.new,
@@ -453,7 +451,7 @@ private fun LazyListScope.exampleButtonText() {
         ButtonText(
             text = "ButtonText",
             leadingIcon = painterResource(Res.drawable.ic_bolt),
-            trailingIcon = painterResource(KepkoRes.drawable.ic_chevron_forward),
+            trailingIcon = Icons.chevronForward,
             onClick = {},
         )
     }
@@ -544,7 +542,7 @@ private fun LazyListScope.exampleButtonText() {
         ButtonText(
             text = "ButtonText",
             leadingIcon = painterResource(Res.drawable.ic_bolt),
-            trailingIcon = painterResource(KepkoRes.drawable.ic_chevron_forward),
+            trailingIcon = Icons.chevronForward,
             onClick = {},
             enabled = false,
         )

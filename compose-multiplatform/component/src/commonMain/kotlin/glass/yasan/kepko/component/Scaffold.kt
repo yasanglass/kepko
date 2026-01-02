@@ -26,13 +26,9 @@ import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.resource.back
-import glass.yasan.kepko.resource.go_back
-import glass.yasan.kepko.resource.ic_chevron_backward
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
+import glass.yasan.kepko.resource.Icons
+import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.Scaffold as Material3Scaffold
-import glass.yasan.kepko.resource.Res as KepkoRes
 
 @ExperimentalKepkoApi
 @Composable
@@ -95,7 +91,7 @@ public fun Scaffold(
     title: String,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    backIcon: Painter = painterResource(KepkoRes.drawable.ic_chevron_backward),
+    backIcon: Painter = Icons.chevronBackward,
     trailingContent: @Composable RowScope.() -> Unit = {},
     bottomBar: @Composable RowScope.() -> Unit = {},
     snackbarHost: @Composable () -> Unit = {},
@@ -113,13 +109,13 @@ public fun Scaffold(
         leadingContent = {
             Icon(
                 painter = backIcon,
-                contentDescription = stringResource(KepkoRes.string.back),
+                contentDescription = Strings.back,
                 modifier = Modifier
                     .padding(4.dp)
                     .clip(CircleShape)
                     .clickable(
                         onClick = onBackClick,
-                        onClickLabel = stringResource(KepkoRes.string.go_back),
+                        onClickLabel = Strings.goBack,
                     )
                     .padding(12.dp),
             )
@@ -233,7 +229,7 @@ internal fun ScaffoldWithTrailingContentPreview() {
             title = "Title",
             trailingContent = {
                 Icon(
-                    painter = painterResource(Res.drawable.ic_asterisk),
+                    painter = Icons.chevronForward,
                     contentDescription = null,
                     modifier = Modifier.padding(end = 16.dp),
                 )
@@ -253,7 +249,7 @@ internal fun ScaffoldWithTrailingContentAndAnnotationPreview() {
             annotation = PreferenceAnnotation.experimental,
             trailingContent = {
                 Icon(
-                    painter = painterResource(Res.drawable.ic_asterisk),
+                    painter = Icons.chevronForward,
                     contentDescription = null,
                     modifier = Modifier.padding(end = 16.dp),
                 )

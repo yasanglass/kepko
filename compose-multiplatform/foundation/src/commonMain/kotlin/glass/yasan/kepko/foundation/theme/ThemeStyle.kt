@@ -3,13 +3,7 @@ package glass.yasan.kepko.foundation.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
-import glass.yasan.kepko.resource.Res
-import glass.yasan.kepko.resource.theme_style_black
-import glass.yasan.kepko.resource.theme_style_dark
-import glass.yasan.kepko.resource.theme_style_dark_solarized
-import glass.yasan.kepko.resource.theme_style_light
-import glass.yasan.kepko.resource.theme_style_light_solarized
-import org.jetbrains.compose.resources.stringResource
+import glass.yasan.kepko.resource.Strings
 
 public enum class ThemeStyle(
     public val id: String,
@@ -19,29 +13,29 @@ public enum class ThemeStyle(
     LIGHT(
         id = "light",
         isDark = false,
-        title = { stringResource(Res.string.theme_style_light) }
+        title = { Strings.themeStyleLight }
     ),
     DARK(
         id = "dark",
         isDark = true,
-        title = { stringResource(Res.string.theme_style_dark) }
+        title = { Strings.themeStyleDark }
     ),
     BLACK(
         id = "black",
         isDark = true,
-        title = { stringResource(Res.string.theme_style_black) }
+        title = { Strings.themeStyleBlack }
     ),
     @ExperimentalKepkoApi
     SOLARIZED_LIGHT(
         id = "solarized-light",
         isDark = false,
-        title = { stringResource(Res.string.theme_style_light_solarized) }
+        title = { Strings.themeStyleLightSolarized }
     ),
     @ExperimentalKepkoApi
     SOLARIZED_DARK(
         id = "solarized-dark",
         isDark = true,
-        title = { stringResource(Res.string.theme_style_dark_solarized) }
+        title = { Strings.themeStyleDarkSolarized }
     ),
     ;
 

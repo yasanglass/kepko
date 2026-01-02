@@ -7,14 +7,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.resource.Res
-import glass.yasan.kepko.resource.preference_annotation_alpha
-import glass.yasan.kepko.resource.preference_annotation_beta
-import glass.yasan.kepko.resource.preference_annotation_experimental
-import glass.yasan.kepko.resource.preference_annotation_legacy
-import glass.yasan.kepko.resource.preference_annotation_new
-import glass.yasan.kepko.resource.preference_annotation_preview
-import org.jetbrains.compose.resources.stringResource
+import glass.yasan.kepko.resource.Strings
 
 @Immutable
 public data class PreferenceAnnotation(
@@ -28,32 +21,32 @@ public data class PreferenceAnnotation(
     public companion object {
 
         public val new: PreferenceAnnotation = PreferenceAnnotation(
-            text = { stringResource(Res.string.preference_annotation_new) },
+            text = { Strings.preferenceAnnotationNew },
             containerColor = { KepkoTheme.colors.information },
         )
 
         public val preview: PreferenceAnnotation = PreferenceAnnotation(
-            text = { stringResource(Res.string.preference_annotation_preview) },
+            text = { Strings.preferenceAnnotationPreview },
             containerColor = { KepkoTheme.colors.content },
         )
 
         public val experimental: PreferenceAnnotation = PreferenceAnnotation(
-            text = { stringResource(Res.string.preference_annotation_experimental) },
+            text = { Strings.preferenceAnnotationExperimental },
             containerColor = { KepkoTheme.colors.danger },
         )
 
         public val beta: PreferenceAnnotation = PreferenceAnnotation(
-            text = { stringResource(Res.string.preference_annotation_beta) },
+            text = { Strings.preferenceAnnotationBeta },
             containerColor = { KepkoTheme.colors.caution },
         )
 
         public val alpha: PreferenceAnnotation = PreferenceAnnotation(
-            text = { stringResource(Res.string.preference_annotation_alpha) },
+            text = { Strings.preferenceAnnotationAlpha },
             containerColor = { KepkoTheme.colors.danger },
         )
 
         public val legacy: PreferenceAnnotation = PreferenceAnnotation(
-            text = { stringResource(Res.string.preference_annotation_legacy) },
+            text = { Strings.preferenceAnnotationLegacy },
             containerColor = { KepkoTheme.colors.danger },
         )
 

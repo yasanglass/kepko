@@ -48,6 +48,7 @@ kotlin {
             dependencies {
                 implementation(compose.components.resources)
                 implementation(compose.runtime)
+                implementation(compose.ui)
             }
         }
     }
@@ -68,7 +69,7 @@ android {
 }
 
 compose.resources {
-    publicResClass = true
+    publicResClass = false
     packageOfResClass = "glass.yasan.kepko.$artifactId"
     generateResClass = auto
 }
