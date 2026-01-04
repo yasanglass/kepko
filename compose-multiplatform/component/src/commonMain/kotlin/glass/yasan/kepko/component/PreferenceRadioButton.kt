@@ -8,12 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import org.jetbrains.compose.resources.painterResource
 
-@OptIn(ExperimentalKepkoApi::class)
 @Composable
 public fun PreferenceRadioButton(
     title: String,
@@ -42,7 +40,6 @@ public fun PreferenceRadioButton(
     )
 }
 
-@OptIn(ExperimentalKepkoApi::class)
 @Composable
 public fun PreferenceRadioButton(
     title: String,
