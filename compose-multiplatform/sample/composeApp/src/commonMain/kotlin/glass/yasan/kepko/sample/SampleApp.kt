@@ -53,6 +53,7 @@ import glass.yasan.kepko.composeapp.generated.resources.ic_heart_smile
 import glass.yasan.kepko.composeapp.generated.resources.ic_new_releases
 import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.color.contentColorFor
+import glass.yasan.kepko.foundation.theme.AnimatedKepkoTheme
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.util.asPreferenceRadioGroupItems
@@ -68,7 +69,7 @@ fun SampleApp() {
         mutableStateOf(ThemeStyle.fromDarkTheme(isDark = isSystemInDarkTheme))
     }
 
-    KepkoTheme(
+    AnimatedKepkoTheme(
         style = style.value,
     ) {
 
