@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
@@ -29,6 +30,7 @@ import kotlin.math.sin
 @Composable
 public fun AnimatedKepkoTheme(
     style: ThemeStyle,
+    containerColor: Color? = null,
     content: @Composable () -> Unit,
 ) {
     var previousStyle by remember { mutableStateOf(style) }
@@ -57,7 +59,7 @@ public fun AnimatedKepkoTheme(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(ColorTokens.midground(previousStyle)),
+                    .background(containerColor ?: ColorTokens.midground(previousStyle)),
             ) {
                 KepkoTheme(style = previousStyle) {
                     content()
