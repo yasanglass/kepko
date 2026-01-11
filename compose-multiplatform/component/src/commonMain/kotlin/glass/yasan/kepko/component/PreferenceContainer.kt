@@ -12,11 +12,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,18 +35,21 @@ public fun PreferenceContainer(
     annotation: PreferenceAnnotation? = null,
     interactionSource: MutableInteractionSource? = null,
     indication: Indication? = null,
+    shape: Shape = KepkoTheme.shapes.container,
     content: @Composable (PaddingValues) -> Unit,
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
     val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
-    val shape = RoundedCornerShape(32.dp)
     val contentPadding = PaddingValues(horizontal = 24.dp)
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxWidth()
-            .border(color = KepkoTheme.colors.outline, shape)
+            .border(
+                color = KepkoTheme.colors.outline,
+                shape = shape,
+            )
             .clip(shape)
             .clickable(
                 interactionSource = interactionSource,
@@ -97,15 +100,15 @@ public fun PreferenceContainer(
     leadingContent: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit = {},
     annotation: PreferenceAnnotation? = null,
+    shape: Shape = KepkoTheme.shapes.container,
     interactionSource: MutableInteractionSource? = null,
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
     val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
-    val shape = RoundedCornerShape(32.dp)
 
     Column(
         modifier = modifier
-            .border(color = KepkoTheme.colors.outline, shape)
+            .border(shape)
             .clip(shape)
             .clickable(
                 interactionSource = interactionSource,
