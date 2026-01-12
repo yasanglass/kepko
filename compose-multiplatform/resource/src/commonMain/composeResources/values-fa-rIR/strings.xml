@@ -7,6 +7,7 @@
     <string name="theme_style_dark_solarized">خورشیدی تیره</string>
     <string name="preference_annotation_alpha">آلفا</string>
     <string name="preference_annotation_beta">بتا</string>
+    <string name="preference_annotation_default">Default</string>
     <string name="preference_annotation_experimental">آزمایشی</string>
     <string name="preference_annotation_legacy">قدیمی</string>
     <string name="preference_annotation_new">جدید</string>
