@@ -17,6 +17,9 @@ public object Strings {
     public val preferenceAnnotationBeta: String
         @Composable get() = stringResource(Res.string.preference_annotation_beta)
 
+    public val preferenceAnnotationDefault: String
+        @Composable get() = stringResource(Res.string.preference_annotation_default)
+
     public val preferenceAnnotationExperimental: String
         @Composable get() = stringResource(Res.string.preference_annotation_experimental)
 
