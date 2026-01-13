@@ -12,8 +12,6 @@ import glass.yasan.kepko.foundation.color.Colors
 import glass.yasan.kepko.foundation.color.LocalColors
 import glass.yasan.kepko.foundation.dimension.Dimensions
 import glass.yasan.kepko.foundation.dimension.LocalDimensions
-import glass.yasan.kepko.foundation.shape.LocalShapes
-import glass.yasan.kepko.foundation.shape.Shapes
 import glass.yasan.kepko.foundation.typography.rubikTypography
 
 @Composable
@@ -21,7 +19,6 @@ public fun KepkoTheme(
     style: ThemeStyle,
     colors: Colors = Colors(style = style),
     dimensions: Dimensions = KepkoTheme.dimensions,
-    shapes: Shapes = KepkoTheme.shapes,
     material3ColorScheme: ColorScheme = colors.toMaterial3ColorScheme(),
     content: @Composable () -> Unit,
 ) {
@@ -32,7 +29,6 @@ public fun KepkoTheme(
         CompositionLocalProvider(
             LocalColors provides colors,
             LocalDimensions provides dimensions,
-            LocalShapes provides shapes,
             LocalContentColor provides colors.content,
             content = content,
         )
@@ -44,7 +40,6 @@ public fun KepkoTheme(
     isDark: Boolean = isSystemInDarkTheme(),
     colors: Colors = Colors(style = if (isDark) ThemeStyle.DARK else ThemeStyle.LIGHT),
     dimensions: Dimensions = KepkoTheme.dimensions,
-    shapes: Shapes = KepkoTheme.shapes,
     material3ColorScheme: ColorScheme = colors.toMaterial3ColorScheme(),
     content: @Composable () -> Unit,
 ) {
@@ -52,7 +47,6 @@ public fun KepkoTheme(
         style = if (isDark) ThemeStyle.DARK else ThemeStyle.LIGHT,
         colors = colors,
         dimensions = dimensions,
-        shapes = shapes,
         material3ColorScheme = material3ColorScheme,
         content = content,
     )
@@ -69,11 +63,6 @@ public object KepkoTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalDimensions.current
-
-    public val shapes: Shapes
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalShapes.current
 
 }
 
