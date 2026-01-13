@@ -62,6 +62,12 @@ kotlin {
             }
         }
 
+        androidMain {
+            dependencies {
+                implementation(compose.preview)
+            }
+        }
+
         val nonAndroidMain by creating {
             dependsOn(commonMain)
         }
@@ -99,6 +105,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+dependencies {
+    debugImplementation(compose.uiTooling)
 }
 
 compose.resources {
