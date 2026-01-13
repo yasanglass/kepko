@@ -71,64 +71,67 @@ public fun TextField(
             keyboardActions = keyboardActions,
             shape = shape,
             interactionSource = interactionSource,
-            colors = Material3TextFieldDefaults.colors(
-                // Container colors
-                focusedContainerColor = KepkoTheme.colors.foreground,
-                unfocusedContainerColor = KepkoTheme.colors.foreground,
-                disabledContainerColor = KepkoTheme.colors.foreground.copy(alpha = 0.50f),
-                errorContainerColor = KepkoTheme.colors.foreground,
-                // Text colors
-                focusedTextColor = KepkoTheme.colors.content,
-                unfocusedTextColor = KepkoTheme.colors.content,
-                disabledTextColor = KepkoTheme.colors.contentDisabled,
-                errorTextColor = KepkoTheme.colors.content,
-                // Cursor colors
-                cursorColor = KepkoTheme.colors.content,
-                errorCursorColor = KepkoTheme.colors.danger,
-                // Indicator colors (underline) - transparent to hide
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-                errorIndicatorColor = Color.Transparent,
-                // Label colors
-                focusedLabelColor = KepkoTheme.colors.content,
-                unfocusedLabelColor = KepkoTheme.colors.contentSubtle,
-                disabledLabelColor = KepkoTheme.colors.contentDisabled,
-                errorLabelColor = KepkoTheme.colors.danger,
-                // Placeholder colors
-                focusedPlaceholderColor = KepkoTheme.colors.contentSubtle,
-                unfocusedPlaceholderColor = KepkoTheme.colors.contentSubtle,
-                disabledPlaceholderColor = KepkoTheme.colors.contentDisabled,
-                errorPlaceholderColor = KepkoTheme.colors.contentSubtle,
-                // Leading icon colors
-                focusedLeadingIconColor = KepkoTheme.colors.content,
-                unfocusedLeadingIconColor = KepkoTheme.colors.contentSubtle,
-                disabledLeadingIconColor = KepkoTheme.colors.contentDisabled,
-                errorLeadingIconColor = KepkoTheme.colors.danger,
-                // Trailing icon colors
-                focusedTrailingIconColor = KepkoTheme.colors.content,
-                unfocusedTrailingIconColor = KepkoTheme.colors.contentSubtle,
-                disabledTrailingIconColor = KepkoTheme.colors.contentDisabled,
-                errorTrailingIconColor = KepkoTheme.colors.danger,
-                // Prefix colors
-                focusedPrefixColor = KepkoTheme.colors.content,
-                unfocusedPrefixColor = KepkoTheme.colors.contentSubtle,
-                disabledPrefixColor = KepkoTheme.colors.contentDisabled,
-                errorPrefixColor = KepkoTheme.colors.content,
-                // Suffix colors
-                focusedSuffixColor = KepkoTheme.colors.content,
-                unfocusedSuffixColor = KepkoTheme.colors.contentSubtle,
-                disabledSuffixColor = KepkoTheme.colors.contentDisabled,
-                errorSuffixColor = KepkoTheme.colors.content,
-                // Supporting text colors
-                focusedSupportingTextColor = KepkoTheme.colors.contentSubtle,
-                unfocusedSupportingTextColor = KepkoTheme.colors.contentSubtle,
-                disabledSupportingTextColor = KepkoTheme.colors.contentDisabled,
-                errorSupportingTextColor = KepkoTheme.colors.danger,
-            ),
+            colors = textFieldColors(),
         )
     }
 }
+
+@Composable
+private fun textFieldColors() = Material3TextFieldDefaults.colors(
+    // Container colors
+    focusedContainerColor = KepkoTheme.colors.foreground,
+    unfocusedContainerColor = KepkoTheme.colors.foreground,
+    disabledContainerColor = KepkoTheme.colors.foreground.copy(alpha = 0.50f),
+    errorContainerColor = KepkoTheme.colors.foreground,
+    // Text colors
+    focusedTextColor = KepkoTheme.colors.content,
+    unfocusedTextColor = KepkoTheme.colors.content,
+    disabledTextColor = KepkoTheme.colors.contentDisabled,
+    errorTextColor = KepkoTheme.colors.content,
+    // Cursor colors
+    cursorColor = KepkoTheme.colors.content,
+    errorCursorColor = KepkoTheme.colors.danger,
+    // Indicator colors (underline) - transparent to hide
+    focusedIndicatorColor = Color.Transparent,
+    unfocusedIndicatorColor = Color.Transparent,
+    disabledIndicatorColor = Color.Transparent,
+    errorIndicatorColor = Color.Transparent,
+    // Label colors
+    focusedLabelColor = KepkoTheme.colors.content,
+    unfocusedLabelColor = KepkoTheme.colors.contentSubtle,
+    disabledLabelColor = KepkoTheme.colors.contentDisabled,
+    errorLabelColor = KepkoTheme.colors.danger,
+    // Placeholder colors
+    focusedPlaceholderColor = KepkoTheme.colors.contentSubtle,
+    unfocusedPlaceholderColor = KepkoTheme.colors.contentSubtle,
+    disabledPlaceholderColor = KepkoTheme.colors.contentDisabled,
+    errorPlaceholderColor = KepkoTheme.colors.contentSubtle,
+    // Leading icon colors
+    focusedLeadingIconColor = KepkoTheme.colors.content,
+    unfocusedLeadingIconColor = KepkoTheme.colors.contentSubtle,
+    disabledLeadingIconColor = KepkoTheme.colors.contentDisabled,
+    errorLeadingIconColor = KepkoTheme.colors.danger,
+    // Trailing icon colors
+    focusedTrailingIconColor = KepkoTheme.colors.content,
+    unfocusedTrailingIconColor = KepkoTheme.colors.contentSubtle,
+    disabledTrailingIconColor = KepkoTheme.colors.contentDisabled,
+    errorTrailingIconColor = KepkoTheme.colors.danger,
+    // Prefix colors
+    focusedPrefixColor = KepkoTheme.colors.content,
+    unfocusedPrefixColor = KepkoTheme.colors.contentSubtle,
+    disabledPrefixColor = KepkoTheme.colors.contentDisabled,
+    errorPrefixColor = KepkoTheme.colors.content,
+    // Suffix colors
+    focusedSuffixColor = KepkoTheme.colors.content,
+    unfocusedSuffixColor = KepkoTheme.colors.contentSubtle,
+    disabledSuffixColor = KepkoTheme.colors.contentDisabled,
+    errorSuffixColor = KepkoTheme.colors.content,
+    // Supporting text colors
+    focusedSupportingTextColor = KepkoTheme.colors.contentSubtle,
+    unfocusedSupportingTextColor = KepkoTheme.colors.contentSubtle,
+    disabledSupportingTextColor = KepkoTheme.colors.contentDisabled,
+    errorSupportingTextColor = KepkoTheme.colors.danger,
+)
 
 @PreviewWithTest
 @Composable
@@ -160,6 +163,7 @@ internal fun TextFieldSolarizedDarkPreview() {
     KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun PreviewContent() {
     Column(
