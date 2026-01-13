@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,9 +15,9 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 public fun shapes(
-    containerOuter: Shape = RoundedCornerShape(40.dp),
-    container: Shape = RoundedCornerShape(32.dp),
-    containerInner: Shape = RoundedCornerShape(24.dp),
+    containerOuter: Shape = CircleShape,
+    container: Shape = CircleShape,
+    containerInner: Shape = CircleShape,
     button: Shape = CircleShape,
 ): Shapes = Shapes(
     containerOuter = containerOuter,
