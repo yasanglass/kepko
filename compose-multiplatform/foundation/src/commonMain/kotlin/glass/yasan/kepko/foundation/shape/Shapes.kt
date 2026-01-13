@@ -5,9 +5,6 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Shape
 
 public data class Shapes(
-    val containerOuter: Shape,
-    val container: Shape,
-    val containerInner: Shape,
     val button: Shape,
 )
 

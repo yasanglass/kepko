@@ -15,14 +15,8 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 public fun shapes(
-    containerOuter: Shape = CircleShape,
-    container: Shape = CircleShape,
-    containerInner: Shape = CircleShape,
     button: Shape = CircleShape,
 ): Shapes = Shapes(
-    containerOuter = containerOuter,
-    container = container,
-    containerInner = containerInner,
     button = button,
 )
 
