@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
@@ -43,7 +42,7 @@ public fun TextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    shape: Shape = RoundedCornerShape(32.dp),
+    shape: Shape = KepkoTheme.shapes.extraLarge,
     interactionSource: MutableInteractionSource? = null,
 ) {
     val contentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
