@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,12 +35,12 @@ public fun PreferenceContainer(
     annotation: PreferenceAnnotation? = null,
     interactionSource: MutableInteractionSource? = null,
     indication: Indication? = null,
+    shape: Shape = KepkoTheme.shapes.extraLarge,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 24.dp),
     content: @Composable (PaddingValues) -> Unit,
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
     val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
-    val shape = KepkoTheme.shapes.extraLarge
-    val contentPadding = PaddingValues(horizontal = 24.dp)
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -97,10 +98,10 @@ public fun PreferenceContainer(
     trailingContent: @Composable () -> Unit = {},
     annotation: PreferenceAnnotation? = null,
     interactionSource: MutableInteractionSource? = null,
+    shape: Shape = KepkoTheme.shapes.extraLarge,
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
     val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
-    val shape = KepkoTheme.shapes.extraLarge
 
     Column(
         modifier = modifier
