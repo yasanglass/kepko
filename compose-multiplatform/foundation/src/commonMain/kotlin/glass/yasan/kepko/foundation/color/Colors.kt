@@ -5,7 +5,6 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @Immutable
@@ -14,24 +13,16 @@ public class Colors internal constructor(
 ) {
     private val inverseStyle: ThemeStyle = if (style == ThemeStyle.LIGHT) ThemeStyle.DARK else ThemeStyle.LIGHT
 
-    @ExperimentalKepkoApi
     public val success: Color = ColorTokens.success(style)
-    @ExperimentalKepkoApi
     public val onSuccess: Color = ColorTokens.onSuccess(style)
 
-    @ExperimentalKepkoApi
     public val information: Color = ColorTokens.information(style)
-    @ExperimentalKepkoApi
     public val onInformation: Color = ColorTokens.onInformation(style)
 
-    @ExperimentalKepkoApi
     public val caution: Color = ColorTokens.caution(style)
-    @ExperimentalKepkoApi
     public val onCaution: Color = ColorTokens.onCaution(style)
 
-    @ExperimentalKepkoApi
     public val danger: Color = ColorTokens.danger(style)
-    @ExperimentalKepkoApi
     public val onDanger: Color = ColorTokens.onDanger(style)
 
     public val content: Color = ColorTokens.content(style)
