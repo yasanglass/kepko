@@ -3,7 +3,9 @@ package glass.yasan.kepko.foundation.shape
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 
+@ExperimentalKepkoApi
 public data class Shapes(
     val extraSmall: CornerBasedShape,
     val small: CornerBasedShape,
