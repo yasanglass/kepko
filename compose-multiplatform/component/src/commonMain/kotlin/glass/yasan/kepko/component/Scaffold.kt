@@ -45,7 +45,7 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     annotation: PreferenceAnnotation? = null,
-    content: @Composable (PaddingValues) -> Unit,
+    content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
     Scaffold(
         modifier = modifier,
@@ -101,7 +101,7 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     annotation: PreferenceAnnotation? = null,
-    content: @Composable (PaddingValues) -> Unit,
+    content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
     Scaffold(
         title = title,
@@ -145,7 +145,7 @@ public fun Scaffold(
     containerColor: Color = KepkoTheme.colors.midground,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    content: @Composable (PaddingValues) -> Unit,
+    content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
     Material3Scaffold(
         modifier = modifier,
