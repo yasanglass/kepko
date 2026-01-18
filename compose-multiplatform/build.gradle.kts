@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.jetbrains.compose) apply false
-    alias(libs.plugins.jetbrains.compose.hotreload) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.roborazzi) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
