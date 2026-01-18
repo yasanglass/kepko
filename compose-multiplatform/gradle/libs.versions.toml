@@ -7,8 +7,7 @@ androidx-compose-ui-tooling = "1.10.0"
 androidx-lifecycle = "2.9.6"
 androidx-navigation = "2.9.1"
 arturbosch-detekt = "1.23.8"
-jetbrains-compose = "1.9.3"
-jetbrains-compose-hotreload = "1.0.0"
+jetbrains-compose = "1.10.0"
 jetbrains-kotlin = "2.3.0"
 composable-preview-scanner = "0.8.1"
 roborazzi = "1.56.0"
@@ -29,7 +28,6 @@ roborazzi-compose-desktop = { module = "io.github.takahirom.roborazzi:roborazzi-
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "arturbosch-detekt" }
-jetbrains-compose-hotreload = { id = "org.jetbrains.compose.hot-reload", version.ref = "jetbrains-compose-hotreload" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
