@@ -64,8 +64,10 @@ public fun PreferenceRadioButton(
                 enabled = enabled,
                 selected = selected,
                 onClick = onClick,
+                minimumInteractiveComponentSize = 0.dp,
+                modifier = Modifier.padding(vertical = 12.dp),
             )
-        }
+        },
     )
 }
 
