@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.color.ProvideLocalMinimumInteractiveComponentSize
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import androidx.compose.material3.RadioButton as Material3RadioButton
@@ -19,20 +21,23 @@ public fun RadioButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
+    minimumInteractiveComponentSize: Dp? = null,
 ) {
-    Material3RadioButton(
-        selected = selected,
-        enabled = enabled,
-        colors = Material3RadioButtonDefaults.colors(
-            disabledSelectedColor = KepkoTheme.colors.contentDisabled,
-            disabledUnselectedColor = KepkoTheme.colors.contentDisabled,
-            selectedColor = KepkoTheme.colors.content,
-            unselectedColor = KepkoTheme.colors.content,
-        ),
-        interactionSource = interactionSource,
-        onClick = onClick,
-        modifier = modifier,
-    )
+    ProvideLocalMinimumInteractiveComponentSize(size = minimumInteractiveComponentSize) {
+        Material3RadioButton(
+            selected = selected,
+            enabled = enabled,
+            colors = Material3RadioButtonDefaults.colors(
+                disabledSelectedColor = KepkoTheme.colors.contentDisabled,
+                disabledUnselectedColor = KepkoTheme.colors.contentDisabled,
+                selectedColor = KepkoTheme.colors.content,
+                unselectedColor = KepkoTheme.colors.content,
+            ),
+            interactionSource = interactionSource,
+            onClick = onClick,
+            modifier = modifier,
+        )
+    }
 }
 
 @PreviewWithTest
