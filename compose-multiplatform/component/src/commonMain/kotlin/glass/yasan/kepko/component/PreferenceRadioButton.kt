@@ -22,6 +22,7 @@ public fun PreferenceRadioButton(
     description: String? = null,
     enabled: Boolean = true,
     annotation: PreferenceAnnotation? = null,
+    reverse: Boolean = false,
 ) {
     PreferenceRadioButton(
         title = title,
@@ -31,6 +32,7 @@ public fun PreferenceRadioButton(
         description = description,
         enabled = enabled,
         annotation = annotation,
+        reverse = reverse,
         leadingContent = {
             Icon(
                 painter = leadingIcon,
@@ -50,7 +52,20 @@ public fun PreferenceRadioButton(
     enabled: Boolean = true,
     leadingContent: @Composable () -> Unit = {},
     annotation: PreferenceAnnotation? = null,
+    reverse: Boolean = false,
 ) {
+    val radio: @Composable () -> Unit = {
+        RadioButton(
+            enabled = enabled,
+            selected = selected,
+            onClick = onClick,
+            minimumInteractiveComponentSize = 0.dp,
+            modifier = Modifier.padding(vertical = 12.dp),
+        )
+    }
+    val leading = if (reverse) radio else leadingContent
+    val trailing = if (reverse) leadingContent else radio
+
     PreferenceContainer(
         title = title,
         description = description,
@@ -58,16 +73,8 @@ public fun PreferenceRadioButton(
         enabled = enabled,
         annotation = annotation,
         modifier = modifier,
-        leadingContent = leadingContent,
-        trailingContent = {
-            RadioButton(
-                enabled = enabled,
-                selected = selected,
-                onClick = onClick,
-                minimumInteractiveComponentSize = 0.dp,
-                modifier = Modifier.padding(vertical = 12.dp),
-            )
-        },
+        leadingContent = leading,
+        trailingContent = trailing,
     )
 }
 
@@ -134,6 +141,7 @@ private fun PreviewContent() {
             onClick = {},
             enabled = false,
             leadingIcon = painterResource(Res.drawable.ic_asterisk),
+            reverse = true,
             modifier = Modifier.padding(horizontal = 16.dp),
         )
     }
