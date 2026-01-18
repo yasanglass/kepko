@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -214,7 +215,8 @@ private fun HorizontalPreviewContent() {
                     content = {
                         Spacer(
                             modifier = Modifier
-                                .size(32.dp)
+                                .fillMaxWidth()
+                                .height(32.dp)
                                 .background(KepkoTheme.colors.information),
                         )
                     },
@@ -279,6 +281,7 @@ private fun VerticalPreviewContent() {
                     additionalContent = {
                         Spacer(
                             modifier = Modifier
+                                .clip(KepkoTheme.shapes.small)
                                 .height(32.dp)
                                 .fillMaxWidth()
                                 .background(KepkoTheme.colors.success),
@@ -287,6 +290,7 @@ private fun VerticalPreviewContent() {
                     leadingContent = {
                         Spacer(
                             modifier = Modifier
+                                .clip(CircleShape)
                                 .size(32.dp)
                                 .background(KepkoTheme.colors.information),
                         )
@@ -294,6 +298,7 @@ private fun VerticalPreviewContent() {
                     trailingContent = {
                         Spacer(
                             modifier = Modifier
+                                .clip(CircleShape)
                                 .size(32.dp)
                                 .background(KepkoTheme.colors.caution),
                         )
