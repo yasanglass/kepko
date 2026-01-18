@@ -32,6 +32,7 @@ import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.CircularProgressIndicator
 import glass.yasan.kepko.component.HorizontalDivider
+import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.LinearProgressIndicator
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.component.PreferenceCheckbox
@@ -42,6 +43,7 @@ import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.component.Text
+import glass.yasan.kepko.component.TextField
 import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.composeapp.generated.resources.Res
 import glass.yasan.kepko.composeapp.generated.resources.app_name
@@ -97,6 +99,7 @@ fun SampleApp() {
                     examplePreferenceSwitch()
                     examplePreferenceRadioButton()
                     examplePreferenceRadioGroup()
+                    exampleTextField()
                     exampleButtonText()
                     exampleTextPill()
                     exampleProgressIndicator()
@@ -430,6 +433,81 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
             items = items,
             onSelect = {},
             enabled = false,
+        )
+    }
+}
+
+@Suppress("LongMethod")
+private fun LazyListScope.exampleTextField() {
+    item { HorizontalDivider() }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        TextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            placeholder = { Text(text = "Placeholder") },
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        TextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "Label",
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        TextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "With leading icon",
+            leadingIcon = { Icon(painter = painterResource(Res.drawable.ic_bolt), contentDescription = null) },
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        TextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "With trailing icon",
+            trailingIcon = { Icon(painter = painterResource(Res.drawable.ic_heart_smile), contentDescription = null) },
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        TextField(
+            value = "Disabled",
+            onValueChange = {},
+            enabled = false,
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        TextField(
+            value = "Error state",
+            onValueChange = {},
+            isError = true,
+            label = "Error",
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        TextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "Multiline",
+            minLines = 3,
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
