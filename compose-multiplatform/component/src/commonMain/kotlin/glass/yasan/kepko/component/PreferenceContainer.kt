@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -94,6 +95,7 @@ public fun PreferenceContainer(
     onClick: () -> Unit = {},
     description: String? = null,
     enabled: Boolean = true,
+    additionalContent: (@Composable () -> Unit)? = null,
     leadingContent: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit = {},
     annotation: PreferenceAnnotation? = null,
@@ -144,6 +146,7 @@ public fun PreferenceContainer(
                         fontSize = 12.sp,
                     )
                 }
+                additionalContent?.invoke()
                 annotation?.let {
                     TextPill(
                         annotation = it,
@@ -273,6 +276,14 @@ private fun VerticalPreviewContent() {
                     enabled = true,
                     annotation = annotation,
                     modifier = Modifier.padding(horizontal = 16.dp),
+                    additionalContent = {
+                        Spacer(
+                            modifier = Modifier
+                                .height(32.dp)
+                                .fillMaxWidth()
+                                .background(KepkoTheme.colors.success),
+                        )
+                    },
                     leadingContent = {
                         Spacer(
                             modifier = Modifier
