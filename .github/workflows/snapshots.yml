@@ -22,6 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.head_ref || github.ref }}
           submodules: true
           lfs: true
 
