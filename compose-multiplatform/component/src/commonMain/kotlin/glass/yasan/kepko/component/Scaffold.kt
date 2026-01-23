@@ -167,7 +167,7 @@ public fun Scaffold(
                 Row(
                     content = bottomBar,
                     modifier = Modifier
-                        .background(KepkoTheme.colors.foreground)
+                        .background(KepkoTheme.colors.midground)
                         .fillMaxWidth()
                         .navigationBarsPadding(),
                 )
