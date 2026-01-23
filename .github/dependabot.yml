@@ -6,10 +6,6 @@ updates:
     interval: daily
     time: "16:30"
     timezone: "Europe/Prague"
-  cooldown:
-    default-days: 7
-    exclude:
-    - "glass.yasan.*"
   labels: 
     - 'compose multiplatform'
     - 'dependencies'
@@ -33,9 +29,7 @@ updates:
     interval: daily
     time: "16:30"
     timezone: "Europe/Prague"
-  cooldown:
-    default-days: 7
-  labels: 
+  labels:
     - 'github actions'
     - 'dependencies'
   open-pull-requests-limit: 3
