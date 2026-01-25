@@ -3,8 +3,7 @@ updates:
 - package-ecosystem: gradle
   directory: "/compose-multiplatform"
   schedule:
-    interval: daily
-    time: "16:30"
+    interval: monthly
     timezone: "Europe/Prague"
   labels: 
     - 'compose multiplatform'
@@ -26,8 +25,7 @@ updates:
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
-    interval: daily
-    time: "16:30"
+    interval: monthly
     timezone: "Europe/Prague"
   labels:
     - 'github actions'
