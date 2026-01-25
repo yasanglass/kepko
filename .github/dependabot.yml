@@ -5,7 +5,8 @@ updates:
   schedule:
     interval: monthly
     timezone: "Europe/Prague"
-  labels: 
+  rebase-strategy: disabled
+  labels:
     - 'compose multiplatform'
     - 'dependencies'
   open-pull-requests-limit: 3
@@ -27,6 +28,7 @@ updates:
   schedule:
     interval: monthly
     timezone: "Europe/Prague"
+  rebase-strategy: disabled
   labels:
     - 'github actions'
     - 'dependencies'
