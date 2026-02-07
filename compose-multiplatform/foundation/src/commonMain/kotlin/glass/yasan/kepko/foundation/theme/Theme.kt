@@ -19,7 +19,39 @@ import glass.yasan.kepko.foundation.typography.rubikTypography
 @Composable
 public fun KepkoTheme(
     style: ThemeStyle,
-    colors: Colors = Colors(style = style),
+    grayscale: Boolean = false,
+    dimensions: Dimensions = KepkoTheme.dimensions,
+    shapes: Shapes = KepkoTheme.shapes,
+    content: @Composable () -> Unit,
+) {
+    KepkoTheme(
+        colors = Colors(style = style, grayscale = grayscale),
+        dimensions = dimensions,
+        shapes = shapes,
+        content = content,
+    )
+}
+
+@Composable
+public fun KepkoTheme(
+    isDark: Boolean = isSystemInDarkTheme(),
+    grayscale: Boolean = false,
+    dimensions: Dimensions = KepkoTheme.dimensions,
+    shapes: Shapes = KepkoTheme.shapes,
+    content: @Composable () -> Unit,
+) {
+    KepkoTheme(
+        style = if (isDark) ThemeStyle.DARK else ThemeStyle.LIGHT,
+        grayscale = grayscale,
+        dimensions = dimensions,
+        shapes = shapes,
+        content = content,
+    )
+}
+
+@Composable
+public fun KepkoTheme(
+    colors: Colors,
     dimensions: Dimensions = KepkoTheme.dimensions,
     shapes: Shapes = KepkoTheme.shapes,
     material3ColorScheme: ColorScheme = colors.toMaterial3ColorScheme(),
@@ -37,25 +69,6 @@ public fun KepkoTheme(
             content = content,
         )
     }
-}
-
-@Composable
-public fun KepkoTheme(
-    isDark: Boolean = isSystemInDarkTheme(),
-    colors: Colors = Colors(style = if (isDark) ThemeStyle.DARK else ThemeStyle.LIGHT),
-    dimensions: Dimensions = KepkoTheme.dimensions,
-    shapes: Shapes = KepkoTheme.shapes,
-    material3ColorScheme: ColorScheme = colors.toMaterial3ColorScheme(),
-    content: @Composable () -> Unit,
-) {
-    KepkoTheme(
-        style = if (isDark) ThemeStyle.DARK else ThemeStyle.LIGHT,
-        colors = colors,
-        dimensions = dimensions,
-        shapes = shapes,
-        material3ColorScheme = material3ColorScheme,
-        content = content,
-    )
 }
 
 public object KepkoTheme {

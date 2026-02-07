@@ -69,9 +69,11 @@ fun SampleApp() {
     val style = rememberSaveable {
         mutableStateOf(ThemeStyle.fromDarkTheme(isDark = isSystemInDarkTheme))
     }
+    val grayscale = rememberSaveable { mutableStateOf(false) }
 
     KepkoTheme(
         style = style.value,
+        grayscale = grayscale.value,
     ) {
 
         SystemBarColorsEffect(
@@ -94,6 +96,7 @@ fun SampleApp() {
                 ) {
                     colorPalette()
                     stylePreference(style)
+                    grayscalePreference(grayscale)
                     examplePreferenceSlider()
                     examplePreferenceCheckbox()
                     examplePreferenceSwitch()
@@ -659,6 +662,17 @@ private fun LazyListScope.stylePreference(style: MutableState<ThemeStyle>) {
             items = ThemeStyle.asPreferenceRadioGroupItems(),
             selectedId = style.value.id,
             onSelectId = { style.value = ThemeStyle.fromIdOrNull(it) ?: ThemeStyle.LIGHT },
+        )
+    }
+}
+
+private fun LazyListScope.grayscalePreference(grayscale: MutableState<Boolean>) {
+    item {
+        PreferenceSwitch(
+            title = "Grayscale",
+            checked = grayscale.value,
+            onCheckedChange = { grayscale.value = it },
+            annotation = PreferenceAnnotation.experimental,
         )
     }
 }
