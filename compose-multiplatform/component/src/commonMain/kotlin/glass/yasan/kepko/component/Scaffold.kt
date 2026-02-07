@@ -20,8 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
@@ -45,8 +47,13 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     annotation: PreferenceAnnotation? = null,
+    textAlign: TextAlign = TextAlign.Unspecified,
+    reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
+    val effectiveLeading = if (reverse) trailingContent else leadingContent
+    val effectiveTrailing = if (reverse) leadingContent else trailingContent
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -54,24 +61,39 @@ public fun Scaffold(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                leadingContent?.let { it() }
+                effectiveLeading?.let { it() }
+                if (reverse) {
+                    annotation?.let {
+                        TextPill(
+                            annotation = it,
+                            modifier = Modifier.padding(horizontal = 12.dp),
+                        )
+                    }
+                }
                 Text(
                     text = title.uppercase(),
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
+                    textAlign = when {
+                        textAlign == TextAlign.Center -> TextAlign.Center
+                        reverse -> TextAlign.End
+                        else -> TextAlign.Start
+                    },
                     modifier = Modifier
-                        .let { if (leadingContent == null) it.padding(start = 16.dp) else it }
+                        .let { if (effectiveLeading == null) it.padding(start = 16.dp) else it }
                         .padding(vertical = 16.dp)
-                        .let { if (trailingContent == null) it.padding(end = 16.dp) else it }
+                        .let { if (effectiveTrailing == null) it.padding(end = 16.dp) else it }
                         .weight(1f)
                 )
-                annotation?.let {
-                    TextPill(
-                        annotation = it,
-                        modifier = Modifier.padding(horizontal = 12.dp),
-                    )
+                if (!reverse) {
+                    annotation?.let {
+                        TextPill(
+                            annotation = it,
+                            modifier = Modifier.padding(horizontal = 12.dp),
+                        )
+                    }
                 }
-                trailingContent?.let { it() }
+                effectiveTrailing?.let { it() }
             }
         },
         bottomBar = bottomBar,
@@ -101,6 +123,7 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     annotation: PreferenceAnnotation? = null,
+    reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
     Scaffold(
@@ -111,6 +134,7 @@ public fun Scaffold(
                 painter = backIcon,
                 contentDescription = Strings.back,
                 modifier = Modifier
+                    .let { if (reverse) it.graphicsLayer(scaleX = -1f) else it }
                     .padding(4.dp)
                     .clip(CircleShape)
                     .clickable(
@@ -129,6 +153,7 @@ public fun Scaffold(
         contentColor = contentColor,
         contentWindowInsets = contentWindowInsets,
         annotation = annotation,
+        reverse = reverse,
         content = content,
     )
 }
@@ -201,6 +226,46 @@ internal fun ScaffoldWithBackIconPreview() {
         Scaffold(
             title = "Title",
             onBackClick = {},
+        ) { paddingValues ->
+            PreviewScaffoldContent(paddingValues)
+        }
+    }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ScaffoldCenteredPreview() {
+    KepkoTheme {
+        Scaffold(
+            title = "Title",
+            textAlign = TextAlign.Center,
+        ) { paddingValues ->
+            PreviewScaffoldContent(paddingValues)
+        }
+    }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ScaffoldReversedPreview() {
+    KepkoTheme {
+        Scaffold(
+            title = "Title",
+            reverse = true,
+        ) { paddingValues ->
+            PreviewScaffoldContent(paddingValues)
+        }
+    }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ScaffoldWithBackIconReversedPreview() {
+    KepkoTheme {
+        Scaffold(
+            title = "Title",
+            onBackClick = {},
+            reverse = true,
         ) { paddingValues ->
             PreviewScaffoldContent(paddingValues)
         }
