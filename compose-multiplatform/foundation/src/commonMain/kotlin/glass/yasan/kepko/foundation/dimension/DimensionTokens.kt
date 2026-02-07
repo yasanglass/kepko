@@ -5,6 +5,6 @@ import androidx.compose.ui.unit.dp
 
 internal object DimensionTokens {
 
-    val borderThickness: Dp = 2.dp
+    val borderThickness: Dp = 1.dp
     val iconSize: Dp = 24.dp
 }
