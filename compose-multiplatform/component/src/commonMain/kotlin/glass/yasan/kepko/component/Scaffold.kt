@@ -163,7 +163,6 @@ public fun Scaffold(
         },
         bottomBar = {
             Column {
-                HorizontalDivider()
                 Row(
                     content = bottomBar,
                     modifier = Modifier
