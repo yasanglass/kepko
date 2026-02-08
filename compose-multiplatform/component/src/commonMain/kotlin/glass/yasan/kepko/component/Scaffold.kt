@@ -123,6 +123,7 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     annotation: PreferenceAnnotation? = null,
+    textAlign: TextAlign = TextAlign.Unspecified,
     reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
@@ -153,6 +154,7 @@ public fun Scaffold(
         contentColor = contentColor,
         contentWindowInsets = contentWindowInsets,
         annotation = annotation,
+        textAlign = textAlign,
         reverse = reverse,
         content = content,
     )
