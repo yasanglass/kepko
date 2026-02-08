@@ -1,5 +1,7 @@
 package glass.yasan.kepko.sample
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -683,6 +686,9 @@ private fun RowScope.ColorBox(
     contentColor: Color = contentColorFor(containerColor),
     text: String = "Kepko",
 ) {
+    val animatedContainerColor by animateColorAsState(containerColor, tween(500))
+    val animatedContentColor by animateColorAsState(contentColor, tween(500))
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -690,11 +696,11 @@ private fun RowScope.ColorBox(
             .clip(CircleShape)
             .weight(1f)
             .height(128.dp)
-            .background(containerColor),
+            .background(animatedContainerColor),
     ) {
         Text(
             text = text.uppercase(),
-            color = contentColor,
+            color = animatedContentColor,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
         )
