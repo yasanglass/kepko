@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.takeOrElse
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.border.borderStrokeFor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
@@ -33,7 +32,6 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import org.jetbrains.compose.resources.painterResource
 
-@ExperimentalKepkoApi
 @Composable
 public fun TextPill(
     annotation: PreferenceAnnotation,
