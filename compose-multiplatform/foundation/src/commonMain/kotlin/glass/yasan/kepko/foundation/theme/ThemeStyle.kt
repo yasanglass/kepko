@@ -2,7 +2,6 @@ package glass.yasan.kepko.foundation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.resource.Strings
 
 public enum class ThemeStyle(
@@ -25,13 +24,11 @@ public enum class ThemeStyle(
         isDark = true,
         title = { Strings.themeStyleBlack }
     ),
-    @ExperimentalKepkoApi
     SOLARIZED_LIGHT(
         id = "solarized-light",
         isDark = false,
         title = { Strings.themeStyleLightSolarized }
     ),
-    @ExperimentalKepkoApi
     SOLARIZED_DARK(
         id = "solarized-dark",
         isDark = true,
