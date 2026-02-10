@@ -25,14 +25,12 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.Scaffold as Material3Scaffold
 
-@ExperimentalKepkoApi
 @Composable
 public fun Scaffold(
     title: String,
@@ -107,7 +105,6 @@ public fun Scaffold(
     )
 }
 
-@ExperimentalKepkoApi
 @Composable
 public fun Scaffold(
     title: String,
@@ -160,7 +157,6 @@ public fun Scaffold(
     )
 }
 
-@ExperimentalKepkoApi
 @Composable
 public fun Scaffold(
     modifier: Modifier = Modifier,
