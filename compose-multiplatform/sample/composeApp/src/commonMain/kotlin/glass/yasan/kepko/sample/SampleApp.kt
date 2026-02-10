@@ -87,6 +87,7 @@ fun SampleApp() {
 
         Scaffold(
             title = stringResource(Res.string.app_name),
+            textAlign = Center,
         ) { contentPadding ->
             Box(
                 contentAlignment = Alignment.TopCenter,
