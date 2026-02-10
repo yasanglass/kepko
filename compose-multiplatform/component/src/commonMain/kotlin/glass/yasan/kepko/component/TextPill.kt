@@ -1,5 +1,7 @@
 package glass.yasan.kepko.component
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -60,6 +63,8 @@ public fun TextPill(
     textTransformation: (String) -> String = { it.uppercase() },
 ) {
     val resolvedFontSize = fontSize.takeOrElse { 10.sp }
+    val animatedContainerColor by animateColorAsState(containerColor, tween(500))
+    val animatedContentColor by animateColorAsState(contentColor, tween(500))
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -67,28 +72,28 @@ public fun TextPill(
         modifier = modifier
             .then(if (border != null) Modifier.border(border, CircleShape) else Modifier)
             .clip(shape = CircleShape)
-            .background(color = containerColor)
+            .background(color = animatedContainerColor)
             .padding(horizontal = 12.dp)
     ) {
         leadingIcon?.let {
             Image(
                 painter = it,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(contentColor),
+                colorFilter = ColorFilter.tint(animatedContentColor),
                 modifier = Modifier.size(resolvedFontSize.value.dp),
             )
         }
         Text(
             text = textTransformation(text),
             fontSize = resolvedFontSize,
-            color = contentColor,
+            color = animatedContentColor,
             fontWeight = fontWeight,
         )
         trailingIcon?.let {
             Image(
                 painter = it,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(contentColor),
+                colorFilter = ColorFilter.tint(animatedContentColor),
                 modifier = Modifier.size(resolvedFontSize.value.dp),
             )
         }
