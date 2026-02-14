@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'compose-multiplatform/**'
-      - '.github/workflows/android.yml'
 
 jobs:
   build:
@@ -31,15 +28,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Assemble Debug
-        run: cd compose-multiplatform && ./gradlew assembleDebug
+        run: ./gradlew assembleDebug
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: |
-            compose-multiplatform/**/build/outputs/aar/
-            compose-multiplatform/**/build/libs/*-android.jar
+            **/build/outputs/aar/
+            **/build/libs/*-android.jar
           retention-days: 30
 
   lint:
@@ -61,4 +58,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Lint
-        run: cd compose-multiplatform && ./gradlew lintDebug
+        run: ./gradlew lintDebug

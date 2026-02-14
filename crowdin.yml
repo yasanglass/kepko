@@ -1,4 +1,4 @@
-base_path: "compose-multiplatform"
+base_path: "."
 preserve_hierarchy: false
 commit_message: "Update translations (%language%)"
 pull_request_title: "Update Translations [skip ci]"

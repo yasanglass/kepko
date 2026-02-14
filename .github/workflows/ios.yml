@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'compose-multiplatform/**'
-      - '.github/workflows/ios.yml'
 
 jobs:
   build:
@@ -31,11 +28,11 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Build Debug Frameworks
-        run: cd compose-multiplatform && ./gradlew linkDebugFrameworkIosSimulatorArm64
+        run: ./gradlew linkDebugFrameworkIosSimulatorArm64
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
-          path: compose-multiplatform/**/build/classes/kotlin/iosSimulatorArm64/main/
+          path: **/build/classes/kotlin/iosSimulatorArm64/main/
           retention-days: 30

@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'compose-multiplatform/**'
-      - '.github/workflows/js.yml'
 
 jobs:
   build:
@@ -31,12 +28,12 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Assemble
-        run: cd compose-multiplatform && ./gradlew jsJar
+        run: ./gradlew jsJar
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: |
-            compose-multiplatform/**/build/libs/*-js.jar
+            **/build/libs/*-js.jar
           retention-days: 30

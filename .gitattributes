@@ -1,2 +1,2 @@
 # Snapshot images stored in Git LFS
-compose-multiplatform/component/src/jvmTest/snapshots/*.png filter=lfs diff=lfs merge=lfs -text
+component/src/jvmTest/snapshots/*.png filter=lfs diff=lfs merge=lfs -text

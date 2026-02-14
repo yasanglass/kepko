@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'compose-multiplatform/**'
-      - '.github/workflows/snapshots.yml'
 
 permissions:
   contents: write
@@ -38,25 +35,25 @@ jobs:
       - name: Verify Snapshots
         id: verify
         continue-on-error: true
-        run: cd compose-multiplatform && ./gradlew :component:verifySnapshots
+        run: ./gradlew :component:verifySnapshots
 
       - name: Upload Diffs
         if: steps.verify.outcome == 'failure'
         uses: actions/upload-artifact@v6
         with:
           name: snapshot-diffs
-          path: compose-multiplatform/component/build/outputs/roborazzi/
+          path: component/build/outputs/roborazzi/
           retention-days: 7
 
       - name: Regenerate Snapshots
         if: steps.verify.outcome == 'failure'
-        run: cd compose-multiplatform && ./gradlew :component:cleanRecordSnapshots
+        run: ./gradlew :component:cleanRecordSnapshots
 
       - name: Commit Snapshots
         if: steps.verify.outcome == 'failure'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add compose-multiplatform/component/src/jvmTest/snapshots/
+          git add component/src/jvmTest/snapshots/
           git commit -m "Regenerate snapshots [skip ci]"
           git push

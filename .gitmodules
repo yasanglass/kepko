@@ -1,3 +1,3 @@
-[submodule "compose-multiplatform/detekt"]
-	path = compose-multiplatform/detekt
+[submodule "detekt"]
+	path = detekt
 	url = git@github.com:yasanglass/detekt.git

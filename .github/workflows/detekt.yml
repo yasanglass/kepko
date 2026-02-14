@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'compose-multiplatform/**'
-      - '.github/workflows/detekt.yml'
 
 jobs:
   check:
@@ -31,4 +28,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Detekt
-        run: cd compose-multiplatform && ./gradlew detekt
+        run: ./gradlew detekt

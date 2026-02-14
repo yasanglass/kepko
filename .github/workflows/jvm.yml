@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'compose-multiplatform/**'
-      - '.github/workflows/jvm.yml'
 
 jobs:
   build:
@@ -31,12 +28,12 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Assemble
-        run: cd compose-multiplatform && ./gradlew jvmJar
+        run: ./gradlew jvmJar
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: |
-            compose-multiplatform/**/build/libs/*-jvm.jar
+            **/build/libs/*-jvm.jar
           retention-days: 30
