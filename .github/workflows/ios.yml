@@ -34,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
-          path: **/build/classes/kotlin/iosSimulatorArm64/main/
+          path: "**/build/classes/kotlin/iosSimulatorArm64/main/"
           retention-days: 30
