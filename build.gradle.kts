@@ -1,11 +1,10 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 
 plugins {
-    alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.compose) apply false
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.kotlin.multiplatform.library) apply false
     alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.roborazzi) apply false
