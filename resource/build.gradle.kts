@@ -7,7 +7,7 @@ val artifactId = "resource"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
 }
@@ -20,11 +20,7 @@ kotlin {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 
-    androidLibrary {
-        namespace = "glass.yasan.kepko.$artifactId"
-        compileSdk = libs.versions.android.sdk.compile.get().toInt()
-        minSdk = libs.versions.android.sdk.min.get().toInt()
-
+    androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -54,6 +50,20 @@ kotlin {
                 implementation(compose.ui)
             }
         }
+    }
+}
+
+android {
+    namespace = "glass.yasan.kepko.$artifactId"
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
+
+    defaultConfig {
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
