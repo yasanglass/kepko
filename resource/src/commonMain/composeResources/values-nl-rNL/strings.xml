@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="theme_style_light">Light</string>
-    <string name="theme_style_dark">Dark</string>
+    <string name="theme_style_light">Kepko Light</string>
+    <string name="theme_style_dark">Kepko Dark</string>
     <string name="theme_style_black">Black (AMOLED)</string>
     <string name="theme_style_light_solarized">Solarized Light</string>
     <string name="theme_style_dark_solarized">Solarized Dark</string>
