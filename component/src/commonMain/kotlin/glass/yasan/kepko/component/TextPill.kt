@@ -6,12 +6,14 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -36,6 +38,8 @@ import org.jetbrains.compose.resources.painterResource
 public fun TextPill(
     annotation: PreferenceAnnotation,
     modifier: Modifier = Modifier,
+    shape: Shape = CircleShape,
+    onClick: (() -> Unit)? = null,
 ) {
     TextPill(
         text = annotation.text(),
@@ -43,6 +47,8 @@ public fun TextPill(
         contentColor = annotation.contentColor(),
         leadingIcon = annotation.leadingIcon?.invoke(),
         trailingIcon = annotation.trailingIcon?.invoke(),
+        onClick = onClick,
+        shape = shape,
         modifier = modifier,
     )
 }
@@ -56,9 +62,11 @@ public fun TextPill(
     trailingIcon: Painter? = null,
     contentColor: Color = contentColorFor(containerColor),
     border: BorderStroke? = borderStrokeFor(containerColor),
+    shape: Shape = CircleShape,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Medium,
     textTransformation: (String) -> String = { it.uppercase() },
+    onClick: (() -> Unit)? = null,
 ) {
     val resolvedFontSize = fontSize.takeOrElse { 10.sp }
     val animatedContainerColor by animateColorAsState(containerColor, tween(500))
@@ -68,9 +76,10 @@ public fun TextPill(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier
-            .then(if (border != null) Modifier.border(border, CircleShape) else Modifier)
-            .clip(shape = CircleShape)
+            .then(if (border != null) Modifier.border(border, shape) else Modifier)
+            .clip(shape = shape)
             .background(color = animatedContainerColor)
+            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
             .padding(horizontal = 12.dp)
     ) {
         leadingIcon?.let {

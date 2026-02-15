@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -35,6 +36,7 @@ import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.CircularProgressIndicator
 import glass.yasan.kepko.component.HorizontalDivider
+import glass.yasan.kepko.component.KeyValue
 import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.LinearProgressIndicator
 import glass.yasan.kepko.component.PreferenceAnnotation
@@ -107,6 +109,7 @@ fun SampleApp() {
                     examplePreferenceRadioButton()
                     examplePreferenceRadioGroup()
                     exampleTextField()
+                    exampleKeyValue()
                     exampleButtonText()
                     exampleTextPill()
                     exampleProgressIndicator()
@@ -515,6 +518,31 @@ private fun LazyListScope.exampleTextField() {
             label = "Multiline",
             minLines = 3,
             modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
+
+private fun LazyListScope.exampleKeyValue() {
+    item { HorizontalDivider() }
+    item {
+        KeyValue(
+            key = "App",
+            value = "Kepko Compose Multiplatform",
+        )
+    }
+    item {
+        val clickCount = remember { mutableIntStateOf(0) }
+        KeyValue(
+            key = "Click Count",
+            value = clickCount.intValue.toString(),
+            onValueClick = { clickCount.intValue++ },
+        )
+    }
+    item {
+        KeyValue(
+            key = "Status",
+            value = "Active",
+            containerColor = KepkoTheme.colors.information,
         )
     }
 }
