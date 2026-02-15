@@ -15,6 +15,7 @@
   <a href="https://github.com/yasanglass/kepko/actions/workflows/detekt.yml"><img alt="detekt" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/detekt.yml?label=detekt"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/snapshots.yml"><img alt="snapshots" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/snapshots.yml?label=snapshots"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/publish.yml"><img alt="publish" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/publish.yml?label=publish"/></a>
+  <a href="https://context7.com/yasanglass/kepko/llms.txt"><img alt="Context7" src="https://img.shields.io/badge/context7-llms.txt-blue"/></a>
 </p>
 
 A work-in-progress design system for Compose Multiplatform.
