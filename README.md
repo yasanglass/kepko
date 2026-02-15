@@ -10,6 +10,7 @@
   <a href="https://github.com/yasanglass/kepko/actions/workflows/android.yml"><img alt="android" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/android.yml?branch=main&label=android"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/jvm.yml"><img alt="jvm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/jvm.yml?branch=main&label=jvm"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/ios.yml"><img alt="ios" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/ios.yml?branch=main&label=ios"/></a>
+  <a href="https://github.com/yasanglass/kepko/actions/workflows/macos.yml"><img alt="macos" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/macos.yml?branch=main&label=macos"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/js.yml"><img alt="js" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/js.yml?branch=main&label=js"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/wasm.yml"><img alt="wasm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/wasm.yml?branch=main&label=wasm"/></a>
   <a href="https://github.com/yasanglass/kepko/actions/workflows/detekt.yml"><img alt="detekt" src="https://img.shields.io/github/actions/workflow/status/yasanglass/kepko/detekt.yml?branch=main&label=detekt"/></a>
