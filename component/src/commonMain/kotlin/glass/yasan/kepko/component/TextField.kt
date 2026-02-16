@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -22,6 +23,7 @@ import org.jetbrains.compose.resources.painterResource
 import androidx.compose.material3.TextField as Material3TextField
 import androidx.compose.material3.TextFieldDefaults as Material3TextFieldDefaults
 
+@ExperimentalKepkoApi
 @Composable
 public fun TextField(
     value: String,

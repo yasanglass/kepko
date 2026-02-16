@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
@@ -21,6 +22,7 @@ import org.jetbrains.compose.resources.painterResource
 import androidx.compose.material3.OutlinedTextField as Material3OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults as Material3OutlinedTextFieldDefaults
 
+@ExperimentalKepkoApi
 @Composable
 public fun OutlinedTextField(
     value: String,
