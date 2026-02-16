@@ -21,6 +21,7 @@ import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import org.jetbrains.compose.resources.painterResource
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.OutlinedTextField as Material3OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults as Material3OutlinedTextFieldDefaults
 
@@ -47,6 +48,7 @@ public fun OutlinedTextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     textStyle: TextStyle = LocalTextStyle.current,
     shape: Shape = KepkoTheme.shapes.extraLarge,
+    colors: TextFieldColors = outlinedTextFieldColors(),
     interactionSource: MutableInteractionSource? = null,
 ) {
     val contentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
@@ -81,7 +83,7 @@ public fun OutlinedTextField(
             keyboardActions = keyboardActions,
             shape = shape,
             interactionSource = interactionSource,
-            colors = outlinedTextFieldColors(),
+            colors = colors,
         )
     }
 }

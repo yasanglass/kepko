@@ -22,6 +22,7 @@ import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import org.jetbrains.compose.resources.painterResource
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextField as Material3TextField
 import androidx.compose.material3.TextFieldDefaults as Material3TextFieldDefaults
 
@@ -48,6 +49,7 @@ public fun TextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     textStyle: TextStyle = LocalTextStyle.current,
     shape: Shape = KepkoTheme.shapes.extraLarge,
+    colors: TextFieldColors = textFieldColors(),
     interactionSource: MutableInteractionSource? = null,
 ) {
     val contentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
@@ -82,7 +84,7 @@ public fun TextField(
             keyboardActions = keyboardActions,
             shape = shape,
             interactionSource = interactionSource,
-            colors = textFieldColors(),
+            colors = colors,
         )
     }
 }
