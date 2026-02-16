@@ -10,7 +10,9 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -44,6 +46,7 @@ public fun TextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    textStyle: TextStyle = LocalTextStyle.current,
     shape: Shape = KepkoTheme.shapes.extraLarge,
     interactionSource: MutableInteractionSource? = null,
 ) {
@@ -56,6 +59,7 @@ public fun TextField(
             modifier = modifier.border(shape = shape),
             enabled = enabled,
             readOnly = readOnly,
+            textStyle = textStyle,
             isError = isError,
             label = label?.let {
                 {
