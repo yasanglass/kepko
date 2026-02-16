@@ -526,23 +526,39 @@ private fun LazyListScope.exampleKeyValue() {
     item { HorizontalDivider() }
     item {
         KeyValue(
-            key = "App",
-            value = "Kepko Compose Multiplatform",
+            key = "KeyValue Basic",
+            value = "Value",
         )
     }
     item {
         val clickCount = remember { mutableIntStateOf(0) }
         KeyValue(
-            key = "Click Count",
+            key = "KeyValue Clickable",
             value = clickCount.intValue.toString(),
             onValueClick = { clickCount.intValue++ },
         )
     }
     item {
         KeyValue(
-            key = "Status",
+            key = "KeyValue Information",
             value = "Active",
             containerColor = KepkoTheme.colors.information,
+        )
+    }
+    item {
+        KeyValue(
+            key = "KeyValue Danger",
+            value = "Locked",
+            containerColor = KepkoTheme.colors.danger,
+            trailingValueIcon = Icons.lock,
+        )
+    }
+    item {
+        KeyValue(
+            key = "KeyValue Success",
+            value = "Success",
+            containerColor = KepkoTheme.colors.success,
+            leadingValueIcon = Icons.check,
         )
     }
 }

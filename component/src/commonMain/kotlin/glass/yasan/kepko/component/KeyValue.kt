@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.resource.Icons
 
 @Composable
 public fun KeyValue(
@@ -21,6 +23,8 @@ public fun KeyValue(
     value: String,
     modifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.foreground,
+    leadingValueIcon: Painter? = null,
+    trailingValueIcon: Painter? = null,
     onValueClick: (() -> Unit)? = null,
 ) {
     Column(
@@ -37,6 +41,8 @@ public fun KeyValue(
         TextPill(
             text = value,
             containerColor = containerColor,
+            leadingIcon = leadingValueIcon,
+            trailingIcon = trailingValueIcon,
             onClick = onValueClick,
         )
     }
@@ -91,5 +97,24 @@ private fun PreviewContent() {
                 containerColor = containerColor,
             )
         }
+        KeyValue(
+            key = "With Leading Icon",
+            value = "Star",
+            containerColor = KepkoTheme.colors.caution,
+            leadingValueIcon = Icons.star,
+        )
+        KeyValue(
+            key = "With Trailing Icon",
+            value = "Check",
+            containerColor = KepkoTheme.colors.success,
+            trailingValueIcon = Icons.check,
+        )
+        KeyValue(
+            key = "With Both Icons",
+            value = "Info",
+            containerColor = KepkoTheme.colors.information,
+            leadingValueIcon = Icons.info,
+            trailingValueIcon = Icons.chevronForward,
+        )
     }
 }
