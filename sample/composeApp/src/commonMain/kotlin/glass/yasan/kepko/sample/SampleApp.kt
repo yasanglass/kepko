@@ -47,6 +47,7 @@ import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.Scaffold
+import glass.yasan.kepko.component.OutlinedTextField
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextField
 import glass.yasan.kepko.component.TextPill
@@ -109,6 +110,7 @@ fun SampleApp() {
                     examplePreferenceRadioButton()
                     examplePreferenceRadioGroup()
                     exampleTextField()
+                    exampleOutlinedTextField()
                     exampleKeyValue()
                     exampleButtonText()
                     exampleTextPill()
@@ -513,6 +515,81 @@ private fun LazyListScope.exampleTextField() {
         val textValue = rememberSaveable { mutableStateOf("") }
 
         TextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "Multiline",
+            minLines = 3,
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
+
+@Suppress("LongMethod")
+private fun LazyListScope.exampleOutlinedTextField() {
+    item { HorizontalDivider() }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        OutlinedTextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            placeholder = { Text(text = "Placeholder") },
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        OutlinedTextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "Label",
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        OutlinedTextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "With leading icon",
+            leadingIcon = { Icon(painter = painterResource(Res.drawable.ic_bolt), contentDescription = null) },
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        OutlinedTextField(
+            value = textValue.value,
+            onValueChange = { textValue.value = it },
+            label = "With trailing icon",
+            trailingIcon = { Icon(painter = painterResource(Res.drawable.ic_heart_smile), contentDescription = null) },
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        OutlinedTextField(
+            value = "Disabled",
+            onValueChange = {},
+            enabled = false,
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        OutlinedTextField(
+            value = "Error state",
+            onValueChange = {},
+            isError = true,
+            label = "Error",
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    item {
+        val textValue = rememberSaveable { mutableStateOf("") }
+
+        OutlinedTextField(
             value = textValue.value,
             onValueChange = { textValue.value = it },
             label = "Multiline",

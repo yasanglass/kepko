@@ -51,6 +51,7 @@ KepkoTheme {
 - [Icon](component/src/commonMain/kotlin/glass/yasan/kepko/component/Icon.kt)
 - [KeyValue](component/src/commonMain/kotlin/glass/yasan/kepko/component/KeyValue.kt)
 - [LinearProgressIndicator](component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
+- [OutlinedTextField](component/src/commonMain/kotlin/glass/yasan/kepko/component/OutlinedTextField.kt)
 - [PreferenceAnnotation](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceAnnotation.kt)
 - [PreferenceAppIdentity](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceAppIdentity.kt)
 - [PreferenceCheckbox](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceCheckbox.kt)
