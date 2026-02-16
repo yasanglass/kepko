@@ -49,7 +49,7 @@ public fun TextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     textStyle: TextStyle = LocalTextStyle.current,
     shape: Shape = KepkoTheme.shapes.extraLarge,
-    colors: TextFieldColors = textFieldColors(),
+    colors: TextFieldColors = TextFieldDefaults.colors(),
     interactionSource: MutableInteractionSource? = null,
 ) {
     val contentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
@@ -89,57 +89,89 @@ public fun TextField(
     }
 }
 
-@Composable
-private fun textFieldColors() = Material3TextFieldDefaults.colors(
-    // Container
-    focusedContainerColor = KepkoTheme.colors.foreground,
-    unfocusedContainerColor = KepkoTheme.colors.foreground,
-    disabledContainerColor = KepkoTheme.colors.foreground.copy(alpha = 0.50f),
-    errorContainerColor = KepkoTheme.colors.foreground,
-    // Text
-    focusedTextColor = KepkoTheme.colors.content,
-    unfocusedTextColor = KepkoTheme.colors.content,
-    disabledTextColor = KepkoTheme.colors.contentDisabled,
-    errorTextColor = KepkoTheme.colors.content,
-    // Cursor
-    cursorColor = KepkoTheme.colors.content,
-    errorCursorColor = KepkoTheme.colors.danger,
-    // Indicator
-    focusedIndicatorColor = Color.Transparent,
-    unfocusedIndicatorColor = Color.Transparent,
-    disabledIndicatorColor = Color.Transparent,
-    errorIndicatorColor = Color.Transparent,
-    // Label
-    focusedLabelColor = KepkoTheme.colors.content,
-    unfocusedLabelColor = KepkoTheme.colors.contentSubtle,
-    disabledLabelColor = KepkoTheme.colors.contentDisabled,
-    errorLabelColor = KepkoTheme.colors.danger,
-    // Placeholder
-    focusedPlaceholderColor = KepkoTheme.colors.contentSubtle,
-    unfocusedPlaceholderColor = KepkoTheme.colors.contentSubtle,
-    disabledPlaceholderColor = KepkoTheme.colors.contentDisabled,
-    errorPlaceholderColor = KepkoTheme.colors.contentSubtle,
-    // Leading icon
-    focusedLeadingIconColor = KepkoTheme.colors.content,
-    unfocusedLeadingIconColor = KepkoTheme.colors.contentSubtle,
-    disabledLeadingIconColor = KepkoTheme.colors.contentDisabled,
-    errorLeadingIconColor = KepkoTheme.colors.danger,
-    // Trailing icon
-    focusedTrailingIconColor = KepkoTheme.colors.content,
-    unfocusedTrailingIconColor = KepkoTheme.colors.contentSubtle,
-    disabledTrailingIconColor = KepkoTheme.colors.contentDisabled,
-    errorTrailingIconColor = KepkoTheme.colors.danger,
-    // Prefix
-    focusedPrefixColor = KepkoTheme.colors.content,
-    unfocusedPrefixColor = KepkoTheme.colors.contentSubtle,
-    disabledPrefixColor = KepkoTheme.colors.contentDisabled,
-    errorPrefixColor = KepkoTheme.colors.content,
-    // Suffix
-    focusedSuffixColor = KepkoTheme.colors.content,
-    unfocusedSuffixColor = KepkoTheme.colors.contentSubtle,
-    disabledSuffixColor = KepkoTheme.colors.contentDisabled,
-    errorSuffixColor = KepkoTheme.colors.content,
-)
+public object TextFieldDefaults {
+
+    @Composable
+    public fun colors(
+        focusedContainerColor: Color = KepkoTheme.colors.foreground,
+        unfocusedContainerColor: Color = KepkoTheme.colors.foreground,
+        disabledContainerColor: Color = KepkoTheme.colors.foreground.copy(alpha = 0.50f),
+        errorContainerColor: Color = KepkoTheme.colors.foreground,
+        focusedTextColor: Color = KepkoTheme.colors.content,
+        unfocusedTextColor: Color = KepkoTheme.colors.content,
+        disabledTextColor: Color = KepkoTheme.colors.contentDisabled,
+        errorTextColor: Color = KepkoTheme.colors.content,
+        cursorColor: Color = KepkoTheme.colors.content,
+        errorCursorColor: Color = KepkoTheme.colors.danger,
+        focusedIndicatorColor: Color = Color.Transparent,
+        unfocusedIndicatorColor: Color = Color.Transparent,
+        disabledIndicatorColor: Color = Color.Transparent,
+        errorIndicatorColor: Color = Color.Transparent,
+        focusedLabelColor: Color = KepkoTheme.colors.content,
+        unfocusedLabelColor: Color = KepkoTheme.colors.contentSubtle,
+        disabledLabelColor: Color = KepkoTheme.colors.contentDisabled,
+        errorLabelColor: Color = KepkoTheme.colors.danger,
+        focusedPlaceholderColor: Color = KepkoTheme.colors.contentSubtle,
+        unfocusedPlaceholderColor: Color = KepkoTheme.colors.contentSubtle,
+        disabledPlaceholderColor: Color = KepkoTheme.colors.contentDisabled,
+        errorPlaceholderColor: Color = KepkoTheme.colors.contentSubtle,
+        focusedLeadingIconColor: Color = KepkoTheme.colors.content,
+        unfocusedLeadingIconColor: Color = KepkoTheme.colors.contentSubtle,
+        disabledLeadingIconColor: Color = KepkoTheme.colors.contentDisabled,
+        errorLeadingIconColor: Color = KepkoTheme.colors.danger,
+        focusedTrailingIconColor: Color = KepkoTheme.colors.content,
+        unfocusedTrailingIconColor: Color = KepkoTheme.colors.contentSubtle,
+        disabledTrailingIconColor: Color = KepkoTheme.colors.contentDisabled,
+        errorTrailingIconColor: Color = KepkoTheme.colors.danger,
+        focusedPrefixColor: Color = KepkoTheme.colors.content,
+        unfocusedPrefixColor: Color = KepkoTheme.colors.contentSubtle,
+        disabledPrefixColor: Color = KepkoTheme.colors.contentDisabled,
+        errorPrefixColor: Color = KepkoTheme.colors.content,
+        focusedSuffixColor: Color = KepkoTheme.colors.content,
+        unfocusedSuffixColor: Color = KepkoTheme.colors.contentSubtle,
+        disabledSuffixColor: Color = KepkoTheme.colors.contentDisabled,
+        errorSuffixColor: Color = KepkoTheme.colors.content,
+    ): TextFieldColors = Material3TextFieldDefaults.colors(
+        focusedContainerColor = focusedContainerColor,
+        unfocusedContainerColor = unfocusedContainerColor,
+        disabledContainerColor = disabledContainerColor,
+        errorContainerColor = errorContainerColor,
+        focusedTextColor = focusedTextColor,
+        unfocusedTextColor = unfocusedTextColor,
+        disabledTextColor = disabledTextColor,
+        errorTextColor = errorTextColor,
+        cursorColor = cursorColor,
+        errorCursorColor = errorCursorColor,
+        focusedIndicatorColor = focusedIndicatorColor,
+        unfocusedIndicatorColor = unfocusedIndicatorColor,
+        disabledIndicatorColor = disabledIndicatorColor,
+        errorIndicatorColor = errorIndicatorColor,
+        focusedLabelColor = focusedLabelColor,
+        unfocusedLabelColor = unfocusedLabelColor,
+        disabledLabelColor = disabledLabelColor,
+        errorLabelColor = errorLabelColor,
+        focusedPlaceholderColor = focusedPlaceholderColor,
+        unfocusedPlaceholderColor = unfocusedPlaceholderColor,
+        disabledPlaceholderColor = disabledPlaceholderColor,
+        errorPlaceholderColor = errorPlaceholderColor,
+        focusedLeadingIconColor = focusedLeadingIconColor,
+        unfocusedLeadingIconColor = unfocusedLeadingIconColor,
+        disabledLeadingIconColor = disabledLeadingIconColor,
+        errorLeadingIconColor = errorLeadingIconColor,
+        focusedTrailingIconColor = focusedTrailingIconColor,
+        unfocusedTrailingIconColor = unfocusedTrailingIconColor,
+        disabledTrailingIconColor = disabledTrailingIconColor,
+        errorTrailingIconColor = errorTrailingIconColor,
+        focusedPrefixColor = focusedPrefixColor,
+        unfocusedPrefixColor = unfocusedPrefixColor,
+        disabledPrefixColor = disabledPrefixColor,
+        errorPrefixColor = errorPrefixColor,
+        focusedSuffixColor = focusedSuffixColor,
+        unfocusedSuffixColor = unfocusedSuffixColor,
+        disabledSuffixColor = disabledSuffixColor,
+        errorSuffixColor = errorSuffixColor,
+    )
+}
 
 @PreviewWithTest
 @Composable
