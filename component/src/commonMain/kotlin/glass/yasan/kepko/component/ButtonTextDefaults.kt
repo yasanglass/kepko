@@ -11,6 +11,11 @@ public object ButtonTextDefaults {
     public val ContentPadding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
 
     @Composable
+    public fun contentPadding(
+        contentPadding: PaddingValues = ContentPadding,
+    ): PaddingValues = contentPadding
+
+    @Composable
     public fun buttonElevation(
         defaultElevation: Dp = 0.dp,
         pressedElevation: Dp = 0.dp,

@@ -37,7 +37,7 @@ public fun Button(
     shape: Shape = CircleShape,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
 ) {
     ProvideLocalContentColor(
