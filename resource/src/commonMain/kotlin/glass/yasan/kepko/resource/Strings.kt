@@ -20,6 +20,9 @@ public object Strings {
     public val preferenceAnnotationDefault: String
         @Composable get() = stringResource(Res.string.preference_annotation_default)
 
+    public val preferenceAnnotationEarlyAccess: String
+        @Composable get() = stringResource(Res.string.preference_annotation_early_access)
+
     public val preferenceAnnotationExperimental: String
         @Composable get() = stringResource(Res.string.preference_annotation_experimental)
 

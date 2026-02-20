@@ -30,6 +30,11 @@ public data class PreferenceAnnotation(
             containerColor = { KepkoTheme.colors.content },
         )
 
+        public val earlyAccess: PreferenceAnnotation = PreferenceAnnotation(
+            text = { Strings.preferenceAnnotationEarlyAccess },
+            containerColor = { KepkoTheme.colors.danger },
+        )
+
         public val preview: PreferenceAnnotation = PreferenceAnnotation(
             text = { Strings.preferenceAnnotationPreview },
             containerColor = { KepkoTheme.colors.content },
