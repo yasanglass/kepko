@@ -49,7 +49,7 @@ public object ColorTokens {
     private val contentDisabledDarkSolarized: Color = Color(0xFF30525C)
 
     private val successStandard: Color = Color(0xFF04B34F)
-    private val onSuccessStandard: Color = Color(0xFF000000)
+    private val onSuccessStandard: Color = Color(0xFFFFFFFF)
     private val informationStandard: Color = Color(0xFF0057B8)
     private val onInformationStandard: Color = Color(0xFFFFFFFF)
     private val cautionStandard: Color = Color(0xFFFF9900)
