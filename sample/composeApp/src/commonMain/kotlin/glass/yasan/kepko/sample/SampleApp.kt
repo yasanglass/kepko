@@ -33,6 +33,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.component.AlertDialog
+import glass.yasan.kepko.component.AlertDialogDefaults
+import glass.yasan.kepko.component.BasicAlertDialog
 import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.CircularProgressIndicator
@@ -112,6 +115,7 @@ fun SampleApp() {
                     examplePreferenceRadioGroup()
                     exampleTextField()
                     exampleOutlinedTextField()
+                    exampleAlertDialog()
                     exampleKeyValue()
                     exampleButtonText()
                     exampleTextPill()
@@ -619,6 +623,123 @@ private fun LazyListScope.exampleOutlinedTextField() {
             minLines = 3,
             modifier = Modifier.fillMaxWidth(),
         )
+    }
+}
+
+@Suppress("LongMethod")
+private fun LazyListScope.exampleAlertDialog() {
+    item { HorizontalDivider() }
+    item {
+        val dialogStyle = rememberSaveable { mutableIntStateOf(0) }
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            ButtonText(
+                text = "Show AlertDialog",
+                onClick = { dialogStyle.intValue = 1 },
+                fillWidth = false,
+            )
+            ButtonText(
+                text = "Show AlertDialog",
+                onClick = { dialogStyle.intValue = 2 },
+                fillWidth = false,
+                annotation = PreferenceAnnotation(
+                    text = { "Caution" },
+                    containerColor = { KepkoTheme.colors.caution },
+                ),
+            )
+            ButtonText(
+                text = "Show AlertDialog",
+                onClick = { dialogStyle.intValue = 3 },
+                fillWidth = false,
+                annotation = PreferenceAnnotation(
+                    text = { "Danger" },
+                    containerColor = { KepkoTheme.colors.danger },
+                ),
+            )
+            ButtonText(
+                text = "Show BasicAlertDialog",
+                onClick = { dialogStyle.intValue = 4 },
+                fillWidth = false,
+            )
+        }
+
+        if (dialogStyle.intValue in 1..3) {
+            val confirmLabel = when (dialogStyle.intValue) {
+                1 -> "Default"
+                2 -> "Caution"
+                else -> "Danger"
+            }
+
+            if (dialogStyle.intValue == 1) {
+                AlertDialog(
+                    onDismissRequest = { dialogStyle.intValue = 0 },
+                    confirmButtonText = "Confirm",
+                    onConfirmClick = { dialogStyle.intValue = 0 },
+                    dismissButtonText = "Dismiss",
+                    title = "AlertDialog",
+                    text = "Confirm button color: $confirmLabel",
+                )
+            } else {
+                val confirmContainerColor = when (dialogStyle.intValue) {
+                    2 -> KepkoTheme.colors.caution
+                    else -> KepkoTheme.colors.danger
+                }
+
+                AlertDialog(
+                    onDismissRequest = { dialogStyle.intValue = 0 },
+                    confirmButtonText = "Confirm",
+                    onConfirmClick = { dialogStyle.intValue = 0 },
+                    dismissButtonText = "Dismiss",
+                    title = "AlertDialog",
+                    text = "Confirm button color: $confirmLabel",
+                    colors = AlertDialogDefaults.colors(
+                        confirmButtonContainerColor = confirmContainerColor,
+                    ),
+                )
+            }
+        }
+
+        if (dialogStyle.intValue == 4) {
+            BasicAlertDialog(
+                onDismissRequest = { dialogStyle.intValue = 0 },
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier
+                        .border(shape = KepkoTheme.shapes.extraLarge)
+                        .background(
+                            color = KepkoTheme.colors.foreground,
+                            shape = KepkoTheme.shapes.extraLarge,
+                        )
+                        .padding(24.dp),
+                ) {
+                    Text(
+                        text = "BasicAlertDialog",
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(text = "This is custom content using the minimal dialog API.")
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.align(Alignment.End),
+                    ) {
+                        ButtonText(
+                            text = "Dismiss",
+                            onClick = { dialogStyle.intValue = 0 },
+                            fillWidth = false,
+                        )
+                        ButtonText(
+                            text = "Confirm",
+                            onClick = { dialogStyle.intValue = 0 },
+                            fillWidth = false,
+                            containerColor = KepkoTheme.colors.content,
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 

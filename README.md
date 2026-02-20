@@ -43,6 +43,8 @@ KepkoTheme {
 
 ## Components
 
+- [AlertDialog](component/src/commonMain/kotlin/glass/yasan/kepko/component/AlertDialog.kt)
+- [BasicAlertDialog](component/src/commonMain/kotlin/glass/yasan/kepko/component/BasicAlertDialog.kt)
 - [Button](component/src/commonMain/kotlin/glass/yasan/kepko/component/Button.kt)
 - [ButtonText](component/src/commonMain/kotlin/glass/yasan/kepko/component/ButtonText.kt)
 - [Checkbox](component/src/commonMain/kotlin/glass/yasan/kepko/component/Checkbox.kt)
