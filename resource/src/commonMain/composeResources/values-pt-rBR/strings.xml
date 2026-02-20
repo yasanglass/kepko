@@ -8,6 +8,7 @@
     <string name="preference_annotation_alpha">Alpha</string>
     <string name="preference_annotation_beta">Beta</string>
     <string name="preference_annotation_default">Default</string>
+    <string name="preference_annotation_early_access">Early Access</string>
     <string name="preference_annotation_experimental">Experimental</string>
     <string name="preference_annotation_legacy">Legacy</string>
     <string name="preference_annotation_new">New</string>

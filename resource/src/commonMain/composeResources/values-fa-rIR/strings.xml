@@ -8,6 +8,7 @@
     <string name="preference_annotation_alpha">آلفا</string>
     <string name="preference_annotation_beta">بتا</string>
     <string name="preference_annotation_default">پیش‌فرض</string>
+    <string name="preference_annotation_early_access">Early Access</string>
     <string name="preference_annotation_experimental">آزمایشی</string>
     <string name="preference_annotation_legacy">قدیمی</string>
     <string name="preference_annotation_new">جدید</string>
