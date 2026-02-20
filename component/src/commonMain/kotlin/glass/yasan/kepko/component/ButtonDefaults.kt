@@ -7,8 +7,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
 
-public object ButtonTextDefaults {
-    public val ContentPadding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+public object ButtonDefaults {
+    public val ContentPadding: PaddingValues = Material3ButtonDefaults.ContentPadding
+
+    @Composable
+    public fun contentPadding(
+        contentPadding: PaddingValues = ContentPadding,
+    ): PaddingValues = contentPadding
 
     @Composable
     public fun buttonElevation(
