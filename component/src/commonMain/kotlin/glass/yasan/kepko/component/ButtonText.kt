@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,7 +43,7 @@ public fun ButtonText(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
+    elevation: ButtonElevation? = ButtonTextDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
@@ -105,7 +104,7 @@ public fun ButtonText(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
+    elevation: ButtonElevation? = ButtonTextDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
@@ -166,7 +165,7 @@ public fun ButtonText(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
+    elevation: ButtonElevation? = ButtonTextDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonTextDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
