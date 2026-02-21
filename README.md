@@ -68,4 +68,4 @@ KepkoTheme {
 
 A simple sample app is included so you can explore Kepko in a real project: [sample](sample).
 
-![Sample screenshot](./assets/sample.png)
+![Sample screenshot](assets/sample.png)
