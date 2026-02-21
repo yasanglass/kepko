@@ -27,7 +27,7 @@ public data class PreferenceAnnotation(
 
         public val default: PreferenceAnnotation = PreferenceAnnotation(
             text = { Strings.preferenceAnnotationDefault },
-            containerColor = { KepkoTheme.colors.content },
+            containerColor = { KepkoTheme.colors.foreground },
         )
 
         public val earlyAccess: PreferenceAnnotation = PreferenceAnnotation(
