@@ -62,6 +62,8 @@ public data class PreferenceAnnotation(
 
         public val all: List<PreferenceAnnotation> = listOf(
             new,
+            default,
+            earlyAccess,
             preview,
             experimental,
             beta,
