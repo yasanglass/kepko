@@ -76,7 +76,7 @@ fun Project.configurePublishing() {
 
         pom {
             name.set("Kepko")
-            description.set("A work-in-progress design system for Compose Multiplatform.")
+            description.set("An opinionated design system for Compose Multiplatform.")
             inceptionYear.set("2025")
             url.set("https://github.com/yasanglass/kepko/")
             licenses {
