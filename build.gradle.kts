@@ -11,6 +11,20 @@ plugins {
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.roborazzi) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
+    alias(libs.plugins.jetbrains.dokka)
+}
+
+dependencies {
+    dokka(project(":resource"))
+    dokka(project(":foundation"))
+    dokka(project(":component"))
+}
+
+dokka {
+    moduleName.set("Kepko")
+    dokkaPublications.html {
+        includes.from("README.md")
+    }
 }
 
 detekt {
@@ -94,6 +108,7 @@ subprojects {
     configureDetekt()
 
     if (isSample.not()) {
+        apply(plugin = "org.jetbrains.dokka")
         configurePublishing()
     }
 }

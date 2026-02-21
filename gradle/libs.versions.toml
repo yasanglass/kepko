@@ -8,6 +8,7 @@ androidx-lifecycle = "2.9.6"
 androidx-navigation = "2.9.2"
 arturbosch-detekt = "1.23.8"
 jetbrains-compose = "1.10.1"
+jetbrains-dokka = "2.1.0"
 jetbrains-kotlin = "2.3.10"
 composable-preview-scanner = "0.8.1"
 roborazzi = "1.59.0"
@@ -31,6 +32,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrains-kotlin" }
 arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "arturbosch-detekt" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
+jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrains-kotlin" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
