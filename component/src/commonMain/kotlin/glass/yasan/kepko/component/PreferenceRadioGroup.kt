@@ -67,51 +67,76 @@ public fun PreferenceRadioGroup(
         interactionSource = null,
         indication = null,
         content = { _: PaddingValues ->
-            Column {
-                items.forEach { radioGroupItem ->
-                    val itemEnabled = enabled && radioGroupItem.enabled
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(CircleShape)
-                            .clickable(
-                                enabled = itemEnabled,
-                                onClick = { onSelect(radioGroupItem) },
-                            )
-                            .padding(horizontal = 12.dp),
-                    ) {
-                        RadioButton(
-                            selected = selected == radioGroupItem,
-                            onClick = { onSelect(radioGroupItem) },
-                            enabled = itemEnabled,
-                        )
-                        Text(
-                            text = radioGroupItem.title(),
-                            color = if (itemEnabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
-                            modifier = Modifier.weight(1f),
-                        )
-                        radioGroupItem.annotation?.let { itemAnnotation ->
-                            val annotation = if (itemEnabled) itemAnnotation else itemAnnotation.subtle()
-                            TextPill(
-                                annotation = annotation,
-                                modifier = Modifier.padding(horizontal = 12.dp),
-                            )
-                        }
-                    }
-                }
-                content()
-            }
+            SegmentedRadioGroupContent(
+                items = items,
+                selected = selected,
+                onSelect = onSelect,
+                enabled = enabled,
+                content = content,
+            )
         }
     )
 }
 
-public data class PreferenceRadioGroupItem(
-    val id: String,
-    val annotation: PreferenceAnnotation? = null,
-    val enabled: Boolean = true,
-    val title: @Composable () -> String
-)
+@Composable
+private fun SegmentedRadioGroupContent(
+    items: List<PreferenceRadioGroupItem>,
+    selected: PreferenceRadioGroupItem?,
+    onSelect: (PreferenceRadioGroupItem) -> Unit,
+    enabled: Boolean,
+    content: @Composable () -> Unit,
+) {
+    SegmentedColumn(items = items) { segmentItems ->
+        segmentItems.forEach { radioGroupItem ->
+            RadioGroupRow(
+                item = radioGroupItem,
+                selected = selected == radioGroupItem,
+                onClick = { onSelect(radioGroupItem) },
+                enabled = enabled && radioGroupItem.enabled,
+            )
+        }
+    }
+    content()
+}
+
+@Composable
+private fun RadioGroupRow(
+    item: PreferenceRadioGroupItem,
+    selected: Boolean,
+    onClick: () -> Unit,
+    enabled: Boolean,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(CircleShape)
+            .clickable(
+                enabled = enabled,
+                onClick = onClick,
+            )
+            .padding(horizontal = 12.dp),
+    ) {
+        RadioButton(
+            selected = selected,
+            onClick = onClick,
+            enabled = enabled,
+        )
+        Text(
+            text = item.title(),
+            color = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
+            modifier = Modifier.weight(1f),
+        )
+        item.annotation?.let { itemAnnotation ->
+            val annotation = if (enabled) itemAnnotation else itemAnnotation.subtle()
+
+            TextPill(
+                annotation = annotation,
+                modifier = Modifier.padding(horizontal = 12.dp),
+            )
+        }
+    }
+}
 
 @PreviewWithTest
 @Composable
@@ -153,7 +178,8 @@ private fun PreviewContent() {
     val items = listOf(
         PreferenceRadioGroupItem("item1") { "Item 1" },
         PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
-        PreferenceRadioGroupItem("item3", enabled = false) { "Item 3" },
+        PreferenceRadioGroupItem("item3", segment = 1) { "Item 3" },
+        PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },
     )
 
     Column(

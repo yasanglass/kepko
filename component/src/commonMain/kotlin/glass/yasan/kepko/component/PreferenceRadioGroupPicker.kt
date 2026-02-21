@@ -1,9 +1,15 @@
 package glass.yasan.kepko.component
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -14,7 +20,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.component.extensions.isFullWidth
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import kotlinx.coroutines.launch
@@ -86,23 +94,76 @@ public fun PreferenceRadioGroupPicker(
             onDismissRequest = { showSheet = false },
             sheetState = sheetState,
             content = {
-                PreferenceRadioGroup(
+                ModalBottomSheetContent(
                     title = title,
+                    description = description,
                     selectedId = selectedId,
                     items = items,
-                    onSelectId = {
-                        onSelectId(it)
+                    onSelectItem = { item ->
+                        onSelectId(item.id)
                         if (closeOnSelection) {
                             scope
                                 .launch { sheetState.hide() }
                                 .invokeOnCompletion { showSheet = false }
                         }
                     },
-                    description = description,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 32.dp),
                 )
             },
         )
+    }
+}
+
+@Composable
+private fun ModalBottomSheetContent(
+    title: String,
+    description: String?,
+    selectedId: String?,
+    items: List<PreferenceRadioGroupItem>,
+    onSelectItem: (PreferenceRadioGroupItem) -> Unit,
+) {
+    BoxWithConstraints {
+        val contentPadding by animateDpAsState(
+            targetValue = if (isFullWidth()) 0.dp else 16.dp,
+            label = "contentPadding",
+        )
+
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = 32.dp),
+        ) {
+            Text(
+                text = title.uppercase(),
+                fontWeight = FontWeight.Bold,
+                color = KepkoTheme.colors.content,
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
+            if (description != null) {
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = description,
+                    color = KepkoTheme.colors.contentSubtle,
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                )
+            }
+            Spacer(Modifier.height(16.dp))
+            SegmentedColumn(items = items) { segmentItems ->
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.padding(horizontal = contentPadding),
+                ) {
+                    segmentItems.forEach { item ->
+                        PreferenceRadioButton(
+                            title = item.title(),
+                            selected = item.id == selectedId,
+                            onClick = { onSelectItem(item) },
+                            enabled = item.enabled,
+                            annotation = item.annotation,
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -141,7 +202,8 @@ private fun PreviewContent() {
     val items = listOf(
         PreferenceRadioGroupItem("item1") { "Item 1" },
         PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
-        PreferenceRadioGroupItem("item3", enabled = false) { "Item 3" },
+        PreferenceRadioGroupItem("item3", segment = 1) { "Item 3" },
+        PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },
     )
 
     Column(
