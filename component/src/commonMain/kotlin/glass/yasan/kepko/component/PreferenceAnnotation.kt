@@ -74,6 +74,7 @@ public data class PreferenceAnnotation(
     @ExperimentalKepkoApi
     public fun subtle(): PreferenceAnnotation = copy(
         containerColor = { KepkoTheme.colors.foreground },
+        contentColor = { KepkoTheme.colors.contentDisabled },
     )
 
 }
