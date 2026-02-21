@@ -37,6 +37,10 @@ public enum class ThemeStyle(
 
     public companion object {
 
+        public val defaultLight: ThemeStyle get(): ThemeStyle = LIGHT
+
+        public val defaultDark: ThemeStyle get(): ThemeStyle = DARK
+
         @Composable
         public fun fromIdOrSystemDarkTheme(id: String?): ThemeStyle = fromIdOrNull(id) ?: fromSystemDarkTheme()
 

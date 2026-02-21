@@ -10,6 +10,7 @@ arturbosch-detekt = "1.23.8"
 jetbrains-compose = "1.10.1"
 jetbrains-dokka = "2.1.0"
 jetbrains-kotlin = "2.3.10"
+multiplatform-settings = "1.3.0"
 composable-preview-scanner = "0.8.1"
 roborazzi = "1.59.0"
 platformtools-darkmodedetector = "0.7.4"
@@ -25,6 +26,8 @@ androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycl
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 composable-preview-scanner-jvm = { module = "io.github.sergio-sastre.ComposablePreviewScanner:jvm", version.ref = "composable-preview-scanner" }
 roborazzi-compose-desktop = { module = "io.github.takahirom.roborazzi:roborazzi-compose-desktop", version.ref = "roborazzi" }
+multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatform-settings" }
+multiplatform-settings-no-arg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatform-settings" }
 platformtools-darkmodedetector = { module = "io.github.kdroidfilter:platformtools.darkmodedetector", version.ref = "platformtools-darkmodedetector" }
 
 [plugins]

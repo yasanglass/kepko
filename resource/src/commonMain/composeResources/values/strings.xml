@@ -6,12 +6,20 @@
     <string name="theme_style_dark_solarized">Solarized Dark</string>
     <string name="preference_annotation_alpha">Alpha</string>
     <string name="preference_annotation_beta">Beta</string>
+    <string name="preference_annotation_active">Active</string>
     <string name="preference_annotation_default">Default</string>
     <string name="preference_annotation_early_access">Early Access</string>
     <string name="preference_annotation_experimental">Experimental</string>
     <string name="preference_annotation_legacy">Legacy</string>
     <string name="preference_annotation_new">New</string>
     <string name="preference_annotation_preview">Preview</string>
+    <string name="preference_title_light_theme_style">Light Theme</string>
+    <string name="preference_description_light_theme_style">Theme used when the system is in light mode</string>
+    <string name="preference_title_dark_theme_style">Dark Theme</string>
+    <string name="preference_description_dark_theme_style">Theme used when the system is in dark mode</string>
+    <string name="preference_title_theme">Theme</string>
+<string name="theme_style_system">System</string>
+    <string name="preference_title_grayscale">Grayscale</string>
     <string name="go_back">Go back</string>
     <string name="back">Back</string>
 </resources>

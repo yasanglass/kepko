@@ -47,6 +47,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":component"))
+                api(libs.multiplatform.settings)
+
+                implementation(libs.multiplatform.settings.no.arg)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.runtime)
+                implementation(compose.ui)
             }
         }
     }

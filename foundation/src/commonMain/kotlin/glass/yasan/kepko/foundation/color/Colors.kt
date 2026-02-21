@@ -9,7 +9,7 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @Immutable
 public class Colors internal constructor(
-    style: ThemeStyle,
+    public val style: ThemeStyle,
     private val grayscale: Boolean = false,
 ) {
     private val inverseStyle: ThemeStyle = if (style == ThemeStyle.LIGHT) ThemeStyle.DARK else ThemeStyle.LIGHT
