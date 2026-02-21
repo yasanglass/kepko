@@ -12,6 +12,7 @@ jetbrains-dokka = "2.1.0"
 jetbrains-kotlin = "2.3.10"
 composable-preview-scanner = "0.8.1"
 roborazzi = "1.59.0"
+platformtools-darkmodedetector = "0.7.4"
 sample-android-sdk-compile = "36"
 sample-android-sdk-min = "23"
 sample-android-sdk-target = "36"
@@ -24,6 +25,7 @@ androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycl
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 composable-preview-scanner-jvm = { module = "io.github.sergio-sastre.ComposablePreviewScanner:jvm", version.ref = "composable-preview-scanner" }
 roborazzi-compose-desktop = { module = "io.github.takahirom.roborazzi:roborazzi-compose-desktop", version.ref = "roborazzi" }
+platformtools-darkmodedetector = { module = "io.github.kdroidfilter:platformtools.darkmodedetector", version.ref = "platformtools-darkmodedetector" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

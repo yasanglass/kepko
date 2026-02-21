@@ -3,7 +3,6 @@ package glass.yasan.kepko.sample
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -67,6 +66,7 @@ import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -75,21 +75,22 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 fun SampleApp() {
-    val isSystemInDarkTheme = isSystemInDarkTheme()
-    val style = rememberSaveable {
-        mutableStateOf(ThemeStyle.fromDarkTheme(isDark = isSystemInDarkTheme))
-    }
+    val selectedStyleId = rememberSaveable { mutableStateOf<String?>(null) }
+    val style = selectedStyleId.value
+        ?.let { selectedId -> ThemeStyle.fromIdOrNull(selectedId) }
+        ?: ThemeStyle.fromDarkTheme(isDark = isSystemInDarkTheme())
+
     val grayscale = rememberSaveable { mutableStateOf(false) }
 
     KepkoTheme(
-        style = style.value,
+        style = style,
         grayscale = grayscale.value,
     ) {
 
         SystemBarColorsEffect(
             statusBarColor = KepkoTheme.colors.midground,
             navigationBarColor = KepkoTheme.colors.midground,
-            isDark = style.value.isDark,
+            isDark = style.isDark,
         )
 
         Scaffold(
@@ -106,7 +107,7 @@ fun SampleApp() {
                     modifier = Modifier.widthIn(max = 512.dp),
                 ) {
                     colorPalette()
-                    stylePreference(style)
+                    stylePreference(selectedStyleId)
                     grayscalePreference(grayscale)
                     examplePreferenceSlider()
                     examplePreferenceCheckbox()
@@ -941,13 +942,19 @@ private fun LazyListScope.exampleAppIdentity() {
     }
 }
 
-private fun LazyListScope.stylePreference(style: MutableState<ThemeStyle>) {
+private fun LazyListScope.stylePreference(selectedId: MutableState<String?>) {
     item {
+        val systemStyleId = "system"
+        val systemStyleItem = PreferenceRadioGroupItem(
+            id = systemStyleId,
+            annotation = PreferenceAnnotation.default,
+        ) { "System" }
+
         PreferenceRadioGroup(
             title = "Style",
-            items = ThemeStyle.asPreferenceRadioGroupItems(),
-            selectedId = style.value.id,
-            onSelectId = { style.value = ThemeStyle.fromIdOrNull(it) ?: ThemeStyle.LIGHT },
+            items = listOf(systemStyleItem) + ThemeStyle.asPreferenceRadioGroupItems(),
+            selectedId = selectedId.value ?: systemStyleId,
+            onSelectId = { id -> selectedId.value = id.takeUnless { it == systemStyleId } },
         )
     }
 }

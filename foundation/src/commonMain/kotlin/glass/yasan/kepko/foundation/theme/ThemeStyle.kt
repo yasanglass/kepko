@@ -1,6 +1,5 @@
 package glass.yasan.kepko.foundation.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import glass.yasan.kepko.resource.Strings
 
