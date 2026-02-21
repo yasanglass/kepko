@@ -452,6 +452,23 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
             enabled = false,
         )
     }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem("item2", enabled = false) { "Item 2" },
+            PreferenceRadioGroupItem("item3", annotation = PreferenceAnnotation.experimental) { "Item 3" },
+            PreferenceRadioGroupItem("item4", annotation = PreferenceAnnotation.legacy, enabled = false) { "Item 4" },
+        )
+        val selected = remember { mutableStateOf(items.first()) }
+
+        PreferenceRadioGroup(
+            title = "PreferenceRadioGroup",
+            description = "Per-item disabled",
+            selected = selected.value,
+            items = items,
+            onSelect = { selected.value = it },
+        )
+    }
 }
 
 @Suppress("LongMethod")

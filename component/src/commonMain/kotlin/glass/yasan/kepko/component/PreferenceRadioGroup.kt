@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 
@@ -44,6 +45,7 @@ public fun PreferenceRadioGroup(
     )
 }
 
+@OptIn(ExperimentalKepkoApi::class)
 @Composable
 public fun PreferenceRadioGroup(
     title: String,
@@ -67,13 +69,14 @@ public fun PreferenceRadioGroup(
         content = { _: PaddingValues ->
             Column {
                 items.forEach { radioGroupItem ->
+                    val itemEnabled = enabled && radioGroupItem.enabled
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(CircleShape)
                             .clickable(
-                                enabled = enabled,
+                                enabled = itemEnabled,
                                 onClick = { onSelect(radioGroupItem) },
                             )
                             .padding(horizontal = 12.dp),
@@ -81,15 +84,17 @@ public fun PreferenceRadioGroup(
                         RadioButton(
                             selected = selected == radioGroupItem,
                             onClick = { onSelect(radioGroupItem) },
-                            enabled = enabled,
+                            enabled = itemEnabled,
                         )
                         Text(
                             text = radioGroupItem.title(),
+                            color = if (itemEnabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
                             modifier = Modifier.weight(1f),
                         )
                         radioGroupItem.annotation?.let { itemAnnotation ->
+                            val annotation = if (itemEnabled) itemAnnotation else itemAnnotation.subtle()
                             TextPill(
-                                annotation = itemAnnotation,
+                                annotation = annotation,
                                 modifier = Modifier.padding(horizontal = 12.dp),
                             )
                         }
@@ -104,6 +109,7 @@ public fun PreferenceRadioGroup(
 public data class PreferenceRadioGroupItem(
     val id: String,
     val annotation: PreferenceAnnotation? = null,
+    val enabled: Boolean = true,
     val title: @Composable () -> String
 )
 
@@ -147,6 +153,7 @@ private fun PreviewContent() {
     val items = listOf(
         PreferenceRadioGroupItem("item1") { "Item 1" },
         PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
+        PreferenceRadioGroupItem("item3", enabled = false) { "Item 3" },
     )
 
     Column(
