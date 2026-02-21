@@ -1,4 +1,4 @@
-package glass.yasan.kepko.integration
+package glass.yasan.kepko.persistence
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider

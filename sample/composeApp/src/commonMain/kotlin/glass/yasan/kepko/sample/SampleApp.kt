@@ -5,8 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.integration.PersistentKepkoTheme
-import glass.yasan.kepko.integration.PersistentPreferenceThemeScreen
+import glass.yasan.kepko.persistence.PersistentKepkoTheme
+import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Preview

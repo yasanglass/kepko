@@ -1,4 +1,4 @@
-package glass.yasan.kepko.integration.internal
+package glass.yasan.kepko.persistence.internal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -9,8 +9,8 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
-import glass.yasan.kepko.integration.KepkoThemePersistence
-import glass.yasan.kepko.integration.KepkoThemePersistence.Companion.STYLE_ID_SYSTEM
+import glass.yasan.kepko.persistence.KepkoThemePersistence
+import glass.yasan.kepko.persistence.KepkoThemePersistence.Companion.STYLE_ID_SYSTEM
 
 internal class KepkoThemePersistenceImpl(
     private val settings: Settings,

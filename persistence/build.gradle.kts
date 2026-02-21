@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val artifactId = "integration"
+val artifactId = "persistence"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)

@@ -1,4 +1,4 @@
-package glass.yasan.kepko.integration
+package glass.yasan.kepko.persistence
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -6,7 +6,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.integration.internal.KepkoThemePersistenceImpl
+import glass.yasan.kepko.persistence.internal.KepkoThemePersistenceImpl
 
 public interface KepkoThemePersistence {
 

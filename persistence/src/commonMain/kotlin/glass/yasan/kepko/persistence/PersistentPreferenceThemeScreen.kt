@@ -1,4 +1,4 @@
-package glass.yasan.kepko.integration
+package glass.yasan.kepko.persistence
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
@@ -18,7 +18,7 @@ import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
-import glass.yasan.kepko.integration.KepkoThemePersistence.Companion.STYLE_ID_SYSTEM
+import glass.yasan.kepko.persistence.KepkoThemePersistence.Companion.STYLE_ID_SYSTEM
 import glass.yasan.kepko.resource.Strings
 
 /**

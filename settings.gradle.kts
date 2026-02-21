@@ -17,7 +17,7 @@ rootProject.name = "kepko"
 include(":resource")
 include(":foundation")
 include(":component")
-include(":integration")
+include(":persistence")
 include(":sample")
 include(":sample:composeApp")
 include(":sample:androidApp")
