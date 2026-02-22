@@ -8,9 +8,14 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.Surface as Material3Surface
 
 @ExperimentalKepkoApi
@@ -104,4 +109,53 @@ public fun Background(
         border = border,
         content = content,
     )
+}
+
+@PreviewWithTest
+@Composable
+internal fun SurfaceLightPreview() {
+    KepkoTheme(style = ThemeStyle.LIGHT) { SurfacePreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun SurfaceDarkPreview() {
+    KepkoTheme(style = ThemeStyle.DARK) { SurfacePreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun SurfaceBlackPreview() {
+    KepkoTheme(style = ThemeStyle.BLACK) { SurfacePreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun SurfaceSolarizedLightPreview() {
+    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { SurfacePreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun SurfaceSolarizedDarkPreview() {
+    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { SurfacePreviewContent() }
+}
+
+@OptIn(ExperimentalKepkoApi::class)
+@Composable
+private fun SurfacePreviewContent() {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.padding(16.dp),
+    ) {
+        Foreground(modifier = Modifier.padding(8.dp)) {
+            Text(text = Strings.themeStyleLight)
+        }
+        Midground(modifier = Modifier.padding(8.dp)) {
+            Text(text = Strings.themeStyleDark)
+        }
+        Background(modifier = Modifier.padding(8.dp)) {
+            Text(text = Strings.themeStyleBlack)
+        }
+    }
 }
