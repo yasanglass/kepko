@@ -1,5 +1,6 @@
 package glass.yasan.kepko.persistence.internal
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,19 +17,25 @@ internal class PersistenceManagerImpl(
     private val settings: Settings,
 ) : PersistenceManager {
 
-    private companion object {
+    internal companion object {
+        @VisibleForTesting
         const val KEY_STYLE = "kepko.style.primary"
+
+        @VisibleForTesting
         const val KEY_LIGHT_STYLE = "kepko.style.light"
+
+        @VisibleForTesting
         const val KEY_DARK_STYLE = "kepko.style.dark"
+
+        @VisibleForTesting
         const val KEY_GRAYSCALE = "kepko.grayscale"
     }
 
     @Composable
-    override fun style(): ThemeStyle {
-        val isDark = isSystemInDarkTheme()
+    override fun style(): ThemeStyle = resolvedStyle(isDark = isSystemInDarkTheme())
 
-        return stylePrimary ?: if (isDark) styleDark else styleLight
-    }
+    internal fun resolvedStyle(isDark: Boolean): ThemeStyle =
+        stylePrimary ?: if (isDark) styleDark else styleLight
 
     private var _stylePrimary by mutableStateOf(
         settings.getStringOrNull(KEY_STYLE)?.let { ThemeStyle.fromIdOrNull(it) }
