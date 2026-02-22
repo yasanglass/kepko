@@ -10,7 +10,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Fonts
+import glass.yasan.kepko.resource.Strings
 
 @Composable
 public fun TextMono(
@@ -42,4 +51,50 @@ public fun TextMono(
         minLines = minLines,
         lineHeight = lineHeight,
     )
+}
+
+@PreviewWithTest
+@Composable
+internal fun TextMonoLightPreview() {
+    KepkoTheme(style = ThemeStyle.LIGHT) { TextMonoPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun TextMonoDarkPreview() {
+    KepkoTheme(style = ThemeStyle.DARK) { TextMonoPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun TextMonoBlackPreview() {
+    KepkoTheme(style = ThemeStyle.BLACK) { TextMonoPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun TextMonoSolarizedLightPreview() {
+    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { TextMonoPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun TextMonoSolarizedDarkPreview() {
+    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { TextMonoPreviewContent() }
+}
+
+@Composable
+private fun TextMonoPreviewContent() {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier
+            .background(KepkoTheme.colors.foreground)
+            .padding(16.dp),
+    ) {
+        TextMono(text = Strings.persistenceLightThemeStyleTitle)
+        TextMono(text = Strings.preferenceAnnotationActive, fontWeight = FontWeight.Bold)
+        TextMono(text = Strings.themeStyleLightSolarized, fontSize = 12.sp)
+        TextMono(text = Strings.persistenceGrayscaleTitle, fontSize = 24.sp)
+        TextMono(text = Strings.persistenceLightThemeStyleDescription, maxLines = 1)
+    }
 }
