@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.roborazzi) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
     alias(libs.plugins.jetbrains.dokka)
+    alias(libs.plugins.jetbrains.kover)
 }
 
 dependencies {
@@ -19,6 +20,11 @@ dependencies {
     dokka(project(":foundation"))
     dokka(project(":component"))
     dokka(project(":persistence"))
+
+    kover(project(":resource"))
+    kover(project(":foundation"))
+    kover(project(":component"))
+    kover(project(":persistence"))
 }
 
 dokka {
@@ -110,6 +116,7 @@ subprojects {
 
     if (isSample.not()) {
         apply(plugin = "org.jetbrains.dokka")
+        apply(plugin = "org.jetbrains.kotlinx.kover")
         configurePublishing()
     }
 }
