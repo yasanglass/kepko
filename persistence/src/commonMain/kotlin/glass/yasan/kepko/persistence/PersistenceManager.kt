@@ -36,7 +36,7 @@ internal val LocalPersistenceManager: ProvidableCompositionLocal<PersistenceMana
 
 @Composable
 public fun rememberPersistenceManager(
-    settings: Settings = remember { Settings() },
+    settings: Settings = rememberKepkoSettings(),
 ): PersistenceManager =
     remember(settings) {
         PersistenceManagerImpl(settings)

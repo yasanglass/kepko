@@ -50,8 +50,6 @@ kotlin {
             dependencies {
                 api(project(":component"))
                 api(libs.multiplatform.settings)
-
-                implementation(libs.multiplatform.settings.no.arg)
                 implementation(compose.components.uiToolingPreview)
                 implementation(compose.foundation)
                 implementation(compose.material3)

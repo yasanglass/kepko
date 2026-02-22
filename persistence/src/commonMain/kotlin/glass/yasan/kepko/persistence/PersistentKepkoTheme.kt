@@ -2,13 +2,11 @@ package glass.yasan.kepko.persistence
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.dimension.Dimensions
 import glass.yasan.kepko.foundation.shape.Shapes
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.resource.Icons.settings
 
 /**
  * Alternative to directly using [KepkoTheme]
@@ -19,7 +17,7 @@ import glass.yasan.kepko.resource.Icons.settings
 @ExperimentalKepkoApi
 @Composable
 public fun PersistentKepkoTheme(
-    settings: Settings = remember { Settings() },
+    settings: Settings = rememberKepkoSettings(),
     dimensions: Dimensions = KepkoTheme.dimensions,
     shapes: Shapes = KepkoTheme.shapes,
     content: @Composable () -> Unit,
