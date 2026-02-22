@@ -6,12 +6,12 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.persistence.internal.KepkoThemePersistenceImpl
+import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 
-public interface KepkoThemePersistence {
+public interface PersistenceManager {
 
     public companion object {
-        internal const val STYLE_ID_SYSTEM = "system"
+        public const val STYLE_ID_SYSTEM: String = "system"
     }
 
     public var stylePrimary: ThemeStyle?
@@ -27,15 +27,15 @@ public interface KepkoThemePersistence {
 
 }
 
-internal val LocalKepkoThemePersistence: ProvidableCompositionLocal<KepkoThemePersistence> =
+internal val LocalPersistenceManager: ProvidableCompositionLocal<PersistenceManager> =
     compositionLocalOf {
-        error("KepkoThemePersistence is not provided. Wrap content in PersistentKepkoTheme.")
+        error("PersistenceManager is not provided. Wrap content in PersistentKepkoTheme.")
     }
 
 @Composable
-public fun rememberKepkoThemePersistence(
+public fun rememberPersistenceManager(
     settings: Settings = remember { Settings() },
-): KepkoThemePersistence =
+): PersistenceManager =
     remember(settings) {
-        KepkoThemePersistenceImpl(settings)
+        PersistenceManagerImpl(settings)
     }

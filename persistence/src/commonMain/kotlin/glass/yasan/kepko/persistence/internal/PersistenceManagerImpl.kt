@@ -9,12 +9,12 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
-import glass.yasan.kepko.persistence.KepkoThemePersistence
-import glass.yasan.kepko.persistence.KepkoThemePersistence.Companion.STYLE_ID_SYSTEM
+import glass.yasan.kepko.persistence.PersistenceManager
+import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
 
-internal class KepkoThemePersistenceImpl(
+internal class PersistenceManagerImpl(
     private val settings: Settings,
-) : KepkoThemePersistence {
+) : PersistenceManager {
 
     private companion object {
         const val KEY_STYLE = "kepko.style.primary"

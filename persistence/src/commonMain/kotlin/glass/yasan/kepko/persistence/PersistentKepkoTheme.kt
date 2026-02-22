@@ -10,7 +10,8 @@ import glass.yasan.kepko.foundation.shape.Shapes
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 
 /**
- * Alternative to directly using [KepkoTheme] which internally handles the theme preferences.
+ * Alternative to directly using [KepkoTheme]
+ * which provides easier integration by handling theme preferences on its own.
  *
  * Use this alongside [PersistentPreferenceThemeScreen] to easily integrate Kepko with your app.
  */
@@ -22,16 +23,16 @@ public fun PersistentKepkoTheme(
     shapes: Shapes = KepkoTheme.shapes,
     content: @Composable () -> Unit,
 ) {
-    val kepkoThemeState: KepkoThemePersistence = rememberKepkoThemePersistence(settings)
+    val persistenceManager: PersistenceManager = rememberPersistenceManager(settings)
 
     KepkoTheme(
-        style = kepkoThemeState.style(),
-        grayscale = kepkoThemeState.grayscale,
+        style = persistenceManager.style(),
+        grayscale = persistenceManager.grayscale,
         dimensions = dimensions,
         shapes = shapes,
     ) {
         CompositionLocalProvider(
-            value = LocalKepkoThemePersistence provides kepkoThemeState,
+            value = LocalPersistenceManager provides persistenceManager,
             content = content,
         )
     }

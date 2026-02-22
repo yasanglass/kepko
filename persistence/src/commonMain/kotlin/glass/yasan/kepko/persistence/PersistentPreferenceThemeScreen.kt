@@ -18,13 +18,11 @@ import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
-import glass.yasan.kepko.persistence.KepkoThemePersistence.Companion.STYLE_ID_SYSTEM
+import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
 import glass.yasan.kepko.resource.Strings
 
 /**
  * A theme preferences screen which allows easy integration when used with [PersistentKepkoTheme].
- *
- * Internally uses [KepkoThemePersistence] to handle the theme preferences.
  *
  * This preference screen allows the user to select different [ThemeStyle] combinations and toggle grayscale.
  *
@@ -52,7 +50,7 @@ public fun PersistentPreferenceThemeScreen(
 private fun PersistentPreferenceThemeContent(
     modifier: Modifier = Modifier,
 ) {
-    val persistence = LocalKepkoThemePersistence.current
+    val persistence = LocalPersistenceManager.current
     val styleItems = ThemeStyle.entries.map { it.asPreferenceRadioGroupItem() }
     val systemItem = PreferenceRadioGroupItem(
         id = STYLE_ID_SYSTEM,
@@ -93,7 +91,7 @@ private fun PersistentPreferenceThemeContent(
 
 @Composable
 private fun PersistentPreferenceThemeLight(
-    persistence: KepkoThemePersistence,
+    persistence: PersistenceManager,
 ) {
     PreferenceRadioGroupPicker(
         title = Strings.preferenceTitleLightThemeStyle,
@@ -110,7 +108,7 @@ private fun PersistentPreferenceThemeLight(
 
 @Composable
 private fun PersistentPreferenceThemeDark(
-    persistence: KepkoThemePersistence,
+    persistence: PersistenceManager,
 ) {
     PreferenceRadioGroupPicker(
         title = Strings.preferenceTitleDarkThemeStyle,
@@ -127,7 +125,7 @@ private fun PersistentPreferenceThemeDark(
 
 @Composable
 private fun PersistentPreferenceThemeGrayscale(
-    persistence: KepkoThemePersistence,
+    persistence: PersistenceManager,
 ) {
     PreferenceSwitch(
         title = Strings.preferenceTitleGrayscale,
