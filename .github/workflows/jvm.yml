@@ -34,14 +34,24 @@ jobs:
         run: ./gradlew jvmTest
 
       - name: Generate Coverage Report
+        if: ${{ !cancelled() }}
         run: ./gradlew koverXmlReport
 
       - name: Upload Coverage to Codecov
+        if: ${{ !cancelled() }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: build/reports/kover/report.xml
           fail_ci_if_error: true
+
+      - name: Upload Test Results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          report_type: test_results
+          files: "**/build/test-results/jvmTest/TEST-*.xml"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
