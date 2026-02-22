@@ -13,9 +13,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
-import org.jetbrains.compose.resources.imageResource
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
+import glass.yasan.kepko.resource.Icons
 import androidx.compose.material3.Icon as Material3Icon
 
 @Composable
@@ -104,18 +102,24 @@ internal fun IconSolarizedDarkPreview() {
 private fun PreviewContent() {
     Midground {
         Row {
-            Icon(
-                imageVector = vectorResource(Res.drawable.ic_asterisk),
-                contentDescription = "Asterisk",
-            )
-            Icon(
-                painter = painterResource(Res.drawable.ic_asterisk),
-                contentDescription = "Asterisk",
-            )
-            Icon(
-                bitmap = imageResource(Res.drawable.ic_emergency),
-                contentDescription = "Emergency",
-            )
+            Icon(painter = Icons.add, contentDescription = null)
+            Icon(painter = Icons.bugReport, contentDescription = null)
+            Icon(painter = Icons.check, contentDescription = null)
+            Icon(painter = Icons.chevronBackward, contentDescription = null)
+            Icon(painter = Icons.chevronForward, contentDescription = null)
+            Icon(painter = Icons.close, contentDescription = null)
+            Icon(painter = Icons.code, contentDescription = null)
+            Icon(painter = Icons.delete, contentDescription = null)
+            Icon(painter = Icons.edit, contentDescription = null)
+            Icon(painter = Icons.error, contentDescription = null)
+            Icon(painter = Icons.favorite, contentDescription = null)
+            Icon(painter = Icons.info, contentDescription = null)
+            Icon(painter = Icons.lock, contentDescription = null)
+            Icon(painter = Icons.lockOpen, contentDescription = null)
+            Icon(painter = Icons.privacyTip, contentDescription = null)
+            Icon(painter = Icons.settings, contentDescription = null)
+            Icon(painter = Icons.star, contentDescription = null)
+            Icon(painter = Icons.warning, contentDescription = null)
         }
     }
 }
