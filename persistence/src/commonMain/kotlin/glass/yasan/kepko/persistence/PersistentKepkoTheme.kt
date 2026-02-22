@@ -8,6 +8,7 @@ import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.dimension.Dimensions
 import glass.yasan.kepko.foundation.shape.Shapes
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.resource.Icons.settings
 
 /**
  * Alternative to directly using [KepkoTheme]
@@ -25,6 +26,22 @@ public fun PersistentKepkoTheme(
 ) {
     val persistenceManager: PersistenceManager = rememberPersistenceManager(settings)
 
+    PersistentKepkoTheme(
+        persistenceManager = persistenceManager,
+        dimensions = dimensions,
+        shapes = shapes,
+        content = content,
+    )
+}
+
+@ExperimentalKepkoApi
+@Composable
+public fun PersistentKepkoTheme(
+    persistenceManager: PersistenceManager,
+    dimensions: Dimensions = KepkoTheme.dimensions,
+    shapes: Shapes = KepkoTheme.shapes,
+    content: @Composable () -> Unit,
+) {
     KepkoTheme(
         style = persistenceManager.style(),
         grayscale = persistenceManager.grayscale,
