@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.persistence.LocalKepkoPersistenceManager
 import glass.yasan.kepko.persistence.PersistentKepkoTheme
 import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -14,11 +15,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun SampleApp() {
     PersistentKepkoTheme {
         val navController = rememberNavController()
+        val persistenceManager = LocalKepkoPersistenceManager.current
 
         SystemBarColorsEffect(
             statusBarColor = KepkoTheme.colors.midground,
             navigationBarColor = KepkoTheme.colors.midground,
-            isDark = KepkoTheme.colors.style.isDark,
+            isDark = persistenceManager.style().isDark,
         )
 
         NavHost(
