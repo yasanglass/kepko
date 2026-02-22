@@ -18,6 +18,7 @@ dependencies {
     dokka(project(":resource"))
     dokka(project(":foundation"))
     dokka(project(":component"))
+    dokka(project(":persistence"))
 }
 
 dokka {
