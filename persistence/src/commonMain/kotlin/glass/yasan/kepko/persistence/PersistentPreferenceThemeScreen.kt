@@ -3,11 +3,13 @@ package glass.yasan.kepko.persistence
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -78,12 +80,19 @@ private fun PersistentPreferenceThemeContent(
             enter = expandVertically(),
             exit = shrinkVertically(),
         ) {
-            Column {
-                Spacer(Modifier.height(8.dp))
-                PersistentPreferenceThemeLight(persistence)
-                Spacer(Modifier.height(8.dp))
-                PersistentPreferenceThemeDark(persistence)
-                Spacer(Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Spacer(Modifier.width(32.dp))
+                Column(
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Spacer(Modifier.height(8.dp))
+                    PersistentPreferenceThemeLight(persistence)
+                    Spacer(Modifier.height(8.dp))
+                    PersistentPreferenceThemeDark(persistence)
+                    Spacer(Modifier.height(8.dp))
+                }
             }
         }
         Spacer(Modifier.height(8.dp))
@@ -105,6 +114,7 @@ private fun PersistentPreferenceThemeLight(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.preferenceDescriptionLightThemeStyle,
+        modifier = Modifier.fillMaxWidth(),
     )
 }
 
@@ -122,6 +132,7 @@ private fun PersistentPreferenceThemeDark(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.preferenceDescriptionDarkThemeStyle,
+        modifier = Modifier.fillMaxWidth(),
     )
 }
 
