@@ -3,6 +3,7 @@ package glass.yasan.kepko.persistence
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -82,9 +83,10 @@ private fun PersistentPreferenceThemeContent(
                 PersistentPreferenceThemeLight(persistence)
                 Spacer(Modifier.height(8.dp))
                 PersistentPreferenceThemeDark(persistence)
+                Spacer(Modifier.height(8.dp))
             }
         }
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(8.dp))
         PersistentPreferenceThemeGrayscale(persistence)
     }
 }
