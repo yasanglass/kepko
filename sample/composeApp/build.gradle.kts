@@ -12,6 +12,8 @@ plugins {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-sensitive-resolution")
         freeCompilerArgs.add("-opt-in=glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi")
@@ -80,11 +82,18 @@ kotlin {
                 implementation(libs.platformtools.darkmodedetector)
             }
         }
+        val nonMobileMain by creating {
+            dependsOn(commonMain.get())
+        }
         jvmMain {
+            dependsOn(nonMobileMain)
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
         }
+        jsMain { dependsOn(nonMobileMain) }
+        wasmJsMain { dependsOn(nonMobileMain) }
+        macosMain { dependsOn(nonMobileMain) }
         androidMain {
             dependencies {
                 implementation(compose.preview)
