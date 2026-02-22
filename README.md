@@ -7,7 +7,7 @@
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/yasanglass/kepko.svg"/></a>
   <a href="https://crowdin.com/project/kepko"><img alt="Crowdin" src="https://badges.crowdin.net/kepko/localized.svg"/></a>
   <a href="https://context7.com/yasanglass/kepko/llms.txt"><img alt="Context7" src="https://img.shields.io/badge/context7-llms.txt-blue"/></a>
-  <a href="https://yasan.glass/kepko/"><img alt="Documentation" src="https://img.shields.io/badge/documentation-blue"/></a>
+  <a href="https://yasanglass.github.io/kepko/"><img alt="Documentation" src="https://img.shields.io/badge/documentation-blue"/></a>
 </p>
 
 An opinionated design system for Compose Multiplatform.
