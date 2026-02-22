@@ -11,9 +11,10 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 /**
  * A [KepkoTheme] wrapper that automatically persists and restores theme preferences.
  *
+ * - Use [PersistentPreferenceThemeScreen] to allow users to configure theme preferences.
+ * - Use [LocalKepkoPersistenceManager] to access the [PersistenceManager] instance.
+ *
  * @see rememberKepkoSettings
- * @see PersistenceManager
- * @see PersistentPreferenceThemeScreen
  */
 @ExperimentalKepkoApi
 @Composable
@@ -37,8 +38,8 @@ public fun PersistentKepkoTheme(
  * A [KepkoTheme] wrapper that uses a pre-configured [PersistenceManager]
  * to persist and restore theme preferences.
  *
- * @see PersistenceManager
- * @see PersistentPreferenceThemeScreen
+ * - Use [PersistentPreferenceThemeScreen] to allow users to configure theme preferences.
+ * - Use [LocalKepkoPersistenceManager] to access the [PersistenceManager] instance.
  */
 @ExperimentalKepkoApi
 @Composable
