@@ -20,6 +20,11 @@ public data class PreferenceAnnotation(
 
     public companion object {
 
+        public val active: PreferenceAnnotation = PreferenceAnnotation(
+            text = { Strings.preferenceAnnotationActive },
+            containerColor = { KepkoTheme.colors.information },
+        )
+
         public val new: PreferenceAnnotation = PreferenceAnnotation(
             text = { Strings.preferenceAnnotationNew },
             containerColor = { KepkoTheme.colors.information },
