@@ -24,6 +24,8 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
 import androidx.annotation.VisibleForTesting
+import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
+import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 import glass.yasan.kepko.resource.Strings
 
 /**
@@ -119,6 +121,7 @@ private fun PersistentPreferenceThemeLight(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.persistenceLightThemeStyleDescription,
+        annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme().not() },
         modifier = Modifier
             .fillMaxWidth()
             .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
@@ -139,6 +142,7 @@ private fun PersistentPreferenceThemeDark(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.persistenceDarkThemeStyleDescription,
+        annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme() },
         modifier = Modifier
             .fillMaxWidth()
             .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
