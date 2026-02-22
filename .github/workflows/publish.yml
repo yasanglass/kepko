@@ -1,11 +1,14 @@
 name: Publish
 on:
   release:
-    types: [released, prereleased]
+    types: [published]
+
+permissions:
+  contents: write
 
 jobs:
   publish:
-    name: Publish
+    name: Publish to Maven Central
     runs-on: macOS-latest
     steps:
       - name: Checkout
@@ -27,3 +30,36 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY_CONTENTS }}
+
+      - name: Upload Library Artifacts to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          uploaded_any=false
+          for module in resource foundation component persistence; do
+            zip_name="kepko-${module}-${TAG}.zip"
+            files=()
+            while IFS= read -r -d '' file; do
+              files+=("${file}")
+            done < <(
+              find "${module}/build/libs" "${module}/build/outputs/aar" \
+                -type f \
+                \( -name '*.jar' -o -name '*.aar' -o -name '*.module' -o -name '*.pom' -o -name '*.klib' \) \
+                -print0 2>/dev/null
+            )
+
+            if [ "${#files[@]}" -eq 0 ]; then
+              echo "::notice::No artifacts found for ${module}; skipping release upload."
+              continue
+            fi
+
+            rm -f "${zip_name}"
+            zip -j "${zip_name}" "${files[@]}"
+            gh release upload "${TAG}" "${zip_name}" --clobber
+            uploaded_any=true
+          done
+
+          if [ "${uploaded_any}" = false ]; then
+            echo "::warning::No release artifacts were uploaded. Maven Central publish may still have succeeded."
+          fi
