@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
@@ -22,6 +23,7 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
+import androidx.annotation.VisibleForTesting
 import glass.yasan.kepko.resource.Strings
 
 /**
@@ -39,7 +41,8 @@ public fun PersistentPreferenceThemeScreen(
     Scaffold(
         title = Strings.persistenceThemeTitle,
         onBackClick = onBackClick,
-        modifier = modifier,
+        modifier = modifier
+            .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
     ) { contentPadding ->
         PersistentPreferenceThemeContent(
             modifier = Modifier
@@ -74,6 +77,8 @@ private fun PersistentPreferenceThemeContent(
                     ThemeStyle.fromIdOrNull(id)
                 }
             },
+            modifier = Modifier
+                .testTag(PersistentPreferenceThemeScreenSemantics.STYLE_PICKER)
         )
         AnimatedVisibility(
             visible = persistence.stylePrimary == null,
@@ -114,7 +119,9 @@ private fun PersistentPreferenceThemeLight(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.persistenceLightThemeStyleDescription,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
     )
 }
 
@@ -132,7 +139,9 @@ private fun PersistentPreferenceThemeDark(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.persistenceDarkThemeStyleDescription,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
     )
 }
 
@@ -145,6 +154,8 @@ private fun PersistentPreferenceThemeGrayscale(
         checked = persistence.grayscale,
         onCheckedChange = { persistence.grayscale = it },
         annotation = PreferenceAnnotation.experimental,
+        modifier = Modifier
+            .testTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE)
     )
 }
 
@@ -174,5 +185,14 @@ internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
     PersistentKepkoTheme(persistenceManager = persistence) {
         PersistentPreferenceThemeScreen(onBackClick = {})
     }
+}
+
+@VisibleForTesting
+internal object PersistentPreferenceThemeScreenSemantics {
+    const val SCREEN = "theme_screen"
+    const val STYLE_PICKER = "theme_style_picker"
+    const val LIGHT_PICKER = "theme_light_picker"
+    const val DARK_PICKER = "theme_dark_picker"
+    const val GRAYSCALE = "theme_grayscale"
 }
 
