@@ -14,18 +14,20 @@ import androidx.compose.ui.graphics.Color
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertSame
+import kotlin.test.assertContains
 
 @Suppress("VisibleForTests")
 @OptIn(ExperimentalTestApi::class, ExperimentalKepkoApi::class)
 internal class PersistentKepkoThemeTest {
 
     @Test
-    fun givenDefaultSettings_whenRendered_thenUsesDefaultLightStyle() {
+    fun givenDefaultSettings_whenRendered_thenUsesSystemDefaultStyle() {
         // When
         var style: ThemeStyle? = null
+        val provided = PersistenceManagerImpl(MapSettings())
         runDesktopComposeUiTest {
             setContent {
-                PersistentKepkoTheme(settings = MapSettings()) {
+                PersistentKepkoTheme(persistenceManager = provided) {
                     style = KepkoTheme.colors.style
                 }
             }
@@ -34,18 +36,19 @@ internal class PersistentKepkoThemeTest {
         }
 
         // Then
-        assertEquals(ThemeStyle.defaultLight, style)
+        assertContains(listOf(ThemeStyle.defaultLight, ThemeStyle.defaultDark), style)
     }
 
     @Test
     fun givenPrimaryStyleInSettings_whenRendered_thenAppliesThatStyle() {
         // When
         var style: ThemeStyle? = null
+        val provided = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ThemeStyle.BLACK.id)),
+        )
         runDesktopComposeUiTest {
             setContent {
-                PersistentKepkoTheme(
-                    settings = MapSettings(mutableMapOf(KEY_STYLE to ThemeStyle.BLACK.id)),
-                ) {
+                PersistentKepkoTheme(persistenceManager = provided) {
                     style = KepkoTheme.colors.style
                 }
             }
@@ -62,29 +65,29 @@ internal class PersistentKepkoThemeTest {
         // When
         var grayscaleSuccess: Color? = null
         var normalSuccess: Color? = null
+        val grayscaleManager = PersistenceManagerImpl(
+            MapSettings(
+                mutableMapOf(
+                    KEY_STYLE to ThemeStyle.LIGHT.id,
+                    KEY_GRAYSCALE to true,
+                ),
+            ),
+        )
         runDesktopComposeUiTest {
             setContent {
-                PersistentKepkoTheme(
-                    settings = MapSettings(
-                        mutableMapOf(
-                            KEY_STYLE to ThemeStyle.LIGHT.id,
-                            KEY_GRAYSCALE to true,
-                        ),
-                    ),
-                ) {
+                PersistentKepkoTheme(persistenceManager = grayscaleManager) {
                     grayscaleSuccess = KepkoTheme.colors.success
                 }
             }
 
             waitForIdle()
         }
+        val normalManager = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ThemeStyle.LIGHT.id)),
+        )
         runDesktopComposeUiTest {
             setContent {
-                PersistentKepkoTheme(
-                    settings = MapSettings(
-                        mutableMapOf(KEY_STYLE to ThemeStyle.LIGHT.id),
-                    ),
-                ) {
+                PersistentKepkoTheme(persistenceManager = normalManager) {
                     normalSuccess = KepkoTheme.colors.success
                 }
             }
@@ -138,5 +141,28 @@ internal class PersistentKepkoThemeTest {
 
         // Then
         assertEquals(ThemeStyle.SOLARIZED_DARK, style)
+    }
+
+    @Test
+    fun givenPrimaryStyle_whenRendered_thenLocalKepkoThemeStyleMatchesActiveStyle() {
+        // Given
+        var themeStyle: ThemeStyle? = null
+        val provided = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ThemeStyle.SOLARIZED_DARK.id)),
+        )
+
+        // When
+        runDesktopComposeUiTest {
+            setContent {
+                PersistentKepkoTheme(persistenceManager = provided) {
+                    themeStyle = LocalKepkoThemeStyle.current
+                }
+            }
+
+            waitForIdle()
+        }
+
+        // Then
+        assertEquals(ThemeStyle.SOLARIZED_DARK, themeStyle)
     }
 }

@@ -4,10 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.remember
-import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
+import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 
 @Stable
 public interface PersistenceManager {
@@ -22,10 +20,12 @@ public interface PersistenceManager {
     public var grayscale: Boolean
 
     /**
-     * @return resolved active theme style based on the persisted data.
+     * @return active theme style based on the persisted data and system theme.
      */
     @Composable
-    public fun style(): ThemeStyle
+    public fun activeStyle(
+        isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
+    ): ThemeStyle = stylePrimary ?: if (isSystemInDarkTheme) styleDark else styleLight
 
 }
 
@@ -34,10 +34,7 @@ public val LocalKepkoPersistenceManager: ProvidableCompositionLocal<PersistenceM
         error("PersistenceManager is not provided. Wrap content in PersistentKepkoTheme.")
     }
 
-@Composable
-public fun rememberPersistenceManager(
-    settings: Settings = rememberKepkoSettings(),
-): PersistenceManager =
-    remember(settings) {
-        PersistenceManagerImpl(settings)
+public val LocalKepkoThemeStyle: ProvidableCompositionLocal<ThemeStyle> =
+    compositionLocalOf {
+        error("ThemeStyle is not provided. Wrap content in PersistentKepkoTheme.")
     }

@@ -186,8 +186,8 @@ internal class PersistenceManagerTest {
         manager.styleDark = ThemeStyle.SOLARIZED_DARK
 
         // When
-        val lightResolved = manager.resolvedStyle(isDark = false)
-        val darkResolved = manager.resolvedStyle(isDark = true)
+        val lightResolved = manager.resolvedStyle(isSystemInDarkTheme = false)
+        val darkResolved = manager.resolvedStyle(isSystemInDarkTheme = true)
 
         // Then
         assertEquals(ThemeStyle.BLACK, lightResolved)
@@ -203,8 +203,8 @@ internal class PersistenceManagerTest {
         manager.styleDark = ThemeStyle.SOLARIZED_DARK
 
         // When
-        val lightResolved = manager.resolvedStyle(isDark = false)
-        val darkResolved = manager.resolvedStyle(isDark = true)
+        val lightResolved = manager.resolvedStyle(isSystemInDarkTheme = false)
+        val darkResolved = manager.resolvedStyle(isSystemInDarkTheme = true)
 
         // Then
         assertEquals(ThemeStyle.SOLARIZED_LIGHT, lightResolved)

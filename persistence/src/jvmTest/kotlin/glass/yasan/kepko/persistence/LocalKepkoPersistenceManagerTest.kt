@@ -4,6 +4,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runDesktopComposeUiTest
 import com.russhwolf.settings.MapSettings
+import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertFailsWith
@@ -37,7 +38,7 @@ internal class LocalKepkoPersistenceManagerTest {
         // When
         runDesktopComposeUiTest {
             setContent {
-                val manager = rememberPersistenceManager(MapSettings())
+                val manager = PersistenceManagerImpl(MapSettings())
                 provided = manager
 
                 CompositionLocalProvider(LocalKepkoPersistenceManager provides manager) {

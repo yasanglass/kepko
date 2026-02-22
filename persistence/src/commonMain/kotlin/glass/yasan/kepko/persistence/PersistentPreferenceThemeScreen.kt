@@ -25,7 +25,6 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
 import androidx.annotation.VisibleForTesting
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
-import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 import glass.yasan.kepko.resource.Strings
 
 /**
@@ -39,6 +38,7 @@ import glass.yasan.kepko.resource.Strings
 public fun PersistentPreferenceThemeScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
+    isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
 ) {
     Scaffold(
         title = Strings.persistenceThemeTitle,
@@ -47,6 +47,7 @@ public fun PersistentPreferenceThemeScreen(
             .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
     ) { contentPadding ->
         PersistentPreferenceThemeContent(
+            isSystemInDarkTheme = isSystemInDarkTheme,
             modifier = Modifier
                 .padding(top = 16.dp)
                 .padding(contentPadding),
@@ -56,6 +57,7 @@ public fun PersistentPreferenceThemeScreen(
 
 @Composable
 private fun PersistentPreferenceThemeContent(
+    isSystemInDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val persistence = LocalKepkoPersistenceManager.current
@@ -95,9 +97,9 @@ private fun PersistentPreferenceThemeContent(
                     modifier = Modifier.weight(1f),
                 ) {
                     Spacer(Modifier.height(8.dp))
-                    PersistentPreferenceThemeLight(persistence)
+                    PersistentPreferenceThemeLight(persistence, isSystemInDarkTheme)
                     Spacer(Modifier.height(8.dp))
-                    PersistentPreferenceThemeDark(persistence)
+                    PersistentPreferenceThemeDark(persistence, isSystemInDarkTheme)
                     Spacer(Modifier.height(8.dp))
                 }
             }
@@ -110,6 +112,7 @@ private fun PersistentPreferenceThemeContent(
 @Composable
 private fun PersistentPreferenceThemeLight(
     persistence: PersistenceManager,
+    isSystemInDarkTheme: Boolean,
 ) {
     PreferenceRadioGroupPicker(
         title = Strings.persistenceLightThemeStyleTitle,
@@ -121,7 +124,7 @@ private fun PersistentPreferenceThemeLight(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.persistenceLightThemeStyleDescription,
-        annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme().not() },
+        annotation = PreferenceAnnotation.active.takeIf { !isSystemInDarkTheme },
         modifier = Modifier
             .fillMaxWidth()
             .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
@@ -131,6 +134,7 @@ private fun PersistentPreferenceThemeLight(
 @Composable
 private fun PersistentPreferenceThemeDark(
     persistence: PersistenceManager,
+    isSystemInDarkTheme: Boolean,
 ) {
     PreferenceRadioGroupPicker(
         title = Strings.persistenceDarkThemeStyleTitle,
@@ -142,7 +146,7 @@ private fun PersistentPreferenceThemeDark(
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.persistenceDarkThemeStyleDescription,
-        annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme() },
+        annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme },
         modifier = Modifier
             .fillMaxWidth()
             .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
@@ -171,25 +175,39 @@ private fun ThemeStyle.asPreferenceRadioGroupItem(): PreferenceRadioGroupItem = 
 
 @PreviewWithTest
 @Composable
-internal fun PersistentPreferenceThemeScreenSystemPreview() {
-    val persistence = rememberPersistenceManager()
+internal fun PersistentPreferenceThemeScreenSystemLightPreview() {
+    PreviewPersistentKepkoTheme(configure = { styleLight = defaultLight; styleDark = defaultLight }) {
+        PersistentPreferenceThemeScreen(onBackClick = {}, isSystemInDarkTheme = false)
+    }
+}
 
-    PersistentKepkoTheme(persistenceManager = persistence) {
-        PersistentPreferenceThemeScreen(onBackClick = {})
+@PreviewWithTest
+@Composable
+internal fun PersistentPreferenceThemeScreenSystemDarkPreview() {
+    PreviewPersistentKepkoTheme(
+        isSystemInDarkTheme = true,
+        configure = { styleLight = defaultDark; styleDark = defaultDark }
+    ) {
+        PersistentPreferenceThemeScreen(onBackClick = {}, isSystemInDarkTheme = true)
     }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
-    val persistence = rememberPersistenceManager().apply {
-        stylePrimary = ThemeStyle.LIGHT
-    }
-
-    PersistentKepkoTheme(persistenceManager = persistence) {
+    PreviewPersistentKepkoTheme(configure = { stylePrimary = ThemeStyle.LIGHT }) {
         PersistentPreferenceThemeScreen(onBackClick = {})
     }
 }
+
+@PreviewWithTest
+@Composable
+internal fun PersistentPreferenceThemeScreenGrayscalePreview() {
+    PreviewPersistentKepkoTheme(configure = { grayscale = true }) {
+        PersistentPreferenceThemeScreen(onBackClick = {})
+    }
+}
+
 
 @VisibleForTesting
 internal object PersistentPreferenceThemeScreenSemantics {
@@ -199,4 +217,3 @@ internal object PersistentPreferenceThemeScreenSemantics {
     const val DARK_PICKER = "theme_dark_picker"
     const val GRAYSCALE = "theme_grayscale"
 }
-

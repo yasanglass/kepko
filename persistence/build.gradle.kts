@@ -16,11 +16,6 @@ plugins {
 kotlin {
     explicitApi()
 
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        freeCompilerArgs.add("-Xexpect-actual-classes")
-    }
-
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -49,7 +44,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":component"))
-                api(libs.multiplatform.settings)
+                implementation(libs.multiplatform.settings.no.arg)
                 implementation(compose.components.uiToolingPreview)
                 implementation(compose.foundation)
                 implementation(compose.material3)

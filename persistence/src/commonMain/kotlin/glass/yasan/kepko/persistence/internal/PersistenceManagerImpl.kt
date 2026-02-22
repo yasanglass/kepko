@@ -9,7 +9,6 @@ import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
-import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 import glass.yasan.kepko.persistence.PersistenceManager
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
 
@@ -32,10 +31,13 @@ internal class PersistenceManagerImpl(
     }
 
     @Composable
-    override fun style(): ThemeStyle = resolvedStyle(isDark = isSystemInDarkTheme())
+    override fun activeStyle(
+        isSystemInDarkTheme: Boolean,
+    ): ThemeStyle = resolvedStyle(isSystemInDarkTheme)
 
-    internal fun resolvedStyle(isDark: Boolean): ThemeStyle =
-        stylePrimary ?: if (isDark) styleDark else styleLight
+    internal fun resolvedStyle(
+        isSystemInDarkTheme: Boolean,
+    ): ThemeStyle = stylePrimary ?: if (isSystemInDarkTheme) styleDark else styleLight
 
     private var _stylePrimary by mutableStateOf(
         settings.getStringOrNull(KEY_STYLE)?.let { ThemeStyle.fromIdOrNull(it) }
