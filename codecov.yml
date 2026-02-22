@@ -1,0 +1,14 @@
+component_management:
+  individual_components:
+    - component_id: foundation
+      name: ":foundation"
+      paths:
+        - "foundation/src/**"
+    - component_id: component
+      name: ":component"
+      paths:
+        - "component/src/**"
+    - component_id: persistence
+      name: ":persistence"
+      paths:
+        - "persistence/src/**"
