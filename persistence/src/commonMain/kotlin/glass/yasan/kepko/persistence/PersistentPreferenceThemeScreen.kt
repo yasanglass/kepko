@@ -153,3 +153,26 @@ private fun ThemeStyle.asPreferenceRadioGroupItem(): PreferenceRadioGroupItem = 
 ) {
     title()
 }
+
+@PreviewWithTest
+@Composable
+internal fun PersistentPreferenceThemeScreenSystemPreview() {
+    val persistence = rememberPersistenceManager()
+
+    PersistentKepkoTheme(persistenceManager = persistence) {
+        PersistentPreferenceThemeScreen(onBackClick = {})
+    }
+}
+
+@PreviewWithTest
+@Composable
+internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
+    val persistence = rememberPersistenceManager().apply {
+        stylePrimary = ThemeStyle.LIGHT
+    }
+
+    PersistentKepkoTheme(persistenceManager = persistence) {
+        PersistentPreferenceThemeScreen(onBackClick = {})
+    }
+}
+
