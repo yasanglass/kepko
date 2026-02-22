@@ -139,7 +139,14 @@ compose.desktop {
         mainClass = "glass.yasan.kepko.sample.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+                TargetFormat.Rpm,
+                TargetFormat.Exe,
+                TargetFormat.Pkg,
+            )
             packageName = "Kepko"
             packageVersion = "1.0.0"
             macOS {
