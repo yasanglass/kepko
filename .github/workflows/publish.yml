@@ -63,3 +63,118 @@ jobs:
           if [ "${uploaded_any}" = false ]; then
             echo "::warning::No release artifacts were uploaded. Maven Central publish may still have succeeded."
           fi
+
+  sample-macos:
+    name: Sample App (macOS)
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Build macOS Targets
+        run: |
+          ./gradlew \
+            :sample:composeApp:packageDmg \
+            :sample:composeApp:packagePkg \
+            :sample:composeApp:linkReleaseExecutableMacosArm64 \
+            :sample:composeApp:linkReleaseExecutableMacosX64
+
+      - name: Upload to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/dmg/*.dmg --clobber
+          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/pkg/*.pkg --clobber
+
+          cd sample/composeApp/build/bin/macosArm64/releaseExecutable
+          zip -r "${GITHUB_WORKSPACE}/kepko-sample-macos-arm64-${TAG}.zip" .
+          cd "${GITHUB_WORKSPACE}"
+          gh release upload "${TAG}" "kepko-sample-macos-arm64-${TAG}.zip" --clobber
+
+          cd sample/composeApp/build/bin/macosX64/releaseExecutable
+          zip -r "${GITHUB_WORKSPACE}/kepko-sample-macos-x64-${TAG}.zip" .
+          cd "${GITHUB_WORKSPACE}"
+          gh release upload "${TAG}" "kepko-sample-macos-x64-${TAG}.zip" --clobber
+
+  sample-linux:
+    name: Sample App (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Install RPM
+        run: sudo apt-get install -y rpm
+
+      - name: Build Linux Targets
+        run: |
+          ./gradlew \
+            :sample:composeApp:packageDeb \
+            :sample:composeApp:packageRpm \
+            :sample:androidApp:assembleRelease \
+            :sample:composeApp:wasmJsBrowserDistribution \
+            :sample:composeApp:jsBrowserDistribution
+
+      - name: Upload to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/deb/*.deb --clobber
+          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/rpm/*.rpm --clobber
+          gh release upload "${TAG}" sample/androidApp/build/outputs/apk/release/*.apk --clobber
+
+          cd sample/composeApp/build/dist/wasmJs/productionExecutable
+          zip -r "${GITHUB_WORKSPACE}/kepko-sample-wasm-${TAG}.zip" .
+          cd "${GITHUB_WORKSPACE}"
+          gh release upload "${TAG}" "kepko-sample-wasm-${TAG}.zip" --clobber
+
+          cd sample/composeApp/build/dist/js/productionExecutable
+          zip -r "${GITHUB_WORKSPACE}/kepko-sample-js-${TAG}.zip" .
+          cd "${GITHUB_WORKSPACE}"
+          gh release upload "${TAG}" "kepko-sample-js-${TAG}.zip" --clobber
+
+  sample-windows:
+    name: Sample App (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Build Windows Targets
+        shell: bash
+        run: ./gradlew :sample:composeApp:packageMsi :sample:composeApp:packageExe
+
+      - name: Upload to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        shell: bash
+        run: |
+          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/msi/*.msi --clobber
+          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/exe/*.exe --clobber
