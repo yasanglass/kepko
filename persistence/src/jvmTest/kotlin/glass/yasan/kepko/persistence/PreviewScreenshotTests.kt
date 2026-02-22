@@ -1,4 +1,4 @@
-package glass.yasan.kepko.component
+package glass.yasan.kepko.persistence
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onRoot
@@ -7,15 +7,12 @@ import io.github.takahirom.roborazzi.captureRoboImage
 import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationScanner
 import kotlin.test.Test
 
-/**
- * Automatically discovers and screenshots all [PreviewWithTest] annotated previews.
- */
 internal class PreviewScreenshotTests {
 
     companion object {
         private val previews by lazy {
-            JvmAnnotationScanner("glass.yasan.kepko.component.PreviewWithTest")
-                .scanPackageTrees("glass.yasan.kepko.component")
+            JvmAnnotationScanner("glass.yasan.kepko.persistence.PreviewWithTest")
+                .scanPackageTrees("glass.yasan.kepko.persistence")
                 .getPreviews()
         }
     }
