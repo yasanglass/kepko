@@ -55,7 +55,7 @@ public fun PersistentKepkoTheme(
         shapes = shapes,
     ) {
         CompositionLocalProvider(
-            value = LocalPersistenceManager provides persistenceManager,
+            value = LocalKepkoPersistenceManager provides persistenceManager,
             content = content,
         )
     }

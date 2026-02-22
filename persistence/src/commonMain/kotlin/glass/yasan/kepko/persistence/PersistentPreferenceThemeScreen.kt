@@ -56,7 +56,7 @@ public fun PersistentPreferenceThemeScreen(
 private fun PersistentPreferenceThemeContent(
     modifier: Modifier = Modifier,
 ) {
-    val persistence = LocalPersistenceManager.current
+    val persistence = LocalKepkoPersistenceManager.current
     val styleItems = ThemeStyle.entries.map { it.asPreferenceRadioGroupItem() }
     val systemItem = PreferenceRadioGroupItem(
         id = STYLE_ID_SYSTEM,

@@ -107,7 +107,7 @@ internal class PersistentKepkoThemeTest {
         runDesktopComposeUiTest {
             setContent {
                 PersistentKepkoTheme(persistenceManager = provided) {
-                    manager = LocalPersistenceManager.current
+                    manager = LocalKepkoPersistenceManager.current
                 }
             }
 

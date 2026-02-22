@@ -29,7 +29,7 @@ public interface PersistenceManager {
 
 }
 
-internal val LocalPersistenceManager: ProvidableCompositionLocal<PersistenceManager> =
+internal val LocalKepkoPersistenceManager: ProvidableCompositionLocal<PersistenceManager> =
     compositionLocalOf {
         error("PersistenceManager is not provided. Wrap content in PersistentKepkoTheme.")
     }

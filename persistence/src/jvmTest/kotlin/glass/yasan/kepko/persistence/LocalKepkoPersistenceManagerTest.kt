@@ -11,15 +11,15 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertSame
 
 @OptIn(ExperimentalTestApi::class)
-internal class LocalPersistenceManagerTest {
+internal class LocalKepkoPersistenceManagerTest {
 
     @Test
-    fun givenNoProvider_whenAccessingLocalPersistenceManager_thenThrowsHelpfulError() {
+    fun givenNoProvider_whenAccessingLocalKepkoPersistenceManager_thenThrowsHelpfulError() {
         // When
         val exception = assertFailsWith<IllegalStateException> {
             runDesktopComposeUiTest {
                 setContent {
-                    LocalPersistenceManager.current
+                    LocalKepkoPersistenceManager.current
                 }
             }
         }
@@ -29,7 +29,7 @@ internal class LocalPersistenceManagerTest {
     }
 
     @Test
-    fun givenProvidedManager_whenReadingLocalPersistenceManager_thenReturnsSameInstance() {
+    fun givenProvidedManager_whenReadingLocalKepkoPersistenceManager_thenReturnsSameInstance() {
         // Given
         var provided: PersistenceManager? = null
         var current: PersistenceManager? = null
@@ -40,8 +40,8 @@ internal class LocalPersistenceManagerTest {
                 val manager = rememberPersistenceManager(MapSettings())
                 provided = manager
 
-                CompositionLocalProvider(LocalPersistenceManager provides manager) {
-                    current = LocalPersistenceManager.current
+                CompositionLocalProvider(LocalKepkoPersistenceManager provides manager) {
+                    current = LocalKepkoPersistenceManager.current
                 }
             }
 
