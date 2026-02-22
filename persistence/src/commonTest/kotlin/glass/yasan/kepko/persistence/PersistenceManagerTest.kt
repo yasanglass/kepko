@@ -1,23 +1,19 @@
-package glass.yasan.kepko.persistence.internal
+package glass.yasan.kepko.persistence
 
 import com.russhwolf.settings.MapSettings
 import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
-import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl.Companion.KEY_DARK_STYLE
-import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl.Companion.KEY_GRAYSCALE
-import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl.Companion.KEY_LIGHT_STYLE
-import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl.Companion.KEY_STYLE
+import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 
 @Suppress("VisibleForTests")
-internal class PersistenceManagerImplTest {
+internal class PersistenceManagerTest {
 
     private fun createManager(
         vararg keyValues: Pair<String, Any>,
-    ): PersistenceManagerImpl {
+    ): PersistenceManager {
         val map = mutableMapOf<String, Any>()
         keyValues.forEach { map[it.first] = it.second }
 
@@ -31,8 +27,8 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertNull(manager.stylePrimary)
-        assertEquals(ThemeStyle.LIGHT, manager.styleLight)
-        assertEquals(ThemeStyle.DARK, manager.styleDark)
+        assertEquals(ThemeStyle.defaultLight, manager.styleLight)
+        assertEquals(ThemeStyle.defaultDark, manager.styleDark)
         assertFalse(manager.grayscale)
     }
 
@@ -47,7 +43,10 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertEquals(ThemeStyle.SOLARIZED_DARK, manager.stylePrimary)
-        assertEquals("solarized-dark", settings.getString(KEY_STYLE, ""))
+        assertEquals(
+            ThemeStyle.SOLARIZED_DARK.id,
+            settings.getString(PersistenceManagerImpl.KEY_STYLE, "")
+        )
     }
 
     @Test
@@ -62,7 +61,10 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertNull(manager.stylePrimary)
-        assertEquals(STYLE_ID_SYSTEM, settings.getString(KEY_STYLE, ""))
+        assertEquals(
+            PersistenceManager.STYLE_ID_SYSTEM,
+            settings.getString(PersistenceManagerImpl.KEY_STYLE, "")
+        )
     }
 
     @Test
@@ -76,7 +78,10 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertEquals(ThemeStyle.SOLARIZED_LIGHT, manager.styleLight)
-        assertEquals("solarized-light", settings.getString(KEY_LIGHT_STYLE, ""))
+        assertEquals(
+            ThemeStyle.SOLARIZED_LIGHT.id,
+            settings.getString(PersistenceManagerImpl.KEY_LIGHT_STYLE, "")
+        )
     }
 
     @Test
@@ -90,7 +95,10 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertEquals(ThemeStyle.BLACK, manager.styleDark)
-        assertEquals("black", settings.getString(KEY_DARK_STYLE, ""))
+        assertEquals(
+            ThemeStyle.BLACK.id,
+            settings.getString(PersistenceManagerImpl.KEY_DARK_STYLE, "")
+        )
     }
 
     @Test
@@ -104,17 +112,20 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertEquals(true, manager.grayscale)
-        assertEquals(true, settings.getBoolean(KEY_GRAYSCALE, false))
+        assertEquals(
+            true,
+            settings.getBoolean(PersistenceManagerImpl.KEY_GRAYSCALE, false)
+        )
     }
 
     @Test
     fun givenPrePopulatedSettings_whenCreated_thenRestoresValues() {
         // Given
         val manager = createManager(
-            KEY_STYLE to "black",
-            KEY_LIGHT_STYLE to "solarized-light",
-            KEY_DARK_STYLE to "solarized-dark",
-            KEY_GRAYSCALE to true,
+            PersistenceManagerImpl.KEY_STYLE to ThemeStyle.BLACK.id,
+            PersistenceManagerImpl.KEY_LIGHT_STYLE to ThemeStyle.SOLARIZED_LIGHT.id,
+            PersistenceManagerImpl.KEY_DARK_STYLE to ThemeStyle.SOLARIZED_DARK.id,
+            PersistenceManagerImpl.KEY_GRAYSCALE to true,
         )
 
         // Then
@@ -128,21 +139,22 @@ internal class PersistenceManagerImplTest {
     fun givenInvalidStyleIds_whenCreated_thenFallsBackToDefaults() {
         // Given
         val manager = createManager(
-            KEY_STYLE to "nonexistent",
-            KEY_LIGHT_STYLE to "invalid",
-            KEY_DARK_STYLE to "unknown",
+            PersistenceManagerImpl.KEY_STYLE to "nonexistent",
+            PersistenceManagerImpl.KEY_LIGHT_STYLE to "invalid",
+            PersistenceManagerImpl.KEY_DARK_STYLE to "unknown",
         )
 
         // Then
         assertNull(manager.stylePrimary)
-        assertEquals(ThemeStyle.LIGHT, manager.styleLight)
-        assertEquals(ThemeStyle.DARK, manager.styleDark)
+        assertEquals(ThemeStyle.defaultLight, manager.styleLight)
+        assertEquals(ThemeStyle.defaultDark, manager.styleDark)
     }
 
     @Test
     fun givenSystemPrimaryStyleId_whenCreated_thenRestoresNullPrimaryStyle() {
         // Given
-        val manager = createManager(KEY_STYLE to STYLE_ID_SYSTEM)
+        val manager =
+            createManager(PersistenceManagerImpl.KEY_STYLE to PersistenceManager.STYLE_ID_SYSTEM)
 
         // Then
         assertNull(manager.stylePrimary)
@@ -151,7 +163,7 @@ internal class PersistenceManagerImplTest {
     @Test
     fun givenGrayscaleTrue_whenSetToFalse_thenPersistsAndReadsBack() {
         // Given
-        val settings = MapSettings(mutableMapOf(KEY_GRAYSCALE to true))
+        val settings = MapSettings(mutableMapOf(PersistenceManagerImpl.KEY_GRAYSCALE to true))
         val manager = PersistenceManagerImpl(settings)
 
         // When
@@ -159,13 +171,16 @@ internal class PersistenceManagerImplTest {
 
         // Then
         assertFalse(manager.grayscale)
-        assertEquals(false, settings.getBoolean(KEY_GRAYSCALE, true))
+        assertEquals(
+            false,
+            settings.getBoolean(PersistenceManagerImpl.KEY_GRAYSCALE, true)
+        )
     }
 
     @Test
     fun givenPrimaryStyleSet_whenResolvedStyle_thenAlwaysUsesPrimaryStyle() {
         // Given
-        val manager = createManager()
+        val manager = createManager() as PersistenceManagerImpl
         manager.stylePrimary = ThemeStyle.BLACK
         manager.styleLight = ThemeStyle.SOLARIZED_LIGHT
         manager.styleDark = ThemeStyle.SOLARIZED_DARK
@@ -182,7 +197,7 @@ internal class PersistenceManagerImplTest {
     @Test
     fun givenNoPrimaryStyle_whenResolvedStyle_thenUsesLightOrDarkStyleByDarkFlag() {
         // Given
-        val manager = createManager()
+        val manager = createManager() as PersistenceManagerImpl
         manager.stylePrimary = null
         manager.styleLight = ThemeStyle.SOLARIZED_LIGHT
         manager.styleDark = ThemeStyle.SOLARIZED_DARK
