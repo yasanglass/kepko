@@ -37,7 +37,7 @@ public fun PersistentPreferenceThemeScreen(
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
-        title = Strings.preferenceTitleTheme,
+        title = Strings.persistenceThemeTitle,
         onBackClick = onBackClick,
         modifier = modifier,
     ) { contentPadding ->
@@ -64,7 +64,7 @@ private fun PersistentPreferenceThemeContent(
         modifier = modifier,
     ) {
         PreferenceRadioGroupPicker(
-            title = Strings.preferenceTitleTheme,
+            title = Strings.persistenceThemeTitle,
             selectedId = persistence.stylePrimary?.id ?: STYLE_ID_SYSTEM,
             items = listOf(systemItem) + styleItems,
             onSelectId = { id ->
@@ -105,7 +105,7 @@ private fun PersistentPreferenceThemeLight(
     persistence: PersistenceManager,
 ) {
     PreferenceRadioGroupPicker(
-        title = Strings.preferenceTitleLightThemeStyle,
+        title = Strings.persistenceLightThemeStyleTitle,
         selectedId = persistence.styleLight.id,
         items = ThemeStyle.entries.map { style ->
             val item = style.asPreferenceRadioGroupItem()
@@ -113,7 +113,7 @@ private fun PersistentPreferenceThemeLight(
             if (style == defaultLight) segmented.copy(annotation = PreferenceAnnotation.default) else segmented
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
-        description = Strings.preferenceDescriptionLightThemeStyle,
+        description = Strings.persistenceLightThemeStyleDescription,
         modifier = Modifier.fillMaxWidth(),
     )
 }
@@ -123,7 +123,7 @@ private fun PersistentPreferenceThemeDark(
     persistence: PersistenceManager,
 ) {
     PreferenceRadioGroupPicker(
-        title = Strings.preferenceTitleDarkThemeStyle,
+        title = Strings.persistenceDarkThemeStyleTitle,
         selectedId = persistence.styleDark.id,
         items = ThemeStyle.entries.map { style ->
             val item = style.asPreferenceRadioGroupItem()
@@ -131,7 +131,7 @@ private fun PersistentPreferenceThemeDark(
             if (style == defaultDark) segmented.copy(annotation = PreferenceAnnotation.default) else segmented
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
-        description = Strings.preferenceDescriptionDarkThemeStyle,
+        description = Strings.persistenceDarkThemeStyleDescription,
         modifier = Modifier.fillMaxWidth(),
     )
 }
@@ -141,7 +141,7 @@ private fun PersistentPreferenceThemeGrayscale(
     persistence: PersistenceManager,
 ) {
     PreferenceSwitch(
-        title = Strings.preferenceTitleGrayscale,
+        title = Strings.persistenceGrayscaleTitle,
         checked = persistence.grayscale,
         onCheckedChange = { persistence.grayscale = it },
         annotation = PreferenceAnnotation.experimental,
