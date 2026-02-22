@@ -2,12 +2,14 @@ package glass.yasan.kepko.persistence
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidableCompositionLocal
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 
+@Stable
 public interface PersistenceManager {
 
     public companion object {
