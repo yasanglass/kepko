@@ -192,7 +192,7 @@ internal fun PreferenceContainerHorizontalSolarizedDarkPreview() {
 
 @Composable
 private fun HorizontalPreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.experimental, null)
+    val annotations = arrayOf(PreferenceAnnotation.alpha, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null
@@ -258,7 +258,7 @@ internal fun PreferenceContainerVerticalSolarizedDarkPreview() {
 
 @Composable
 private fun VerticalPreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.experimental, null)
+    val annotations = arrayOf(PreferenceAnnotation.legacy, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null

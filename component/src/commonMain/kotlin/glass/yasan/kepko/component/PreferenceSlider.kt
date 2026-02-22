@@ -86,7 +86,7 @@ internal fun PreferenceSliderSolarizedDarkPreview() {
 
 @Composable
 private fun PreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.new, null)
+    val annotations = arrayOf(PreferenceAnnotation.earlyAccess, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null
