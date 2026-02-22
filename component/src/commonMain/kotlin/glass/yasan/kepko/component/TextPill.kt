@@ -149,6 +149,9 @@ private fun PreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(4.dp)
     ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            TextPill(annotation = PreferenceAnnotation(text = { "TextPill" }))
+        }
         containerColors.forEach { containerColor ->
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 TextPill(
