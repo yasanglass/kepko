@@ -18,7 +18,7 @@
     <string name="preference_title_dark_theme_style">Dark</string>
     <string name="preference_description_dark_theme_style">Theme used when the system is in dark mode</string>
     <string name="preference_title_theme">Theme</string>
-<string name="theme_style_system">System</string>
+    <string name="theme_style_system">System</string>
     <string name="preference_title_grayscale">Grayscale</string>
     <string name="go_back">Go back</string>
     <string name="back">Back</string>
