@@ -21,6 +21,7 @@ dependencies {
     dokka(project(":component"))
     dokka(project(":persistence"))
 
+    kover(project(":resource"))
     kover(project(":foundation"))
     kover(project(":component"))
     kover(project(":persistence"))

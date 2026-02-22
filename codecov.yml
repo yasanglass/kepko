@@ -4,6 +4,10 @@ coverage:
 
 component_management:
   individual_components:
+    - component_id: resource
+      name: ":resource"
+      paths:
+        - "resource/src/**"
     - component_id: foundation
       name: ":foundation"
       paths:
