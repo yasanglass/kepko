@@ -9,10 +9,11 @@ import glass.yasan.kepko.foundation.shape.Shapes
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 
 /**
- * Alternative to directly using [KepkoTheme]
- * which provides easier integration by handling theme preferences on its own.
+ * A [KepkoTheme] wrapper that automatically persists and restores theme preferences.
  *
- * Use this alongside [PersistentPreferenceThemeScreen] to easily integrate Kepko with your app.
+ * @see rememberKepkoSettings
+ * @see PersistenceManager
+ * @see PersistentPreferenceThemeScreen
  */
 @ExperimentalKepkoApi
 @Composable
@@ -32,6 +33,13 @@ public fun PersistentKepkoTheme(
     )
 }
 
+/**
+ * A [KepkoTheme] wrapper that uses a pre-configured [PersistenceManager]
+ * to persist and restore theme preferences.
+ *
+ * @see PersistenceManager
+ * @see PersistentPreferenceThemeScreen
+ */
 @ExperimentalKepkoApi
 @Composable
 public fun PersistentKepkoTheme(
