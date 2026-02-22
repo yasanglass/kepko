@@ -116,6 +116,10 @@ android {
     }
 }
 
+dependencies {
+    debugImplementation(compose.uiTooling)
+}
+
 val macosTargets = kotlin.targets.filterIsInstance<KotlinNativeTarget>().filter { it.name.startsWith("macos") }
 for (target in macosTargets) {
     for (executable in target.binaries.filterIsInstance<Executable>()) {

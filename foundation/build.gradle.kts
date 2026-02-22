@@ -112,6 +112,10 @@ android {
     }
 }
 
+dependencies {
+    debugImplementation(compose.uiTooling)
+}
+
 compose.resources {
     publicResClass = false
     packageOfResClass = "glass.yasan.kepko.$artifactId"
