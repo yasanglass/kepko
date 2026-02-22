@@ -30,6 +30,9 @@ jobs:
       - name: Assemble
         run: ./gradlew jsJar
 
+      - name: Test
+        run: ./gradlew jsTest
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:

@@ -30,6 +30,9 @@ jobs:
       - name: Build Debug Frameworks
         run: ./gradlew linkDebugFrameworkIosSimulatorArm64
 
+      - name: Test
+        run: ./gradlew iosSimulatorArm64Test
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
