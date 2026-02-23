@@ -148,7 +148,7 @@ compose.desktop {
                 TargetFormat.Pkg,
             )
             packageName = "Kepko"
-            packageVersion = "1.0.0"
+            packageVersion = project.version.toString()
             macOS {
                 iconFile.set(project.file("src/jvmMain/resources/app_icon.icns"))
                 bundleID = "glass.yasan.kepko.sample"
