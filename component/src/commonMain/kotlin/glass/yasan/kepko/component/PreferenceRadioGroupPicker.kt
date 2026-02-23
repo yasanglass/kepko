@@ -3,9 +3,9 @@ package glass.yasan.kepko.component
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -20,11 +20,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.extensions.isFullWidth
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.resource.Icons
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,7 +37,9 @@ public fun PreferenceRadioGroupPicker(
     selectedId: String?,
     items: List<PreferenceRadioGroupItem>,
     onSelectId: (String) -> Unit,
+    leadingIcon: Painter,
     modifier: Modifier = Modifier,
+    sheetState: SheetState = rememberModalBottomSheetState(),
     description: String? = null,
     annotation: PreferenceAnnotation? = null,
     enabled: Boolean = true,
@@ -46,15 +51,58 @@ public fun PreferenceRadioGroupPicker(
         items = items,
         onSelectId = onSelectId,
         modifier = modifier,
-        sheetState = rememberModalBottomSheetState(),
+        sheetState = sheetState,
         description = description,
         annotation = annotation,
         enabled = enabled,
         closeOnSelection = closeOnSelection,
+        leadingContent = {
+            Icon(
+                painter = leadingIcon,
+                contentDescription = null,
+                modifier = Modifier.padding(end = 12.dp),
+            )
+        },
     )
 }
 
-@ExperimentalMaterial3Api
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+public fun PreferenceRadioGroupPicker(
+    title: String,
+    selectedId: String?,
+    items: List<PreferenceRadioGroupItem>,
+    onSelectId: (String) -> Unit,
+    leadingIcon: ImageVector,
+    modifier: Modifier = Modifier,
+    sheetState: SheetState = rememberModalBottomSheetState(),
+    description: String? = null,
+    annotation: PreferenceAnnotation? = null,
+    enabled: Boolean = true,
+    closeOnSelection: Boolean = true,
+) {
+    PreferenceRadioGroupPicker(
+        title = title,
+        selectedId = selectedId,
+        items = items,
+        onSelectId = onSelectId,
+        modifier = modifier,
+        sheetState = sheetState,
+        description = description,
+        annotation = annotation,
+        enabled = enabled,
+        closeOnSelection = closeOnSelection,
+        leadingContent = {
+            Icon(
+                imageVector = leadingIcon,
+                contentDescription = null,
+                modifier = Modifier.padding(end = 12.dp),
+            )
+        },
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 public fun PreferenceRadioGroupPicker(
     title: String,
@@ -67,6 +115,7 @@ public fun PreferenceRadioGroupPicker(
     annotation: PreferenceAnnotation? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
+    leadingContent: @Composable () -> Unit = {},
 ) {
     var showSheet by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -77,6 +126,7 @@ public fun PreferenceRadioGroupPicker(
         enabled = enabled,
         annotation = annotation,
         modifier = modifier,
+        leadingContent = { leadingContent() },
         trailingContent = {
             val selectedTitle = items.firstOrNull { it.id == selectedId }?.title()
             if (selectedTitle != null) {
@@ -197,6 +247,7 @@ internal fun PreferenceRadioGroupPickerSolarizedDarkPreview() {
     KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PreviewContent() {
     val items = listOf(
@@ -219,6 +270,7 @@ private fun PreviewContent() {
             onSelectId = {},
             description = "Lorem ipsum dolor sit amet.",
             annotation = PreferenceAnnotation.beta,
+            leadingIcon = Icons.settings,
             modifier = Modifier.padding(horizontal = 16.dp),
         )
         PreferenceRadioGroupPicker(

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -463,6 +464,7 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Suppress("LongMethod")
 private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     item { HorizontalDivider() }
@@ -481,6 +483,7 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
             items = items,
             onSelectId = { selectedId = it },
             annotation = PreferenceAnnotation.beta,
+            leadingIcon = Icons.settings,
         )
     }
     item {
@@ -500,6 +503,7 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
             selectedId = selectedId,
             items = items,
             onSelectId = { selectedId = it },
+            leadingIcon = Icons.warning,
         )
     }
     item {
@@ -517,6 +521,7 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
             selectedId = selectedId,
             items = items,
             onSelectId = { selectedId = it },
+            leadingIcon = Icons.info,
         )
     }
     item {
