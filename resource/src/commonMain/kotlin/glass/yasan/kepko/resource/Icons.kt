@@ -60,4 +60,7 @@ public object Icons {
     public val warning: Painter
         @Composable get() = painterResource(Res.drawable.ic_warning)
 
+    public val palette: Painter
+        @Composable get() = painterResource(Res.drawable.ic_palette)
+
 }
