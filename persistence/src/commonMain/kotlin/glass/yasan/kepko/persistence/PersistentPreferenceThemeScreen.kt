@@ -130,6 +130,7 @@ private fun PersistentPreferenceThemeLight(
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.persistenceLightThemeStyleDescription,
         annotation = PreferenceAnnotation.active.takeIf { !isSystemInDarkTheme },
+        leadingIcon = Icons.lightMode,
         modifier = Modifier
             .fillMaxWidth()
             .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
@@ -153,6 +154,7 @@ private fun PersistentPreferenceThemeDark(
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.persistenceDarkThemeStyleDescription,
         annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme },
+        leadingIcon = Icons.modeNight,
         modifier = Modifier
             .fillMaxWidth()
             .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
@@ -167,6 +169,7 @@ private fun PersistentPreferenceThemeGrayscale(
         title = Strings.persistenceGrayscaleTitle,
         checked = persistence.grayscale,
         onCheckedChange = { persistence.grayscale = it },
+        leadingIcon = Icons.filterBw,
         annotation = PreferenceAnnotation.experimental,
         modifier = Modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE)

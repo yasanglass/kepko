@@ -63,4 +63,13 @@ public object Icons {
     public val palette: Painter
         @Composable get() = painterResource(Res.drawable.ic_palette)
 
+    public val filterBw: Painter
+        @Composable get() = painterResource(Res.drawable.ic_filter_bw)
+
+    public val lightMode: Painter
+        @Composable get() = painterResource(Res.drawable.ic_light_mode)
+
+    public val modeNight: Painter
+        @Composable get() = painterResource(Res.drawable.ic_mode_night)
+
 }
