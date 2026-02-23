@@ -66,6 +66,7 @@ jobs:
 
   sample-macos:
     name: Sample App (macOS)
+    needs: publish
     runs-on: macOS-latest
     steps:
       - name: Checkout
@@ -92,8 +93,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.event.release.tag_name }}
         run: |
-          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/dmg/*.dmg --clobber
-          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/pkg/*.pkg --clobber
+          cp sample/composeApp/build/compose/binaries/main/dmg/*.dmg "kepko-sample-macos-${TAG}.dmg"
+          gh release upload "${TAG}" "kepko-sample-macos-${TAG}.dmg" --clobber
+
+          cp sample/composeApp/build/compose/binaries/main/pkg/*.pkg "kepko-sample-macos-${TAG}.pkg"
+          gh release upload "${TAG}" "kepko-sample-macos-${TAG}.pkg" --clobber
 
           cd sample/composeApp/build/bin/macosArm64/releaseExecutable
           zip -r "${GITHUB_WORKSPACE}/kepko-sample-macos-arm64-${TAG}.zip" .
@@ -107,6 +111,7 @@ jobs:
 
   sample-linux:
     name: Sample App (Linux)
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -137,9 +142,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.event.release.tag_name }}
         run: |
-          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/deb/*.deb --clobber
-          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/rpm/*.rpm --clobber
-          gh release upload "${TAG}" sample/androidApp/build/outputs/apk/release/*.apk --clobber
+          cp sample/composeApp/build/compose/binaries/main/deb/*.deb "kepko-sample-linux-${TAG}.deb"
+          gh release upload "${TAG}" "kepko-sample-linux-${TAG}.deb" --clobber
+
+          cp sample/composeApp/build/compose/binaries/main/rpm/*.rpm "kepko-sample-linux-${TAG}.rpm"
+          gh release upload "${TAG}" "kepko-sample-linux-${TAG}.rpm" --clobber
+
+          for apk in sample/androidApp/build/outputs/apk/release/*.apk; do
+            suffix="$(basename "${apk}" .apk)"
+            suffix="${suffix#androidApp}"
+            cp "${apk}" "kepko-sample-android${suffix}-${TAG}.apk"
+            gh release upload "${TAG}" "kepko-sample-android${suffix}-${TAG}.apk" --clobber
+          done
 
           cd sample/composeApp/build/dist/wasmJs/productionExecutable
           zip -r "${GITHUB_WORKSPACE}/kepko-sample-wasm-${TAG}.zip" .
@@ -153,6 +167,7 @@ jobs:
 
   sample-windows:
     name: Sample App (Windows)
+    needs: publish
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -176,5 +191,8 @@ jobs:
           TAG: ${{ github.event.release.tag_name }}
         shell: bash
         run: |
-          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/msi/*.msi --clobber
-          gh release upload "${TAG}" sample/composeApp/build/compose/binaries/main/exe/*.exe --clobber
+          cp sample/composeApp/build/compose/binaries/main/msi/*.msi "kepko-sample-windows-${TAG}.msi"
+          gh release upload "${TAG}" "kepko-sample-windows-${TAG}.msi" --clobber
+
+          cp sample/composeApp/build/compose/binaries/main/exe/*.exe "kepko-sample-windows-${TAG}.exe"
+          gh release upload "${TAG}" "kepko-sample-windows-${TAG}.exe" --clobber
