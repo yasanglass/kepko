@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="theme_style_light">Light</string>
-    <string name="theme_style_dark">Dark</string>
-    <string name="theme_style_black">Black (AMOLED)</string>
-    <string name="theme_style_light_solarized">Solarized Light</string>
-    <string name="theme_style_dark_solarized">Solarized Dark</string>
+    <string name="back">Back</string>
+    <string name="go_back">Go back</string>
+    <string name="persistence_dark_theme_style_description">Verwendetes Farbthema, wenn sich das System im Dunkel Modus befindet</string>
+    <string name="persistence_dark_theme_style_title">Dark</string>
+    <string name="persistence_grayscale_title">Graustufen Modus</string>
+    <string name="persistence_light_theme_style_description">Verwendetes Farbthema, wenn sich das System im Hellen Modus befindet</string>
+    <string name="persistence_light_theme_style_title">Light</string>
+    <string name="persistence_theme_title">Thema</string>
+    <string name="preference_annotation_active">Aktiv</string>
     <string name="preference_annotation_alpha">Alpha</string>
     <string name="preference_annotation_beta">Beta</string>
-    <string name="preference_annotation_default">Default</string>
+    <string name="preference_annotation_default">Standard</string>
     <string name="preference_annotation_early_access">Early Access</string>
-    <string name="preference_annotation_experimental">Experimental</string>
+    <string name="preference_annotation_experimental">Experimentell</string>
     <string name="preference_annotation_legacy">Legacy</string>
-    <string name="preference_annotation_new">New</string>
-    <string name="preference_annotation_preview">Preview</string>
-    <string name="go_back">Go back</string>
-    <string name="back">Back</string>
+    <string name="preference_annotation_new">Neu</string>
+    <string name="preference_annotation_preview">Vorschau</string>
+    <string name="theme_style_black">Schwarz (AMOLED)</string>
+    <string name="theme_style_dark">Dunkles Thema</string>
+    <string name="theme_style_dark_solarized">Solarized Dark</string>
+    <string name="theme_style_light">Helles Thema</string>
+    <string name="theme_style_light_solarized">Solarized Light</string>
+    <string name="theme_style_system">System</string>
 </resources>
