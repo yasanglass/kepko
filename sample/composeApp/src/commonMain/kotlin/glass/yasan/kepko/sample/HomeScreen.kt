@@ -157,7 +157,7 @@ private fun LazyListScope.themePreferencesButton(onClick: () -> Unit) {
         ButtonText(
             text = Strings.persistenceThemeTitle,
             onClick = onClick,
-            leadingIcon = null,
+            leadingIcon = Icons.palette,
             trailingIcon = Icons.chevronForward,
         )
     }

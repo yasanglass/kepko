@@ -26,6 +26,7 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
 import androidx.annotation.VisibleForTesting
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
+import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
 
 /**
@@ -83,6 +84,7 @@ private fun PersistentPreferenceThemeContent(
                     ThemeStyle.fromIdOrNull(id)
                 }
             },
+            leadingIcon = Icons.palette,
             modifier = Modifier
                 .testTag(PersistentPreferenceThemeScreenSemantics.STYLE_PICKER)
         )
