@@ -17,17 +17,19 @@ internal class PersistenceManagerImpl(
 ) : PersistenceManager {
 
     internal companion object {
-        @VisibleForTesting
-        const val KEY_STYLE = "kepko.style.primary"
+        private const val PREFIX = "glass.yasan.kepko"
 
         @VisibleForTesting
-        const val KEY_LIGHT_STYLE = "kepko.style.light"
+        const val KEY_STYLE = "$PREFIX.style.primary"
 
         @VisibleForTesting
-        const val KEY_DARK_STYLE = "kepko.style.dark"
+        const val KEY_LIGHT_STYLE = "$PREFIX.style.light"
 
         @VisibleForTesting
-        const val KEY_GRAYSCALE = "kepko.grayscale"
+        const val KEY_DARK_STYLE = "$PREFIX.style.dark"
+
+        @VisibleForTesting
+        const val KEY_GRAYSCALE = "$PREFIX.grayscale"
     }
 
     @Composable
