@@ -44,6 +44,16 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 
 See the full list of components [here](https://github.com/yasanglass/kepko/tree/main/component/src/commonMain/kotlin/glass/yasan/kepko/component).
 
+## Theme Styles
+
+| Theme Style | Preview |
+|---|---|
+| [Light](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleLightReadmePreview.png) |
+| [Dark](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleDarkReadmePreview.png) |
+| [Black (AMOLED)](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Black (AMOLED)](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleBlackReadmePreview.png) |
+| [Solarized Light](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Solarized Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedLightReadmePreview.png) |
+| [Solarized Dark](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Solarized Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedDarkReadmePreview.png) |
+
 ## Persistence
 
 An optional module that automatically persists and restores theme preferences across the app launches.
