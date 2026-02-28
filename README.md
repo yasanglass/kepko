@@ -18,8 +18,10 @@ An opinionated design system for Compose Multiplatform.
 This library is published on [Maven Central](https://central.sonatype.com/namespace/glass.yasan.kepko):
 
 ```kotlin
+implementation("glass.yasan.kepko:persistence:<version>")
 implementation("glass.yasan.kepko:foundation:<version>")
 implementation("glass.yasan.kepko:component:<version>")
+implementation("glass.yasan.kepko:resource:<version>")
 ```
 
 Wrap your app content with `KepkoTheme`:
