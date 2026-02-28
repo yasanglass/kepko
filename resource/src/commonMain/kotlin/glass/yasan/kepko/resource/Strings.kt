@@ -74,4 +74,40 @@ public object Strings {
     public val persistenceThemeTitle: String
         @Composable get() = stringResource(Res.string.persistence_theme_title)
 
+    public val persistenceColorPaletteTitle: String
+        @Composable get() = stringResource(Res.string.persistence_color_palette_title)
+
+    public val colorSuccess: String
+        @Composable get() = stringResource(Res.string.color_success)
+
+    public val colorInformation: String
+        @Composable get() = stringResource(Res.string.color_information)
+
+    public val colorCaution: String
+        @Composable get() = stringResource(Res.string.color_caution)
+
+    public val colorDanger: String
+        @Composable get() = stringResource(Res.string.color_danger)
+
+    public val colorForeground: String
+        @Composable get() = stringResource(Res.string.color_foreground)
+
+    public val colorMidground: String
+        @Composable get() = stringResource(Res.string.color_midground)
+
+    public val colorBackground: String
+        @Composable get() = stringResource(Res.string.color_background)
+
+    public val colorOutline: String
+        @Composable get() = stringResource(Res.string.color_outline)
+
+    public val colorContent: String
+        @Composable get() = stringResource(Res.string.color_content)
+
+    public val colorContentSubtle: String
+        @Composable get() = stringResource(Res.string.color_content_subtle)
+
+    public val colorContentDisabled: String
+        @Composable get() = stringResource(Res.string.color_content_disabled)
+
 }
