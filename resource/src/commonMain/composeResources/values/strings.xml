@@ -4,6 +4,7 @@
     <string name="persistence_dark_theme_style_description">Theme used when the system is in dark mode</string>
     <string name="persistence_dark_theme_style_title">Dark</string>
     <string name="persistence_grayscale_title">Grayscale</string>
+    <string name="persistence_grayscale_description">Remove all colors from the interface</string>
     <string name="persistence_light_theme_style_description">Theme used when the system is in light mode</string>
     <string name="persistence_light_theme_style_title">Light</string>
     <string name="persistence_theme_title">Theme</string>

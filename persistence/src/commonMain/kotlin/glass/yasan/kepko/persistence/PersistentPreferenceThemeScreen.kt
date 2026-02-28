@@ -275,6 +275,7 @@ private fun PersistentPreferenceThemeGrayscale(
 ) {
     PreferenceSwitch(
         title = Strings.persistenceGrayscaleTitle,
+        description = Strings.persistenceGrayscaleDescription,
         checked = persistence.grayscale,
         onCheckedChange = { persistence.grayscale = it },
         leadingIcon = Icons.filterBw,

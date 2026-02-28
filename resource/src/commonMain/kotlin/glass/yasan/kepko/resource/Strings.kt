@@ -65,6 +65,9 @@ public object Strings {
     public val persistenceGrayscaleTitle: String
         @Composable get() = stringResource(Res.string.persistence_grayscale_title)
 
+    public val persistenceGrayscaleDescription: String
+        @Composable get() = stringResource(Res.string.persistence_grayscale_description)
+
     public val persistenceLightThemeStyleDescription: String
         @Composable get() = stringResource(Res.string.persistence_light_theme_style_description)
 
