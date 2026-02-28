@@ -41,11 +41,11 @@ public fun contentColorFor(
     // Content
     KepkoTheme.colors.content -> KepkoTheme.colors.foreground
     KepkoTheme.colors.contentSubtle -> KepkoTheme.colors.foreground
-    KepkoTheme.colors.contentDisabled -> KepkoTheme.colors.foreground
+    KepkoTheme.colors.contentDisabled -> KepkoTheme.colors.content
     // Inverse Content
     KepkoTheme.colors.inverseContent -> KepkoTheme.colors.inverseForeground
     KepkoTheme.colors.inverseContentSubtle -> KepkoTheme.colors.inverseForeground
-    KepkoTheme.colors.inverseContentDisabled -> KepkoTheme.colors.inverseForeground
+    KepkoTheme.colors.inverseContentDisabled -> KepkoTheme.colors.inverseContent
     // Inverse Layers
     KepkoTheme.colors.inverseForeground -> KepkoTheme.colors.inverseContent
     KepkoTheme.colors.inverseMidground -> KepkoTheme.colors.inverseContent
