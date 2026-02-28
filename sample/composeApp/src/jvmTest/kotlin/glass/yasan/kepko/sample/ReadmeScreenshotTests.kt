@@ -1,11 +1,13 @@
 package glass.yasan.kepko.sample
 
+import androidx.compose.ui.test.DesktopComposeUiTest
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onRoot
-import androidx.compose.ui.test.runDesktopComposeUiTest
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import io.github.takahirom.roborazzi.captureRoboImage
+import kotlinx.coroutines.test.runTest
 import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationScanner
 import kotlin.test.Test
 
@@ -26,13 +28,17 @@ internal class ReadmeScreenshotTests {
     @Test
     fun readmeScreenshots() {
         previews.forEach { preview ->
-            runDesktopComposeUiTest {
-                setContent {
-                    preview()
+            runTest {
+                with(DesktopComposeUiTest(density = Density(1.5f))) {
+                    runTest {
+                        setContent {
+                            preview()
+                        }
+                        onRoot().captureRoboImage(
+                            filePath = "assets/readme/${preview.methodName}.png",
+                        )
+                    }
                 }
-                onRoot().captureRoboImage(
-                    filePath = "assets/readme/${preview.methodName}.png",
-                )
             }
         }
     }
