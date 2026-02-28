@@ -43,6 +43,7 @@ KepkoTheme {
 - [CircularProgressIndicator](component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
 - [HorizontalDivider](component/src/commonMain/kotlin/glass/yasan/kepko/component/HorizontalDivider.kt)
 - [Icon](component/src/commonMain/kotlin/glass/yasan/kepko/component/Icon.kt)
+- [IconButton](component/src/commonMain/kotlin/glass/yasan/kepko/component/IconButton.kt)
 - [KeyValue](component/src/commonMain/kotlin/glass/yasan/kepko/component/KeyValue.kt)
 - [LinearProgressIndicator](component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
 - [OutlinedTextField](component/src/commonMain/kotlin/glass/yasan/kepko/component/OutlinedTextField.kt)

@@ -1,7 +1,6 @@
 package glass.yasan.kepko.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,13 +13,11 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
@@ -130,18 +127,13 @@ public fun Scaffold(
         title = title,
         modifier = modifier,
         leadingContent = {
-            Icon(
+            IconButton(
                 painter = backIcon,
                 contentDescription = Strings.back,
+                onClick = onBackClick,
+                onClickLabel = Strings.goBack,
                 modifier = Modifier
-                    .let { if (reverse) it.graphicsLayer(scaleX = -1f) else it }
-                    .padding(4.dp)
-                    .clip(CircleShape)
-                    .clickable(
-                        onClick = onBackClick,
-                        onClickLabel = Strings.goBack,
-                    )
-                    .padding(12.dp),
+                    .let { if (reverse) it.graphicsLayer(scaleX = -1f) else it },
             )
         },
         trailingContent = trailingContent,
