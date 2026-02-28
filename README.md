@@ -13,63 +13,40 @@
 
 An opinionated design system for Compose Multiplatform.
 
-## Usage
+## Installation
 
-This library is published on [Maven Central](https://central.sonatype.com/namespace/glass.yasan.kepko):
+Published on [Maven Central](https://central.sonatype.com/namespace/glass.yasan.kepko):
 
 ```kotlin
-implementation("glass.yasan.kepko:persistence:<version>")
-implementation("glass.yasan.kepko:foundation:<version>")
 implementation("glass.yasan.kepko:component:<version>")
-implementation("glass.yasan.kepko:resource:<version>")
+implementation("glass.yasan.kepko:foundation:<version>")
 ```
+
+## Usage
 
 Wrap your app content with `KepkoTheme`:
 
-```kotlin
-import glass.yasan.kepko.component.Text
-import glass.yasan.kepko.foundation.theme.KepkoTheme
-
-KepkoTheme {
-    Text("Hello, Kepko!")
-}
-```
+| Code | Preview |
+|---|---|
+| <pre lang="kotlin">KepkoTheme {&#10;    Text("Hello, Kepko!")&#10;    TextPill(&#10;        text = "Yasan Glass",&#10;        containerColor = KepkoTheme.colors.information,&#10;    )&#10;}</pre> | ![Usage](sample/composeApp/assets/readme/UsageLightReadmePreview.png) |
 
 ## Components
 
-- [AlertDialog](component/src/commonMain/kotlin/glass/yasan/kepko/component/AlertDialog.kt)
-- [BasicAlertDialog](component/src/commonMain/kotlin/glass/yasan/kepko/component/BasicAlertDialog.kt)
-- [Button](component/src/commonMain/kotlin/glass/yasan/kepko/component/Button.kt)
-- [ButtonText](component/src/commonMain/kotlin/glass/yasan/kepko/component/ButtonText.kt)
-- [Checkbox](component/src/commonMain/kotlin/glass/yasan/kepko/component/Checkbox.kt)
-- [CircularProgressIndicator](component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
-- [HorizontalDivider](component/src/commonMain/kotlin/glass/yasan/kepko/component/HorizontalDivider.kt)
-- [Icon](component/src/commonMain/kotlin/glass/yasan/kepko/component/Icon.kt)
-- [IconButton](component/src/commonMain/kotlin/glass/yasan/kepko/component/IconButton.kt)
-- [KeyValue](component/src/commonMain/kotlin/glass/yasan/kepko/component/KeyValue.kt)
-- [LinearProgressIndicator](component/src/commonMain/kotlin/glass/yasan/kepko/component/ProgressIndicator.kt)
-- [OutlinedTextField](component/src/commonMain/kotlin/glass/yasan/kepko/component/OutlinedTextField.kt)
-- [PreferenceAnnotation](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceAnnotation.kt)
-- [PreferenceAppIdentity](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceAppIdentity.kt)
-- [PreferenceCheckbox](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceCheckbox.kt)
-- [PreferenceContainer](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceContainer.kt)
-- [PreferenceRadioButton](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceRadioButton.kt)
-- [PreferenceRadioGroup](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceRadioGroup.kt)
-- [PreferenceSlider](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceSlider.kt)
-- [PreferenceSwitch](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceSwitch.kt)
-- [RadioButton](component/src/commonMain/kotlin/glass/yasan/kepko/component/RadioButton.kt)
-- [Scaffold](component/src/commonMain/kotlin/glass/yasan/kepko/component/Scaffold.kt)
-- [Slider](component/src/commonMain/kotlin/glass/yasan/kepko/component/Slider.kt)
-- [Surface](component/src/commonMain/kotlin/glass/yasan/kepko/component/Surface.kt)
-- [Switch](component/src/commonMain/kotlin/glass/yasan/kepko/component/Switch.kt)
-- [Text](component/src/commonMain/kotlin/glass/yasan/kepko/component/Text.kt)
-- [TextField](component/src/commonMain/kotlin/glass/yasan/kepko/component/TextField.kt)
-- [TextMono](component/src/commonMain/kotlin/glass/yasan/kepko/component/TextMono.kt)
-- [TextPill](component/src/commonMain/kotlin/glass/yasan/kepko/component/TextPill.kt)
-- [VerticalDivider](component/src/commonMain/kotlin/glass/yasan/kepko/component/VerticalDivider.kt)
+| Component | Light | Dark |
+|---|---|---|
+| [ButtonText](component/src/commonMain/kotlin/glass/yasan/kepko/component/ButtonText.kt) | ![ButtonText Light](sample/composeApp/assets/readme/ButtonTextLightReadmePreview.png) | ![ButtonText Dark](sample/composeApp/assets/readme/ButtonTextDarkReadmePreview.png) |
+| [OutlinedTextField](component/src/commonMain/kotlin/glass/yasan/kepko/component/OutlinedTextField.kt) | ![OutlinedTextField Light](sample/composeApp/assets/readme/OutlinedTextFieldLightReadmePreview.png) | ![OutlinedTextField Dark](sample/composeApp/assets/readme/OutlinedTextFieldDarkReadmePreview.png) |
+| [PreferenceCheckbox](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceCheckbox.kt) | ![PreferenceCheckbox Light](sample/composeApp/assets/readme/PreferenceCheckboxLightReadmePreview.png) | ![PreferenceCheckbox Dark](sample/composeApp/assets/readme/PreferenceCheckboxDarkReadmePreview.png) |
+| [PreferenceRadioButton](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceRadioButton.kt) | ![PreferenceRadioButton Light](sample/composeApp/assets/readme/PreferenceRadioButtonLightReadmePreview.png) | ![PreferenceRadioButton Dark](sample/composeApp/assets/readme/PreferenceRadioButtonDarkReadmePreview.png) |
+| [PreferenceRadioGroup](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceRadioGroup.kt) | ![PreferenceRadioGroup Light](sample/composeApp/assets/readme/PreferenceRadioGroupLightReadmePreview.png) | ![PreferenceRadioGroup Dark](sample/composeApp/assets/readme/PreferenceRadioGroupDarkReadmePreview.png) |
+| [PreferenceSlider](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceSlider.kt) | ![PreferenceSlider Light](sample/composeApp/assets/readme/PreferenceSliderLightReadmePreview.png) | ![PreferenceSlider Dark](sample/composeApp/assets/readme/PreferenceSliderDarkReadmePreview.png) |
+| [PreferenceSwitch](component/src/commonMain/kotlin/glass/yasan/kepko/component/PreferenceSwitch.kt) | ![PreferenceSwitch Light](sample/composeApp/assets/readme/PreferenceSwitchLightReadmePreview.png) | ![PreferenceSwitch Dark](sample/composeApp/assets/readme/PreferenceSwitchDarkReadmePreview.png) |
 
-## Sample
+See the full list of components [here](component/src/commonMain/kotlin/glass/yasan/kepko/component).
 
-A simple sample app is included so you can explore Kepko in a real project: [sample](sample).
+## Sample Project
 
-![Sample screenshot](https://raw.githubusercontent.com/yasanglass/kepko/main/assets/sample.png)
+Explore Kepko in a real project with the included [sample project](sample).
+
+![Sample Light](sample/composeApp/assets/readme/SampleLightReadmePreview.png) | ![Sample Dark](sample/composeApp/assets/readme/SampleDarkReadmePreview.png)
+---|---

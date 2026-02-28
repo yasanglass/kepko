@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -9,6 +10,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.roborazzi)
 }
 
 kotlin {
@@ -94,6 +96,17 @@ kotlin {
         jsMain { dependsOn(nonMobileMain) }
         wasmJsMain { dependsOn(nonMobileMain) }
         macosMain { dependsOn(nonMobileMain) }
+        jvmTest {
+            dependencies {
+                implementation(project(":resource"))
+                implementation(libs.composable.preview.scanner.jvm)
+                implementation(libs.roborazzi.compose.desktop)
+                implementation(kotlin("reflect"))
+                implementation(kotlin("test"))
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
+            }
+        }
         androidMain {
             dependencies {
                 implementation(compose.preview)
@@ -131,6 +144,31 @@ for (target in macosTargets) {
             into(executable.outputDirectory.resolve("compose-resources"))
         }
         executable.linkTaskProvider.configure { dependsOn(copyResources) }
+    }
+}
+
+tasks.register<Delete>("cleanSnapshots") {
+    delete(fileTree("assets/readme") { include("*.png") })
+}
+
+tasks.register("cleanRecordSnapshots") {
+    description = "Deletes all snapshots and re-records them"
+    dependsOn("cleanSnapshots")
+    finalizedBy("recordRoborazziJvm")
+}
+
+tasks.register("verifySnapshots") {
+    description = "Verifies snapshots match baselines"
+    dependsOn("verifyRoborazziJvm")
+}
+
+val isCleanRecord = providers.gradleProperty("cleanRecordSnapshots").isPresent ||
+    gradle.startParameter.taskNames.any { it.contains("cleanRecordSnapshots") }
+
+tasks.named("jvmTest") {
+    mustRunAfter("cleanSnapshots")
+    if (isCleanRecord) {
+        outputs.upToDateWhen { false }
     }
 }
 

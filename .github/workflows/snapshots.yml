@@ -35,7 +35,7 @@ jobs:
       - name: Verify Snapshots
         id: verify
         continue-on-error: true
-        run: ./gradlew :component:verifySnapshots :persistence:verifySnapshots
+        run: ./gradlew :component:verifySnapshots :persistence:verifySnapshots :sample:composeApp:verifySnapshots
 
       - name: Upload Diffs
         if: steps.verify.outcome == 'failure'
@@ -45,17 +45,18 @@ jobs:
           path: |
             component/build/outputs/roborazzi/
             persistence/build/outputs/roborazzi/
+            sample/composeApp/build/outputs/roborazzi/
           retention-days: 7
 
       - name: Regenerate Snapshots
         if: steps.verify.outcome == 'failure'
-        run: ./gradlew :component:cleanRecordSnapshots :persistence:cleanRecordSnapshots
+        run: ./gradlew :component:cleanRecordSnapshots :persistence:cleanRecordSnapshots :sample:composeApp:cleanRecordSnapshots
 
       - name: Commit Snapshots
         if: steps.verify.outcome == 'failure'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add component/src/jvmTest/snapshots/ persistence/src/jvmTest/snapshots/
+          git add component/src/jvmTest/snapshots/ persistence/src/jvmTest/snapshots/ sample/composeApp/assets/readme/
           git commit -m "Regenerate snapshots [skip ci]"
           git push
