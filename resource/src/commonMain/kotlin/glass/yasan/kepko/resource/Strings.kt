@@ -110,4 +110,7 @@ public object Strings {
     public val colorContentDisabled: String
         @Composable get() = stringResource(Res.string.color_content_disabled)
 
+    public val loremIpsum: String
+        @Composable get() = stringResource(Res.string.lorem_ipsum)
+
 }
