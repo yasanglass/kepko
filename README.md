@@ -24,11 +24,11 @@ implementation("glass.yasan.kepko:foundation:<version>")
 
 ## Usage
 
-Wrap your app content with `KepkoTheme`:
+Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/Theme.kt):
 
 | Code | Preview |
 |---|---|
-| <pre lang="kotlin">KepkoTheme {&#10;    Text("Hello, Kepko!")&#10;    TextPill(&#10;        text = "Yasan Glass",&#10;        containerColor = KepkoTheme.colors.information,&#10;    )&#10;}</pre> | ![Usage](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/UsageLightReadmePreview.png) |
+| <pre lang="kotlin">KepkoTheme {&#10;    Text("Hello, Kepko!")&#10;    TextPill(&#10;        text = "Yasan Glass",&#10;        containerColor = KepkoTheme.colors.information,&#10;    )&#10;}</pre> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/UsageLightReadmePreview.png" alt="Usage" width="300"/> |
 
 ## Components
 

@@ -12,7 +12,7 @@ import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
+
 
 @ReadmePreview
 @Composable
@@ -26,7 +26,7 @@ internal fun UsageLightReadmePreview() {
 private fun UsageReadmeContent() {
     Column(
         modifier = Modifier
-            .width(previewWidth)
+            .width(200.dp)
             .background(KepkoTheme.colors.background)
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
