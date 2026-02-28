@@ -44,9 +44,39 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 
 See the full list of components [here](https://github.com/yasanglass/kepko/tree/main/component/src/commonMain/kotlin/glass/yasan/kepko/component).
 
+## Persistence
+
+An optional module that automatically persists and restores theme preferences across the app launches.
+
+```kotlin
+implementation("glass.yasan.kepko:persistence:<version>")
+```
+
+Use [`PersistentKepkoTheme`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistentKepkoTheme.kt) instead of `KepkoTheme` to automatically persist and restore theme preferences:
+
+```kotlin
+@OptIn(ExperimentalKepkoApi::class)
+PersistentKepkoTheme {
+    // your app content
+}
+```
+
+To let users change the persisted theme setting, use [`PersistentPreferenceThemeScreen`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistentPreferenceThemeScreen.kt):
+
+```kotlin
+PersistentPreferenceThemeScreen(
+    onBackClick = { /* navigate back */ },
+)
+```
+
+[`PersistentKepkoTheme`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistentKepkoTheme.kt) provides the following `CompositionLocal` values inside its content:
+
+- [`LocalKepkoThemeStyle`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the currently active [`ThemeStyle`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt)
+- [`LocalKepkoPersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the [`PersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt) instance for direct access to persistence state
+
 ## Sample Project
 
 Explore Kepko in a real project with the included [sample project](https://github.com/yasanglass/kepko/tree/main/sample).
 
-![Sample Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/SampleLightReadmePreview.png) | ![Sample Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/SampleDarkReadmePreview.png)
+![Sample Light](./sample/composeApp/assets/readme/SampleLightReadmePreview.png) | ![Sample Dark](./sample/composeApp/assets/readme/SampleDarkReadmePreview.png)
 ---|---
