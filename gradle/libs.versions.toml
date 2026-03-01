@@ -19,7 +19,7 @@ platformtools-darkmodedetector = "0.7.5"
 sample-android-sdk-compile = "36"
 sample-android-sdk-min = "23"
 sample-android-sdk-target = "36"
-vanniktech-maven-publish = "0.35.0"
+vanniktech-maven-publish = "0.36.0"
 
 [libraries]
 jetbrains-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "jetbrains-atomicfu" }
