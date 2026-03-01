@@ -53,6 +53,10 @@ See the full list of components [here](https://github.com/yasanglass/kepko/tree/
 | Black (AMOLED) | ![Black (AMOLED)](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleBlackReadmePreview.png) |
 | Solarized Light | ![Solarized Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedLightReadmePreview.png) |
 | Solarized Dark | ![Solarized Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedDarkReadmePreview.png) |
+| Catppuccin Latte | ![Catppuccin Latte](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinLatteReadmePreview.png) |
+| Catppuccin Frappé | ![Catppuccin Frappé](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinFrappeReadmePreview.png) |
+| Catppuccin Macchiato | ![Catppuccin Macchiato](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinMacchiatoReadmePreview.png) |
+| Catppuccin Mocha | ![Catppuccin Mocha](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinMochaReadmePreview.png) |
 
 ## Persistence
 

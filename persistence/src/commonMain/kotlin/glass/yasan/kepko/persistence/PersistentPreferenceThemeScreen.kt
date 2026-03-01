@@ -71,7 +71,9 @@ private fun PersistentPreferenceThemeContent(
     modifier: Modifier = Modifier,
 ) {
     val persistence = LocalKepkoPersistenceManager.current
-    val styleItems = ThemeStyle.entries.map { it.asPreferenceRadioGroupItem() }
+    val styleItems = ThemeStyle.entries.map { style ->
+        style.asPreferenceRadioGroupItem(segment = style.category.ordinal)
+    }
     val systemItem = PreferenceRadioGroupItem(
         id = STYLE_ID_SYSTEM,
         annotation = PreferenceAnnotation.default,
@@ -232,9 +234,10 @@ private fun PersistentPreferenceThemeLight(
         title = Strings.preferenceLightStyleTitle,
         selectedId = persistence.styleLight.id,
         items = ThemeStyle.entries.map { style ->
-            val item = style.asPreferenceRadioGroupItem()
-            val segmented = if (style.isDark) item.copy(segment = 1) else item
-            if (style == defaultLight) segmented.copy(annotation = PreferenceAnnotation.default) else segmented
+            val item = style.asPreferenceRadioGroupItem(
+                segment = if (style.isDark) 1 else 0,
+            )
+            if (style == defaultLight) item.copy(annotation = PreferenceAnnotation.default) else item
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.preferenceLightStyleDescription,
@@ -256,9 +259,10 @@ private fun PersistentPreferenceThemeDark(
         title = Strings.preferenceDarkStyleTitle,
         selectedId = persistence.styleDark.id,
         items = ThemeStyle.entries.map { style ->
-            val item = style.asPreferenceRadioGroupItem()
-            val segmented = if (!style.isDark) item.copy(segment = 1) else item
-            if (style == defaultDark) segmented.copy(annotation = PreferenceAnnotation.default) else segmented
+            val item = style.asPreferenceRadioGroupItem(
+                segment = if (style.isDark) 0 else 1,
+            )
+            if (style == defaultDark) item.copy(annotation = PreferenceAnnotation.default) else item
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.preferenceDarkStyleDescription,
@@ -285,8 +289,11 @@ private fun PersistentPreferenceThemeGrayscale(
     )
 }
 
-private fun ThemeStyle.asPreferenceRadioGroupItem(): PreferenceRadioGroupItem = PreferenceRadioGroupItem(
+private fun ThemeStyle.asPreferenceRadioGroupItem(
+    segment: Int = 0,
+): PreferenceRadioGroupItem = PreferenceRadioGroupItem(
     id = id,
+    segment = segment,
 ) {
     title()
 }

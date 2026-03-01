@@ -82,7 +82,7 @@ internal class PersistentPreferenceThemeScreenTest {
 
     @Test
     fun givenSystemSetting_whenPrimaryPickerOpenedAndStyleSelected_thenSelectionReflectedOnScreen() {
-        runDesktopComposeUiTest {
+        runDesktopComposeUiTest(width = 1024, height = 1200) {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
             persistenceManager.stylePrimary = null
             persistenceManager.styleLight = ThemeStyle.LIGHT
@@ -119,7 +119,7 @@ internal class PersistentPreferenceThemeScreenTest {
 
     @Test
     fun givenSystemSetting_whenLightAndDarkPickersOpenedAndStylesSelected_thenSelectionsReflectedOnScreen() {
-        runDesktopComposeUiTest {
+        runDesktopComposeUiTest(width = 1024, height = 1200) {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
             persistenceManager.stylePrimary = null
             persistenceManager.styleLight = ThemeStyle.BLACK

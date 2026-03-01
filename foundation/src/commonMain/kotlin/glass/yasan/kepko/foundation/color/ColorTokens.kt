@@ -48,6 +48,55 @@ public object ColorTokens {
     private val contentSubtleDarkSolarized: Color = Color(0xFF586e75)
     private val contentDisabledDarkSolarized: Color = Color(0xFF30525C)
 
+    private val foregroundCatppuccinLatte: Color = Color(0xFFEFF1F5)
+    private val midgroundCatppuccinLatte: Color = Color(0xFFE6E9EF)
+    private val backgroundCatppuccinLatte: Color = Color(0xFFDCE0E8)
+    private val outlineCatppuccinLatte: Color = Color(0xFFCCD0DA)
+    private val contentCatppuccinLatte: Color = Color(0xFF4C4F69)
+    private val contentSubtleCatppuccinLatte: Color = Color(0xFF6C6F85)
+    private val contentDisabledCatppuccinLatte: Color = Color(0xFF9CA0B0)
+
+    private val foregroundCatppuccinFrappe: Color = Color(0xFF303446)
+    private val midgroundCatppuccinFrappe: Color = Color(0xFF292C3C)
+    private val backgroundCatppuccinFrappe: Color = Color(0xFF232634)
+    private val outlineCatppuccinFrappe: Color = Color(0xFF414559)
+    private val contentCatppuccinFrappe: Color = Color(0xFFC6D0F5)
+    private val contentSubtleCatppuccinFrappe: Color = Color(0xFFA5ADCE)
+    private val contentDisabledCatppuccinFrappe: Color = Color(0xFF838BA7)
+
+    private val foregroundCatppuccinMacchiato: Color = Color(0xFF24273A)
+    private val midgroundCatppuccinMacchiato: Color = Color(0xFF1E2030)
+    private val backgroundCatppuccinMacchiato: Color = Color(0xFF181926)
+    private val outlineCatppuccinMacchiato: Color = Color(0xFF363A4F)
+    private val contentCatppuccinMacchiato: Color = Color(0xFFCAD3F5)
+    private val contentSubtleCatppuccinMacchiato: Color = Color(0xFFA5ADCB)
+    private val contentDisabledCatppuccinMacchiato: Color = Color(0xFF8087A2)
+
+    private val foregroundCatppuccinMocha: Color = Color(0xFF1E1E2E)
+    private val midgroundCatppuccinMocha: Color = Color(0xFF181825)
+    private val backgroundCatppuccinMocha: Color = Color(0xFF11111B)
+    private val outlineCatppuccinMocha: Color = Color(0xFF313244)
+    private val contentCatppuccinMocha: Color = Color(0xFFCDD6F4)
+    private val contentSubtleCatppuccinMocha: Color = Color(0xFFA6ADC8)
+    private val contentDisabledCatppuccinMocha: Color = Color(0xFF7F849C)
+
+    private val successCatppuccinLatte: Color = Color(0xFF40A02B)
+    private val successCatppuccinFrappe: Color = Color(0xFFA6D189)
+    private val successCatppuccinMacchiato: Color = Color(0xFFA6DA95)
+    private val successCatppuccinMocha: Color = Color(0xFFA6E3A1)
+    private val informationCatppuccinLatte: Color = Color(0xFF1E66F5)
+    private val informationCatppuccinFrappe: Color = Color(0xFF8CAAEE)
+    private val informationCatppuccinMacchiato: Color = Color(0xFF8AADF4)
+    private val informationCatppuccinMocha: Color = Color(0xFF89B4FA)
+    private val cautionCatppuccinLatte: Color = Color(0xFFDF8E1D)
+    private val cautionCatppuccinFrappe: Color = Color(0xFFE5C890)
+    private val cautionCatppuccinMacchiato: Color = Color(0xFFEED49F)
+    private val cautionCatppuccinMocha: Color = Color(0xFFF9E2AF)
+    private val dangerCatppuccinLatte: Color = Color(0xFFD20F39)
+    private val dangerCatppuccinFrappe: Color = Color(0xFFE78284)
+    private val dangerCatppuccinMacchiato: Color = Color(0xFFED8796)
+    private val dangerCatppuccinMocha: Color = Color(0xFFF38BA8)
+
     private val successStandard: Color = Color(0xFF04B34F)
     private val onSuccessStandard: Color = Color(0xFFFFFFFF)
     private val informationStandard: Color = Color(0xFF0057B8)
@@ -69,41 +118,73 @@ public object ColorTokens {
     internal fun success(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> successStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> successSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> successCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> successCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> successCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> successCatppuccinMocha
     }
 
     internal fun onSuccess(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onSuccessStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onSuccessSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
     }
 
     internal fun information(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> informationStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> informationSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> informationCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> informationCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> informationCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> informationCatppuccinMocha
     }
 
     internal fun onInformation(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onInformationStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onInformationSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
     }
 
     internal fun caution(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> cautionStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> cautionSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> cautionCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> cautionCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> cautionCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> cautionCatppuccinMocha
     }
 
     internal fun onCaution(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onCautionStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onCautionSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> backgroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
     }
 
     internal fun danger(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> dangerStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> dangerSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> dangerCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> dangerCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> dangerCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> dangerCatppuccinMocha
     }
 
     internal fun onDanger(style: ThemeStyle): Color = when (style) {
         ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onDangerStandard
         ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onDangerSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
     }
 
 
@@ -113,6 +194,10 @@ public object ColorTokens {
         ThemeStyle.BLACK -> foregroundBlack
         ThemeStyle.SOLARIZED_LIGHT -> foregroundLightSolarized
         ThemeStyle.SOLARIZED_DARK -> foregroundDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
     }
 
     internal fun midground(style: ThemeStyle): Color = when (style) {
@@ -121,6 +206,10 @@ public object ColorTokens {
         ThemeStyle.BLACK -> midgroundDarkBlack
         ThemeStyle.SOLARIZED_LIGHT -> midgroundLightSolarized
         ThemeStyle.SOLARIZED_DARK -> midgroundDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> midgroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> midgroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> midgroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> midgroundCatppuccinMocha
     }
 
     internal fun background(style: ThemeStyle): Color = when (style) {
@@ -129,6 +218,10 @@ public object ColorTokens {
         ThemeStyle.BLACK -> backgroundDarkBlack
         ThemeStyle.SOLARIZED_LIGHT -> backgroundLightSolarized
         ThemeStyle.SOLARIZED_DARK -> backgroundDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> backgroundCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> backgroundCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> backgroundCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> backgroundCatppuccinMocha
     }
 
     internal fun outline(style: ThemeStyle): Color = when (style) {
@@ -137,6 +230,10 @@ public object ColorTokens {
         ThemeStyle.BLACK -> outlineDarkBlack
         ThemeStyle.SOLARIZED_LIGHT -> outlineLightSolarized
         ThemeStyle.SOLARIZED_DARK -> outlineDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> outlineCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> outlineCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> outlineCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> outlineCatppuccinMocha
     }
 
     internal fun content(style: ThemeStyle): Color = when (style) {
@@ -144,6 +241,10 @@ public object ColorTokens {
         ThemeStyle.DARK, ThemeStyle.BLACK -> contentDark
         ThemeStyle.SOLARIZED_LIGHT -> contentLightSolarized
         ThemeStyle.SOLARIZED_DARK -> contentDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> contentCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> contentCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> contentCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> contentCatppuccinMocha
     }
 
     internal fun contentSubtle(style: ThemeStyle): Color = when (style) {
@@ -151,6 +252,10 @@ public object ColorTokens {
         ThemeStyle.DARK, ThemeStyle.BLACK -> contentSubtleDark
         ThemeStyle.SOLARIZED_LIGHT -> contentSubtleLightSolarized
         ThemeStyle.SOLARIZED_DARK -> contentSubtleDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> contentSubtleCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> contentSubtleCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> contentSubtleCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> contentSubtleCatppuccinMocha
     }
 
     internal fun contentDisabled(style: ThemeStyle): Color = when (style) {
@@ -159,6 +264,10 @@ public object ColorTokens {
         ThemeStyle.BLACK -> contentDisabledBlack
         ThemeStyle.SOLARIZED_LIGHT -> contentDisabledLightSolarized
         ThemeStyle.SOLARIZED_DARK -> contentDisabledDarkSolarized
+        ThemeStyle.CATPPUCCIN_LATTE -> contentDisabledCatppuccinLatte
+        ThemeStyle.CATPPUCCIN_FRAPPE -> contentDisabledCatppuccinFrappe
+        ThemeStyle.CATPPUCCIN_MACCHIATO -> contentDisabledCatppuccinMacchiato
+        ThemeStyle.CATPPUCCIN_MOCHA -> contentDisabledCatppuccinMocha
     }
 
 }

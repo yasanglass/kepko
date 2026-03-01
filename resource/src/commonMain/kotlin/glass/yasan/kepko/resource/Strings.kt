@@ -44,6 +44,18 @@ public object Strings {
     public val themeStyleBlack: String
         @Composable get() = stringResource(Res.string.theme_style_black)
 
+    public val themeStyleCatppuccinFrappe: String
+        @Composable get() = stringResource(Res.string.theme_style_catppuccin_frappe)
+
+    public val themeStyleCatppuccinLatte: String
+        @Composable get() = stringResource(Res.string.theme_style_catppuccin_latte)
+
+    public val themeStyleCatppuccinMacchiato: String
+        @Composable get() = stringResource(Res.string.theme_style_catppuccin_macchiato)
+
+    public val themeStyleCatppuccinMocha: String
+        @Composable get() = stringResource(Res.string.theme_style_catppuccin_mocha)
+
     public val themeStyleDark: String
         @Composable get() = stringResource(Res.string.theme_style_dark)
 

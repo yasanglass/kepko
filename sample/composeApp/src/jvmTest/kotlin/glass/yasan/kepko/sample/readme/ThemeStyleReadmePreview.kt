@@ -54,6 +54,38 @@ internal fun ThemeStyleSolarizedDarkReadmePreview() {
     }
 }
 
+@ReadmePreview
+@Composable
+internal fun ThemeStyleCatppuccinLatteReadmePreview() {
+    KepkoTheme(style = ThemeStyle.CATPPUCCIN_LATTE) {
+        ThemeStyleReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ThemeStyleCatppuccinFrappeReadmePreview() {
+    KepkoTheme(style = ThemeStyle.CATPPUCCIN_FRAPPE) {
+        ThemeStyleReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ThemeStyleCatppuccinMacchiatoReadmePreview() {
+    KepkoTheme(style = ThemeStyle.CATPPUCCIN_MACCHIATO) {
+        ThemeStyleReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ThemeStyleCatppuccinMochaReadmePreview() {
+    KepkoTheme(style = ThemeStyle.CATPPUCCIN_MOCHA) {
+        ThemeStyleReadmeContent()
+    }
+}
+
 @Composable
 private fun ThemeStyleReadmeContent() {
     val colors = KepkoTheme.colors
