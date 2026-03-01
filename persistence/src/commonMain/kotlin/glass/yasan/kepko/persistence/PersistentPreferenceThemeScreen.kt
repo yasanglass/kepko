@@ -234,10 +234,10 @@ private fun PersistentPreferenceThemeLight(
         title = Strings.preferenceLightStyleTitle,
         selectedId = persistence.styleLight.id,
         items = ThemeStyle.entries.map { style ->
-            val item = style.asPreferenceRadioGroupItem(
+            style.asPreferenceRadioGroupItem(
                 segment = if (style.isDark) 1 else 0,
+                isDefault = style == defaultLight,
             )
-            if (style == defaultLight) item.copy(annotation = PreferenceAnnotation.default) else item
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
         description = Strings.preferenceLightStyleDescription,
@@ -259,10 +259,10 @@ private fun PersistentPreferenceThemeDark(
         title = Strings.preferenceDarkStyleTitle,
         selectedId = persistence.styleDark.id,
         items = ThemeStyle.entries.map { style ->
-            val item = style.asPreferenceRadioGroupItem(
+            style.asPreferenceRadioGroupItem(
                 segment = if (style.isDark) 0 else 1,
+                isDefault = style == defaultDark,
             )
-            if (style == defaultDark) item.copy(annotation = PreferenceAnnotation.default) else item
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
         description = Strings.preferenceDarkStyleDescription,
@@ -291,9 +291,15 @@ private fun PersistentPreferenceThemeGrayscale(
 
 private fun ThemeStyle.asPreferenceRadioGroupItem(
     segment: Int = 0,
+    isDefault: Boolean = false,
 ): PreferenceRadioGroupItem = PreferenceRadioGroupItem(
     id = id,
     segment = segment,
+    annotation = when {
+        isDefault -> PreferenceAnnotation.default
+        category == ThemeStyle.Category.CATPPUCCIN -> PreferenceAnnotation.experimental
+        else -> null
+    },
 ) {
     title()
 }
