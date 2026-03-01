@@ -39,7 +39,7 @@ jobs:
 
       - name: Upload Diffs
         if: steps.verify.outcome == 'failure'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: snapshot-diffs
           path: |
