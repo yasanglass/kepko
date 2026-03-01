@@ -46,13 +46,13 @@ See the full list of components [here](https://github.com/yasanglass/kepko/tree/
 
 ## Theme Styles
 
-| Theme Style | Preview |
+| Name | Color Palette |
 |---|---|
-| [Light](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleLightReadmePreview.png) |
-| [Dark](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleDarkReadmePreview.png) |
-| [Black (AMOLED)](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Black (AMOLED)](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleBlackReadmePreview.png) |
-| [Solarized Light](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Solarized Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedLightReadmePreview.png) |
-| [Solarized Dark](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt) | ![Solarized Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedDarkReadmePreview.png) |
+| Light | ![Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleLightReadmePreview.png) |
+| Dark | ![Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleDarkReadmePreview.png) |
+| Black (AMOLED) | ![Black (AMOLED)](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleBlackReadmePreview.png) |
+| Solarized Light | ![Solarized Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedLightReadmePreview.png) |
+| Solarized Dark | ![Solarized Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedDarkReadmePreview.png) |
 
 ## Persistence
 
