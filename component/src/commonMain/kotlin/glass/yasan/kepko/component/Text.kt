@@ -89,10 +89,10 @@ private fun TextPreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(16.dp),
     ) {
-        Text(text = Strings.persistenceThemeTitle)
-        Text(text = Strings.persistenceDarkThemeStyleTitle, fontWeight = FontWeight.Bold)
+        Text(text = Strings.preferenceStyleTitle)
+        Text(text = Strings.preferenceDarkStyleTitle, fontWeight = FontWeight.Bold)
         Text(text = Strings.themeStyleSystem, fontSize = 12.sp)
         Text(text = Strings.themeStyleDarkSolarized, fontSize = 24.sp)
-        Text(text = Strings.persistenceDarkThemeStyleDescription, maxLines = 1)
+        Text(text = Strings.preferenceDarkStyleDescription, maxLines = 1)
     }
 }

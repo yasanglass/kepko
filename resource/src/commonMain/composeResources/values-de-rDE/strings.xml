@@ -2,12 +2,12 @@
 <resources>
     <string name="back">Back</string>
     <string name="go_back">Go back</string>
-    <string name="persistence_dark_theme_style_description">Verwendetes Farbthema, wenn sich das System im Dunkel Modus befindet</string>
-    <string name="persistence_dark_theme_style_title">Dark</string>
-    <string name="persistence_grayscale_title">Graustufen Modus</string>
-    <string name="persistence_light_theme_style_description">Verwendetes Farbthema, wenn sich das System im Hellen Modus befindet</string>
-    <string name="persistence_light_theme_style_title">Light</string>
-    <string name="persistence_theme_title">Thema</string>
+    <string name="preference_dark_style_description">Verwendetes Farbthema, wenn sich das System im Dunkel Modus befindet</string>
+    <string name="preference_dark_style_title">Dark</string>
+    <string name="preference_grayscale_title">Graustufen Modus</string>
+    <string name="preference_light_style_description">Verwendetes Farbthema, wenn sich das System im Hellen Modus befindet</string>
+    <string name="preference_light_style_title">Light</string>
+    <string name="preference_style_title">Thema</string>
     <string name="preference_annotation_active">Aktiv</string>
     <string name="preference_annotation_alpha">Alpha</string>
     <string name="preference_annotation_beta">Beta</string>

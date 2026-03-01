@@ -39,7 +39,7 @@ internal fun ColorPaletteBottomSheet(
             modifier = Modifier.padding(horizontal = 16.dp),
         ) {
             Text(
-                text = Strings.persistenceColorPaletteTitle,
+                text = Strings.preferenceColorPaletteTitle,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 12.dp),
             )

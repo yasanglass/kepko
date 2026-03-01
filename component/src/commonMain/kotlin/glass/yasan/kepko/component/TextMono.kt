@@ -91,10 +91,10 @@ private fun TextMonoPreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(16.dp),
     ) {
-        TextMono(text = Strings.persistenceLightThemeStyleTitle)
+        TextMono(text = Strings.preferenceLightStyleTitle)
         TextMono(text = Strings.preferenceAnnotationActive, fontWeight = FontWeight.Bold)
         TextMono(text = Strings.themeStyleLightSolarized, fontSize = 12.sp)
-        TextMono(text = Strings.persistenceGrayscaleTitle, fontSize = 24.sp)
-        TextMono(text = Strings.persistenceLightThemeStyleDescription, maxLines = 1)
+        TextMono(text = Strings.preferenceGrayscaleTitle, fontSize = 24.sp)
+        TextMono(text = Strings.preferenceLightStyleDescription, maxLines = 1)
     }
 }

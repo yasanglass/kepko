@@ -93,7 +93,7 @@ private fun ProgressIndicatorPreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(16.dp),
     ) {
-        Text(text = Strings.persistenceThemeTitle)
+        Text(text = Strings.preferenceStyleTitle)
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {

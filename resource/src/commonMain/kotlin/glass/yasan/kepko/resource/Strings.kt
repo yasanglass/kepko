@@ -56,29 +56,32 @@ public object Strings {
     public val themeStyleLightSolarized: String
         @Composable get() = stringResource(Res.string.theme_style_light_solarized)
 
-    public val persistenceDarkThemeStyleDescription: String
-        @Composable get() = stringResource(Res.string.persistence_dark_theme_style_description)
+    public val preferenceColorPaletteTitle: String
+        @Composable get() = stringResource(Res.string.preference_color_palette_title)
 
-    public val persistenceDarkThemeStyleTitle: String
-        @Composable get() = stringResource(Res.string.persistence_dark_theme_style_title)
+    public val preferenceDarkStyleDescription: String
+        @Composable get() = stringResource(Res.string.preference_dark_style_description)
 
-    public val persistenceGrayscaleTitle: String
-        @Composable get() = stringResource(Res.string.persistence_grayscale_title)
+    public val preferenceDarkStyleTitle: String
+        @Composable get() = stringResource(Res.string.preference_dark_style_title)
 
-    public val persistenceGrayscaleDescription: String
-        @Composable get() = stringResource(Res.string.persistence_grayscale_description)
+    public val preferenceGrayscaleDescription: String
+        @Composable get() = stringResource(Res.string.preference_grayscale_description)
 
-    public val persistenceLightThemeStyleDescription: String
-        @Composable get() = stringResource(Res.string.persistence_light_theme_style_description)
+    public val preferenceGrayscaleTitle: String
+        @Composable get() = stringResource(Res.string.preference_grayscale_title)
 
-    public val persistenceLightThemeStyleTitle: String
-        @Composable get() = stringResource(Res.string.persistence_light_theme_style_title)
+    public val preferenceLightStyleDescription: String
+        @Composable get() = stringResource(Res.string.preference_light_style_description)
 
-    public val persistenceThemeTitle: String
-        @Composable get() = stringResource(Res.string.persistence_theme_title)
+    public val preferenceLightStyleTitle: String
+        @Composable get() = stringResource(Res.string.preference_light_style_title)
 
-    public val persistenceColorPaletteTitle: String
-        @Composable get() = stringResource(Res.string.persistence_color_palette_title)
+    public val preferenceStyleTitle: String
+        @Composable get() = stringResource(Res.string.preference_style_title)
+
+    public val preferenceThemeScreenTitle: String
+        @Composable get() = stringResource(Res.string.preference_theme_screen_title)
 
     public val colorSuccess: String
         @Composable get() = stringResource(Res.string.color_success)

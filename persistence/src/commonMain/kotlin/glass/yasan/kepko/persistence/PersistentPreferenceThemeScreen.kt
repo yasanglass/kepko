@@ -51,7 +51,7 @@ public fun PersistentPreferenceThemeScreen(
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
 ) {
     Scaffold(
-        title = Strings.persistenceThemeTitle,
+        title = Strings.preferenceThemeScreenTitle,
         onBackClick = onBackClick,
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
@@ -128,7 +128,7 @@ private fun PersistentPreferenceThemePrimary(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         PreferenceRadioGroupPicker(
-            title = Strings.persistenceThemeTitle,
+            title = Strings.preferenceStyleTitle,
             selectedId = persistence.stylePrimary?.id ?: STYLE_ID_SYSTEM,
             items = listOf(systemItem) + styleItems,
             onSelectId = { id ->
@@ -151,7 +151,7 @@ private fun PersistentPreferenceThemePrimary(
         ) {
             IconButton(
                 painter = Icons.info,
-                contentDescription = Strings.persistenceColorPaletteTitle,
+                contentDescription = Strings.preferenceColorPaletteTitle,
                 onClick = { lastPrimaryStyle?.let { onShowColorPalette(it) } },
             )
         }
@@ -215,7 +215,7 @@ private fun PersistentPreferenceThemeStyleRow(
         }
         IconButton(
             painter = Icons.info,
-            contentDescription = Strings.persistenceColorPaletteTitle,
+            contentDescription = Strings.preferenceColorPaletteTitle,
             onClick = onShowColorPalette,
         )
     }
@@ -229,7 +229,7 @@ private fun PersistentPreferenceThemeLight(
     modifier: Modifier = Modifier,
 ) {
     PreferenceRadioGroupPicker(
-        title = Strings.persistenceLightThemeStyleTitle,
+        title = Strings.preferenceLightStyleTitle,
         selectedId = persistence.styleLight.id,
         items = ThemeStyle.entries.map { style ->
             val item = style.asPreferenceRadioGroupItem()
@@ -237,7 +237,7 @@ private fun PersistentPreferenceThemeLight(
             if (style == defaultLight) segmented.copy(annotation = PreferenceAnnotation.default) else segmented
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleLight = it } },
-        description = Strings.persistenceLightThemeStyleDescription,
+        description = Strings.preferenceLightStyleDescription,
         annotation = PreferenceAnnotation.active.takeIf { !isSystemInDarkTheme },
         leadingIcon = Icons.lightMode,
         modifier = modifier
@@ -253,7 +253,7 @@ private fun PersistentPreferenceThemeDark(
     modifier: Modifier = Modifier,
 ) {
     PreferenceRadioGroupPicker(
-        title = Strings.persistenceDarkThemeStyleTitle,
+        title = Strings.preferenceDarkStyleTitle,
         selectedId = persistence.styleDark.id,
         items = ThemeStyle.entries.map { style ->
             val item = style.asPreferenceRadioGroupItem()
@@ -261,7 +261,7 @@ private fun PersistentPreferenceThemeDark(
             if (style == defaultDark) segmented.copy(annotation = PreferenceAnnotation.default) else segmented
         },
         onSelectId = { id -> ThemeStyle.fromIdOrNull(id)?.let { persistence.styleDark = it } },
-        description = Strings.persistenceDarkThemeStyleDescription,
+        description = Strings.preferenceDarkStyleDescription,
         annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme },
         leadingIcon = Icons.modeNight,
         modifier = modifier
@@ -274,8 +274,8 @@ private fun PersistentPreferenceThemeGrayscale(
     persistence: PersistenceManager,
 ) {
     PreferenceSwitch(
-        title = Strings.persistenceGrayscaleTitle,
-        description = Strings.persistenceGrayscaleDescription,
+        title = Strings.preferenceGrayscaleTitle,
+        description = Strings.preferenceGrayscaleDescription,
         checked = persistence.grayscale,
         onCheckedChange = { persistence.grayscale = it },
         leadingIcon = Icons.filterBw,
