@@ -86,6 +86,22 @@ internal fun ThemeStyleCatppuccinMochaReadmePreview() {
     }
 }
 
+@ReadmePreview
+@Composable
+internal fun ThemeStyleGruvboxLightReadmePreview() {
+    KepkoTheme(style = ThemeStyle.GRUVBOX_LIGHT) {
+        ThemeStyleReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ThemeStyleGruvboxDarkReadmePreview() {
+    KepkoTheme(style = ThemeStyle.GRUVBOX_DARK) {
+        ThemeStyleReadmeContent()
+    }
+}
+
 @Composable
 private fun ThemeStyleReadmeContent() {
     val colors = KepkoTheme.colors

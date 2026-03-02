@@ -43,6 +43,8 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 | Catppuccin Frappé | ![Catppuccin Frappé](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinFrappeReadmePreview.png) |
 | Catppuccin Macchiato | ![Catppuccin Macchiato](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinMacchiatoReadmePreview.png) |
 | Catppuccin Mocha | ![Catppuccin Mocha](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinMochaReadmePreview.png) |
+| Gruvbox Light | ![Gruvbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleGruvboxLightReadmePreview.png) |
+| Gruvbox Dark | ![Gruvbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleGruvboxDarkReadmePreview.png) |
 
 ## Components
 

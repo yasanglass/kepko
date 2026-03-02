@@ -39,5 +39,7 @@
     <string name="theme_style_catppuccin_latte">Catppuccin Latte</string>
     <string name="theme_style_catppuccin_macchiato">Catppuccin Macchiato</string>
     <string name="theme_style_catppuccin_mocha">Catppuccin Mocha</string>
+    <string name="theme_style_gruvbox_light">Gruvbox Light</string>
+    <string name="theme_style_gruvbox_dark">Gruvbox Dark</string>
     <string name="theme_style_system">System</string>
 </resources>
