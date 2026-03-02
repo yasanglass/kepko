@@ -66,7 +66,7 @@ public fun PersistentPreferenceThemeScreen(
 }
 
 @Composable
-private fun PersistentPreferenceThemeContent(
+public fun PersistentPreferenceThemeContent(
     isSystemInDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
