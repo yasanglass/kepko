@@ -63,12 +63,25 @@ public enum class ThemeStyle(
         isDark = true,
         title = { Strings.themeStyleCatppuccinMocha }
     ),
+    GRUVBOX_LIGHT(
+        id = "gruvbox-light",
+        category = Category.GRUVBOX,
+        isDark = false,
+        title = { Strings.themeStyleGruvboxLight }
+    ),
+    GRUVBOX_DARK(
+        id = "gruvbox-dark",
+        category = Category.GRUVBOX,
+        isDark = true,
+        title = { Strings.themeStyleGruvboxDark }
+    ),
     ;
 
     public enum class Category {
         STANDARD,
         SOLARIZED,
         CATPPUCCIN,
+        GRUVBOX,
     }
 
     public companion object {

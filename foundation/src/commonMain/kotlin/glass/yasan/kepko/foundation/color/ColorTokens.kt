@@ -80,6 +80,31 @@ public object ColorTokens {
     private val contentSubtleCatppuccinMocha: Color = Color(0xFFA6ADC8)
     private val contentDisabledCatppuccinMocha: Color = Color(0xFF7F849C)
 
+    private val foregroundGruvboxLight: Color = Color(0xFFfbf1c7)
+    private val midgroundGruvboxLight: Color = Color(0xFFf2e5bc)
+    private val backgroundGruvboxLight: Color = Color(0xFFebdbb2)
+    private val outlineGruvboxLight: Color = Color(0xFFd5c4a1)
+    private val contentGruvboxLight: Color = Color(0xFF3c3836)
+    private val contentSubtleGruvboxLight: Color = Color(0xFF665c54)
+    private val contentDisabledGruvboxLight: Color = Color(0xFFa89984)
+
+    private val foregroundGruvboxDark: Color = Color(0xFF282828)
+    private val midgroundGruvboxDark: Color = Color(0xFF1d2021)
+    private val backgroundGruvboxDark: Color = Color(0xFF141414)
+    private val outlineGruvboxDark: Color = Color(0xFF3c3836)
+    private val contentGruvboxDark: Color = Color(0xFFebdbb2)
+    private val contentSubtleGruvboxDark: Color = Color(0xFFa89984)
+    private val contentDisabledGruvboxDark: Color = Color(0xFF665c54)
+
+    private val successGruvboxLight: Color = Color(0xFF79740e)
+    private val successGruvboxDark: Color = Color(0xFFb8bb26)
+    private val informationGruvboxLight: Color = Color(0xFF076678)
+    private val informationGruvboxDark: Color = Color(0xFF83a598)
+    private val cautionGruvboxLight: Color = Color(0xFFb57614)
+    private val cautionGruvboxDark: Color = Color(0xFFfabd2f)
+    private val dangerGruvboxLight: Color = Color(0xFF9d0006)
+    private val dangerGruvboxDark: Color = Color(0xFFfb4934)
+
     private val successCatppuccinLatte: Color = Color(0xFF40A02B)
     private val successCatppuccinFrappe: Color = Color(0xFFA6D189)
     private val successCatppuccinMacchiato: Color = Color(0xFFA6DA95)
@@ -122,6 +147,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> successCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> successCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> successCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> successGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> successGruvboxDark
     }
 
     internal fun onSuccess(style: ThemeStyle): Color = when (style) {
@@ -131,6 +158,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
     internal fun information(style: ThemeStyle): Color = when (style) {
@@ -140,6 +169,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> informationCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> informationCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> informationCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> informationGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> informationGruvboxDark
     }
 
     internal fun onInformation(style: ThemeStyle): Color = when (style) {
@@ -149,6 +180,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
     internal fun caution(style: ThemeStyle): Color = when (style) {
@@ -158,6 +191,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> cautionCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> cautionCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> cautionCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> cautionGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> cautionGruvboxDark
     }
 
     internal fun onCaution(style: ThemeStyle): Color = when (style) {
@@ -167,6 +202,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
     internal fun danger(style: ThemeStyle): Color = when (style) {
@@ -176,6 +213,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> dangerCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> dangerCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> dangerCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> dangerGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> dangerGruvboxDark
     }
 
     internal fun onDanger(style: ThemeStyle): Color = when (style) {
@@ -185,6 +224,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
 
@@ -198,6 +239,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
     internal fun midground(style: ThemeStyle): Color = when (style) {
@@ -210,6 +253,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> midgroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> midgroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> midgroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> midgroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> midgroundGruvboxDark
     }
 
     internal fun background(style: ThemeStyle): Color = when (style) {
@@ -222,6 +267,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> backgroundCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> backgroundCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> backgroundCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> backgroundGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> backgroundGruvboxDark
     }
 
     internal fun outline(style: ThemeStyle): Color = when (style) {
@@ -234,6 +281,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> outlineCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> outlineCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> outlineCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> outlineGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> outlineGruvboxDark
     }
 
     internal fun content(style: ThemeStyle): Color = when (style) {
@@ -245,6 +294,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> contentCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> contentCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> contentCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> contentGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> contentGruvboxDark
     }
 
     internal fun contentSubtle(style: ThemeStyle): Color = when (style) {
@@ -256,6 +307,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> contentSubtleCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> contentSubtleCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> contentSubtleCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> contentSubtleGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> contentSubtleGruvboxDark
     }
 
     internal fun contentDisabled(style: ThemeStyle): Color = when (style) {
@@ -268,6 +321,8 @@ public object ColorTokens {
         ThemeStyle.CATPPUCCIN_FRAPPE -> contentDisabledCatppuccinFrappe
         ThemeStyle.CATPPUCCIN_MACCHIATO -> contentDisabledCatppuccinMacchiato
         ThemeStyle.CATPPUCCIN_MOCHA -> contentDisabledCatppuccinMocha
+        ThemeStyle.GRUVBOX_LIGHT -> contentDisabledGruvboxLight
+        ThemeStyle.GRUVBOX_DARK -> contentDisabledGruvboxDark
     }
 
 }

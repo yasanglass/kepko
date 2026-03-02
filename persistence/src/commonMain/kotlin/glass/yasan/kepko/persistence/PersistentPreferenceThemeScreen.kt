@@ -298,6 +298,7 @@ private fun ThemeStyle.asPreferenceRadioGroupItem(
     annotation = when {
         isDefault -> PreferenceAnnotation.default
         category == ThemeStyle.Category.CATPPUCCIN -> PreferenceAnnotation.experimental
+        category == ThemeStyle.Category.GRUVBOX -> PreferenceAnnotation.experimental
         else -> null
     },
 ) {
