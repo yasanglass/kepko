@@ -88,6 +88,10 @@ PersistentPreferenceThemeScreen(
 - [`LocalKepkoThemeStyle`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the currently active [`ThemeStyle`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt)
 - [`LocalKepkoPersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the [`PersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt) instance for direct access to persistence state
 
+PersistentPreferenceThemeScreen (Light) | PersistentPreferenceThemeScreen (Dark)
+---|---
+![PersistentPreferenceThemeScreen Light](./sample/composeApp/assets/readme/PersistentPreferenceThemeScreenLightReadmePreview.png) | ![PersistentPreferenceThemeScreen Dark](./sample/composeApp/assets/readme/PersistentPreferenceThemeScreenDarkReadmePreview.png)
+
 ## Sample Project
 
 Explore Kepko in a real project with the included [sample project](https://github.com/yasanglass/kepko/tree/main/sample).
