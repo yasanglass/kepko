@@ -56,6 +56,12 @@ public object Strings {
     public val themeStyleCatppuccinMocha: String
         @Composable get() = stringResource(Res.string.theme_style_catppuccin_mocha)
 
+    public val themeStyleGruvboxLight: String
+        @Composable get() = stringResource(Res.string.theme_style_gruvbox_light)
+
+    public val themeStyleGruvboxDark: String
+        @Composable get() = stringResource(Res.string.theme_style_gruvbox_dark)
+
     public val themeStyleDark: String
         @Composable get() = stringResource(Res.string.theme_style_dark)
 
@@ -127,8 +133,5 @@ public object Strings {
 
     public val colorContentDisabled: String
         @Composable get() = stringResource(Res.string.color_content_disabled)
-
-    public val loremIpsum: String
-        @Composable get() = stringResource(Res.string.lorem_ipsum)
 
 }
