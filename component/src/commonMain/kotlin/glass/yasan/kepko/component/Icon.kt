@@ -20,13 +20,13 @@ import androidx.compose.material3.Icon as Material3Icon
 public fun Icon(
     imageVector: ImageVector,
     contentDescription: String?,
-    color: Color = LocalContentColor.current,
+    tint: Color = LocalContentColor.current,
     modifier: Modifier = Modifier,
     size: Dp = KepkoTheme.dimensions.iconSize,
 ) {
     Material3Icon(
         imageVector = imageVector,
-        tint = color,
+        tint = tint,
         contentDescription = contentDescription,
         modifier = modifier
             .size(size),
@@ -37,13 +37,13 @@ public fun Icon(
 public fun Icon(
     painter: Painter,
     contentDescription: String?,
-    color: Color = LocalContentColor.current,
+    tint: Color = LocalContentColor.current,
     modifier: Modifier = Modifier,
     size: Dp = KepkoTheme.dimensions.iconSize,
 ) {
     Material3Icon(
         painter = painter,
-        tint = color,
+        tint = tint,
         contentDescription = contentDescription,
         modifier = modifier
             .size(24.dp),
@@ -54,13 +54,13 @@ public fun Icon(
 public fun Icon(
     bitmap: ImageBitmap,
     contentDescription: String?,
-    color: Color = LocalContentColor.current,
+    tint: Color = LocalContentColor.current,
     modifier: Modifier = Modifier,
     size: Dp = KepkoTheme.dimensions.iconSize,
 ) {
     Material3Icon(
         bitmap = bitmap,
-        tint = color,
+        tint = tint,
         contentDescription = contentDescription,
 
         modifier = modifier

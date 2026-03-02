@@ -23,7 +23,7 @@ public fun IconButton(
     contentDescription: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    color: Color = LocalContentColor.current,
+    tint: Color = LocalContentColor.current,
     enabled: Boolean = true,
     onClickLabel: String? = null,
     outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
@@ -32,7 +32,7 @@ public fun IconButton(
     Icon(
         imageVector = imageVector,
         contentDescription = contentDescription,
-        color = color,
+        tint = tint,
         modifier = modifier
             .padding(outerPadding)
             .clip(CircleShape)
@@ -51,7 +51,7 @@ public fun IconButton(
     contentDescription: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    color: Color = LocalContentColor.current,
+    tint: Color = LocalContentColor.current,
     enabled: Boolean = true,
     onClickLabel: String? = null,
     outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
@@ -60,7 +60,7 @@ public fun IconButton(
     Icon(
         painter = painter,
         contentDescription = contentDescription,
-        color = color,
+        tint = tint,
         modifier = modifier
             .padding(outerPadding)
             .clip(CircleShape)
@@ -79,7 +79,7 @@ public fun IconButton(
     contentDescription: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    color: Color = LocalContentColor.current,
+    tint: Color = LocalContentColor.current,
     enabled: Boolean = true,
     onClickLabel: String? = null,
     outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
@@ -88,7 +88,7 @@ public fun IconButton(
     Icon(
         bitmap = bitmap,
         contentDescription = contentDescription,
-        color = color,
+        tint = tint,
         modifier = modifier
             .padding(outerPadding)
             .clip(CircleShape)
