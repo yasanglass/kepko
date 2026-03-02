@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -157,6 +159,7 @@ public fun PreferenceRadioGroupPicker(
                                 .invokeOnCompletion { showSheet = false }
                         }
                     },
+                    leadingContent = leadingContent,
                 )
             },
         )
@@ -170,6 +173,7 @@ private fun ModalBottomSheetContent(
     selectedId: String?,
     items: List<PreferenceRadioGroupItem>,
     onSelectItem: (PreferenceRadioGroupItem) -> Unit,
+    leadingContent: @Composable () -> Unit = {},
 ) {
     BoxWithConstraints {
         val contentPadding by animateDpAsState(
@@ -180,21 +184,27 @@ private fun ModalBottomSheetContent(
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = 32.dp),
+                .padding(vertical = 16.dp),
         ) {
-            Text(
-                text = title.uppercase(),
-                fontWeight = FontWeight.Bold,
-                color = KepkoTheme.colors.content,
-                modifier = Modifier.padding(horizontal = 16.dp),
-            )
-            if (description != null) {
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    text = description,
-                    color = KepkoTheme.colors.contentSubtle,
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                )
+            Row(
+                verticalAlignment = if (description == null) Alignment.Top else Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            ) {
+                leadingContent()
+                Column {
+                    Text(
+                        text = title.uppercase(),
+                        fontWeight = FontWeight.Bold,
+                        color = KepkoTheme.colors.content,
+                    )
+                    if (description != null) {
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            text = description,
+                            color = KepkoTheme.colors.contentSubtle,
+                        )
+                    }
+                }
             }
             Spacer(Modifier.height(16.dp))
             SegmentedColumn(items = items) { segmentItems ->
@@ -245,6 +255,31 @@ internal fun PreferenceRadioGroupPickerSolarizedLightPreview() {
 @Composable
 internal fun PreferenceRadioGroupPickerSolarizedDarkPreview() {
     KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun PreferenceRadioGroupPickerModalPreview() {
+    KepkoTheme(style = ThemeStyle.LIGHT) {
+        val items = listOf(
+            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
+        )
+        ModalBottomSheetContent(
+            title = "Preference",
+            description = "Lorem ipsum dolor sit amet.",
+            selectedId = "item1",
+            items = items,
+            onSelectItem = {},
+            leadingContent = {
+                Icon(
+                    painter = Icons.settings,
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = 12.dp),
+                )
+            },
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
