@@ -38,7 +38,7 @@ public fun PreferenceContainer(
     interactionSource: MutableInteractionSource? = null,
     indication: Indication? = null,
     shape: Shape = KepkoTheme.shapes.extraLarge,
-    contentPadding: PaddingValues = PaddingValues(horizontal = 24.dp),
+    contentPadding: PaddingValues = PaddingValues(horizontal = 20.dp),
     content: @Composable (PaddingValues) -> Unit,
 ) {
     val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
@@ -118,7 +118,7 @@ public fun PreferenceContainer(
             .background(KepkoTheme.colors.foreground)
             .padding(
                 vertical = 8.dp,
-                horizontal = 24.dp,
+                horizontal = 20.dp,
             ),
     ) {
         Row(
