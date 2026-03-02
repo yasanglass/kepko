@@ -15,6 +15,7 @@ internal class ReadmeScreenshotTests {
 
     companion object {
         val previewWidth: Dp = 400.dp
+        val previewHeight: Dp = 800.dp
         const val LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
         private val previews by lazy {
