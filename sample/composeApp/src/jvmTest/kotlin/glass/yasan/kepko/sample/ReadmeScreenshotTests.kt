@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import io.github.takahirom.roborazzi.captureRoboImage
 import kotlinx.coroutines.test.runTest
 import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationScanner
+import kotlin.math.roundToInt
 import kotlin.test.Test
 
 internal class ReadmeScreenshotTests {
@@ -16,6 +17,7 @@ internal class ReadmeScreenshotTests {
     companion object {
         val previewWidth: Dp = 400.dp
         val previewHeight: Dp = 800.dp
+        private const val DENSITY = 1.5f
         const val LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
         private val previews by lazy {
@@ -30,7 +32,13 @@ internal class ReadmeScreenshotTests {
     fun readmeScreenshots() {
         previews.forEach { preview ->
             runTest {
-                with(DesktopComposeUiTest(density = Density(1.5f))) {
+                with(
+                    DesktopComposeUiTest(
+                        width = (previewWidth.value * DENSITY).roundToInt(),
+                        height = (previewHeight.value * DENSITY).roundToInt(),
+                        density = Density(DENSITY),
+                    )
+                ) {
                     runTest {
                         setContent {
                             preview()
