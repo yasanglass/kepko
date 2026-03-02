@@ -12,6 +12,7 @@
         <list>
           <option value="component:cleanRecordSnapshots" />
           <option value="persistence:cleanRecordSnapshots" />
+          <option value="sample:composeApp:cleanRecordSnapshots" />
         </list>
       </option>
       <option name="vmOptions" />
