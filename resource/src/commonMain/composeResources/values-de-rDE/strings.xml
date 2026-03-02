@@ -5,9 +5,23 @@
     <string name="preference_dark_style_description">Verwendetes Farbthema, wenn sich das System im Dunkel Modus befindet</string>
     <string name="preference_dark_style_title">Dark</string>
     <string name="preference_grayscale_title">Graustufen Modus</string>
+    <string name="preference_grayscale_description">Remove all colors from the interface</string>
     <string name="preference_light_style_description">Verwendetes Farbthema, wenn sich das System im Hellen Modus befindet</string>
     <string name="preference_light_style_title">Light</string>
+    <string name="preference_theme_screen_title">Style</string>
     <string name="preference_style_title">Thema</string>
+    <string name="preference_color_palette_title">Color Palette</string>
+    <string name="color_success">Success</string>
+    <string name="color_information">Information</string>
+    <string name="color_caution">Caution</string>
+    <string name="color_danger">Danger</string>
+    <string name="color_foreground">Foreground</string>
+    <string name="color_midground">Midground</string>
+    <string name="color_background">Background</string>
+    <string name="color_outline">Outline</string>
+    <string name="color_content">Content</string>
+    <string name="color_content_subtle">Content Subtle</string>
+    <string name="color_content_disabled">Content Disabled</string>
     <string name="preference_annotation_active">Aktiv</string>
     <string name="preference_annotation_alpha">Alpha</string>
     <string name="preference_annotation_beta">Beta</string>
@@ -22,5 +36,10 @@
     <string name="theme_style_dark_solarized">Solarized Dark</string>
     <string name="theme_style_light">Helles Thema</string>
     <string name="theme_style_light_solarized">Solarized Light</string>
+    <string name="theme_style_catppuccin_frappe">Catppuccin Frappé</string>
+    <string name="theme_style_catppuccin_latte">Catppuccin Latte</string>
+    <string name="theme_style_catppuccin_macchiato">Catppuccin Macchiato</string>
+    <string name="theme_style_catppuccin_mocha">Catppuccin Mocha</string>
     <string name="theme_style_system">System</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>
