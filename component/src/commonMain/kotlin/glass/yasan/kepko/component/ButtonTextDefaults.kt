@@ -3,12 +3,17 @@ package glass.yasan.kepko.component
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
 
 public object ButtonTextDefaults {
     public val ContentPadding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+
+    @Composable
+    public fun shape(): Shape = KepkoTheme.shapes.extraLarge
 
     @Composable
     public fun contentPadding(
