@@ -5,10 +5,10 @@
     <string name="preference_dark_style_description">Verwendetes Farbthema, wenn sich das System im Dunkel Modus befindet</string>
     <string name="preference_dark_style_title">Dark</string>
     <string name="preference_grayscale_title">Graustufen Modus</string>
-    <string name="preference_grayscale_description">Remove all colors from the interface</string>
+    <string name="preference_grayscale_description">Zeigt den Launcher im Graustufen--Modus</string>
     <string name="preference_light_style_description">Verwendetes Farbthema, wenn sich das System im Hellen Modus befindet</string>
     <string name="preference_light_style_title">Light</string>
-    <string name="preference_theme_screen_title">Style</string>
+    <string name="preference_theme_screen_title">Design</string>
     <string name="preference_style_title">Thema</string>
     <string name="preference_color_palette_title">Color Palette</string>
     <string name="color_success">Success</string>
@@ -17,8 +17,8 @@
     <string name="color_danger">Danger</string>
     <string name="color_foreground">Foreground</string>
     <string name="color_midground">Midground</string>
-    <string name="color_background">Background</string>
-    <string name="color_outline">Outline</string>
+    <string name="color_background">Hintergrund</string>
+    <string name="color_outline">Umrandung</string>
     <string name="color_content">Content</string>
     <string name="color_content_subtle">Content Subtle</string>
     <string name="color_content_disabled">Content Disabled</string>
