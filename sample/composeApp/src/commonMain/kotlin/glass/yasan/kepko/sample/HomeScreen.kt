@@ -50,6 +50,7 @@ import glass.yasan.kepko.component.PreferenceCheckbox
 import glass.yasan.kepko.component.PreferenceRadioButton
 import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
+import glass.yasan.kepko.component.PreferenceRadioGroupPickerChip
 import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
@@ -95,6 +96,7 @@ internal fun HomeScreen(onNavigateToTheme: () -> Unit) {
                 examplePreferenceRadioButton()
                 examplePreferenceRadioGroup()
                 examplePreferenceRadioGroupPicker()
+                examplePreferenceRadioGroupPickerChip()
                 exampleTextField()
                 exampleOutlinedTextField()
                 exampleAlertDialog()
@@ -547,6 +549,87 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
             selectedId = "item1",
             items = items,
             onSelectId = {},
+            enabled = false,
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Suppress("LongMethod")
+private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
+    item { HorizontalDivider() }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "S" },
+            PreferenceRadioGroupItem(
+                "medium",
+                annotation = PreferenceAnnotation.new,
+                icon = painterResource(Res.drawable.ic_family_star),
+            ) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Extra Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Picker Chip",
+            description = "Picker chip with description.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.settings,
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("auto", icon = painterResource(Res.drawable.ic_heart_smile)) { "Auto" },
+            PreferenceRadioGroupItem("on") { "On" },
+            PreferenceRadioGroupItem(
+                "custom",
+                segment = 1,
+                icon = painterResource(Res.drawable.ic_new_releases),
+            ) { "Custom Schedule" },
+            PreferenceRadioGroupItem("off", segment = 1, enabled = false) { "Off" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Picker Chip (Segmented)",
+            description = "Segmented items.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.info,
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("low", icon = painterResource(Res.drawable.ic_eco)) { "Low" },
+            PreferenceRadioGroupItem("medium") { "Medium" },
+            PreferenceRadioGroupItem("high", icon = painterResource(Res.drawable.ic_bolt)) { "High" },
+        )
+        var selectedId by remember { mutableStateOf<String?>(null) }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Chip (No Selection)",
+            description = "Shows leading icon until selected.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.settings,
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("daily") { "Daily" },
+            PreferenceRadioGroupItem("weekly") { "Weekly" },
+        )
+
+        PreferenceRadioGroupPickerChip(
+            title = "Chip (Disabled)",
+            selectedId = "daily",
+            items = items,
+            onSelectId = {},
+            leadingIcon = Icons.warning,
             enabled = false,
         )
     }
