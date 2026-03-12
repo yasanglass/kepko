@@ -36,7 +36,7 @@ public fun Icon(
 @Composable
 public fun Icon(
     painter: Painter,
-    contentDescription: String?,
+    contentDescription: String? = null,
     tint: Color = LocalContentColor.current,
     modifier: Modifier = Modifier,
     size: Dp = KepkoTheme.dimensions.iconSize,
