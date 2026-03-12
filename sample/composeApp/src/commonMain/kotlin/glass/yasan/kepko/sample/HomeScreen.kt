@@ -400,9 +400,13 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
-            PreferenceRadioGroupItem("item2") { "Item 2" },
-            PreferenceRadioGroupItem("item3", annotation = PreferenceAnnotation.new) { "Item 3" },
+            PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_bolt)) { "Item 1" },
+            PreferenceRadioGroupItem("item2", icon = painterResource(Res.drawable.ic_eco)) { "Item 2" },
+            PreferenceRadioGroupItem(
+                "item3",
+                annotation = PreferenceAnnotation.new,
+                icon = painterResource(Res.drawable.ic_heart_smile),
+            ) { "Item 3" },
             PreferenceRadioGroupItem("item4", segment = 1) { "Item 4" },
             PreferenceRadioGroupItem("item5", annotation = PreferenceAnnotation.experimental, segment = 1) { "Item 5" },
         )
@@ -470,9 +474,13 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     item { HorizontalDivider() }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
-            PreferenceRadioGroupItem("item2", annotation = PreferenceAnnotation.new) { "Item 2" },
-            PreferenceRadioGroupItem("item3") { "Item 3" },
+            PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_bolt)) { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item2",
+                annotation = PreferenceAnnotation.new,
+                icon = painterResource(Res.drawable.ic_eco),
+            ) { "Item 2" },
+            PreferenceRadioGroupItem("item3", icon = painterResource(Res.drawable.ic_heart_smile)) { "Item 3" },
         )
         var selectedId by remember { mutableStateOf(items.first().id) }
 
@@ -488,8 +496,12 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
-            PreferenceRadioGroupItem("item2", enabled = false) { "Item 2 (Disabled)" },
+            PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_family_star)) { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item2",
+                enabled = false,
+                icon = painterResource(Res.drawable.ic_new_releases),
+            ) { "Item 2 (Disabled)" },
             PreferenceRadioGroupItem("item3", annotation = PreferenceAnnotation.experimental) { "Item 3" },
             PreferenceRadioGroupItem("item4", annotation = PreferenceAnnotation.legacy, enabled = false) {
                 "Item 4 (Disabled)"

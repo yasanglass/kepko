@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.resource.Icons
 
 @Composable
 public fun PreferenceRadioGroup(
@@ -122,6 +123,13 @@ private fun RadioGroupRow(
             onClick = onClick,
             enabled = enabled,
         )
+        item.icon?.let { painter ->
+            Icon(
+                painter = painter,
+                contentDescription = null,
+                modifier = Modifier.padding(end = 12.dp),
+            )
+        }
         Text(
             text = item.title(),
             color = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
@@ -176,9 +184,9 @@ private fun PreviewContent() {
     )
 
     val items = listOf(
-        PreferenceRadioGroupItem("item1") { "Item 1" },
+        PreferenceRadioGroupItem("item1", icon = Icons.check) { "Item 1" },
         PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
-        PreferenceRadioGroupItem("item3", segment = 1) { "Item 3" },
+        PreferenceRadioGroupItem("item3", segment = 1, icon = Icons.info) { "Item 3" },
         PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },
     )
 

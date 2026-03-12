@@ -1,16 +1,9 @@
 package glass.yasan.kepko.component
 
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -18,19 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import glass.yasan.kepko.component.extensions.isFullWidth
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -120,7 +108,6 @@ public fun PreferenceRadioGroupPicker(
     leadingContent: @Composable () -> Unit = {},
 ) {
     var showSheet by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
 
     ButtonText(
         text = title,
@@ -141,90 +128,18 @@ public fun PreferenceRadioGroupPicker(
         },
     )
 
-    if (showSheet) {
-        ModalBottomSheet(
-            onDismissRequest = { showSheet = false },
-            sheetState = sheetState,
-            content = {
-                ModalBottomSheetContent(
-                    title = title,
-                    description = description,
-                    selectedId = selectedId,
-                    items = items,
-                    onSelectItem = { item ->
-                        onSelectId(item.id)
-                        if (closeOnSelection) {
-                            scope
-                                .launch { sheetState.hide() }
-                                .invokeOnCompletion { showSheet = false }
-                        }
-                    },
-                    leadingContent = leadingContent,
-                )
-            },
-        )
-    }
-}
-
-@Composable
-private fun ModalBottomSheetContent(
-    title: String,
-    description: String?,
-    selectedId: String?,
-    items: List<PreferenceRadioGroupItem>,
-    onSelectItem: (PreferenceRadioGroupItem) -> Unit,
-    leadingContent: @Composable () -> Unit = {},
-) {
-    BoxWithConstraints {
-        val contentPadding by animateDpAsState(
-            targetValue = if (isFullWidth()) 0.dp else 16.dp,
-            label = "contentPadding",
-        )
-
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(vertical = 16.dp),
-        ) {
-            Row(
-                verticalAlignment = if (description == null) Alignment.Top else Alignment.CenterVertically,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            ) {
-                leadingContent()
-                Column {
-                    Text(
-                        text = title.uppercase(),
-                        fontWeight = FontWeight.Bold,
-                        color = KepkoTheme.colors.content,
-                    )
-                    if (description != null) {
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            text = description,
-                            color = KepkoTheme.colors.contentSubtle,
-                        )
-                    }
-                }
-            }
-            Spacer(Modifier.height(16.dp))
-            SegmentedColumn(items = items) { segmentItems ->
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(horizontal = contentPadding),
-                ) {
-                    segmentItems.forEach { item ->
-                        PreferenceRadioButton(
-                            title = item.title(),
-                            selected = item.id == selectedId,
-                            onClick = { onSelectItem(item) },
-                            enabled = item.enabled,
-                            annotation = item.annotation,
-                        )
-                    }
-                }
-            }
-        }
-    }
+    PreferenceRadioGroupSheet(
+        title = title,
+        description = description,
+        selectedId = selectedId,
+        items = items,
+        onSelectId = onSelectId,
+        visible = showSheet,
+        onDismiss = { showSheet = false },
+        sheetState = sheetState,
+        closeOnSelection = closeOnSelection,
+        leadingContent = leadingContent,
+    )
 }
 
 @PreviewWithTest
@@ -255,31 +170,6 @@ internal fun PreferenceRadioGroupPickerSolarizedLightPreview() {
 @Composable
 internal fun PreferenceRadioGroupPickerSolarizedDarkPreview() {
     KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
-}
-
-@PreviewWithTest
-@Composable
-internal fun PreferenceRadioGroupPickerModalPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) {
-        val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
-            PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
-        )
-        ModalBottomSheetContent(
-            title = "Preference",
-            description = "Lorem ipsum dolor sit amet.",
-            selectedId = "item1",
-            items = items,
-            onSelectItem = {},
-            leadingContent = {
-                Icon(
-                    painter = Icons.settings,
-                    contentDescription = null,
-                    modifier = Modifier.padding(end = 12.dp),
-                )
-            },
-        )
-    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
