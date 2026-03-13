@@ -4,11 +4,11 @@
     <string name="go_back">برگشت به عقب</string>
     <string name="preference_dark_style_description">Theme used when the system is in dark mode</string>
     <string name="preference_dark_style_title">تیره</string>
-    <string name="preference_grayscale_title">Grayscale</string>
+    <string name="preference_grayscale_title">سیاه‌وسفید</string>
     <string name="preference_grayscale_description">Remove all colors from the interface</string>
     <string name="preference_light_style_description">Theme used when the system is in light mode</string>
-    <string name="preference_light_style_title">Light</string>
-    <string name="preference_theme_screen_title">Style</string>
+    <string name="preference_light_style_title">روشن</string>
+    <string name="preference_theme_screen_title">استایل</string>
     <string name="preference_style_title">تم</string>
     <string name="preference_color_palette_title">Color Palette</string>
     <string name="color_success">موفقیت</string>
