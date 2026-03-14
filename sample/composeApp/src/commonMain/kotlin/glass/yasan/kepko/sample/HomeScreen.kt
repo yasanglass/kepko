@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -70,6 +71,7 @@ import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -924,6 +926,7 @@ private fun LazyListScope.exampleAlertDialog() {
     }
 }
 
+@Suppress("LongMethod")
 private fun LazyListScope.exampleKeyValue() {
     item { HorizontalDivider() }
     item {
@@ -938,6 +941,28 @@ private fun LazyListScope.exampleKeyValue() {
             key = "KeyValue Clickable",
             value = clickCount.intValue.toString(),
             onValueClick = { clickCount.intValue++ },
+        )
+    }
+    item {
+        val entries = listOf(
+            "S" to KepkoTheme.colors.caution,
+            "Medium" to KepkoTheme.colors.information,
+            "Longer text" to KepkoTheme.colors.success,
+            "This is a much longer text pill that keeps on going and going" to KepkoTheme.colors.danger,
+        )
+        val selectedIndex = remember { mutableIntStateOf(0) }
+
+        LaunchedEffect(Unit) {
+            while (true) {
+                delay(2_000)
+                selectedIndex.intValue = (selectedIndex.intValue + 1) % entries.size
+            }
+        }
+
+        KeyValue(
+            key = "KeyValue Animated",
+            value = entries[selectedIndex.intValue].first,
+            containerColor = entries[selectedIndex.intValue].second,
         )
     }
     item {
