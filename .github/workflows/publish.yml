@@ -167,7 +167,6 @@ jobs:
 
   refresh-docs:
     name: Refresh Context7 Docs
-    needs: publish
     uses: ./.github/workflows/context7.yml
     secrets: inherit
 
