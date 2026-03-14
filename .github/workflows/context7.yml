@@ -1,11 +1,11 @@
-name: Refresh Context7 Docs
+name: Context7
 on:
   workflow_dispatch:
   workflow_call:
 
 jobs:
   refresh:
-    name: Refresh Context7 Docs
+    name: Refresh
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Context7 Refresh
