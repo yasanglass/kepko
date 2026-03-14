@@ -1,7 +1,7 @@
 package glass.yasan.kepko.component
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,6 +39,7 @@ public fun TextPill(
     annotation: PreferenceAnnotation,
     modifier: Modifier = Modifier,
     shape: Shape = CircleShape,
+    animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
     onClick: (() -> Unit)? = null,
 ) {
     TextPill(
@@ -49,6 +50,7 @@ public fun TextPill(
         trailingIcon = annotation.trailingIcon?.invoke(),
         onClick = onClick,
         shape = shape,
+        animations = animations,
         modifier = modifier,
     )
 }
@@ -66,11 +68,12 @@ public fun TextPill(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Medium,
     textTransformation: (String) -> String = { it.uppercase() },
+    animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
     onClick: (() -> Unit)? = null,
 ) {
     val resolvedFontSize = fontSize.takeOrElse { 10.sp }
-    val animatedContainerColor by animateColorAsState(containerColor, tween(500))
-    val animatedContentColor by animateColorAsState(contentColor, tween(500))
+    val animatedContainerColor by animateColorAsState(containerColor, animations.colorAnimationSpec)
+    val animatedContentColor by animateColorAsState(contentColor, animations.colorAnimationSpec)
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -79,6 +82,7 @@ public fun TextPill(
             .then(if (border != null) Modifier.border(border, shape) else Modifier)
             .clip(shape = shape)
             .background(color = animatedContainerColor)
+            .animateContentSize(animationSpec = animations.sizeAnimationSpec)
             .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
             .padding(horizontal = 12.dp)
     ) {
