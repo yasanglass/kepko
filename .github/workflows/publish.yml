@@ -165,6 +165,12 @@ jobs:
           cd "${GITHUB_WORKSPACE}"
           gh release upload "${TAG}" "kepko-sample-js-${TAG}.zip" --clobber
 
+  refresh-docs:
+    name: Refresh Context7 Docs
+    needs: publish
+    uses: ./.github/workflows/context7.yml
+    secrets: inherit
+
   sample-windows:
     name: Sample App (Windows)
     needs: publish
