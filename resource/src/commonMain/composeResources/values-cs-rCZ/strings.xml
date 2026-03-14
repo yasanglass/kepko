@@ -22,14 +22,14 @@
     <string name="color_content">Content</string>
     <string name="color_content_subtle">Content Subtle</string>
     <string name="color_content_disabled">Content Disabled</string>
-    <string name="preference_annotation_active">Active</string>
-    <string name="preference_annotation_alpha">Alpha</string>
+    <string name="preference_annotation_active">Aktivní</string>
+    <string name="preference_annotation_alpha">Alfa</string>
     <string name="preference_annotation_beta">Beta</string>
-    <string name="preference_annotation_default">Default</string>
-    <string name="preference_annotation_early_access">Early Access</string>
-    <string name="preference_annotation_experimental">Experimental</string>
+    <string name="preference_annotation_default">Výchozí</string>
+    <string name="preference_annotation_early_access">Předběžný přístup</string>
+    <string name="preference_annotation_experimental">Experimentální</string>
     <string name="preference_annotation_legacy">Legacy</string>
-    <string name="preference_annotation_new">New</string>
+    <string name="preference_annotation_new">Nové</string>
     <string name="preference_annotation_preview">Preview</string>
     <string name="theme_style_black">Black (AMOLED)</string>
     <string name="theme_style_dark">Dark</string>
@@ -42,5 +42,5 @@
     <string name="theme_style_catppuccin_mocha">Catppuccin Mocha</string>
     <string name="theme_style_gruvbox_light">Gruvbox Light</string>
     <string name="theme_style_gruvbox_dark">Gruvbox Dark</string>
-    <string name="theme_style_system">System</string>
+    <string name="theme_style_system">Systém</string>
 </resources>
