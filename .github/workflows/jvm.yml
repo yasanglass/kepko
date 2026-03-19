@@ -39,11 +39,11 @@ jobs:
         run: ./gradlew jvmTest
 
       - name: Generate Coverage Report
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         run: ./gradlew koverXmlReport
 
       - name: Upload Coverage to Codecov (Token)
-        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' }}
+        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ env.CODECOV_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
           fail_ci_if_error: true
 
       - name: Upload Coverage to Codecov (OIDC)
-        if: ${{ !cancelled() && env.CODECOV_TOKEN == '' }}
+        if: ${{ !cancelled() && env.CODECOV_TOKEN == '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         uses: codecov/codecov-action@v5
         with:
           use_oidc: true
@@ -59,7 +59,7 @@ jobs:
           fail_ci_if_error: true
 
       - name: Upload Test Results to Codecov (Token)
-        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' }}
+        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ env.CODECOV_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
           files: "**/build/test-results/jvmTest/TEST-*.xml"
 
       - name: Upload Test Results to Codecov (OIDC)
-        if: ${{ !cancelled() && env.CODECOV_TOKEN == '' }}
+        if: ${{ !cancelled() && env.CODECOV_TOKEN == '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         uses: codecov/codecov-action@v5
         with:
           use_oidc: true
