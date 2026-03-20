@@ -79,6 +79,7 @@ public fun PersistentKepkoTheme(
  *
  * @see PreviewPersistenceManager
  */
+@OptIn(ExperimentalKepkoApi::class)
 @Composable
 public fun PreviewPersistentKepkoTheme(
     isSystemInDarkTheme: Boolean = false,
