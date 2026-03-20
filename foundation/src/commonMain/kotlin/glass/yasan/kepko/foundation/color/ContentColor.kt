@@ -27,7 +27,6 @@ public fun contentColorFor(
     KepkoTheme.colors.foreground -> KepkoTheme.colors.content
     KepkoTheme.colors.midground -> KepkoTheme.colors.content
     KepkoTheme.colors.background -> KepkoTheme.colors.content
-    KepkoTheme.colors.outline -> KepkoTheme.colors.content
     // Semantic
     KepkoTheme.colors.success -> KepkoTheme.colors.onSuccess
     KepkoTheme.colors.information -> KepkoTheme.colors.onInformation
@@ -41,15 +40,13 @@ public fun contentColorFor(
     // Content
     KepkoTheme.colors.content -> KepkoTheme.colors.foreground
     KepkoTheme.colors.contentSubtle -> KepkoTheme.colors.foreground
-    KepkoTheme.colors.contentDisabled -> KepkoTheme.colors.content
     // Inverse Content
     KepkoTheme.colors.inverseContent -> KepkoTheme.colors.inverseForeground
     KepkoTheme.colors.inverseContentSubtle -> KepkoTheme.colors.inverseForeground
-    KepkoTheme.colors.inverseContentDisabled -> KepkoTheme.colors.inverseContent
     // Inverse Layers
     KepkoTheme.colors.inverseForeground -> KepkoTheme.colors.inverseContent
     KepkoTheme.colors.inverseMidground -> KepkoTheme.colors.inverseContent
     KepkoTheme.colors.inverseBackground -> KepkoTheme.colors.inverseContent
     // Other
-    else -> KepkoTheme.colors.content
+    else -> if (containerColor.isLight()) Color.Black else Color.White
 }
