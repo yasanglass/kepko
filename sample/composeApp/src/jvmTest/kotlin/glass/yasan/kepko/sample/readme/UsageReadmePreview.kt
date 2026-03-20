@@ -11,13 +11,12 @@ import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 
 @ReadmePreview
 @Composable
 internal fun UsageLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         UsageReadmeContent()
     }
 }

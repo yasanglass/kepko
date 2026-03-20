@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -145,31 +144,31 @@ public fun PreferenceRadioGroupPicker(
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { PreviewContent() }
+    KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { PreviewContent() }
+    KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { PreviewContent() }
+    KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

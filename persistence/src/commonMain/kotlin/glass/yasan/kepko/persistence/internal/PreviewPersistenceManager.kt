@@ -1,9 +1,9 @@
 package glass.yasan.kepko.persistence.internal
 
 import androidx.compose.runtime.Composable
-import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
-import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
+import glass.yasan.kepko.foundation.theme.ColorPalette
+import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
+import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager
 import glass.yasan.kepko.persistence.PreviewPersistentKepkoTheme
 
@@ -14,18 +14,18 @@ import glass.yasan.kepko.persistence.PreviewPersistentKepkoTheme
  */
 public class PreviewPersistenceManager : PersistenceManager {
 
-    override var stylePrimary: ThemeStyle? = null
-    override var styleLight: ThemeStyle = defaultLight
-    override var styleDark: ThemeStyle = defaultDark
+    override var palettePrimary: ColorPalette? = null
+    override var paletteLight: ColorPalette = defaultLight
+    override var paletteDark: ColorPalette = defaultDark
     override var grayscale: Boolean = false
 
     @Composable
-    override fun activeStyle(
+    override fun activePalette(
         isSystemInDarkTheme: Boolean,
-    ): ThemeStyle = if (isSystemInDarkTheme) {
-        styleDark
+    ): ColorPalette = if (isSystemInDarkTheme) {
+        paletteDark
     } else {
-        styleLight
+        paletteLight
     }
 
 }

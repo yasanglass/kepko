@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Fonts
 import glass.yasan.kepko.resource.Strings
 
@@ -56,31 +55,31 @@ public fun TextMono(
 @PreviewWithTest
 @Composable
 internal fun TextMonoLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { TextMonoPreviewContent() }
+    KepkoTheme(palette = LIGHT) { TextMonoPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextMonoDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { TextMonoPreviewContent() }
+    KepkoTheme(palette = DARK) { TextMonoPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextMonoBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { TextMonoPreviewContent() }
+    KepkoTheme(palette = BLACK) { TextMonoPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextMonoSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { TextMonoPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { TextMonoPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextMonoSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { TextMonoPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { TextMonoPreviewContent() }
 }
 
 @Composable
@@ -91,10 +90,10 @@ private fun TextMonoPreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(16.dp),
     ) {
-        TextMono(text = Strings.preferenceLightStyleTitle)
+        TextMono(text = Strings.preferenceLightPaletteTitle)
         TextMono(text = Strings.preferenceAnnotationActive, fontWeight = FontWeight.Bold)
-        TextMono(text = Strings.themeStyleLightSolarized, fontSize = 12.sp)
+        TextMono(text = Strings.colorPaletteLightSolarized, fontSize = 12.sp)
         TextMono(text = Strings.preferenceGrayscaleTitle, fontSize = 24.sp)
-        TextMono(text = Strings.preferenceLightStyleDescription, maxLines = 1)
+        TextMono(text = Strings.preferenceLightPaletteDescription, maxLines = 1)
     }
 }

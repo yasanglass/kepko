@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @OptIn(ExperimentalKepkoApi::class)
 @Composable
@@ -57,31 +56,31 @@ public fun PreferenceSlider(
 @PreviewWithTest
 @Composable
 internal fun PreferenceSliderLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { PreviewContent() }
+    KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceSliderDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { PreviewContent() }
+    KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceSliderBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { PreviewContent() }
+    KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceSliderSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceSliderSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
 @Composable

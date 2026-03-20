@@ -3,40 +3,40 @@ package glass.yasan.kepko.persistence
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runDesktopComposeUiTest
-import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.foundation.theme.ColorPalette
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 @OptIn(ExperimentalTestApi::class)
-internal class LocalKepkoThemeStyleTest {
+internal class LocalKepkoColorPaletteTest {
 
     @Test
-    fun givenNoProvider_whenAccessingLocalKepkoThemeStyle_thenThrowsHelpfulError() {
+    fun givenNoProvider_whenAccessingLocalKepkoColorPalette_thenThrowsHelpfulError() {
         // When
         val exception = assertFailsWith<IllegalStateException> {
             runDesktopComposeUiTest {
                 setContent {
-                    LocalKepkoThemeStyle.current
+                    LocalKepkoColorPalette.current
                 }
             }
         }
 
         // Then
-        assertContains(exception.message.orEmpty(), "ThemeStyle is not provided")
+        assertContains(exception.message.orEmpty(), "ColorPalette is not provided")
     }
 
     @Test
-    fun givenProvidedStyle_whenReadingLocalKepkoThemeStyle_thenReturnsSameStyle() {
+    fun givenProvidedPalette_whenReadingLocalKepkoColorPalette_thenReturnsSamePalette() {
         // Given
-        var current: ThemeStyle? = null
+        var current: ColorPalette? = null
 
         // When
         runDesktopComposeUiTest {
             setContent {
-                CompositionLocalProvider(LocalKepkoThemeStyle provides ThemeStyle.BLACK) {
-                    current = LocalKepkoThemeStyle.current
+                CompositionLocalProvider(LocalKepkoColorPalette provides ColorPalette.BLACK) {
+                    current = LocalKepkoColorPalette.current
                 }
             }
 
@@ -44,6 +44,6 @@ internal class LocalKepkoThemeStyleTest {
         }
 
         // Then
-        assertEquals(ThemeStyle.BLACK, current)
+        assertEquals(ColorPalette.BLACK, current)
     }
 }

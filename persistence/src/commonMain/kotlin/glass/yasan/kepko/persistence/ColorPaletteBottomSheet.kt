@@ -21,14 +21,14 @@ import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.ModalBottomSheet
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.color.contentColorFor
+import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ColorPaletteBottomSheet(
-    style: ThemeStyle,
+    palette: ColorPalette,
     grayscale: Boolean,
     onDismissRequest: () -> Unit,
 ) {
@@ -44,12 +44,12 @@ internal fun ColorPaletteBottomSheet(
                 modifier = Modifier.padding(top = 12.dp),
             )
             Text(
-                text = style.title(),
+                text = palette.title(),
                 color = KepkoTheme.colors.contentSubtle,
                 modifier = Modifier.padding(bottom = 12.dp),
             )
             ColorPaletteContent(
-                style = style,
+                palette = palette,
                 grayscale = grayscale,
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
@@ -61,7 +61,7 @@ internal fun ColorPaletteBottomSheet(
 
 @Composable
 private fun ColorPaletteContent(
-    style: ThemeStyle,
+    palette: ColorPalette,
     grayscale: Boolean,
     modifier: Modifier = Modifier,
 ) {
@@ -69,7 +69,7 @@ private fun ColorPaletteContent(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier,
     ) {
-        KepkoTheme(style = style, grayscale = grayscale) {
+        KepkoTheme(palette = palette, grayscale = grayscale) {
             val colors = KepkoTheme.colors
             val swatches = listOf(
                 Strings.colorSuccess to colors.success,
@@ -119,41 +119,41 @@ private fun ColorSwatchItem(
 @PreviewWithTest
 @Composable
 internal fun ColorPaletteContentLightPreview() {
-    ColorPaletteContentPreview(style = ThemeStyle.LIGHT)
+    ColorPaletteContentPreview(palette = ColorPalette.LIGHT)
 }
 
 @PreviewWithTest
 @Composable
 internal fun ColorPaletteContentDarkPreview() {
-    ColorPaletteContentPreview(style = ThemeStyle.DARK)
+    ColorPaletteContentPreview(palette = ColorPalette.DARK)
 }
 
 @PreviewWithTest
 @Composable
 internal fun ColorPaletteContentBlackPreview() {
-    ColorPaletteContentPreview(style = ThemeStyle.BLACK)
+    ColorPaletteContentPreview(palette = ColorPalette.BLACK)
 }
 
 @PreviewWithTest
 @Composable
 internal fun ColorPaletteContentSolarizedLightPreview() {
-    ColorPaletteContentPreview(style = ThemeStyle.SOLARIZED_LIGHT)
+    ColorPaletteContentPreview(palette = ColorPalette.SOLARIZED_LIGHT)
 }
 
 @PreviewWithTest
 @Composable
 internal fun ColorPaletteContentSolarizedDarkPreview() {
-    ColorPaletteContentPreview(style = ThemeStyle.SOLARIZED_DARK)
+    ColorPaletteContentPreview(palette = ColorPalette.SOLARIZED_DARK)
 }
 
 @Composable
-private fun ColorPaletteContentPreview(style: ThemeStyle) {
+private fun ColorPaletteContentPreview(palette: ColorPalette) {
     PreviewPersistentKepkoTheme(
-        isSystemInDarkTheme = style.isDark,
-        configure = { stylePrimary = style },
+        isSystemInDarkTheme = palette.isDark,
+        configure = { palettePrimary = palette },
     ) {
         ColorPaletteContent(
-            style = style,
+            palette = palette,
             grayscale = false,
             modifier = Modifier.padding(16.dp),
         )

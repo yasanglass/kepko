@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import androidx.compose.material3.Switch as Material3Switch
 import androidx.compose.material3.SwitchDefaults as Material3SwitchDefaults
 
@@ -47,31 +46,31 @@ public fun Switch(
 @PreviewWithTest
 @Composable
 internal fun SwitchLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { PreviewContent() }
+    KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SwitchDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { PreviewContent() }
+    KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SwitchBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { PreviewContent() }
+    KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SwitchSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SwitchSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
 @Composable

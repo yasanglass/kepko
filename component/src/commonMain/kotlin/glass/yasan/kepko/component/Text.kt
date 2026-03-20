@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Strings
 
 @Composable
@@ -54,31 +53,31 @@ public fun Text(
 @PreviewWithTest
 @Composable
 internal fun TextLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { TextPreviewContent() }
+    KepkoTheme(palette = LIGHT) { TextPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { TextPreviewContent() }
+    KepkoTheme(palette = DARK) { TextPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { TextPreviewContent() }
+    KepkoTheme(palette = BLACK) { TextPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { TextPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { TextPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun TextSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { TextPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { TextPreviewContent() }
 }
 
 @Composable
@@ -89,10 +88,10 @@ private fun TextPreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(16.dp),
     ) {
-        Text(text = Strings.preferenceStyleTitle)
-        Text(text = Strings.preferenceDarkStyleTitle, fontWeight = FontWeight.Bold)
-        Text(text = Strings.themeStyleSystem, fontSize = 12.sp)
-        Text(text = Strings.themeStyleDarkSolarized, fontSize = 24.sp)
-        Text(text = Strings.preferenceDarkStyleDescription, maxLines = 1)
+        Text(text = Strings.preferencePaletteTitle)
+        Text(text = Strings.preferenceDarkPaletteTitle, fontWeight = FontWeight.Bold)
+        Text(text = Strings.colorPaletteSystem, fontSize = 12.sp)
+        Text(text = Strings.colorPaletteDarkSolarized, fontSize = 24.sp)
+        Text(text = Strings.preferenceDarkPaletteDescription, maxLines = 1)
     }
 }

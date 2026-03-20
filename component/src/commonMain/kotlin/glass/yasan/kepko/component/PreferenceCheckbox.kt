@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -72,31 +71,31 @@ public fun PreferenceCheckbox(
 @PreviewWithTest
 @Composable
 internal fun PreferenceCheckboxLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { PreviewContent() }
+    KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceCheckboxDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { PreviewContent() }
+    KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceCheckboxBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { PreviewContent() }
+    KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceCheckboxSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceCheckboxSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
 @Composable

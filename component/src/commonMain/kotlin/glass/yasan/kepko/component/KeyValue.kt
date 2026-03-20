@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
 
 @Composable
@@ -51,31 +50,31 @@ public fun KeyValue(
 @PreviewWithTest
 @Composable
 internal fun KeyValueLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { PreviewContent() }
+    KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun KeyValueDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { PreviewContent() }
+    KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun KeyValueBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { PreviewContent() }
+    KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun KeyValueSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun KeyValueSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
 @Composable

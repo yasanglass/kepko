@@ -1,7 +1,7 @@
 package glass.yasan.kepko.foundation.color
 
 import androidx.compose.ui.graphics.Color
-import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.foundation.theme.ColorPalette
 
 public object ColorTokens {
 
@@ -140,189 +140,189 @@ public object ColorTokens {
     private val dangerSolarized: Color = Color(0xFFdc322f)
     private val onDangerSolarized: Color = Color(0xFFfdf6e3)
 
-    internal fun success(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> successStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> successSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> successCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> successCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> successCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> successCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> successGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> successGruvboxDark
+    internal fun success(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> successStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> successSolarized
+        CATPPUCCIN_LATTE -> successCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> successCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> successCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> successCatppuccinMocha
+        GRUVBOX_LIGHT -> successGruvboxLight
+        GRUVBOX_DARK -> successGruvboxDark
     }
 
-    internal fun onSuccess(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onSuccessStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onSuccessSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
+    internal fun onSuccess(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> onSuccessStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> onSuccessSolarized
+        CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        GRUVBOX_LIGHT -> foregroundGruvboxLight
+        GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
-    internal fun information(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> informationStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> informationSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> informationCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> informationCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> informationCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> informationCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> informationGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> informationGruvboxDark
+    internal fun information(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> informationStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> informationSolarized
+        CATPPUCCIN_LATTE -> informationCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> informationCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> informationCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> informationCatppuccinMocha
+        GRUVBOX_LIGHT -> informationGruvboxLight
+        GRUVBOX_DARK -> informationGruvboxDark
     }
 
-    internal fun onInformation(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onInformationStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onInformationSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
+    internal fun onInformation(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> onInformationStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> onInformationSolarized
+        CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        GRUVBOX_LIGHT -> foregroundGruvboxLight
+        GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
-    internal fun caution(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> cautionStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> cautionSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> cautionCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> cautionCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> cautionCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> cautionCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> cautionGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> cautionGruvboxDark
+    internal fun caution(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> cautionStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> cautionSolarized
+        CATPPUCCIN_LATTE -> cautionCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> cautionCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> cautionCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> cautionCatppuccinMocha
+        GRUVBOX_LIGHT -> cautionGruvboxLight
+        GRUVBOX_DARK -> cautionGruvboxDark
     }
 
-    internal fun onCaution(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onCautionStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onCautionSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> backgroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
+    internal fun onCaution(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> onCautionStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> onCautionSolarized
+        CATPPUCCIN_LATTE -> backgroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        GRUVBOX_LIGHT -> foregroundGruvboxLight
+        GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
-    internal fun danger(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> dangerStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> dangerSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> dangerCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> dangerCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> dangerCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> dangerCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> dangerGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> dangerGruvboxDark
+    internal fun danger(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> dangerStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> dangerSolarized
+        CATPPUCCIN_LATTE -> dangerCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> dangerCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> dangerCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> dangerCatppuccinMocha
+        GRUVBOX_LIGHT -> dangerGruvboxLight
+        GRUVBOX_DARK -> dangerGruvboxDark
     }
 
-    internal fun onDanger(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT, ThemeStyle.DARK, ThemeStyle.BLACK -> onDangerStandard
-        ThemeStyle.SOLARIZED_LIGHT, ThemeStyle.SOLARIZED_DARK -> onDangerSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
+    internal fun onDanger(palette: ColorPalette): Color = when (palette) {
+        LIGHT, DARK, BLACK -> onDangerStandard
+        SOLARIZED_LIGHT, SOLARIZED_DARK -> onDangerSolarized
+        CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        GRUVBOX_LIGHT -> foregroundGruvboxLight
+        GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
 
-    internal fun foreground(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> foregroundLight
-        ThemeStyle.DARK -> foregroundDark
-        ThemeStyle.BLACK -> foregroundBlack
-        ThemeStyle.SOLARIZED_LIGHT -> foregroundLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> foregroundDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> foregroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> foregroundGruvboxDark
+    internal fun foreground(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> foregroundLight
+        DARK -> foregroundDark
+        BLACK -> foregroundBlack
+        SOLARIZED_LIGHT -> foregroundLightSolarized
+        SOLARIZED_DARK -> foregroundDarkSolarized
+        CATPPUCCIN_LATTE -> foregroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> foregroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> foregroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
+        GRUVBOX_LIGHT -> foregroundGruvboxLight
+        GRUVBOX_DARK -> foregroundGruvboxDark
     }
 
-    internal fun midground(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> midgroundLight
-        ThemeStyle.DARK -> midgroundDark
-        ThemeStyle.BLACK -> midgroundDarkBlack
-        ThemeStyle.SOLARIZED_LIGHT -> midgroundLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> midgroundDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> midgroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> midgroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> midgroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> midgroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> midgroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> midgroundGruvboxDark
+    internal fun midground(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> midgroundLight
+        DARK -> midgroundDark
+        BLACK -> midgroundDarkBlack
+        SOLARIZED_LIGHT -> midgroundLightSolarized
+        SOLARIZED_DARK -> midgroundDarkSolarized
+        CATPPUCCIN_LATTE -> midgroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> midgroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> midgroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> midgroundCatppuccinMocha
+        GRUVBOX_LIGHT -> midgroundGruvboxLight
+        GRUVBOX_DARK -> midgroundGruvboxDark
     }
 
-    internal fun background(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> backgroundLight
-        ThemeStyle.DARK -> backgroundDark
-        ThemeStyle.BLACK -> backgroundDarkBlack
-        ThemeStyle.SOLARIZED_LIGHT -> backgroundLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> backgroundDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> backgroundCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> backgroundCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> backgroundCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> backgroundCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> backgroundGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> backgroundGruvboxDark
+    internal fun background(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> backgroundLight
+        DARK -> backgroundDark
+        BLACK -> backgroundDarkBlack
+        SOLARIZED_LIGHT -> backgroundLightSolarized
+        SOLARIZED_DARK -> backgroundDarkSolarized
+        CATPPUCCIN_LATTE -> backgroundCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> backgroundCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> backgroundCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> backgroundCatppuccinMocha
+        GRUVBOX_LIGHT -> backgroundGruvboxLight
+        GRUVBOX_DARK -> backgroundGruvboxDark
     }
 
-    internal fun outline(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> outlineLight
-        ThemeStyle.DARK -> outlineDark
-        ThemeStyle.BLACK -> outlineDarkBlack
-        ThemeStyle.SOLARIZED_LIGHT -> outlineLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> outlineDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> outlineCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> outlineCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> outlineCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> outlineCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> outlineGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> outlineGruvboxDark
+    internal fun outline(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> outlineLight
+        DARK -> outlineDark
+        BLACK -> outlineDarkBlack
+        SOLARIZED_LIGHT -> outlineLightSolarized
+        SOLARIZED_DARK -> outlineDarkSolarized
+        CATPPUCCIN_LATTE -> outlineCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> outlineCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> outlineCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> outlineCatppuccinMocha
+        GRUVBOX_LIGHT -> outlineGruvboxLight
+        GRUVBOX_DARK -> outlineGruvboxDark
     }
 
-    internal fun content(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> contentLight
-        ThemeStyle.DARK, ThemeStyle.BLACK -> contentDark
-        ThemeStyle.SOLARIZED_LIGHT -> contentLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> contentDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> contentCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> contentCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> contentCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> contentCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> contentGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> contentGruvboxDark
+    internal fun content(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> contentLight
+        DARK, BLACK -> contentDark
+        SOLARIZED_LIGHT -> contentLightSolarized
+        SOLARIZED_DARK -> contentDarkSolarized
+        CATPPUCCIN_LATTE -> contentCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> contentCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> contentCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> contentCatppuccinMocha
+        GRUVBOX_LIGHT -> contentGruvboxLight
+        GRUVBOX_DARK -> contentGruvboxDark
     }
 
-    internal fun contentSubtle(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> contentSubtleLight
-        ThemeStyle.DARK, ThemeStyle.BLACK -> contentSubtleDark
-        ThemeStyle.SOLARIZED_LIGHT -> contentSubtleLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> contentSubtleDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> contentSubtleCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> contentSubtleCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> contentSubtleCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> contentSubtleCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> contentSubtleGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> contentSubtleGruvboxDark
+    internal fun contentSubtle(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> contentSubtleLight
+        DARK, BLACK -> contentSubtleDark
+        SOLARIZED_LIGHT -> contentSubtleLightSolarized
+        SOLARIZED_DARK -> contentSubtleDarkSolarized
+        CATPPUCCIN_LATTE -> contentSubtleCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> contentSubtleCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> contentSubtleCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> contentSubtleCatppuccinMocha
+        GRUVBOX_LIGHT -> contentSubtleGruvboxLight
+        GRUVBOX_DARK -> contentSubtleGruvboxDark
     }
 
-    internal fun contentDisabled(style: ThemeStyle): Color = when (style) {
-        ThemeStyle.LIGHT -> contentDisabledLight
-        ThemeStyle.DARK -> contentDisabledDark
-        ThemeStyle.BLACK -> contentDisabledBlack
-        ThemeStyle.SOLARIZED_LIGHT -> contentDisabledLightSolarized
-        ThemeStyle.SOLARIZED_DARK -> contentDisabledDarkSolarized
-        ThemeStyle.CATPPUCCIN_LATTE -> contentDisabledCatppuccinLatte
-        ThemeStyle.CATPPUCCIN_FRAPPE -> contentDisabledCatppuccinFrappe
-        ThemeStyle.CATPPUCCIN_MACCHIATO -> contentDisabledCatppuccinMacchiato
-        ThemeStyle.CATPPUCCIN_MOCHA -> contentDisabledCatppuccinMocha
-        ThemeStyle.GRUVBOX_LIGHT -> contentDisabledGruvboxLight
-        ThemeStyle.GRUVBOX_DARK -> contentDisabledGruvboxDark
+    internal fun contentDisabled(palette: ColorPalette): Color = when (palette) {
+        LIGHT -> contentDisabledLight
+        DARK -> contentDisabledDark
+        BLACK -> contentDisabledBlack
+        SOLARIZED_LIGHT -> contentDisabledLightSolarized
+        SOLARIZED_DARK -> contentDisabledDarkSolarized
+        CATPPUCCIN_LATTE -> contentDisabledCatppuccinLatte
+        CATPPUCCIN_FRAPPE -> contentDisabledCatppuccinFrappe
+        CATPPUCCIN_MACCHIATO -> contentDisabledCatppuccinMacchiato
+        CATPPUCCIN_MOCHA -> contentDisabledCatppuccinMocha
+        GRUVBOX_LIGHT -> contentDisabledGruvboxLight
+        GRUVBOX_DARK -> contentDisabledGruvboxDark
     }
 
 }

@@ -12,98 +12,97 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteLightReadmePreview() {
+    KepkoTheme(palette = LIGHT) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.DARK) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteDarkReadmePreview() {
+    KepkoTheme(palette = DARK) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleBlackReadmePreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteBlackReadmePreview() {
+    KepkoTheme(palette = BLACK) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleSolarizedLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteSolarizedLightReadmePreview() {
+    KepkoTheme(palette = SOLARIZED_LIGHT) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleSolarizedDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteSolarizedDarkReadmePreview() {
+    KepkoTheme(palette = SOLARIZED_DARK) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleCatppuccinLatteReadmePreview() {
-    KepkoTheme(style = ThemeStyle.CATPPUCCIN_LATTE) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteCatppuccinLatteReadmePreview() {
+    KepkoTheme(palette = CATPPUCCIN_LATTE) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleCatppuccinFrappeReadmePreview() {
-    KepkoTheme(style = ThemeStyle.CATPPUCCIN_FRAPPE) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteCatppuccinFrappeReadmePreview() {
+    KepkoTheme(palette = CATPPUCCIN_FRAPPE) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleCatppuccinMacchiatoReadmePreview() {
-    KepkoTheme(style = ThemeStyle.CATPPUCCIN_MACCHIATO) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteCatppuccinMacchiatoReadmePreview() {
+    KepkoTheme(palette = CATPPUCCIN_MACCHIATO) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleCatppuccinMochaReadmePreview() {
-    KepkoTheme(style = ThemeStyle.CATPPUCCIN_MOCHA) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteCatppuccinMochaReadmePreview() {
+    KepkoTheme(palette = CATPPUCCIN_MOCHA) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleGruvboxLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.GRUVBOX_LIGHT) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteGruvboxLightReadmePreview() {
+    KepkoTheme(palette = GRUVBOX_LIGHT) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ThemeStyleGruvboxDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.GRUVBOX_DARK) {
-        ThemeStyleReadmeContent()
+internal fun ColorPaletteGruvboxDarkReadmePreview() {
+    KepkoTheme(palette = GRUVBOX_DARK) {
+        ColorPaletteReadmeContent()
     }
 }
 
 @Composable
-private fun ThemeStyleReadmeContent() {
+private fun ColorPaletteReadmeContent() {
     val colors = KepkoTheme.colors
     val swatchColors = listOf(
         colors.success,

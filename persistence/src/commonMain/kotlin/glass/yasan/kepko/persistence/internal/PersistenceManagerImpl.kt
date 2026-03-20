@@ -6,11 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.russhwolf.settings.Settings
-import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultDark
-import glass.yasan.kepko.foundation.theme.ThemeStyle.Companion.defaultLight
+import glass.yasan.kepko.foundation.theme.ColorPalette
+import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
+import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager
-import glass.yasan.kepko.persistence.PersistenceManager.Companion.STYLE_ID_SYSTEM
+import glass.yasan.kepko.persistence.PersistenceManager.Companion.PALETTE_ID_SYSTEM
 
 internal class PersistenceManagerImpl(
     private val settings: Settings,
@@ -33,41 +33,41 @@ internal class PersistenceManagerImpl(
     }
 
     @Composable
-    override fun activeStyle(
+    override fun activePalette(
         isSystemInDarkTheme: Boolean,
-    ): ThemeStyle = resolvedStyle(isSystemInDarkTheme)
+    ): ColorPalette = resolvedPalette(isSystemInDarkTheme)
 
-    internal fun resolvedStyle(
+    internal fun resolvedPalette(
         isSystemInDarkTheme: Boolean,
-    ): ThemeStyle = stylePrimary ?: if (isSystemInDarkTheme) styleDark else styleLight
+    ): ColorPalette = palettePrimary ?: if (isSystemInDarkTheme) paletteDark else paletteLight
 
-    private var _stylePrimary by mutableStateOf(
-        settings.getStringOrNull(KEY_STYLE)?.let { ThemeStyle.fromIdOrNull(it) }
+    private var _palettePrimary by mutableStateOf(
+        settings.getStringOrNull(KEY_STYLE)?.let { ColorPalette.fromIdOrNull(it) }
     )
-    override var stylePrimary: ThemeStyle?
-        get() = _stylePrimary
+    override var palettePrimary: ColorPalette?
+        get() = _palettePrimary
         set(value) {
-            _stylePrimary = value
-            settings.putString(KEY_STYLE, value?.id ?: STYLE_ID_SYSTEM)
+            _palettePrimary = value
+            settings.putString(KEY_STYLE, value?.id ?: PALETTE_ID_SYSTEM)
         }
 
-    private var _styleLight by mutableStateOf(
-        ThemeStyle.fromIdOrNull(settings.getStringOrNull(KEY_LIGHT_STYLE)) ?: defaultLight
+    private var _paletteLight by mutableStateOf(
+        ColorPalette.fromIdOrNull(settings.getStringOrNull(KEY_LIGHT_STYLE)) ?: defaultLight
     )
-    override var styleLight: ThemeStyle
-        get() = _styleLight
+    override var paletteLight: ColorPalette
+        get() = _paletteLight
         set(value) {
-            _styleLight = value
+            _paletteLight = value
             settings.putString(KEY_LIGHT_STYLE, value.id)
         }
 
-    private var _styleDark by mutableStateOf(
-        ThemeStyle.fromIdOrNull(settings.getStringOrNull(KEY_DARK_STYLE)) ?: defaultDark
+    private var _paletteDark by mutableStateOf(
+        ColorPalette.fromIdOrNull(settings.getStringOrNull(KEY_DARK_STYLE)) ?: defaultDark
     )
-    override var styleDark: ThemeStyle
-        get() = _styleDark
+    override var paletteDark: ColorPalette
+        get() = _paletteDark
         set(value) {
-            _styleDark = value
+            _paletteDark = value
             settings.putString(KEY_DARK_STYLE, value.id)
         }
 

@@ -1,7 +1,7 @@
 package glass.yasan.kepko.persistence
 
 import com.russhwolf.settings.MapSettings
-import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -26,77 +26,77 @@ internal class PersistenceManagerTest {
         val manager = createManager()
 
         // Then
-        assertNull(manager.stylePrimary)
-        assertEquals(ThemeStyle.defaultLight, manager.styleLight)
-        assertEquals(ThemeStyle.defaultDark, manager.styleDark)
+        assertNull(manager.palettePrimary)
+        assertEquals(ColorPalette.defaultLight, manager.paletteLight)
+        assertEquals(ColorPalette.defaultDark, manager.paletteDark)
         assertFalse(manager.grayscale)
     }
 
     @Test
-    fun givenEmptySettings_whenStylePrimarySet_thenPersistsAndReadsBack() {
+    fun givenEmptySettings_whenPalettePrimarySet_thenPersistsAndReadsBack() {
         // Given
         val settings = MapSettings()
         val manager = PersistenceManagerImpl(settings)
 
         // When
-        manager.stylePrimary = ThemeStyle.SOLARIZED_DARK
+        manager.palettePrimary = SOLARIZED_DARK
 
         // Then
-        assertEquals(ThemeStyle.SOLARIZED_DARK, manager.stylePrimary)
+        assertEquals(ColorPalette.SOLARIZED_DARK, manager.palettePrimary)
         assertEquals(
-            ThemeStyle.SOLARIZED_DARK.id,
+            ColorPalette.SOLARIZED_DARK.id,
             settings.getString(PersistenceManagerImpl.KEY_STYLE, "")
         )
     }
 
     @Test
-    fun givenStylePrimarySet_whenSetToNull_thenPersistsSystemId() {
+    fun givenPalettePrimarySet_whenSetToNull_thenPersistsSystemId() {
         // Given
         val settings = MapSettings()
         val manager = PersistenceManagerImpl(settings)
-        manager.stylePrimary = ThemeStyle.BLACK
+        manager.palettePrimary = BLACK
 
         // When
-        manager.stylePrimary = null
+        manager.palettePrimary = null
 
         // Then
-        assertNull(manager.stylePrimary)
+        assertNull(manager.palettePrimary)
         assertEquals(
-            PersistenceManager.STYLE_ID_SYSTEM,
+            PersistenceManager.PALETTE_ID_SYSTEM,
             settings.getString(PersistenceManagerImpl.KEY_STYLE, "")
         )
     }
 
     @Test
-    fun givenEmptySettings_whenStyleLightSet_thenPersistsAndReadsBack() {
+    fun givenEmptySettings_whenPaletteLightSet_thenPersistsAndReadsBack() {
         // Given
         val settings = MapSettings()
         val manager = PersistenceManagerImpl(settings)
 
         // When
-        manager.styleLight = ThemeStyle.SOLARIZED_LIGHT
+        manager.paletteLight = SOLARIZED_LIGHT
 
         // Then
-        assertEquals(ThemeStyle.SOLARIZED_LIGHT, manager.styleLight)
+        assertEquals(ColorPalette.SOLARIZED_LIGHT, manager.paletteLight)
         assertEquals(
-            ThemeStyle.SOLARIZED_LIGHT.id,
+            ColorPalette.SOLARIZED_LIGHT.id,
             settings.getString(PersistenceManagerImpl.KEY_LIGHT_STYLE, "")
         )
     }
 
     @Test
-    fun givenEmptySettings_whenStyleDarkSet_thenPersistsAndReadsBack() {
+    fun givenEmptySettings_whenPaletteDarkSet_thenPersistsAndReadsBack() {
         // Given
         val settings = MapSettings()
         val manager = PersistenceManagerImpl(settings)
 
         // When
-        manager.styleDark = ThemeStyle.BLACK
+        manager.paletteDark = BLACK
 
         // Then
-        assertEquals(ThemeStyle.BLACK, manager.styleDark)
+        assertEquals(ColorPalette.BLACK, manager.paletteDark)
         assertEquals(
-            ThemeStyle.BLACK.id,
+            ColorPalette.BLACK.id,
             settings.getString(PersistenceManagerImpl.KEY_DARK_STYLE, "")
         )
     }
@@ -122,21 +122,21 @@ internal class PersistenceManagerTest {
     fun givenPrePopulatedSettings_whenCreated_thenRestoresValues() {
         // Given
         val manager = createManager(
-            PersistenceManagerImpl.KEY_STYLE to ThemeStyle.BLACK.id,
-            PersistenceManagerImpl.KEY_LIGHT_STYLE to ThemeStyle.SOLARIZED_LIGHT.id,
-            PersistenceManagerImpl.KEY_DARK_STYLE to ThemeStyle.SOLARIZED_DARK.id,
+            PersistenceManagerImpl.KEY_STYLE to ColorPalette.BLACK.id,
+            PersistenceManagerImpl.KEY_LIGHT_STYLE to ColorPalette.SOLARIZED_LIGHT.id,
+            PersistenceManagerImpl.KEY_DARK_STYLE to ColorPalette.SOLARIZED_DARK.id,
             PersistenceManagerImpl.KEY_GRAYSCALE to true,
         )
 
         // Then
-        assertEquals(ThemeStyle.BLACK, manager.stylePrimary)
-        assertEquals(ThemeStyle.SOLARIZED_LIGHT, manager.styleLight)
-        assertEquals(ThemeStyle.SOLARIZED_DARK, manager.styleDark)
+        assertEquals(ColorPalette.BLACK, manager.palettePrimary)
+        assertEquals(ColorPalette.SOLARIZED_LIGHT, manager.paletteLight)
+        assertEquals(ColorPalette.SOLARIZED_DARK, manager.paletteDark)
         assertEquals(true, manager.grayscale)
     }
 
     @Test
-    fun givenInvalidStyleIds_whenCreated_thenFallsBackToDefaults() {
+    fun givenInvalidPaletteIds_whenCreated_thenFallsBackToDefaults() {
         // Given
         val manager = createManager(
             PersistenceManagerImpl.KEY_STYLE to "nonexistent",
@@ -145,19 +145,19 @@ internal class PersistenceManagerTest {
         )
 
         // Then
-        assertNull(manager.stylePrimary)
-        assertEquals(ThemeStyle.defaultLight, manager.styleLight)
-        assertEquals(ThemeStyle.defaultDark, manager.styleDark)
+        assertNull(manager.palettePrimary)
+        assertEquals(ColorPalette.defaultLight, manager.paletteLight)
+        assertEquals(ColorPalette.defaultDark, manager.paletteDark)
     }
 
     @Test
-    fun givenSystemPrimaryStyleId_whenCreated_thenRestoresNullPrimaryStyle() {
+    fun givenSystemPrimaryPaletteId_whenCreated_thenRestoresNullPrimaryPalette() {
         // Given
         val manager =
-            createManager(PersistenceManagerImpl.KEY_STYLE to PersistenceManager.STYLE_ID_SYSTEM)
+            createManager(PersistenceManagerImpl.KEY_STYLE to PersistenceManager.PALETTE_ID_SYSTEM)
 
         // Then
-        assertNull(manager.stylePrimary)
+        assertNull(manager.palettePrimary)
     }
 
     @Test
@@ -178,36 +178,36 @@ internal class PersistenceManagerTest {
     }
 
     @Test
-    fun givenPrimaryStyleSet_whenResolvedStyle_thenAlwaysUsesPrimaryStyle() {
+    fun givenPrimaryPaletteSet_whenResolvedPalette_thenAlwaysUsesPrimaryPalette() {
         // Given
         val manager = createManager() as PersistenceManagerImpl
-        manager.stylePrimary = ThemeStyle.BLACK
-        manager.styleLight = ThemeStyle.SOLARIZED_LIGHT
-        manager.styleDark = ThemeStyle.SOLARIZED_DARK
+        manager.palettePrimary = BLACK
+        manager.paletteLight = SOLARIZED_LIGHT
+        manager.paletteDark = SOLARIZED_DARK
 
         // When
-        val lightResolved = manager.resolvedStyle(isSystemInDarkTheme = false)
-        val darkResolved = manager.resolvedStyle(isSystemInDarkTheme = true)
+        val lightResolved = manager.resolvedPalette(isSystemInDarkTheme = false)
+        val darkResolved = manager.resolvedPalette(isSystemInDarkTheme = true)
 
         // Then
-        assertEquals(ThemeStyle.BLACK, lightResolved)
-        assertEquals(ThemeStyle.BLACK, darkResolved)
+        assertEquals(ColorPalette.BLACK, lightResolved)
+        assertEquals(ColorPalette.BLACK, darkResolved)
     }
 
     @Test
-    fun givenNoPrimaryStyle_whenResolvedStyle_thenUsesLightOrDarkStyleByDarkFlag() {
+    fun givenNoPrimaryPalette_whenResolvedPalette_thenUsesLightOrDarkPaletteByDarkFlag() {
         // Given
         val manager = createManager() as PersistenceManagerImpl
-        manager.stylePrimary = null
-        manager.styleLight = ThemeStyle.SOLARIZED_LIGHT
-        manager.styleDark = ThemeStyle.SOLARIZED_DARK
+        manager.palettePrimary = null
+        manager.paletteLight = SOLARIZED_LIGHT
+        manager.paletteDark = SOLARIZED_DARK
 
         // When
-        val lightResolved = manager.resolvedStyle(isSystemInDarkTheme = false)
-        val darkResolved = manager.resolvedStyle(isSystemInDarkTheme = true)
+        val lightResolved = manager.resolvedPalette(isSystemInDarkTheme = false)
+        val darkResolved = manager.resolvedPalette(isSystemInDarkTheme = true)
 
         // Then
-        assertEquals(ThemeStyle.SOLARIZED_LIGHT, lightResolved)
-        assertEquals(ThemeStyle.SOLARIZED_DARK, darkResolved)
+        assertEquals(ColorPalette.SOLARIZED_LIGHT, lightResolved)
+        assertEquals(ColorPalette.SOLARIZED_DARK, darkResolved)
     }
 }

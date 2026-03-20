@@ -4,6 +4,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 
 @ExperimentalKepkoApi
-public class ThemeStylePreviewParameterProvider(
-    override val values: Sequence<ThemeStyle> = ThemeStyle.entries.asSequence(),
-) : PreviewParameterProvider<ThemeStyle>
+public class ColorPalettePreviewParameterProvider(
+    override val values: Sequence<ColorPalette> = ColorPalette.entries.asSequence(),
+) : PreviewParameterProvider<ColorPalette>

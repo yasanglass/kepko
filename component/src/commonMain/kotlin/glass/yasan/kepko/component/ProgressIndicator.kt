@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.LinearProgressIndicator as Material3LinearProgressIndicator
 import androidx.compose.material3.CircularProgressIndicator as Material3CircularProgressIndicator
@@ -58,31 +57,31 @@ public object ProgressIndicatorDefaults {
 @PreviewWithTest
 @Composable
 internal fun ProgressIndicatorLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { ProgressIndicatorPreviewContent() }
+    KepkoTheme(palette = LIGHT) { ProgressIndicatorPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun ProgressIndicatorDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { ProgressIndicatorPreviewContent() }
+    KepkoTheme(palette = DARK) { ProgressIndicatorPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun ProgressIndicatorBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { ProgressIndicatorPreviewContent() }
+    KepkoTheme(palette = BLACK) { ProgressIndicatorPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun ProgressIndicatorSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { ProgressIndicatorPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { ProgressIndicatorPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun ProgressIndicatorSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { ProgressIndicatorPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { ProgressIndicatorPreviewContent() }
 }
 
 @Composable
@@ -93,7 +92,7 @@ private fun ProgressIndicatorPreviewContent() {
             .background(KepkoTheme.colors.foreground)
             .padding(16.dp),
     ) {
-        Text(text = Strings.preferenceStyleTitle)
+        Text(text = Strings.preferencePaletteTitle)
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {

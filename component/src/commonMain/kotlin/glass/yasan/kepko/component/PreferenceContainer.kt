@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @Composable
 public fun PreferenceContainer(
@@ -163,31 +162,31 @@ public fun PreferenceContainer(
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerHorizontalLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { HorizontalPreviewContent() }
+    KepkoTheme(palette = LIGHT) { HorizontalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerHorizontalDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { HorizontalPreviewContent() }
+    KepkoTheme(palette = DARK) { HorizontalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerHorizontalBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { HorizontalPreviewContent() }
+    KepkoTheme(palette = BLACK) { HorizontalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerHorizontalSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { HorizontalPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { HorizontalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerHorizontalSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { HorizontalPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { HorizontalPreviewContent() }
 }
 
 @Composable
@@ -229,31 +228,31 @@ private fun HorizontalPreviewContent() {
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerVerticalLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { VerticalPreviewContent() }
+    KepkoTheme(palette = LIGHT) { VerticalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerVerticalDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { VerticalPreviewContent() }
+    KepkoTheme(palette = DARK) { VerticalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerVerticalBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { VerticalPreviewContent() }
+    KepkoTheme(palette = BLACK) { VerticalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerVerticalSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { VerticalPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { VerticalPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceContainerVerticalSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { VerticalPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { VerticalPreviewContent() }
 }
 
 @Composable

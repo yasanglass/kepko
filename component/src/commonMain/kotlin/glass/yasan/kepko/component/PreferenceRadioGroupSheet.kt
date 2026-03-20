@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.extensions.isFullWidth
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
 import kotlinx.coroutines.launch
 
@@ -145,31 +144,31 @@ public fun PreferenceRadioGroupSheet(
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupSheetContentLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { SheetContentPreviewContent() }
+    KepkoTheme(palette = LIGHT) { SheetContentPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupSheetContentDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { SheetContentPreviewContent() }
+    KepkoTheme(palette = DARK) { SheetContentPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupSheetContentBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { SheetContentPreviewContent() }
+    KepkoTheme(palette = BLACK) { SheetContentPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupSheetContentSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { SheetContentPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { SheetContentPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupSheetContentSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { SheetContentPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { SheetContentPreviewContent() }
 }
 
 @Composable

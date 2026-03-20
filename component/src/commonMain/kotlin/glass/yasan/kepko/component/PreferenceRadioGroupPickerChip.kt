@@ -26,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
 
 
@@ -185,31 +184,31 @@ public fun PreferenceRadioGroupPickerChip(
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerChipLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { CompactPreviewContent() }
+    KepkoTheme(palette = LIGHT) { CompactPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerChipDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { CompactPreviewContent() }
+    KepkoTheme(palette = DARK) { CompactPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerChipBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { CompactPreviewContent() }
+    KepkoTheme(palette = BLACK) { CompactPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerChipSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { CompactPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { CompactPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun PreferenceRadioGroupPickerChipSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { CompactPreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { CompactPreviewContent() }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

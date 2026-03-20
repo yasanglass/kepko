@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.dimension.Dimensions
 import glass.yasan.kepko.foundation.shape.Shapes
+import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 import glass.yasan.kepko.persistence.internal.PreviewPersistenceManager
 import glass.yasan.kepko.persistence.internal.SingletonPersistenceManager
@@ -15,7 +15,7 @@ import glass.yasan.kepko.persistence.internal.SingletonPersistenceManager
 /**
  * A [KepkoTheme] wrapper that automatically persists and restores theme preferences.
  *
- * - Use [LocalKepkoThemeStyle] to access the active theme style in [content].
+ * - Use [LocalKepkoColorPalette] to access the active color palette in [content].
  * - Use [LocalKepkoPersistenceManager] to access the [PersistenceManager] instance in [content].
  * - Use [PersistentPreferenceThemeScreen] to allow users to configure theme preferences.
  */
@@ -41,7 +41,7 @@ public fun PersistentKepkoTheme(
 /**
  * A [KepkoTheme] wrapper that automatically persists and restores theme preferences.
  *
- * - Use [LocalKepkoThemeStyle] to access the active theme style in [content].
+ * - Use [LocalKepkoColorPalette] to access the active color palette in [content].
  * - Use [LocalKepkoPersistenceManager] to access the [PersistenceManager] instance in [content].
  * - Use [PersistentPreferenceThemeScreen] to allow users to configure theme preferences.
  */
@@ -54,19 +54,19 @@ public fun PersistentKepkoTheme(
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    val style = persistenceManager.activeStyle(
+    val palette = persistenceManager.activePalette(
         isSystemInDarkTheme = isSystemInDarkTheme,
     )
 
     KepkoTheme(
-        style = style,
+        palette = palette,
         grayscale = persistenceManager.grayscale,
         dimensions = dimensions,
         shapes = shapes,
     ) {
         CompositionLocalProvider(
             LocalKepkoPersistenceManager provides persistenceManager,
-            LocalKepkoThemeStyle provides style,
+            LocalKepkoColorPalette provides palette,
             content = content,
         )
     }
@@ -75,7 +75,7 @@ public fun PersistentKepkoTheme(
 /**
  * A [PersistentKepkoTheme] implementation for preview purposes.
  *
- * The active [ThemeStyle] will always be based on the [isSystemInDarkTheme] parameter.
+ * The active [ColorPalette] will always be based on the [isSystemInDarkTheme] parameter.
  *
  * @see PreviewPersistenceManager
  */

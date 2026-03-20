@@ -18,7 +18,6 @@ import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.LOREM_IPSUM
 import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
@@ -26,7 +25,7 @@ import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
 @ReadmePreview
 @Composable
 internal fun ButtonTextLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         ButtonTextReadmeContent()
     }
 }
@@ -34,7 +33,7 @@ internal fun ButtonTextLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun ButtonTextDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         ButtonTextReadmeContent()
     }
 }
@@ -64,7 +63,7 @@ private fun ButtonTextReadmeContent() {
 @ReadmePreview
 @Composable
 internal fun OutlinedTextFieldLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         OutlinedTextFieldReadmeContent()
     }
 }
@@ -72,7 +71,7 @@ internal fun OutlinedTextFieldLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun OutlinedTextFieldDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         OutlinedTextFieldReadmeContent()
     }
 }
@@ -97,7 +96,7 @@ private fun OutlinedTextFieldReadmeContent() {
 @ReadmePreview
 @Composable
 internal fun PreferenceCheckboxLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         PreferenceCheckboxReadmeContent()
     }
 }
@@ -105,7 +104,7 @@ internal fun PreferenceCheckboxLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun PreferenceCheckboxDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         PreferenceCheckboxReadmeContent()
     }
 }
@@ -135,7 +134,7 @@ private fun PreferenceCheckboxReadmeContent() {
 @ReadmePreview
 @Composable
 internal fun PreferenceRadioButtonLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         PreferenceRadioButtonReadmeContent()
     }
 }
@@ -143,7 +142,7 @@ internal fun PreferenceRadioButtonLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun PreferenceRadioButtonDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         PreferenceRadioButtonReadmeContent()
     }
 }
@@ -173,7 +172,7 @@ private fun PreferenceRadioButtonReadmeContent() {
 @ReadmePreview
 @Composable
 internal fun PreferenceRadioGroupLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         PreferenceRadioGroupReadmeContent()
     }
 }
@@ -181,7 +180,7 @@ internal fun PreferenceRadioGroupLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun PreferenceRadioGroupDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         PreferenceRadioGroupReadmeContent()
     }
 }
@@ -217,7 +216,7 @@ private fun PreferenceRadioGroupReadmeContent() {
 @ReadmePreview
 @Composable
 internal fun PreferenceSliderLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         PreferenceSliderReadmeContent()
     }
 }
@@ -225,7 +224,7 @@ internal fun PreferenceSliderLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun PreferenceSliderDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         PreferenceSliderReadmeContent()
     }
 }
@@ -255,7 +254,7 @@ private fun PreferenceSliderReadmeContent() {
 @ReadmePreview
 @Composable
 internal fun PreferenceSwitchLightReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultLight) {
+    KepkoTheme(palette = defaultLight) {
         PreferenceSwitchReadmeContent()
     }
 }
@@ -263,7 +262,7 @@ internal fun PreferenceSwitchLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun PreferenceSwitchDarkReadmePreview() {
-    KepkoTheme(style = ThemeStyle.defaultDark) {
+    KepkoTheme(palette = defaultDark) {
         PreferenceSwitchReadmeContent()
     }
 }

@@ -5,14 +5,15 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
-import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.foundation.theme.ColorPalette
 
 @Immutable
 public class Colors internal constructor(
-    public val style: ThemeStyle,
+    public val palette: ColorPalette,
     private val grayscale: Boolean = false,
 ) {
-    private val inverseStyle: ThemeStyle = if (style == ThemeStyle.LIGHT) ThemeStyle.DARK else ThemeStyle.LIGHT
+    private val inversePalette: ColorPalette =
+        if (palette == ColorPalette.LIGHT) ColorPalette.DARK else ColorPalette.LIGHT
 
     private fun Color.applyGrayscale(): Color {
         if (!grayscale) return this
@@ -21,41 +22,41 @@ public class Colors internal constructor(
         return Color(luminance, luminance, luminance, alpha)
     }
 
-    public val success: Color = ColorTokens.success(style).applyGrayscale()
-    public val onSuccess: Color = ColorTokens.onSuccess(style).applyGrayscale()
+    public val success: Color = ColorTokens.success(palette).applyGrayscale()
+    public val onSuccess: Color = ColorTokens.onSuccess(palette).applyGrayscale()
 
-    public val information: Color = ColorTokens.information(style).applyGrayscale()
-    public val onInformation: Color = ColorTokens.onInformation(style).applyGrayscale()
+    public val information: Color = ColorTokens.information(palette).applyGrayscale()
+    public val onInformation: Color = ColorTokens.onInformation(palette).applyGrayscale()
 
-    public val caution: Color = ColorTokens.caution(style).applyGrayscale()
-    public val onCaution: Color = ColorTokens.onCaution(style).applyGrayscale()
+    public val caution: Color = ColorTokens.caution(palette).applyGrayscale()
+    public val onCaution: Color = ColorTokens.onCaution(palette).applyGrayscale()
 
-    public val danger: Color = ColorTokens.danger(style).applyGrayscale()
-    public val onDanger: Color = ColorTokens.onDanger(style).applyGrayscale()
+    public val danger: Color = ColorTokens.danger(palette).applyGrayscale()
+    public val onDanger: Color = ColorTokens.onDanger(palette).applyGrayscale()
 
-    public val content: Color = ColorTokens.content(style).applyGrayscale()
-    public val contentSubtle: Color = ColorTokens.contentSubtle(style).applyGrayscale()
-    public val contentDisabled: Color = ColorTokens.contentDisabled(style).applyGrayscale()
+    public val content: Color = ColorTokens.content(palette).applyGrayscale()
+    public val contentSubtle: Color = ColorTokens.contentSubtle(palette).applyGrayscale()
+    public val contentDisabled: Color = ColorTokens.contentDisabled(palette).applyGrayscale()
 
-    public val inverseContent: Color = ColorTokens.content(inverseStyle).applyGrayscale()
-    public val inverseContentSubtle: Color = ColorTokens.contentSubtle(inverseStyle).applyGrayscale()
-    public val inverseContentDisabled: Color = ColorTokens.contentDisabled(inverseStyle).applyGrayscale()
+    public val inverseContent: Color = ColorTokens.content(inversePalette).applyGrayscale()
+    public val inverseContentSubtle: Color = ColorTokens.contentSubtle(inversePalette).applyGrayscale()
+    public val inverseContentDisabled: Color = ColorTokens.contentDisabled(inversePalette).applyGrayscale()
 
-    public val foreground: Color = ColorTokens.foreground(style).applyGrayscale()
-    public val midground: Color = ColorTokens.midground(style).applyGrayscale()
-    public val background: Color = ColorTokens.background(style).applyGrayscale()
+    public val foreground: Color = ColorTokens.foreground(palette).applyGrayscale()
+    public val midground: Color = ColorTokens.midground(palette).applyGrayscale()
+    public val background: Color = ColorTokens.background(palette).applyGrayscale()
 
-    public val outline: Color = ColorTokens.outline(style).applyGrayscale()
+    public val outline: Color = ColorTokens.outline(palette).applyGrayscale()
 
-    public val inverseForeground: Color = ColorTokens.foreground(inverseStyle).applyGrayscale()
-    public val inverseMidground: Color = ColorTokens.midground(inverseStyle).applyGrayscale()
-    public val inverseBackground: Color = ColorTokens.background(inverseStyle).applyGrayscale()
+    public val inverseForeground: Color = ColorTokens.foreground(inversePalette).applyGrayscale()
+    public val inverseMidground: Color = ColorTokens.midground(inversePalette).applyGrayscale()
+    public val inverseBackground: Color = ColorTokens.background(inversePalette).applyGrayscale()
 }
 
 internal val LocalColors: ProvidableCompositionLocal<Colors> =
     compositionLocalOf {
         Colors(
-            style = ThemeStyle.LIGHT,
+            palette = LIGHT,
         )
     }
 

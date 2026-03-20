@@ -38,50 +38,50 @@ public object Strings {
     public val preferenceAnnotationPreview: String
         @Composable get() = stringResource(Res.string.preference_annotation_preview)
 
-    public val themeStyleSystem: String
-        @Composable get() = stringResource(Res.string.theme_style_system)
+    public val colorPaletteSystem: String
+        @Composable get() = stringResource(Res.string.color_palette_system)
 
-    public val themeStyleBlack: String
-        @Composable get() = stringResource(Res.string.theme_style_black)
+    public val colorPaletteBlack: String
+        @Composable get() = stringResource(Res.string.color_palette_black)
 
-    public val themeStyleCatppuccinFrappe: String
-        @Composable get() = stringResource(Res.string.theme_style_catppuccin_frappe)
+    public val colorPaletteCatppuccinFrappe: String
+        @Composable get() = stringResource(Res.string.color_palette_catppuccin_frappe)
 
-    public val themeStyleCatppuccinLatte: String
-        @Composable get() = stringResource(Res.string.theme_style_catppuccin_latte)
+    public val colorPaletteCatppuccinLatte: String
+        @Composable get() = stringResource(Res.string.color_palette_catppuccin_latte)
 
-    public val themeStyleCatppuccinMacchiato: String
-        @Composable get() = stringResource(Res.string.theme_style_catppuccin_macchiato)
+    public val colorPaletteCatppuccinMacchiato: String
+        @Composable get() = stringResource(Res.string.color_palette_catppuccin_macchiato)
 
-    public val themeStyleCatppuccinMocha: String
-        @Composable get() = stringResource(Res.string.theme_style_catppuccin_mocha)
+    public val colorPaletteCatppuccinMocha: String
+        @Composable get() = stringResource(Res.string.color_palette_catppuccin_mocha)
 
-    public val themeStyleGruvboxLight: String
-        @Composable get() = stringResource(Res.string.theme_style_gruvbox_light)
+    public val colorPaletteGruvboxLight: String
+        @Composable get() = stringResource(Res.string.color_palette_gruvbox_light)
 
-    public val themeStyleGruvboxDark: String
-        @Composable get() = stringResource(Res.string.theme_style_gruvbox_dark)
+    public val colorPaletteGruvboxDark: String
+        @Composable get() = stringResource(Res.string.color_palette_gruvbox_dark)
 
-    public val themeStyleDark: String
-        @Composable get() = stringResource(Res.string.theme_style_dark)
+    public val colorPaletteDark: String
+        @Composable get() = stringResource(Res.string.color_palette_dark)
 
-    public val themeStyleDarkSolarized: String
-        @Composable get() = stringResource(Res.string.theme_style_dark_solarized)
+    public val colorPaletteDarkSolarized: String
+        @Composable get() = stringResource(Res.string.color_palette_dark_solarized)
 
-    public val themeStyleLight: String
-        @Composable get() = stringResource(Res.string.theme_style_light)
+    public val colorPaletteLight: String
+        @Composable get() = stringResource(Res.string.color_palette_light)
 
-    public val themeStyleLightSolarized: String
-        @Composable get() = stringResource(Res.string.theme_style_light_solarized)
+    public val colorPaletteLightSolarized: String
+        @Composable get() = stringResource(Res.string.color_palette_light_solarized)
 
     public val preferenceColorPaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_color_palette_title)
 
-    public val preferenceDarkStyleDescription: String
-        @Composable get() = stringResource(Res.string.preference_dark_style_description)
+    public val preferenceDarkPaletteDescription: String
+        @Composable get() = stringResource(Res.string.preference_dark_palette_description)
 
-    public val preferenceDarkStyleTitle: String
-        @Composable get() = stringResource(Res.string.preference_dark_style_title)
+    public val preferenceDarkPaletteTitle: String
+        @Composable get() = stringResource(Res.string.preference_dark_palette_title)
 
     public val preferenceGrayscaleDescription: String
         @Composable get() = stringResource(Res.string.preference_grayscale_description)
@@ -89,14 +89,14 @@ public object Strings {
     public val preferenceGrayscaleTitle: String
         @Composable get() = stringResource(Res.string.preference_grayscale_title)
 
-    public val preferenceLightStyleDescription: String
-        @Composable get() = stringResource(Res.string.preference_light_style_description)
+    public val preferenceLightPaletteDescription: String
+        @Composable get() = stringResource(Res.string.preference_light_palette_description)
 
-    public val preferenceLightStyleTitle: String
-        @Composable get() = stringResource(Res.string.preference_light_style_title)
+    public val preferenceLightPaletteTitle: String
+        @Composable get() = stringResource(Res.string.preference_light_palette_title)
 
-    public val preferenceStyleTitle: String
-        @Composable get() = stringResource(Res.string.preference_style_title)
+    public val preferencePaletteTitle: String
+        @Composable get() = stringResource(Res.string.preference_palette_title)
 
     public val preferenceThemeScreenTitle: String
         @Composable get() = stringResource(Res.string.preference_theme_screen_title)

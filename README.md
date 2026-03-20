@@ -30,21 +30,21 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 |---|---|
 | <pre lang="kotlin">KepkoTheme {&#10;    Text("Hello, Kepko!")&#10;    TextPill(&#10;        text = "Yasan Glass",&#10;        containerColor = KepkoTheme.colors.information,&#10;    )&#10;}</pre> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/UsageLightReadmePreview.png" alt="Usage" width="300"/> |
 
-## Theme Styles
+## Color Palettes
 
 | Name | Color Palette |
 |---|---|
-| Light | ![Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleLightReadmePreview.png) |
-| Dark | ![Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleDarkReadmePreview.png) |
-| Black (AMOLED) | ![Black (AMOLED)](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleBlackReadmePreview.png) |
-| Solarized Light | ![Solarized Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedLightReadmePreview.png) |
-| Solarized Dark | ![Solarized Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleSolarizedDarkReadmePreview.png) |
-| Catppuccin Latte | ![Catppuccin Latte](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinLatteReadmePreview.png) |
-| Catppuccin Frappé | ![Catppuccin Frappé](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinFrappeReadmePreview.png) |
-| Catppuccin Macchiato | ![Catppuccin Macchiato](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinMacchiatoReadmePreview.png) |
-| Catppuccin Mocha | ![Catppuccin Mocha](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleCatppuccinMochaReadmePreview.png) |
-| Gruvbox Light | ![Gruvbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleGruvboxLightReadmePreview.png) |
-| Gruvbox Dark | ![Gruvbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ThemeStyleGruvboxDarkReadmePreview.png) |
+| Light | ![Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteLightReadmePreview.png) |
+| Dark | ![Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteDarkReadmePreview.png) |
+| Black (AMOLED) | ![Black (AMOLED)](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteBlackReadmePreview.png) |
+| Solarized Light | ![Solarized Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteSolarizedLightReadmePreview.png) |
+| Solarized Dark | ![Solarized Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteSolarizedDarkReadmePreview.png) |
+| Catppuccin Latte | ![Catppuccin Latte](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteCatppuccinLatteReadmePreview.png) |
+| Catppuccin Frappé | ![Catppuccin Frappé](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteCatppuccinFrappeReadmePreview.png) |
+| Catppuccin Macchiato | ![Catppuccin Macchiato](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteCatppuccinMacchiatoReadmePreview.png) |
+| Catppuccin Mocha | ![Catppuccin Mocha](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteCatppuccinMochaReadmePreview.png) |
+| Gruvbox Light | ![Gruvbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxLightReadmePreview.png) |
+| Gruvbox Dark | ![Gruvbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxDarkReadmePreview.png) |
 
 ## Components
 
@@ -91,7 +91,7 @@ PersistentPreferenceThemeScreen(
 
 [`PersistentKepkoTheme`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistentKepkoTheme.kt) provides the following [`CompositionLocal`](https://developer.android.com/reference/kotlin/androidx/compose/runtime/CompositionLocal) values inside its content:
 
-- [`LocalKepkoThemeStyle`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the currently active [`ThemeStyle`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ThemeStyle.kt)
+- [`LocalKepkoColorPalette`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the currently active [`ColorPalette`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ColorPalette.kt)
 - [`LocalKepkoPersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the [`PersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt) instance for direct access to persistence state
 
 ## Sample Project

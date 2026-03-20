@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Icons
 
 @Composable
@@ -104,31 +103,31 @@ public fun IconButton(
 @PreviewWithTest
 @Composable
 internal fun IconButtonLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { PreviewIconButtonContent() }
+    KepkoTheme(palette = LIGHT) { PreviewIconButtonContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun IconButtonDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { PreviewIconButtonContent() }
+    KepkoTheme(palette = DARK) { PreviewIconButtonContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun IconButtonBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { PreviewIconButtonContent() }
+    KepkoTheme(palette = BLACK) { PreviewIconButtonContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun IconButtonSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { PreviewIconButtonContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewIconButtonContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun IconButtonSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { PreviewIconButtonContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { PreviewIconButtonContent() }
 }
 
 @Composable

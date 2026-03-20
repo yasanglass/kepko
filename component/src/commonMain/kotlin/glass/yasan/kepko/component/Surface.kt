@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.Surface as Material3Surface
 
@@ -114,31 +113,31 @@ public fun Background(
 @PreviewWithTest
 @Composable
 internal fun SurfaceLightPreview() {
-    KepkoTheme(style = ThemeStyle.LIGHT) { SurfacePreviewContent() }
+    KepkoTheme(palette = LIGHT) { SurfacePreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SurfaceDarkPreview() {
-    KepkoTheme(style = ThemeStyle.DARK) { SurfacePreviewContent() }
+    KepkoTheme(palette = DARK) { SurfacePreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SurfaceBlackPreview() {
-    KepkoTheme(style = ThemeStyle.BLACK) { SurfacePreviewContent() }
+    KepkoTheme(palette = BLACK) { SurfacePreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SurfaceSolarizedLightPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_LIGHT) { SurfacePreviewContent() }
+    KepkoTheme(palette = SOLARIZED_LIGHT) { SurfacePreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
 internal fun SurfaceSolarizedDarkPreview() {
-    KepkoTheme(style = ThemeStyle.SOLARIZED_DARK) { SurfacePreviewContent() }
+    KepkoTheme(palette = SOLARIZED_DARK) { SurfacePreviewContent() }
 }
 
 @OptIn(ExperimentalKepkoApi::class)
@@ -149,13 +148,13 @@ private fun SurfacePreviewContent() {
         modifier = Modifier.padding(16.dp),
     ) {
         Foreground(modifier = Modifier.padding(8.dp)) {
-            Text(text = Strings.themeStyleLight)
+            Text(text = Strings.colorPaletteLight)
         }
         Midground(modifier = Modifier.padding(8.dp)) {
-            Text(text = Strings.themeStyleDark)
+            Text(text = Strings.colorPaletteDark)
         }
         Background(modifier = Modifier.padding(8.dp)) {
-            Text(text = Strings.themeStyleBlack)
+            Text(text = Strings.colorPaletteBlack)
         }
     }
 }

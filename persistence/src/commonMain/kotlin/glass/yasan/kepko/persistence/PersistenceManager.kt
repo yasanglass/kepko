@@ -4,28 +4,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
-import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 
 @Stable
 public interface PersistenceManager {
 
     public companion object {
-        public const val STYLE_ID_SYSTEM: String = "system"
+        public const val PALETTE_ID_SYSTEM: String = "system"
     }
 
-    public var stylePrimary: ThemeStyle?
-    public var styleLight: ThemeStyle
-    public var styleDark: ThemeStyle
+    public var palettePrimary: ColorPalette?
+    public var paletteLight: ColorPalette
+    public var paletteDark: ColorPalette
     public var grayscale: Boolean
 
     /**
-     * @return active theme style based on the persisted data and system theme.
+     * @return active [ColorPalette] based on the persisted data and system theme.
      */
     @Composable
-    public fun activeStyle(
+    public fun activePalette(
         isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
-    ): ThemeStyle = stylePrimary ?: if (isSystemInDarkTheme) styleDark else styleLight
+    ): ColorPalette = palettePrimary ?: if (isSystemInDarkTheme) paletteDark else paletteLight
 
 }
 
@@ -34,7 +34,7 @@ public val LocalKepkoPersistenceManager: ProvidableCompositionLocal<PersistenceM
         error("PersistenceManager is not provided. Wrap content in PersistentKepkoTheme.")
     }
 
-public val LocalKepkoThemeStyle: ProvidableCompositionLocal<ThemeStyle> =
+public val LocalKepkoColorPalette: ProvidableCompositionLocal<ColorPalette> =
     compositionLocalOf {
-        error("ThemeStyle is not provided. Wrap content in PersistentKepkoTheme.")
+        error("ColorPalette is not provided. Wrap content in PersistentKepkoTheme.")
     }
