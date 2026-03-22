@@ -1,6 +1,6 @@
 package glass.yasan.kepko.persistence
 
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Preview
 @Target(AnnotationTarget.FUNCTION)
