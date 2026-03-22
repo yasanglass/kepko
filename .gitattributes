@@ -1,3 +1,4 @@
 # Snapshot images stored in Git LFS
+resource/src/jvmTest/snapshots/*.png filter=lfs diff=lfs merge=lfs -text
 component/src/jvmTest/snapshots/*.png filter=lfs diff=lfs merge=lfs -text
 persistence/src/jvmTest/snapshots/*.png filter=lfs diff=lfs merge=lfs -text

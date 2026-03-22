@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -10,6 +11,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.roborazzi)
 }
 
 kotlin {
@@ -54,6 +56,18 @@ kotlin {
                 implementation(compose.ui)
             }
         }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+                implementation(compose.foundation)
+                implementation(libs.roborazzi.compose.desktop)
+                implementation(kotlin("reflect"))
+                implementation(kotlin("test"))
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
+            }
+        }
     }
 }
 
@@ -79,4 +93,29 @@ compose.resources {
 
 configure<MavenPublishBaseExtension> {
     coordinates(artifactId = artifactId)
+}
+
+tasks.register<Delete>("cleanSnapshots") {
+    delete(fileTree("src/jvmTest/snapshots") { include("*.png") })
+}
+
+tasks.register("cleanRecordSnapshots") {
+    description = "Deletes all snapshots and re-records them"
+    dependsOn("cleanSnapshots")
+    finalizedBy("recordRoborazziJvm")
+}
+
+tasks.register("verifySnapshots") {
+    description = "Verifies snapshots match baselines"
+    dependsOn("verifyRoborazziJvm")
+}
+
+val isCleanRecord = providers.gradleProperty("cleanRecordSnapshots").isPresent ||
+    gradle.startParameter.taskNames.any { it.contains("cleanRecordSnapshots") }
+
+tasks.named("jvmTest") {
+    mustRunAfter("cleanSnapshots")
+    if (isCleanRecord) {
+        outputs.upToDateWhen { false }
+    }
 }

@@ -10,6 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
+          <option value="resource:cleanRecordSnapshots" />
           <option value="component:cleanRecordSnapshots" />
           <option value="persistence:cleanRecordSnapshots" />
           <option value="sample:composeApp:cleanRecordSnapshots" />
