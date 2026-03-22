@@ -39,8 +39,14 @@ public object Icons {
     public val favorite: Painter
         @Composable get() = painterResource(Res.drawable.ic_favorite)
 
+    public val filterBw: Painter
+        @Composable get() = painterResource(Res.drawable.ic_filter_bw)
+
     public val info: Painter
         @Composable get() = painterResource(Res.drawable.ic_info)
+
+    public val lightMode: Painter
+        @Composable get() = painterResource(Res.drawable.ic_light_mode)
 
     public val lock: Painter
         @Composable get() = painterResource(Res.drawable.ic_lock)
@@ -48,28 +54,43 @@ public object Icons {
     public val lockOpen: Painter
         @Composable get() = painterResource(Res.drawable.ic_lock_open)
 
+    public val modeNight: Painter
+        @Composable get() = painterResource(Res.drawable.ic_mode_night)
+
+    public val newWindow: Painter
+        @Composable get() = painterResource(Res.drawable.ic_new_window)
+
+    public val openInBrowser: Painter
+        @Composable get() = painterResource(Res.drawable.ic_open_in_browser)
+
+    public val openInNew: Painter
+        @Composable get() = painterResource(Res.drawable.ic_open_in_new)
+
+    public val palette: Painter
+        @Composable get() = painterResource(Res.drawable.ic_palette)
+
     public val privacyTip: Painter
         @Composable get() = painterResource(Res.drawable.ic_privacy_tip)
 
+    public val rocket: Painter
+        @Composable get() = painterResource(Res.drawable.ic_rocket)
+
+    public val rocketLaunch: Painter
+        @Composable get() = painterResource(Res.drawable.ic_rocket_launch)
+
     public val settings: Painter
         @Composable get() = painterResource(Res.drawable.ic_settings)
+
+    public val shapeLine: Painter
+        @Composable get() = painterResource(Res.drawable.ic_shape_line)
+
+    public val shapes: Painter
+        @Composable get() = painterResource(Res.drawable.ic_shapes)
 
     public val star: Painter
         @Composable get() = painterResource(Res.drawable.ic_star)
 
     public val warning: Painter
         @Composable get() = painterResource(Res.drawable.ic_warning)
-
-    public val palette: Painter
-        @Composable get() = painterResource(Res.drawable.ic_palette)
-
-    public val filterBw: Painter
-        @Composable get() = painterResource(Res.drawable.ic_filter_bw)
-
-    public val lightMode: Painter
-        @Composable get() = painterResource(Res.drawable.ic_light_mode)
-
-    public val modeNight: Painter
-        @Composable get() = painterResource(Res.drawable.ic_mode_night)
 
 }
