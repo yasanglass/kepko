@@ -52,7 +52,7 @@ kotlin {
             dependencies {
                 api(project(":component"))
                 implementation(libs.multiplatform.settings.no.arg)
-                implementation(libs.jetbrains.compose.components.ui.tooling.preview)
+                implementation(libs.jetbrains.compose.ui.tooling.preview)
                 implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.jetbrains.compose.material3)
                 implementation(libs.jetbrains.compose.runtime)

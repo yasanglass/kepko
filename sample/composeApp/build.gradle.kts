@@ -78,7 +78,7 @@ kotlin {
                 implementation(libs.jetbrains.compose.material3)
                 implementation(libs.jetbrains.compose.ui)
                 implementation(libs.jetbrains.compose.components.resources)
-                implementation(libs.jetbrains.compose.components.ui.tooling.preview)
+                implementation(libs.jetbrains.compose.ui.tooling.preview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.platformtools.darkmodedetector)
@@ -107,9 +107,6 @@ kotlin {
             }
         }
         androidMain {
-            dependencies {
-                implementation(libs.jetbrains.compose.ui.tooling.preview)
-            }
         }
     }
 }

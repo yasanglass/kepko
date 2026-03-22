@@ -55,7 +55,7 @@ kotlin {
 
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.jetbrains.compose.components.resources)
-                implementation(libs.jetbrains.compose.components.ui.tooling.preview)
+                implementation(libs.jetbrains.compose.ui.tooling.preview)
                 implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.jetbrains.compose.material3)
                 implementation(libs.jetbrains.compose.material.icons.extended)
@@ -64,11 +64,6 @@ kotlin {
             }
         }
 
-        androidMain {
-            dependencies {
-                implementation(libs.jetbrains.compose.ui.tooling.preview)
-            }
-        }
 
         val nonAndroidMain by creating {
             dependsOn(commonMain)
