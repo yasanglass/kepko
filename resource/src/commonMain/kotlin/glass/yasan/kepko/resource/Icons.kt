@@ -9,6 +9,9 @@ public object Icons {
     public val add: Painter
         @Composable get() = painterResource(Res.drawable.ic_add)
 
+    public val autoAwesome: Painter
+        @Composable get() = painterResource(Res.drawable.ic_auto_awesome)
+
     public val bugReport: Painter
         @Composable get() = painterResource(Res.drawable.ic_bug_report)
 
