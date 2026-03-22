@@ -1,6 +1,6 @@
 package glass.yasan.kepko.component
 
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 /**
  * Marks a preview composable for automatic screenshot testing.
