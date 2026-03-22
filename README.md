@@ -30,6 +30,20 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 |---|---|
 | <pre lang="kotlin">KepkoTheme {&#10;    Text("Hello, Kepko!")&#10;    TextPill(&#10;        text = "Yasan Glass",&#10;        containerColor = KepkoTheme.colors.information,&#10;    )&#10;}</pre> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/UsageLightReadmePreview.png" alt="Usage" width="300"/> |
 
+## Components
+
+| Light | Dark |
+|---|---|
+| ![ButtonText Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonTextLightReadmePreview.png) | ![ButtonText Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonTextDarkReadmePreview.png) |
+| ![OutlinedTextField Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/OutlinedTextFieldLightReadmePreview.png) | ![OutlinedTextField Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/OutlinedTextFieldDarkReadmePreview.png) |
+| ![PreferenceCheckbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceCheckboxLightReadmePreview.png) | ![PreferenceCheckbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceCheckboxDarkReadmePreview.png) |
+| ![PreferenceRadioButton Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioButtonLightReadmePreview.png) | ![PreferenceRadioButton Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioButtonDarkReadmePreview.png) |
+| ![PreferenceRadioGroup Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioGroupLightReadmePreview.png) | ![PreferenceRadioGroup Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioGroupDarkReadmePreview.png) |
+| ![PreferenceSlider Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSliderLightReadmePreview.png) | ![PreferenceSlider Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSliderDarkReadmePreview.png) |
+| ![PreferenceSwitch Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSwitchLightReadmePreview.png) | ![PreferenceSwitch Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSwitchDarkReadmePreview.png) |
+
+See the full list of components [here](https://github.com/yasanglass/kepko/tree/main/component/src/commonMain/kotlin/glass/yasan/kepko/component).
+
 ## Color Palettes
 
 | Name | Color Palette |
@@ -45,20 +59,6 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 | Catppuccin Mocha | ![Catppuccin Mocha](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteCatppuccinMochaReadmePreview.png) |
 | Gruvbox Light | ![Gruvbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxLightReadmePreview.png) |
 | Gruvbox Dark | ![Gruvbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxDarkReadmePreview.png) |
-
-## Components
-
-| Light | Dark |
-|---|---|
-| ![ButtonText Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonTextLightReadmePreview.png) | ![ButtonText Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonTextDarkReadmePreview.png) |
-| ![OutlinedTextField Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/OutlinedTextFieldLightReadmePreview.png) | ![OutlinedTextField Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/OutlinedTextFieldDarkReadmePreview.png) |
-| ![PreferenceCheckbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceCheckboxLightReadmePreview.png) | ![PreferenceCheckbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceCheckboxDarkReadmePreview.png) |
-| ![PreferenceRadioButton Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioButtonLightReadmePreview.png) | ![PreferenceRadioButton Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioButtonDarkReadmePreview.png) |
-| ![PreferenceRadioGroup Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioGroupLightReadmePreview.png) | ![PreferenceRadioGroup Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioGroupDarkReadmePreview.png) |
-| ![PreferenceSlider Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSliderLightReadmePreview.png) | ![PreferenceSlider Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSliderDarkReadmePreview.png) |
-| ![PreferenceSwitch Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSwitchLightReadmePreview.png) | ![PreferenceSwitch Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceSwitchDarkReadmePreview.png) |
-
-See the full list of components [here](https://github.com/yasanglass/kepko/tree/main/component/src/commonMain/kotlin/glass/yasan/kepko/component).
 
 ## Persistence
 
