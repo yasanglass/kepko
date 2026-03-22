@@ -1,4 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -74,12 +73,12 @@ kotlin {
             dependencies {
                 implementation(project(":persistence"))
 
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.ui)
-                implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.foundation)
+                implementation(libs.jetbrains.compose.material3)
+                implementation(libs.jetbrains.compose.ui)
+                implementation(libs.jetbrains.compose.components.resources)
+                implementation(libs.jetbrains.compose.components.ui.tooling.preview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.platformtools.darkmodedetector)
@@ -102,15 +101,14 @@ kotlin {
                 implementation(project(":resource"))
                 implementation(libs.composable.preview.scanner.jvm)
                 implementation(libs.roborazzi.compose.desktop)
-                implementation(kotlin("reflect"))
-                implementation(kotlin("test"))
-                @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.uiTest)
+                implementation(libs.jetbrains.kotlin.reflect)
+                implementation(libs.jetbrains.kotlin.test)
+                implementation(libs.jetbrains.compose.ui.test)
             }
         }
         androidMain {
             dependencies {
-                implementation(compose.preview)
+                implementation(libs.jetbrains.compose.ui.tooling.preview)
             }
         }
     }
@@ -131,7 +129,7 @@ android {
 }
 
 dependencies {
-    debugImplementation(compose.uiTooling)
+    debugImplementation(libs.jetbrains.compose.ui.tooling)
 }
 
 val macosTargets = kotlin.targets.filterIsInstance<KotlinNativeTarget>().filter { it.name.startsWith("macos") }

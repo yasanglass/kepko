@@ -53,20 +53,20 @@ kotlin {
                 api(project(":resource"))
 
                 implementation(libs.androidx.lifecycle.runtime.compose)
-                implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
-                implementation(compose.runtime)
-                implementation(compose.ui)
+                implementation(libs.jetbrains.compose.components.resources)
+                implementation(libs.jetbrains.compose.components.ui.tooling.preview)
+                implementation(libs.jetbrains.compose.foundation)
+                implementation(libs.jetbrains.compose.material3)
+                implementation(libs.jetbrains.compose.material.icons.extended)
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.ui)
                 implementation(libs.platformtools.darkmodedetector)
             }
         }
 
         androidMain {
             dependencies {
-                implementation(compose.preview)
+                implementation(libs.jetbrains.compose.ui.tooling.preview)
             }
         }
 
@@ -114,7 +114,7 @@ android {
 }
 
 dependencies {
-    debugImplementation(compose.uiTooling)
+    debugImplementation(libs.jetbrains.compose.ui.tooling)
 }
 
 compose.resources {

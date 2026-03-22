@@ -1,5 +1,4 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -51,21 +50,20 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.components.resources)
-                implementation(compose.runtime)
-                implementation(compose.ui)
+                implementation(libs.jetbrains.compose.components.resources)
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.ui)
             }
         }
 
         val jvmTest by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
-                implementation(compose.foundation)
+                implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.roborazzi.compose.desktop)
-                implementation(kotlin("reflect"))
-                implementation(kotlin("test"))
-                @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.uiTest)
+                implementation(libs.jetbrains.kotlin.reflect)
+                implementation(libs.jetbrains.kotlin.test)
+                implementation(libs.jetbrains.compose.ui.test)
             }
         }
     }
