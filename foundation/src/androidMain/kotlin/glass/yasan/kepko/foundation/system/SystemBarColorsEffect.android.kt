@@ -1,4 +1,4 @@
-package glass.yasan.kepko.sample
+package glass.yasan.kepko.foundation.system
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
@@ -9,7 +9,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 @Composable
-actual fun SystemBarColorsEffect(
+public actual fun SystemBarColorsEffect(
     statusBarColor: Color,
     navigationBarColor: Color,
     isDark: Boolean,

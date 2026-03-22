@@ -74,27 +74,31 @@ kotlin {
             dependsOn(commonMain)
         }
 
-        val jvmMain by getting {
+        val iosMain by getting {
             dependsOn(nonAndroidMain)
+        }
+
+        val nonMobileMain by creating {
+            dependsOn(nonAndroidMain)
+        }
+
+        val jvmMain by getting {
+            dependsOn(nonMobileMain)
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
         }
 
         val jsMain by getting {
-            dependsOn(nonAndroidMain)
+            dependsOn(nonMobileMain)
         }
 
         val wasmJsMain by getting {
-            dependsOn(nonAndroidMain)
-        }
-
-        val iosMain by getting {
-            dependsOn(nonAndroidMain)
+            dependsOn(nonMobileMain)
         }
 
         val macosMain by getting {
-            dependsOn(nonAndroidMain)
+            dependsOn(nonMobileMain)
         }
     }
 }
