@@ -166,7 +166,7 @@ jobs:
           gh release upload "${TAG}" "kepko-sample-js-${TAG}.zip" --clobber
 
   refresh-docs:
-    name: Refresh Context7 Docs
+    name: Context7
     uses: ./.github/workflows/context7.yml
     secrets: inherit
 
