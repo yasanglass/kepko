@@ -1,6 +1,6 @@
 package glass.yasan.kepko.sample.readme
 
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Preview
 @Target(AnnotationTarget.FUNCTION)

@@ -8,7 +8,7 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.persistence.LocalKepkoColorPalette
 import glass.yasan.kepko.persistence.PersistentKepkoTheme
 import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 
 @Preview
 @Composable
