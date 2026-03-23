@@ -98,6 +98,9 @@ public object Strings {
     public val preferencePaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_palette_title)
 
+    public val preferenceOutlineTitle: String
+        @Composable get() = stringResource(Res.string.preference_outline_title)
+
     public val preferenceThemeScreenTitle: String
         @Composable get() = stringResource(Res.string.preference_theme_screen_title)
 

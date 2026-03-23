@@ -27,6 +27,7 @@ import glass.yasan.kepko.component.IconButton
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.PreferenceRadioGroupPicker
+import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.foundation.theme.ColorPalette
@@ -111,6 +112,8 @@ public fun PersistentPreferenceThemeContent(
         }
         Spacer(Modifier.height(8.dp))
         PersistentPreferenceThemeGrayscale(persistence)
+        Spacer(Modifier.height(8.dp))
+        PersistentPreferenceThemeOutline(persistence)
     }
 }
 
@@ -288,6 +291,23 @@ private fun PersistentPreferenceThemeGrayscale(
     )
 }
 
+@Composable
+private fun PersistentPreferenceThemeOutline(
+    persistence: PersistenceManager,
+) {
+    var value by remember { mutableStateOf(persistence.outline.value) }
+    PreferenceSlider(
+        title = Strings.preferenceOutlineTitle,
+        value = value,
+        onValueChange = { value = it },
+        onValueChangeFinished = { persistence.outline = value.dp },
+        valueRange = 1f..5f,
+        steps = 3,
+        modifier = Modifier
+            .testTag(PersistentPreferenceThemeScreenSemantics.OUTLINE)
+    )
+}
+
 private fun ColorPalette.asPreferenceRadioGroupItem(
     segment: Int = 0,
     isDefault: Boolean = false,
@@ -346,4 +366,5 @@ internal object PersistentPreferenceThemeScreenSemantics {
     const val LIGHT_PICKER = "theme_light_picker"
     const val DARK_PICKER = "theme_dark_picker"
     const val GRAYSCALE = "theme_grayscale"
+    const val OUTLINE = "theme_outline"
 }

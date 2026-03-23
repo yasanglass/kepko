@@ -5,7 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.russhwolf.settings.Settings
+import glass.yasan.kepko.foundation.dimension.DimensionTokens
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
@@ -30,6 +33,10 @@ internal class PersistenceManagerImpl(
 
         @VisibleForTesting
         const val KEY_GRAYSCALE = "$PREFIX.grayscale"
+
+        @VisibleForTesting
+        const val KEY_OUTLINE = "$PREFIX.dimension.outline"
+
     }
 
     @Composable
@@ -77,5 +84,15 @@ internal class PersistenceManagerImpl(
         set(value) {
             _grayscale = value
             settings.putBoolean(KEY_GRAYSCALE, value)
+        }
+
+    private var _outline by mutableStateOf(
+        settings.getFloat(KEY_OUTLINE, DimensionTokens.borderThickness.value).dp
+    )
+    override var outline: Dp
+        get() = _outline
+        set(value) {
+            _outline = value
+            settings.putFloat(KEY_OUTLINE, value.value)
         }
 }

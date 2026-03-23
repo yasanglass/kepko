@@ -58,10 +58,14 @@ public fun PersistentKepkoTheme(
         isSystemInDarkTheme = isSystemInDarkTheme,
     )
 
+    val resolvedDimensions = dimensions.copy(
+        borderThickness = persistenceManager.outline,
+    )
+
     KepkoTheme(
         palette = palette,
         grayscale = persistenceManager.grayscale,
-        dimensions = dimensions,
+        dimensions = resolvedDimensions,
         shapes = shapes,
     ) {
         CompositionLocalProvider(

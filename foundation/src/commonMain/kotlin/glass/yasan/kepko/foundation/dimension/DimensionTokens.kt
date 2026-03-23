@@ -2,9 +2,11 @@ package glass.yasan.kepko.foundation.dimension
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.annotation.InternalKepkoApi
 
-internal object DimensionTokens {
+@InternalKepkoApi
+public object DimensionTokens {
 
-    val borderThickness: Dp = 1.dp
-    val iconSize: Dp = 24.dp
+    public val borderThickness: Dp = 1.dp
+    public val iconSize: Dp = 24.dp
 }

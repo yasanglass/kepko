@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.unit.Dp
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 
@@ -18,6 +19,7 @@ public interface PersistenceManager {
     public var paletteLight: ColorPalette
     public var paletteDark: ColorPalette
     public var grayscale: Boolean
+    public var outline: Dp
 
     /**
      * @return active [ColorPalette] based on the persisted data and system theme.
