@@ -20,6 +20,7 @@ public interface PersistenceManager {
     public var paletteDark: ColorPalette
     public var grayscale: Boolean
     public var outline: Dp
+    public var roundness: Float
 
     /**
      * @return active [ColorPalette] based on the persisted data and system theme.

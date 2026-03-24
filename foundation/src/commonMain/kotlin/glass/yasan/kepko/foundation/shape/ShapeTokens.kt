@@ -1,13 +1,14 @@
 package glass.yasan.kepko.foundation.shape
 
-import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.annotation.InternalKepkoApi
 
-internal object ShapeTokens {
-    val extraSmall: CornerBasedShape = RoundedCornerShape(4.dp)
-    val small: CornerBasedShape = RoundedCornerShape(8.dp)
-    val medium: CornerBasedShape = RoundedCornerShape(12.dp)
-    val large: CornerBasedShape = RoundedCornerShape(16.dp)
-    val extraLarge: CornerBasedShape = RoundedCornerShape(28.dp)
+@InternalKepkoApi
+public object ShapeTokens {
+    public val extraSmallCornerRadius: Dp = 4.dp
+    public val smallCornerRadius: Dp = 8.dp
+    public val mediumCornerRadius: Dp = 12.dp
+    public val largeCornerRadius: Dp = 16.dp
+    public val extraLargeCornerRadius: Dp = 28.dp
 }

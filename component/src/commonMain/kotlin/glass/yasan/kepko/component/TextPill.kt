@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,7 +36,7 @@ import org.jetbrains.compose.resources.painterResource
 public fun TextPill(
     annotation: PreferenceAnnotation,
     modifier: Modifier = Modifier,
-    shape: Shape = CircleShape,
+    shape: Shape = KepkoTheme.shapes.extraLarge,
     animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
     onClick: (() -> Unit)? = null,
 ) {
@@ -63,7 +62,7 @@ public fun TextPill(
     trailingIcon: Painter? = null,
     contentColor: Color = contentColorFor(containerColor),
     border: BorderStroke? = borderStrokeFor(containerColor),
-    shape: Shape = CircleShape,
+    shape: Shape = KepkoTheme.shapes.extraLarge,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Medium,
     textTransformation: (String) -> String = { it.uppercase() },

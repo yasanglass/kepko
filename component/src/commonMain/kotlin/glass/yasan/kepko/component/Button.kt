@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,7 +32,7 @@ public fun Button(
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
-    shape: Shape = CircleShape,
+    shape: Shape = KepkoTheme.shapes.extraLarge,
     border: BorderStroke? = borderStrokeFor(containerColor),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonDefaults.contentPadding(),

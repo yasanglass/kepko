@@ -37,6 +37,10 @@ internal class PersistenceManagerImpl(
         @VisibleForTesting
         const val KEY_OUTLINE = "$PREFIX.dimension.outline"
 
+        @VisibleForTesting
+        const val KEY_ROUNDNESS = "$PREFIX.dimension.roundness"
+
+        private const val DEFAULT_ROUNDNESS = 1f
     }
 
     @Composable
@@ -94,5 +98,15 @@ internal class PersistenceManagerImpl(
         set(value) {
             _outline = value
             settings.putFloat(KEY_OUTLINE, value.value)
+        }
+
+    private var _roundness by mutableStateOf(
+        settings.getFloat(KEY_ROUNDNESS, DEFAULT_ROUNDNESS)
+    )
+    override var roundness: Float
+        get() = _roundness
+        set(value) {
+            _roundness = value
+            settings.putFloat(KEY_ROUNDNESS, value)
         }
 }

@@ -21,6 +21,7 @@ public class PreviewPersistenceManager : PersistenceManager {
     override var paletteDark: ColorPalette = defaultDark
     override var grayscale: Boolean = false
     override var outline: Dp = DimensionTokens.borderThickness
+    override var roundness: Float = 1f
 
     @Composable
     override fun activePalette(

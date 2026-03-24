@@ -114,6 +114,8 @@ public fun PersistentPreferenceThemeContent(
         PersistentPreferenceThemeGrayscale(persistence)
         Spacer(Modifier.height(8.dp))
         PersistentPreferenceThemeOutline(persistence)
+        Spacer(Modifier.height(8.dp))
+        PersistentPreferenceThemeRoundness(persistence)
     }
 }
 
@@ -308,6 +310,23 @@ private fun PersistentPreferenceThemeOutline(
     )
 }
 
+@Composable
+private fun PersistentPreferenceThemeRoundness(
+    persistence: PersistenceManager,
+) {
+    var value by remember { mutableStateOf(persistence.roundness) }
+    PreferenceSlider(
+        title = Strings.preferenceRoundnessTitle,
+        value = value,
+        onValueChange = { value = it },
+        onValueChangeFinished = { persistence.roundness = value },
+        valueRange = 0f..1.6f,
+        steps = 7,
+        modifier = Modifier
+            .testTag(PersistentPreferenceThemeScreenSemantics.ROUNDNESS)
+    )
+}
+
 private fun ColorPalette.asPreferenceRadioGroupItem(
     segment: Int = 0,
     isDefault: Boolean = false,
@@ -367,4 +386,5 @@ internal object PersistentPreferenceThemeScreenSemantics {
     const val DARK_PICKER = "theme_dark_picker"
     const val GRAYSCALE = "theme_grayscale"
     const val OUTLINE = "theme_outline"
+    const val ROUNDNESS = "theme_roundness"
 }

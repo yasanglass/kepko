@@ -1,10 +1,12 @@
 package glass.yasan.kepko.persistence
 
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.dimension.Dimensions
+import glass.yasan.kepko.foundation.shape.ShapeTokens
 import glass.yasan.kepko.foundation.shape.Shapes
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -23,7 +25,6 @@ import glass.yasan.kepko.persistence.internal.SingletonPersistenceManager
 @Composable
 public fun PersistentKepkoTheme(
     dimensions: Dimensions = KepkoTheme.dimensions,
-    shapes: Shapes = KepkoTheme.shapes,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -32,7 +33,6 @@ public fun PersistentKepkoTheme(
     PersistentKepkoTheme(
         persistenceManager = persistenceManager,
         dimensions = dimensions,
-        shapes = shapes,
         isSystemInDarkTheme = isSystemInDarkTheme,
         content = content,
     )
@@ -50,7 +50,6 @@ public fun PersistentKepkoTheme(
 public fun PersistentKepkoTheme(
     persistenceManager: PersistenceManager,
     dimensions: Dimensions = KepkoTheme.dimensions,
-    shapes: Shapes = KepkoTheme.shapes,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -62,11 +61,20 @@ public fun PersistentKepkoTheme(
         borderThickness = persistenceManager.outline,
     )
 
+    val roundness = persistenceManager.roundness
+    val resolvedShapes = Shapes(
+        extraSmall = RoundedCornerShape(ShapeTokens.extraSmallCornerRadius * roundness),
+        small = RoundedCornerShape(ShapeTokens.smallCornerRadius * roundness),
+        medium = RoundedCornerShape(ShapeTokens.mediumCornerRadius * roundness),
+        large = RoundedCornerShape(ShapeTokens.largeCornerRadius * roundness),
+        extraLarge = RoundedCornerShape(ShapeTokens.extraLargeCornerRadius * roundness),
+    )
+
     KepkoTheme(
         palette = palette,
         grayscale = persistenceManager.grayscale,
         dimensions = resolvedDimensions,
-        shapes = shapes,
+        shapes = resolvedShapes,
     ) {
         CompositionLocalProvider(
             LocalKepkoPersistenceManager provides persistenceManager,
