@@ -43,4 +43,5 @@
     <string name="color_palette_gruvbox_light">Gruvbox Light</string>
     <string name="color_palette_gruvbox_dark">Gruvbox Dark</string>
     <string name="color_palette_system">Systém</string>
+    <string name="preference_outline_title">Outline</string>
 </resources>
