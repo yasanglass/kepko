@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import org.gradle.plugins.signing.Sign
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.compose) apply false
@@ -106,6 +107,10 @@ fun Project.configurePublishing() {
                 developerConnection.set("scm:git:ssh://git@github.com/yasanglass/kepko.git")
             }
         }
+    }
+
+    tasks.withType<Sign>().configureEach {
+        isEnabled = gradle.startParameter.taskNames.none { it.contains("MavenLocal") }
     }
 }
 
