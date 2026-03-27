@@ -8,11 +8,11 @@
     <string name="preference_grayscale_description">Remove all colors from the interface</string>
     <string name="preference_light_palette_description">Color palette used when the system is in light mode</string>
     <string name="preference_light_palette_title">Light</string>
-    <string name="preference_theme_screen_title">Style</string>
+    <string name="preference_theme_screen_title">Styl</string>
     <string name="preference_palette_title">Theme</string>
     <string name="preference_color_palette_title">Color Palette</string>
     <string name="color_success">Success</string>
-    <string name="color_information">Information</string>
+    <string name="color_information">Informace</string>
     <string name="color_caution">Caution</string>
     <string name="color_danger">Danger</string>
     <string name="color_foreground">Foreground</string>
@@ -43,4 +43,6 @@
     <string name="color_palette_gruvbox_light">Gruvbox Light</string>
     <string name="color_palette_gruvbox_dark">Gruvbox Dark</string>
     <string name="color_palette_system">Systém</string>
+    <string name="preference_outline_title">Outline</string>
+    <string name="preference_roundness_title">Roundness</string>
 </resources>
