@@ -54,9 +54,9 @@ public fun Text(
 @Composable
 public fun Text(
     text: String,
+    style: TextStyle,
     modifier: Modifier = Modifier,
     color: Color = LocalContentColor.current,
-    style: TextStyle = TextStyle.Default,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
