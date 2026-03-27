@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -75,6 +74,19 @@ public fun TextTabular(
         with(density) { widest.toDp() }
     }
 
+    var previousText by remember { mutableStateOf(text) }
+    val direction = remember(text) {
+        val oldNum = previousText.filter { it.isDigit() }.toLongOrNull() ?: 0L
+        val newNum = text.filter { it.isDigit() }.toLongOrNull() ?: 0L
+        val dir = when {
+            newNum > oldNum -> -1
+            newNum < oldNum -> 1
+            else -> -1
+        }
+        previousText = text
+        dir
+    }
+
     Row(modifier = modifier) {
         text.forEach { char ->
             Box(
@@ -86,6 +98,7 @@ public fun TextTabular(
                         targetChar = char,
                         style = style,
                         animationSpec = animationSpec,
+                        direction = direction,
                     )
                 } else {
                     BasicText(
@@ -103,23 +116,16 @@ private fun AnimatedCharSlot(
     targetChar: Char,
     style: TextStyle,
     animationSpec: AnimationSpec<Float>,
+    direction: Int,
 ) {
     var displayChar by remember { mutableStateOf(targetChar) }
     var previousChar by remember { mutableStateOf(targetChar) }
     var charHeight by remember { mutableFloatStateOf(0f) }
-    var direction by remember { mutableIntStateOf(1) }
     val progress = remember { Animatable(1f) }
 
     LaunchedEffect(targetChar) {
         if (displayChar != targetChar) {
             previousChar = displayChar
-            direction = if (previousChar.isDigit() && targetChar.isDigit()) {
-                val diff = targetChar - previousChar
-                val goingUp = if (diff > 5) false else if (diff < -5) true else diff > 0
-                if (goingUp) -1 else 1
-            } else {
-                -1
-            }
             displayChar = targetChar
             progress.snapTo(0f)
             progress.animateTo(
