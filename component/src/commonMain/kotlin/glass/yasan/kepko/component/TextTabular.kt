@@ -114,7 +114,9 @@ private fun AnimatedCharSlot(
         if (displayChar != targetChar) {
             previousChar = displayChar
             direction = if (previousChar.isDigit() && targetChar.isDigit()) {
-                if (targetChar > previousChar) -1 else 1
+                val diff = targetChar - previousChar
+                val goingUp = if (diff > 5) false else if (diff < -5) true else diff > 0
+                if (goingUp) -1 else 1
             } else {
                 -1
             }
