@@ -386,6 +386,22 @@ private fun LazyListScope.examplePreferenceSlider() {
             enabled = false,
         )
     }
+    item {
+        val words = arrayOf("Low", "Mid", "High", "Max", "Off")
+        val sliderValue = rememberSaveable { mutableStateOf(0.5f) }
+
+        PreferenceSlider(
+            title = "PreferenceSlider",
+            description = "Custom value label with random words.",
+            value = sliderValue.value,
+            onValueChange = { sliderValue.value = it },
+            steps = 4,
+            transformValueLabel = { value ->
+                val index = (value * (words.size - 1)).toInt().coerceIn(0, words.lastIndex)
+                words[index]
+            },
+        )
+    }
 }
 
 @Suppress("LongMethod")
