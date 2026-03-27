@@ -73,6 +73,7 @@ import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
+import glass.yasan.kepko.sample.home.exampleTextTabular
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -107,6 +108,7 @@ internal fun HomeScreen(onNavigateToTheme: () -> Unit) {
                 exampleKeyValue()
                 exampleButtonText()
                 exampleTextPill()
+                exampleTextTabular()
                 exampleProgressIndicator()
                 exampleAppIdentity()
                 item { Spacer(Modifier.height(128.dp)) }
