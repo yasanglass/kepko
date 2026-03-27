@@ -51,6 +51,8 @@ import glass.yasan.kepko.component.PreferenceCheckbox
 import glass.yasan.kepko.component.PreferenceRadioButton
 import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
+import glass.yasan.kepko.component.PreferenceRadioGroupPickerChipDefaults
+import glass.yasan.kepko.component.PreferenceRadioGroupPickerChipDisplayMode
 import glass.yasan.kepko.component.PreferenceRadioGroupPickerChip
 import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
@@ -619,6 +621,201 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
             onSelectId = { selectedId = it },
             leadingIcon = Icons.settings,
         )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Chip (Icon Only)",
+            description = "Always shows icon only.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.settings,
+            displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON,
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            PreferenceRadioGroupPickerChip(
+                title = "Chip (Reveal)",
+                description = "Icon only, reveals text on change.",
+                selectedId = selectedId,
+                items = items,
+                onSelectId = { selectedId = it },
+                leadingIcon = Icons.settings,
+                displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+            )
+        }
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            PreferenceRadioGroupPickerChip(
+                title = "Chip (Reveal, End)",
+                description = "Icon only, reveals text on change. Aligned to end.",
+                selectedId = selectedId,
+                items = items,
+                onSelectId = { selectedId = it },
+                leadingIcon = Icons.settings,
+                displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+            )
+        }
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium") { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf("medium") }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Chip (Icon Only, Mixed Icons)",
+            description = "Falls back to text when the selected item has no icon.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.settings,
+            displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON,
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium") { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf("small") }
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            PreferenceRadioGroupPickerChip(
+                title = "Chip (Reveal, Mixed Icons)",
+                description = "Select Medium to see the text fallback for an iconless item.",
+                selectedId = selectedId,
+                items = items,
+                onSelectId = { selectedId = it },
+                leadingIcon = Icons.settings,
+                displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+            )
+        }
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium") { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf("small") }
+
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            PreferenceRadioGroupPickerChip(
+                title = "Chip (Reveal, Mixed Icons, End)",
+                description = "Select Medium to see the text fallback for an iconless item. Aligned to end.",
+                selectedId = selectedId,
+                items = items,
+                onSelectId = { selectedId = it },
+                leadingIcon = Icons.settings,
+                displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+            )
+        }
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Chip (Custom Colors)",
+            description = "Midground container with matching outline.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.settings,
+            displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+            colors = PreferenceRadioGroupPickerChipDefaults.colors(
+                containerColor = KepkoTheme.colors.midground,
+                outlineColor = KepkoTheme.colors.midground,
+            ),
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            PreferenceRadioGroupPickerChip(
+                title = "Chip (Custom Colors, Start)",
+                description = "Midground container with matching outline. Aligned to start.",
+                selectedId = selectedId,
+                items = items,
+                onSelectId = { selectedId = it },
+                leadingIcon = Icons.settings,
+                displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+                colors = PreferenceRadioGroupPickerChipDefaults.colors(
+                    containerColor = KepkoTheme.colors.midground,
+                    outlineColor = KepkoTheme.colors.midground,
+                ),
+            )
+        }
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
+            PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            PreferenceRadioGroupPickerChip(
+                title = "Chip (Custom Colors, End)",
+                description = "Midground container with matching outline. Aligned to end.",
+                selectedId = selectedId,
+                items = items,
+                onSelectId = { selectedId = it },
+                leadingIcon = Icons.settings,
+                displayMode = PreferenceRadioGroupPickerChipDisplayMode.ICON_WITH_TEXT_REVEAL,
+                colors = PreferenceRadioGroupPickerChipDefaults.colors(
+                    containerColor = KepkoTheme.colors.midground,
+                    outlineColor = KepkoTheme.colors.midground,
+                ),
+            )
+        }
     }
     item {
         val items = listOf(

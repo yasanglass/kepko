@@ -9,11 +9,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,12 +24,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.foundation.border.borderStroke
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
-
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalKepkoApi
@@ -43,6 +49,8 @@ public fun PreferenceRadioGroupPickerChip(
     description: String? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
+    colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
 ) {
     PreferenceRadioGroupPickerChip(
         title = title,
@@ -54,6 +62,8 @@ public fun PreferenceRadioGroupPickerChip(
         description = description,
         enabled = enabled,
         closeOnSelection = closeOnSelection,
+        displayMode = displayMode,
+        colors = colors,
         leadingContent = {
             Icon(
                 painter = leadingIcon,
@@ -78,6 +88,8 @@ public fun PreferenceRadioGroupPickerChip(
     description: String? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
+    colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
 ) {
     PreferenceRadioGroupPickerChip(
         title = title,
@@ -89,6 +101,8 @@ public fun PreferenceRadioGroupPickerChip(
         description = description,
         enabled = enabled,
         closeOnSelection = closeOnSelection,
+        displayMode = displayMode,
+        colors = colors,
         leadingContent = {
             Icon(
                 imageVector = leadingIcon,
@@ -113,46 +127,87 @@ public fun PreferenceRadioGroupPickerChip(
     description: String? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
+    colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
     leadingContent: @Composable () -> Unit = {},
 ) {
     var showSheet by remember { mutableStateOf(false) }
     val selectedItem = items.firstOrNull { it.id == selectedId }
+    var showTitle by remember { mutableStateOf(false) }
+    var isInitialComposition by remember { mutableStateOf(true) }
+    val hiddenSelectedTitle = when {
+        selectedItem?.icon == null -> null
+        displayMode == ICON_WITH_TEXT -> null
+        showTitle -> null
+        else -> selectedItem.title()
+    }
+
+    LaunchedEffect(selectedId) {
+        if (isInitialComposition) {
+            isInitialComposition = false
+            return@LaunchedEffect
+        }
+        showTitle = displayMode == ICON_WITH_TEXT_REVEAL && selectedItem?.icon != null
+    }
+
+    LaunchedEffect(showTitle, showSheet) {
+        if (!showTitle || showSheet) return@LaunchedEffect
+        delay(1.3.seconds)
+        showTitle = false
+    }
 
     Button(
         onClick = { showSheet = true },
         enabled = enabled,
+        containerColor = colors.containerColor,
+        contentColor = colors.contentColor,
+        border = borderStroke(color = colors.outlineColor),
         shape = ButtonTextDefaults.shape(),
         elevation = ButtonTextDefaults.buttonElevation(),
         contentPadding = ButtonTextDefaults.contentPadding(),
-        modifier = modifier,
+        modifier = modifier.then(
+            if (hiddenSelectedTitle != null) {
+                Modifier.semantics { contentDescription = hiddenSelectedTitle }
+            } else {
+                Modifier
+            }
+        ),
         content = {
             AnimatedContent(
-                targetState = selectedItem,
+                targetState = selectedItem to showTitle,
                 transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform(clip = false) },
-                contentKey = { it?.id },
+                contentKey = { (item, title) -> item?.id to title },
                 label = "selectedItem",
-            ) { item ->
+            ) { (item, titleVisible) ->
+                val shouldShowTitle = when {
+                    item == null -> false
+                    item.icon == null -> true
+                    displayMode == ICON_WITH_TEXT -> true
+                    else -> titleVisible
+                }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
+                    modifier = Modifier
+                        .padding(vertical = 8.dp, horizontal = 4.dp)
+                        .defaultMinSize(minHeight = KepkoTheme.dimensions.iconSize),
                 ) {
                     if (item != null) {
                         item.icon?.let { painter ->
-                            Icon(
-                                painter = painter,
-                                modifier = Modifier.padding(end = 12.dp),
-                            )
+                            Icon(painter = painter)
                         }
-                        Text(
-                            text = item.title().uppercase(),
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 1,
-                        )
-                        item.annotation?.let {
-                            TextPill(
-                                annotation = it,
-                                modifier = Modifier.padding(start = 12.dp),
+                        if (shouldShowTitle) {
+                            Text(
+                                text = item.title().uppercase(),
+                                fontWeight = FontWeight.Bold,
+                                maxLines = 1,
+                                modifier = if (item.icon != null) Modifier.padding(start = 12.dp) else Modifier,
                             )
+                            item.annotation?.let {
+                                TextPill(
+                                    annotation = it,
+                                    modifier = Modifier.padding(start = 12.dp),
+                                )
+                            }
                         }
                     } else {
                         leadingContent()
