@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
@@ -1357,8 +1356,8 @@ private fun RowScope.ColorBox(
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .border(shape = CircleShape)
-            .clip(CircleShape)
+            .border(shape = KepkoTheme.shapes.extraLarge)
+            .clip(KepkoTheme.shapes.extraLarge)
             .weight(1f)
             .height(128.dp)
             .background(animatedContainerColor),
