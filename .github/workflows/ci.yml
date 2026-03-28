@@ -1,0 +1,406 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+
+  # Phase 1 (Linux, parallel)
+
+  detekt:
+    name: Detekt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Run Detekt
+        run: ./gradlew detekt
+
+  jvm-build:
+    name: JVM Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Assemble
+        run: ./gradlew jvmJar
+
+      - name: Test
+        run: ./gradlew jvmTest
+
+      - name: Generate Coverage Report
+        if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+        run: ./gradlew koverXmlReport
+
+      - name: Upload Coverage to Codecov (Token)
+        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ env.CODECOV_TOKEN }}
+          files: build/reports/kover/report.xml
+          fail_ci_if_error: true
+
+      - name: Upload Coverage to Codecov (OIDC)
+        if: ${{ !cancelled() && env.CODECOV_TOKEN == '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+        uses: codecov/codecov-action@v5
+        with:
+          use_oidc: true
+          files: build/reports/kover/report.xml
+          fail_ci_if_error: true
+
+      - name: Upload Test Results to Codecov (Token)
+        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ env.CODECOV_TOKEN }}
+          report_type: test_results
+          files: "**/build/test-results/jvmTest/TEST-*.xml"
+
+      - name: Upload Test Results to Codecov (OIDC)
+        if: ${{ !cancelled() && env.CODECOV_TOKEN == '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+        uses: codecov/codecov-action@v5
+        with:
+          use_oidc: true
+          report_type: test_results
+          files: "**/build/test-results/jvmTest/TEST-*.xml"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: jvm-artifacts
+          path: |
+            **/build/libs/*-jvm.jar
+          retention-days: 30
+
+  # Phase 2 (macOS, needs Phase 1)
+
+  snapshots:
+    name: Snapshots
+    needs: [detekt, jvm-build]
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+          submodules: true
+          lfs: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Verify Snapshots
+        id: verify
+        continue-on-error: true
+        run: ./gradlew :resource:verifySnapshots :component:verifySnapshots :persistence:verifySnapshots :sample:composeApp:verifySnapshots
+
+      - name: Upload Diffs
+        if: steps.verify.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: snapshot-diffs
+          path: |
+            resource/build/outputs/roborazzi/
+            component/build/outputs/roborazzi/
+            persistence/build/outputs/roborazzi/
+            sample/composeApp/build/outputs/roborazzi/
+          retention-days: 7
+
+      - name: Regenerate Snapshots
+        if: steps.verify.outcome == 'failure'
+        run: ./gradlew :resource:cleanRecordSnapshots :component:cleanRecordSnapshots :persistence:cleanRecordSnapshots :sample:composeApp:cleanRecordSnapshots
+
+      - name: Commit Snapshots
+        if: steps.verify.outcome == 'failure'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add resource/src/jvmTest/snapshots/ component/src/jvmTest/snapshots/ persistence/src/jvmTest/snapshots/ sample/composeApp/assets/readme/
+          git commit -m "Regenerate snapshots [skip ci]"
+          git push
+
+  # Phase 3 (Linux, parallel, needs Phase 2)
+
+  android-build:
+    name: Android Build
+    needs: [snapshots]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Assemble Debug
+        run: ./gradlew assembleDebug
+
+      - name: Test
+        run: ./gradlew testDebugUnitTest
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-artifacts
+          path: |
+            **/build/outputs/aar/
+            **/build/libs/*-android.jar
+          retention-days: 30
+
+  android-lint:
+    name: Android Lint
+    needs: [snapshots]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+  # Phase 4 (Linux, parallel, needs Phase 3)
+
+  js-build:
+    name: JS Build
+    needs: [android-build, android-lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Assemble
+        run: ./gradlew jsJar
+
+      - name: Test
+        run: ./gradlew jsTest
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: js-artifacts
+          path: |
+            **/build/libs/*-js.jar
+          retention-days: 30
+
+  wasm-build:
+    name: WASM Build
+    needs: [android-build, android-lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Assemble
+        run: ./gradlew wasmJsJar
+
+      - name: Test
+        run: ./gradlew wasmJsTest
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: wasm-artifacts
+          path: |
+            **/build/libs/*-wasm-js.jar
+          retention-days: 30
+
+  # Phase 5 (macOS, needs Phase 4)
+
+  ios-build:
+    name: iOS Build
+    needs: [js-build, wasm-build]
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Build Debug Frameworks
+        run: ./gradlew linkDebugFrameworkIosSimulatorArm64
+
+      - name: Test
+        run: ./gradlew iosSimulatorArm64Test
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: ios-artifacts
+          path: "**/build/classes/kotlin/iosSimulatorArm64/main/"
+          retention-days: 30
+
+  # Phase 6 (parallel, needs Phase 5)
+
+  macos-build:
+    name: macOS Build
+    needs: [ios-build]
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Build macOS
+        run: ./gradlew compileKotlinMacosArm64
+
+      - name: Test
+        run: ./gradlew macosArm64Test
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: macos-artifacts
+          path: "**/build/classes/kotlin/macosArm64/main/"
+          retention-days: 30
+
+  docs-build:
+    name: Docs Build
+    needs: [ios-build]
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Generate Documentation
+        run: ./gradlew :dokkaGenerateHtml
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/dokka/html
+
+  docs-deploy:
+    name: Docs Deploy
+    needs: [docs-build]
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
