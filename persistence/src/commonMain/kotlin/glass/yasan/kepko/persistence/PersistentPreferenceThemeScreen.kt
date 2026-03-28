@@ -31,6 +31,7 @@ import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.Scaffold
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
@@ -42,10 +43,9 @@ import glass.yasan.kepko.resource.Strings
 /**
  * A theme preferences screen which allows easy integration when used with [PersistentKepkoTheme].
  *
- * This preference screen allows the user to select different [ColorPalette] combinations and toggle grayscale.
- *
- * @throws IllegalStateException in case this is used outside of [PersistentKepkoTheme].
+ * This preference screen allows the user to customize the appearance of the theme using [PersistenceManager].
  */
+@ExperimentalKepkoApi
 @Composable
 public fun PersistentPreferenceThemeScreen(
     onBackClick: () -> Unit,
@@ -53,73 +53,84 @@ public fun PersistentPreferenceThemeScreen(
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
 ) {
-    Scaffold(
-        title = Strings.preferenceThemeScreenTitle,
-        onBackClick = onBackClick,
-        trailingContent = { PersistentPreferenceThemeResetButton(persistence) },
-        modifier = modifier
-            .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
-    ) { contentPadding ->
-        PersistentPreferenceThemeContent(
-            persistence = persistence,
-            isSystemInDarkTheme = isSystemInDarkTheme,
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .padding(contentPadding),
-        )
+    AnimatedPersistentKepkoTheme(
+        persistence = persistence,
+        isSystemInDarkTheme = isSystemInDarkTheme,
+    ) {
+        Scaffold(
+            title = Strings.preferenceThemeScreenTitle,
+            onBackClick = onBackClick,
+            trailingContent = { PersistentPreferenceThemeResetButton(persistence) },
+            modifier = modifier
+                .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
+        ) { contentPadding ->
+            PersistentPreferenceThemeContent(
+                persistence = persistence,
+                isSystemInDarkTheme = isSystemInDarkTheme,
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .padding(contentPadding),
+            )
+        }
     }
 }
 
+@ExperimentalKepkoApi
 @Composable
 public fun PersistentPreferenceThemeContent(
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    val paletteItems = ColorPalette.entries.map { palette ->
-        palette.asPreferenceRadioGroupItem(segment = palette.category.ordinal)
-    }
-    val systemItem = PreferenceRadioGroupItem(
-        id = PALETTE_ID_SYSTEM,
-        annotation = PreferenceAnnotation.default,
-    ) { Strings.colorPaletteSystem }
-
-    var colorPalette by remember { mutableStateOf<ColorPalette?>(null) }
-
-    colorPalette?.let { palette ->
-        ColorPaletteBottomSheet(
-            palette = palette,
-            grayscale = persistence.grayscale,
-            onDismissRequest = { colorPalette = null },
-        )
-    }
-
-    Column(
-        modifier = modifier,
+    AnimatedPersistentKepkoTheme(
+        persistence = persistence,
+        isSystemInDarkTheme = isSystemInDarkTheme,
     ) {
-        PersistentPreferenceThemePrimary(
-            persistence = persistence,
-            paletteItems = paletteItems,
-            systemItem = systemItem,
-            onShowColorPalette = { colorPalette = it },
-        )
-        AnimatedVisibility(
-            visible = persistence.palettePrimary == null,
-            enter = expandVertically(),
-            exit = shrinkVertically(),
-        ) {
-            PersistentPreferenceThemeSystem(
-                persistence = persistence,
-                isSystemInDarkTheme = isSystemInDarkTheme,
-                onShowColorPalette = { colorPalette = it },
+        val paletteItems = ColorPalette.entries.map { palette ->
+            palette.asPreferenceRadioGroupItem(segment = palette.category.ordinal)
+        }
+        val systemItem = PreferenceRadioGroupItem(
+            id = PALETTE_ID_SYSTEM,
+            annotation = PreferenceAnnotation.default,
+        ) { Strings.colorPaletteSystem }
+
+        var colorPalette by remember { mutableStateOf<ColorPalette?>(null) }
+
+        colorPalette?.let { palette ->
+            ColorPaletteBottomSheet(
+                palette = palette,
+                grayscale = persistence.grayscale,
+                onDismissRequest = { colorPalette = null },
             )
         }
-        Spacer(Modifier.height(8.dp))
-        PersistentPreferenceThemeGrayscale(persistence)
-        Spacer(Modifier.height(8.dp))
-        PersistentPreferenceThemeOutline(persistence)
-        Spacer(Modifier.height(8.dp))
-        PersistentPreferenceThemeRoundness(persistence)
+
+        Column(
+            modifier = modifier,
+        ) {
+            PersistentPreferenceThemePrimary(
+                persistence = persistence,
+                paletteItems = paletteItems,
+                systemItem = systemItem,
+                onShowColorPalette = { colorPalette = it },
+            )
+            AnimatedVisibility(
+                visible = persistence.palettePrimary == null,
+                enter = expandVertically(),
+                exit = shrinkVertically(),
+            ) {
+                PersistentPreferenceThemeSystem(
+                    persistence = persistence,
+                    isSystemInDarkTheme = isSystemInDarkTheme,
+                    onShowColorPalette = { colorPalette = it },
+                )
+            }
+            Spacer(Modifier.height(8.dp))
+            PersistentPreferenceThemeGrayscale(persistence)
+            Spacer(Modifier.height(8.dp))
+            PersistentPreferenceThemeOutline(persistence)
+            Spacer(Modifier.height(8.dp))
+            PersistentPreferenceThemeRoundness(persistence)
+        }
     }
 }
 
@@ -362,6 +373,7 @@ private fun ColorPalette.asPreferenceRadioGroupItem(
     title()
 }
 
+@ExperimentalKepkoApi
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenSystemLightPreview() {
@@ -372,6 +384,7 @@ internal fun PersistentPreferenceThemeScreenSystemLightPreview() {
     }
 }
 
+@ExperimentalKepkoApi
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenSystemDarkPreview() {
@@ -383,6 +396,7 @@ internal fun PersistentPreferenceThemeScreenSystemDarkPreview() {
     }
 }
 
+@ExperimentalKepkoApi
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
@@ -391,6 +405,7 @@ internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
     }
 }
 
+@ExperimentalKepkoApi
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenGrayscalePreview() {

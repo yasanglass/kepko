@@ -1,11 +1,8 @@
 package glass.yasan.kepko.persistence
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.dimension.Dimensions
@@ -60,14 +57,11 @@ public fun PersistentKepkoTheme(
         isSystemInDarkTheme = isSystemInDarkTheme,
     )
 
-    val animatedOutline by animateDpAsState(persistenceManager.outline)
-    val animatedRoundness by animateFloatAsState(persistenceManager.roundness)
-
     val resolvedDimensions = dimensions.copy(
-        borderThickness = animatedOutline,
+        borderThickness = persistenceManager.outline,
     )
 
-    val roundness = animatedRoundness
+    val roundness = persistenceManager.roundness
     val resolvedShapes = Shapes(
         extraSmall = RoundedCornerShape(ShapeTokens.extraSmallCornerRadius * roundness),
         small = RoundedCornerShape(ShapeTokens.smallCornerRadius * roundness),
