@@ -354,7 +354,7 @@ jobs:
 
   docs-build:
     name: Docs Build
-    needs: [ios-build]
+    needs: [macos-build]
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
