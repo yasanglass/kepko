@@ -87,6 +87,9 @@ public object Icons {
     public val resetSettings: Painter
         @Composable get() = painterResource(Res.drawable.ic_reset_settings)
 
+    public val restartAlt: Painter
+        @Composable get() = painterResource(Res.drawable.ic_restart_alt)
+
     public val settings: Painter
         @Composable get() = painterResource(Res.drawable.ic_settings)
 
