@@ -340,7 +340,7 @@ private fun PersistentPreferenceThemeRoundness(
         onValueChangeFinished = { persistence.roundness = value },
         valueLabelSuffix = "x",
         valueRange = 0f..1.6f,
-        steps = 7,
+        steps = 15,
         modifier = Modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.ROUNDNESS)
     )
