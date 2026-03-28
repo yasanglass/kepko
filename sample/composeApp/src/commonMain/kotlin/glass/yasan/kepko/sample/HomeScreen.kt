@@ -1356,7 +1356,6 @@ private fun RowScope.ColorBox(
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .border(shape = KepkoTheme.shapes.extraLarge)
             .clip(KepkoTheme.shapes.extraLarge)
             .weight(1f)
             .height(128.dp)
