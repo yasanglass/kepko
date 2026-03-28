@@ -39,6 +39,9 @@ public object Icons {
     public val error: Painter
         @Composable get() = painterResource(Res.drawable.ic_error)
 
+    public val experiment: Painter
+        @Composable get() = painterResource(Res.drawable.ic_experiment)
+
     public val favorite: Painter
         @Composable get() = painterResource(Res.drawable.ic_favorite)
 
