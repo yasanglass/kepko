@@ -218,11 +218,9 @@ jobs:
       - name: Run Lint
         run: ./gradlew lintDebug
 
-  # Phase 4 (Linux, parallel, needs Phase 3)
-
   js-build:
     name: JS Build
-    needs: [android-build, android-lint]
+    needs: [snapshots]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -255,7 +253,7 @@ jobs:
 
   wasm-build:
     name: WASM Build
-    needs: [android-build, android-lint]
+    needs: [snapshots]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -286,11 +284,11 @@ jobs:
             **/build/libs/*-wasm-js.jar
           retention-days: 30
 
-  # Phase 5 (macOS, needs Phase 4)
+  # Phase 4 (macOS, needs Phase 3)
 
   ios-build:
     name: iOS Build
-    needs: [js-build, wasm-build]
+    needs: [android-build, android-lint, js-build, wasm-build]
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -320,7 +318,7 @@ jobs:
           path: "**/build/classes/kotlin/iosSimulatorArm64/main/"
           retention-days: 30
 
-  # Phase 6 (parallel, needs Phase 5)
+  # Phase 5 (parallel, needs Phase 4)
 
   macos-build:
     name: macOS Build
