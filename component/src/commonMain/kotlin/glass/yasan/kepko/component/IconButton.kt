@@ -1,6 +1,9 @@
 package glass.yasan.kepko.component
 
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -26,6 +29,8 @@ public fun IconButton(
     onClickLabel: String? = null,
     outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
     innerPadding: PaddingValues = IconButtonDefaults.InnerPadding,
+    interactionSource: MutableInteractionSource? = null,
+    indication: Indication? = LocalIndication.current,
 ) {
     Icon(
         imageVector = imageVector,
@@ -38,6 +43,8 @@ public fun IconButton(
                 enabled = enabled,
                 onClick = onClick,
                 onClickLabel = onClickLabel,
+                interactionSource = interactionSource,
+                indication = indication,
             )
             .padding(innerPadding),
     )
@@ -54,6 +61,8 @@ public fun IconButton(
     onClickLabel: String? = null,
     outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
     innerPadding: PaddingValues = IconButtonDefaults.InnerPadding,
+    interactionSource: MutableInteractionSource? = null,
+    indication: Indication? = LocalIndication.current,
 ) {
     Icon(
         painter = painter,
@@ -66,6 +75,8 @@ public fun IconButton(
                 enabled = enabled,
                 onClick = onClick,
                 onClickLabel = onClickLabel,
+                interactionSource = interactionSource,
+                indication = indication,
             )
             .padding(innerPadding),
     )
@@ -82,6 +93,8 @@ public fun IconButton(
     onClickLabel: String? = null,
     outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
     innerPadding: PaddingValues = IconButtonDefaults.InnerPadding,
+    interactionSource: MutableInteractionSource? = null,
+    indication: Indication? = LocalIndication.current,
 ) {
     Icon(
         bitmap = bitmap,
@@ -94,6 +107,8 @@ public fun IconButton(
                 enabled = enabled,
                 onClick = onClick,
                 onClickLabel = onClickLabel,
+                interactionSource = interactionSource,
+                indication = indication,
             )
             .padding(innerPadding),
     )
