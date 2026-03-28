@@ -1,12 +1,14 @@
 package glass.yasan.kepko.component
 
 import androidx.annotation.IntRange
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -25,8 +27,10 @@ public fun Slider(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
+    val animatedValue by animateFloatAsState(value)
+
     Material3Slider(
-        value = value,
+        value = animatedValue,
         onValueChange = onValueChange,
         onValueChangeFinished = onValueChangeFinished,
         enabled = enabled,
