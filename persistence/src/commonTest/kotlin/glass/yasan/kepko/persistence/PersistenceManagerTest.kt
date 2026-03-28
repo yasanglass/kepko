@@ -21,7 +21,7 @@ internal class PersistenceManagerTest {
     }
 
     @Test
-    fun givenEmptySettings_whenCreated_thenReturnsDefaults() {
+    fun givenEmptySettings_whenCreated_thenReturnsGetDefaultSnapshot() {
         // Given
         val manager = createManager()
 
@@ -136,7 +136,7 @@ internal class PersistenceManagerTest {
     }
 
     @Test
-    fun givenInvalidPaletteIds_whenCreated_thenFallsBackToDefaults() {
+    fun givenInvalidPaletteIds_whenCreated_thenFallsBackToGetDefaultSnapshot() {
         // Given
         val manager = createManager(
             PersistenceManagerImpl.KEY_STYLE to "nonexistent",

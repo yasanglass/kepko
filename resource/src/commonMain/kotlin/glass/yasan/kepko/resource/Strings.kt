@@ -104,6 +104,9 @@ public object Strings {
     public val preferenceRoundnessTitle: String
         @Composable get() = stringResource(Res.string.preference_roundness_title)
 
+    public val reset: String
+        @Composable get() = stringResource(Res.string.reset)
+
     public val preferenceThemeScreenTitle: String
         @Composable get() = stringResource(Res.string.preference_theme_screen_title)
 

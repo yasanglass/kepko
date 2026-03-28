@@ -2,10 +2,7 @@ package glass.yasan.kepko.persistence.internal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
-import glass.yasan.kepko.foundation.dimension.DimensionTokens
 import glass.yasan.kepko.foundation.theme.ColorPalette
-import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
-import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager
 import glass.yasan.kepko.persistence.PreviewPersistentKepkoTheme
 
@@ -16,12 +13,12 @@ import glass.yasan.kepko.persistence.PreviewPersistentKepkoTheme
  */
 public class PreviewPersistenceManager : PersistenceManager {
 
-    override var palettePrimary: ColorPalette? = null
-    override var paletteLight: ColorPalette = defaultLight
-    override var paletteDark: ColorPalette = defaultDark
-    override var grayscale: Boolean = false
-    override var outline: Dp = DimensionTokens.borderThickness
-    override var roundness: Float = 1f
+    override var palettePrimary: ColorPalette? = getDefaultSnapshot().palettePrimary
+    override var paletteLight: ColorPalette = getDefaultSnapshot().paletteLight
+    override var paletteDark: ColorPalette = getDefaultSnapshot().paletteDark
+    override var grayscale: Boolean = getDefaultSnapshot().grayscale
+    override var outline: Dp = getDefaultSnapshot().outline
+    override var roundness: Float = getDefaultSnapshot().roundness
 
     @Composable
     override fun activePalette(

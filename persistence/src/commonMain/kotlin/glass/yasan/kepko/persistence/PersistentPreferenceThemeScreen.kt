@@ -2,6 +2,7 @@ package glass.yasan.kepko.persistence
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkHorizontally
@@ -49,15 +50,18 @@ import glass.yasan.kepko.resource.Strings
 public fun PersistentPreferenceThemeScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
+    persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
 ) {
     Scaffold(
         title = Strings.preferenceThemeScreenTitle,
         onBackClick = onBackClick,
+        trailingContent = { PersistentPreferenceThemeResetButton(persistence) },
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
     ) { contentPadding ->
         PersistentPreferenceThemeContent(
+            persistence = persistence,
             isSystemInDarkTheme = isSystemInDarkTheme,
             modifier = Modifier
                 .padding(top = 16.dp)
@@ -68,10 +72,10 @@ public fun PersistentPreferenceThemeScreen(
 
 @Composable
 public fun PersistentPreferenceThemeContent(
+    persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    val persistence = LocalKepkoPersistenceManager.current
     val paletteItems = ColorPalette.entries.map { palette ->
         palette.asPreferenceRadioGroupItem(segment = palette.category.ordinal)
     }
@@ -116,6 +120,19 @@ public fun PersistentPreferenceThemeContent(
         PersistentPreferenceThemeOutline(persistence)
         Spacer(Modifier.height(8.dp))
         PersistentPreferenceThemeRoundness(persistence)
+    }
+}
+
+@Composable
+private fun PersistentPreferenceThemeResetButton(persistence: PersistenceManager) {
+    Crossfade(targetState = !persistence.isDefault) { showResetButton ->
+        if (showResetButton) {
+            IconButton(
+                painter = Icons.restartAlt,
+                contentDescription = Strings.reset,
+                onClick = persistence::reset,
+            )
+        }
     }
 }
 
@@ -297,7 +314,7 @@ private fun PersistentPreferenceThemeGrayscale(
 private fun PersistentPreferenceThemeOutline(
     persistence: PersistenceManager,
 ) {
-    var value by remember { mutableStateOf(persistence.outline.value) }
+    var value by remember(persistence.outline) { mutableStateOf(persistence.outline.value) }
     PreferenceSlider(
         title = Strings.preferenceOutlineTitle,
         value = value,
@@ -314,7 +331,7 @@ private fun PersistentPreferenceThemeOutline(
 private fun PersistentPreferenceThemeRoundness(
     persistence: PersistenceManager,
 ) {
-    var value by remember { mutableStateOf(persistence.roundness) }
+    var value by remember(persistence.roundness) { mutableStateOf(persistence.roundness) }
     PreferenceSlider(
         title = Strings.preferenceRoundnessTitle,
         value = value,
@@ -346,7 +363,9 @@ private fun ColorPalette.asPreferenceRadioGroupItem(
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenSystemLightPreview() {
-    PreviewPersistentKepkoTheme(configure = { paletteLight = defaultLight; paletteDark = defaultLight }) {
+    PreviewPersistentKepkoTheme(configure = {
+        paletteLight = defaultLight; paletteDark = defaultLight
+    }) {
         PersistentPreferenceThemeScreen(onBackClick = {}, isSystemInDarkTheme = false)
     }
 }

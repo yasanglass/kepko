@@ -8,10 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.russhwolf.settings.Settings
-import glass.yasan.kepko.foundation.dimension.DimensionTokens
 import glass.yasan.kepko.foundation.theme.ColorPalette
-import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
-import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
 import glass.yasan.kepko.persistence.PersistenceManager
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.PALETTE_ID_SYSTEM
 
@@ -39,8 +36,6 @@ internal class PersistenceManagerImpl(
 
         @VisibleForTesting
         const val KEY_ROUNDNESS = "$PREFIX.dimension.roundness"
-
-        private const val DEFAULT_ROUNDNESS = 1f
     }
 
     @Composable
@@ -63,7 +58,9 @@ internal class PersistenceManagerImpl(
         }
 
     private var _paletteLight by mutableStateOf(
-        ColorPalette.fromIdOrNull(settings.getStringOrNull(KEY_LIGHT_STYLE)) ?: defaultLight
+        value = ColorPalette.fromIdOrNull(
+            id = settings.getStringOrNull(KEY_LIGHT_STYLE)
+        ) ?: getDefaultSnapshot().paletteLight
     )
     override var paletteLight: ColorPalette
         get() = _paletteLight
@@ -73,7 +70,9 @@ internal class PersistenceManagerImpl(
         }
 
     private var _paletteDark by mutableStateOf(
-        ColorPalette.fromIdOrNull(settings.getStringOrNull(KEY_DARK_STYLE)) ?: defaultDark
+        value = ColorPalette.fromIdOrNull(
+            id = settings.getStringOrNull(KEY_DARK_STYLE)
+        ) ?: getDefaultSnapshot().paletteDark
     )
     override var paletteDark: ColorPalette
         get() = _paletteDark
@@ -82,7 +81,12 @@ internal class PersistenceManagerImpl(
             settings.putString(KEY_DARK_STYLE, value.id)
         }
 
-    private var _grayscale by mutableStateOf(settings.getBoolean(KEY_GRAYSCALE, false))
+    private var _grayscale by mutableStateOf(
+        settings.getBoolean(
+            KEY_GRAYSCALE,
+            getDefaultSnapshot().grayscale
+        )
+    )
     override var grayscale: Boolean
         get() = _grayscale
         set(value) {
@@ -91,7 +95,7 @@ internal class PersistenceManagerImpl(
         }
 
     private var _outline by mutableStateOf(
-        settings.getFloat(KEY_OUTLINE, DimensionTokens.borderThickness.value).dp
+        settings.getFloat(KEY_OUTLINE, getDefaultSnapshot().outline.value).dp
     )
     override var outline: Dp
         get() = _outline
@@ -101,7 +105,7 @@ internal class PersistenceManagerImpl(
         }
 
     private var _roundness by mutableStateOf(
-        settings.getFloat(KEY_ROUNDNESS, DEFAULT_ROUNDNESS)
+        settings.getFloat(KEY_ROUNDNESS, getDefaultSnapshot().roundness)
     )
     override var roundness: Float
         get() = _roundness
