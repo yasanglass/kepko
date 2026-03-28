@@ -15,7 +15,10 @@ import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
 internal fun SampleLightReadmePreview() {
     KepkoTheme(palette = defaultLight) {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
-            HomeScreen(onNavigateToTheme = {})
+            HomeScreen(
+                onNavigateToTheme = {},
+                onNavigateToIcons = {},
+            )
         }
     }
 }
@@ -25,7 +28,10 @@ internal fun SampleLightReadmePreview() {
 internal fun SampleDarkReadmePreview() {
     KepkoTheme(palette = defaultDark) {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
-            HomeScreen(onNavigateToTheme = {})
+            HomeScreen(
+                onNavigateToTheme = {},
+                onNavigateToIcons = {},
+            )
         }
     }
 }

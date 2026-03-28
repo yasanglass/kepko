@@ -78,7 +78,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-internal fun HomeScreen(onNavigateToTheme: () -> Unit) {
+internal fun HomeScreen(onNavigateToTheme: () -> Unit, onNavigateToIcons: () -> Unit) {
     Scaffold(
         title = stringResource(Res.string.app_name),
         textAlign = Center,
@@ -93,7 +93,7 @@ internal fun HomeScreen(onNavigateToTheme: () -> Unit) {
                 modifier = Modifier.widthIn(max = 512.dp),
             ) {
                 colorPalette()
-                themePreferencesButton(onNavigateToTheme)
+                navigationButtons(onNavigateToTheme, onNavigateToIcons)
                 examplePreferenceSlider()
                 examplePreferenceCheckbox()
                 examplePreferenceSwitch()
@@ -158,13 +158,21 @@ private fun LazyListScope.colorPalette() {
     }
 }
 
-private fun LazyListScope.themePreferencesButton(onClick: () -> Unit) {
+private fun LazyListScope.navigationButtons(onThemeClick: () -> Unit, onIconsClick: () -> Unit) {
     item { HorizontalDivider() }
     item {
         ButtonText(
             text = Strings.preferenceThemeScreenTitle,
-            onClick = onClick,
+            onClick = onThemeClick,
             leadingIcon = Icons.palette,
+            trailingIcon = Icons.chevronForward,
+        )
+    }
+    item {
+        ButtonText(
+            text = "Icons",
+            onClick = onIconsClick,
+            leadingIcon = Icons.shapes,
             trailingIcon = Icons.chevronForward,
         )
     }

@@ -12,4 +12,8 @@ internal sealed interface Route {
         override val path = "theme"
     }
 
+    data object Icons : Route {
+        override val path = "icons"
+    }
+
 }

@@ -30,10 +30,20 @@ fun SampleApp() {
                     onNavigateToTheme = {
                         navController.navigate(Route.Theme.path)
                     },
+                    onNavigateToIcons = {
+                        navController.navigate(Route.Icons.path)
+                    },
                 )
             }
             composable(Route.Theme.path) {
                 PersistentPreferenceThemeScreen(
+                    onBackClick = {
+                        navController.popBackStack()
+                    },
+                )
+            }
+            composable(Route.Icons.path) {
+                IconScreen(
                     onBackClick = {
                         navController.popBackStack()
                     },
