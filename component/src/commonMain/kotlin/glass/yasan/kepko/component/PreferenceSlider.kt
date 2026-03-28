@@ -34,12 +34,15 @@ public fun PreferenceSlider(
     annotation: PreferenceAnnotation? = null,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     @IntRange(from = 0) steps: Int = 0,
+    valueLabelPrefix: String? = null,
+    valueLabelSuffix: String? = null,
     transformValueLabel: ((Float) -> String?)? = null,
     content: @Composable () -> Unit = {},
 ) {
     val decimalPlaces = decimalPlacesForSteps(valueRange, steps)
     val effectiveTransformation = transformValueLabel ?: { v ->
-        formatFixed(v, decimalPlaces)
+        val formatted = formatFixed(v, decimalPlaces)
+        "${valueLabelPrefix.orEmpty()}$formatted${valueLabelSuffix.orEmpty()}"
     }
     val label = effectiveTransformation(value)
     val contentColor = if (enabled) {

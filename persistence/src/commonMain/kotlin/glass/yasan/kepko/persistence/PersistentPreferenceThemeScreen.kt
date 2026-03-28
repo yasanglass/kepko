@@ -320,6 +320,7 @@ private fun PersistentPreferenceThemeOutline(
         value = value,
         onValueChange = { value = it },
         onValueChangeFinished = { persistence.outline = value.dp },
+        valueLabelSuffix = "x",
         valueRange = 1f..5f,
         steps = 3,
         modifier = Modifier
@@ -337,6 +338,7 @@ private fun PersistentPreferenceThemeRoundness(
         value = value,
         onValueChange = { value = it },
         onValueChangeFinished = { persistence.roundness = value },
+        valueLabelSuffix = "x",
         valueRange = 0f..1.6f,
         steps = 7,
         modifier = Modifier
