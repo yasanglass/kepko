@@ -84,6 +84,9 @@ public object Icons {
     public val rocketLaunch: Painter
         @Composable get() = painterResource(Res.drawable.ic_rocket_launch)
 
+    public val resetSettings: Painter
+        @Composable get() = painterResource(Res.drawable.ic_reset_settings)
+
     public val settings: Painter
         @Composable get() = painterResource(Res.drawable.ic_settings)
 
