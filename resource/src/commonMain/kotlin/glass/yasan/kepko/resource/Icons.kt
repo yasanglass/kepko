@@ -96,6 +96,9 @@ public object Icons {
     public val filterBw: Painter
         @Composable get() = painterResource(Res.drawable.ic_filter_bw)
 
+    public val folder: Painter
+        @Composable get() = painterResource(Res.drawable.ic_folder)
+
     public val folderCopy: Painter
         @Composable get() = painterResource(Res.drawable.ic_folder_copy)
 
