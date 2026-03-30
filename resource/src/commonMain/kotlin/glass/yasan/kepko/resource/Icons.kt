@@ -153,7 +153,7 @@ public object Icons {
     public val privacyTip: Painter
         @Composable get() = painterResource(Res.drawable.ic_privacy_tip)
 
-    public val public_: Painter
+    public val public: Painter
         @Composable get() = painterResource(Res.drawable.ic_public)
 
     public val publicOff: Painter
