@@ -61,6 +61,7 @@ import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextField
 import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.composeapp.generated.resources.Res
+import glass.yasan.kepko.composeapp.generated.resources.onboarding
 import glass.yasan.kepko.composeapp.generated.resources.app_name
 import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
 import glass.yasan.kepko.composeapp.generated.resources.ic_eco
@@ -78,7 +79,11 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-internal fun HomeScreen(onNavigateToTheme: () -> Unit, onNavigateToIcons: () -> Unit) {
+internal fun HomeScreen(
+    onNavigateToTheme: () -> Unit,
+    onNavigateToIcons: () -> Unit,
+    onNavigateToOnboarding: () -> Unit,
+) {
     Scaffold(
         title = stringResource(Res.string.app_name),
         textAlign = Center,
@@ -93,7 +98,7 @@ internal fun HomeScreen(onNavigateToTheme: () -> Unit, onNavigateToIcons: () -> 
                 modifier = Modifier.widthIn(max = 512.dp),
             ) {
                 colorPalette()
-                navigationButtons(onNavigateToTheme, onNavigateToIcons)
+                navigationButtons(onNavigateToTheme, onNavigateToIcons, onNavigateToOnboarding)
                 examplePreferenceSlider()
                 examplePreferenceCheckbox()
                 examplePreferenceSwitch()
@@ -158,7 +163,11 @@ private fun LazyListScope.colorPalette() {
     }
 }
 
-private fun LazyListScope.navigationButtons(onThemeClick: () -> Unit, onIconsClick: () -> Unit) {
+private fun LazyListScope.navigationButtons(
+    onThemeClick: () -> Unit,
+    onIconsClick: () -> Unit,
+    onOnboardingClick: () -> Unit,
+) {
     item { HorizontalDivider() }
     item {
         ButtonText(
@@ -173,6 +182,14 @@ private fun LazyListScope.navigationButtons(onThemeClick: () -> Unit, onIconsCli
             text = "Icons",
             onClick = onIconsClick,
             leadingIcon = Icons.shapes,
+            trailingIcon = Icons.chevronForward,
+        )
+    }
+    item {
+        ButtonText(
+            text = stringResource(Res.string.onboarding),
+            onClick = onOnboardingClick,
+            leadingIcon = Icons.palette,
             trailingIcon = Icons.chevronForward,
         )
     }

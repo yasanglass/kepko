@@ -16,4 +16,8 @@ internal sealed interface Route {
         override val path = "icons"
     }
 
+    data object Onboarding : Route {
+        override val path = "onboarding"
+    }
+
 }
