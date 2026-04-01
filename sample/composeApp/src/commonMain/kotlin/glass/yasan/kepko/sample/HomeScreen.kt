@@ -93,7 +93,7 @@ internal fun HomeScreen(
             modifier = Modifier.fillMaxWidth().padding(contentPadding),
         ) {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.widthIn(max = 512.dp),
             ) {
