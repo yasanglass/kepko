@@ -1,3 +1,5 @@
+@file:Suppress("ForbiddenImport")
+
 package glass.yasan.kepko.foundation.shape
 
 import androidx.compose.foundation.shape.CircleShape
