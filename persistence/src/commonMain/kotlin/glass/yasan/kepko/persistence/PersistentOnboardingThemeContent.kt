@@ -54,11 +54,6 @@ private fun ColorPalette.asOnboardingRadioGroupItem(): PreferenceRadioGroupItem 
     PreferenceRadioGroupItem(
         id = id,
         segment = category.ordinal,
-        annotation = when (category) {
-            ColorPalette.Category.CATPPUCCIN -> PreferenceAnnotation.experimental
-            ColorPalette.Category.GRUVBOX -> PreferenceAnnotation.experimental
-            else -> null
-        },
     ) {
         title()
     }
