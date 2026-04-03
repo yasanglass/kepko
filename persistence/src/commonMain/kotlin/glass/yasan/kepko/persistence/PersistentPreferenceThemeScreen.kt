@@ -3,9 +3,7 @@ package glass.yasan.kepko.persistence
 import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
-import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
-import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -94,16 +92,6 @@ public fun PersistentPreferenceThemeContent(
             annotation = PreferenceAnnotation.default,
         ) { Strings.colorPaletteSystem }
 
-        var colorPalette by remember { mutableStateOf<ColorPalette?>(null) }
-
-        colorPalette?.let { palette ->
-            ColorPaletteBottomSheet(
-                palette = palette,
-                grayscale = persistence.grayscale,
-                onDismissRequest = { colorPalette = null },
-            )
-        }
-
         Column(
             modifier = modifier,
         ) {
@@ -111,7 +99,6 @@ public fun PersistentPreferenceThemeContent(
                 persistence = persistence,
                 paletteItems = paletteItems,
                 systemItem = systemItem,
-                onShowColorPalette = { colorPalette = it },
             )
             AnimatedVisibility(
                 visible = persistence.palettePrimary == null,
@@ -121,7 +108,6 @@ public fun PersistentPreferenceThemeContent(
                 PersistentPreferenceThemeSystem(
                     persistence = persistence,
                     isSystemInDarkTheme = isSystemInDarkTheme,
-                    onShowColorPalette = { colorPalette = it },
                 )
             }
             Spacer(Modifier.height(8.dp))
@@ -153,7 +139,6 @@ private fun PersistentPreferenceThemePrimary(
     persistence: PersistenceManager,
     paletteItems: List<PreferenceRadioGroupItem>,
     systemItem: PreferenceRadioGroupItem,
-    onShowColorPalette: (ColorPalette) -> Unit,
 ) {
     val primaryPalette = persistence.palettePrimary
     var lastPrimaryPalette by remember { mutableStateOf(primaryPalette) }
@@ -178,18 +163,6 @@ private fun PersistentPreferenceThemePrimary(
                 .weight(1f)
                 .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
         )
-
-        AnimatedVisibility(
-            visible = primaryPalette != null,
-            enter = expandHorizontally(),
-            exit = shrinkHorizontally(),
-        ) {
-            IconButton(
-                painter = Icons.info,
-                contentDescription = Strings.preferenceColorPaletteTitle,
-                onClick = { lastPrimaryPalette?.let { onShowColorPalette(it) } },
-            )
-        }
     }
 }
 
@@ -197,7 +170,6 @@ private fun PersistentPreferenceThemePrimary(
 private fun PersistentPreferenceThemeSystem(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
-    onShowColorPalette: (ColorPalette) -> Unit,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -211,14 +183,12 @@ private fun PersistentPreferenceThemeSystem(
                 persistence = persistence,
                 isSystemInDarkTheme = isSystemInDarkTheme,
                 isLight = true,
-                onShowColorPalette = { onShowColorPalette(persistence.paletteLight) },
             )
             Spacer(Modifier.height(8.dp))
             PersistentPreferenceThemePaletteRow(
                 persistence = persistence,
                 isSystemInDarkTheme = isSystemInDarkTheme,
                 isLight = false,
-                onShowColorPalette = { onShowColorPalette(persistence.paletteDark) },
             )
             Spacer(Modifier.height(8.dp))
         }
@@ -230,7 +200,6 @@ private fun PersistentPreferenceThemePaletteRow(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
     isLight: Boolean,
-    onShowColorPalette: () -> Unit,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -248,11 +217,6 @@ private fun PersistentPreferenceThemePaletteRow(
                 modifier = Modifier.weight(1f),
             )
         }
-        IconButton(
-            painter = Icons.info,
-            contentDescription = Strings.preferenceColorPaletteTitle,
-            onClick = onShowColorPalette,
-        )
     }
 }
 
