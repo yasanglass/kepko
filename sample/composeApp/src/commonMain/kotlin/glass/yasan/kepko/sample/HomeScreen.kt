@@ -71,6 +71,7 @@ import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
+import glass.yasan.kepko.sample.home.exampleCheckboxText
 import glass.yasan.kepko.sample.home.exampleKeyValue
 import glass.yasan.kepko.sample.home.exampleTextTabular
 import org.jetbrains.compose.resources.painterResource
@@ -99,6 +100,7 @@ internal fun HomeScreen(
                 navigationButtons(onNavigateToTheme, onNavigateToIcons, onNavigateToOnboarding)
                 examplePreferenceSlider()
                 examplePreferenceCheckbox()
+                exampleCheckboxText()
                 examplePreferenceSwitch()
                 examplePreferenceRadioButton()
                 examplePreferenceRadioGroup()
