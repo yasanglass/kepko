@@ -7,6 +7,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,6 +41,8 @@ public fun TextPill(
     shape: Shape = KepkoTheme.shapes.medium,
     animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
     onClick: (() -> Unit)? = null,
+    onClickInteractionSource: MutableInteractionSource? = null,
+    onClickIndication: Indication? = null,
 ) {
     TextPill(
         text = annotation.text(),
@@ -47,6 +51,8 @@ public fun TextPill(
         leadingIcon = annotation.leadingIcon?.invoke(),
         trailingIcon = annotation.trailingIcon?.invoke(),
         onClick = onClick,
+        onClickInteractionSource = onClickInteractionSource,
+        onClickIndication = onClickIndication,
         shape = shape,
         animations = animations,
         modifier = modifier,
@@ -68,6 +74,8 @@ public fun TextPill(
     textTransformation: (String) -> String = { it.uppercase() },
     animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
     onClick: (() -> Unit)? = null,
+    onClickInteractionSource: MutableInteractionSource? = null,
+    onClickIndication: Indication? = null,
 ) {
     val resolvedFontSize = fontSize.takeOrElse { 10.sp }
     val animatedContainerColor by animateColorAsState(containerColor, animations.colorAnimationSpec)
@@ -81,7 +89,21 @@ public fun TextPill(
             .clip(shape = shape)
             .background(color = animatedContainerColor)
             .animateContentSize(animationSpec = animations.sizeAnimationSpec)
-            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
+            .then(
+                if (onClick != null) {
+                    if (onClickInteractionSource != null || onClickIndication != null) {
+                        Modifier.clickable(
+                            interactionSource = onClickInteractionSource,
+                            indication = onClickIndication,
+                            onClick = onClick,
+                        )
+                    } else {
+                        Modifier.clickable(onClick = onClick)
+                    }
+                } else {
+                    Modifier
+                },
+            )
             .padding(horizontal = 12.dp)
     ) {
         leadingIcon?.let {

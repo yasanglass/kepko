@@ -1,12 +1,18 @@
 package glass.yasan.kepko.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
@@ -25,25 +31,70 @@ public fun KeyValue(
     leadingValueIcon: Painter? = null,
     trailingValueIcon: Painter? = null,
     onValueClick: (() -> Unit)? = null,
+    onValueClickInteractionSource: MutableInteractionSource? = null,
+    onValueClickIndication: Indication? = null,
+    onClick: (() -> Unit)? = null,
+    onClickLabel: String? = null,
+    onClickInteractionSource: MutableInteractionSource? = null,
+    onClickIndication: Indication? = null,
+    trailingIcon: Painter? = null,
+    trailingContent: @Composable (() -> Unit)? = null,
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
+            .clip(
+                shape = KepkoTheme.shapes.extraLarge,
+            )
+            .then(
+                if (onClick != null) {
+                    if (onClickInteractionSource != null || onClickIndication != null) {
+                        Modifier.clickable(
+                            interactionSource = onClickInteractionSource,
+                            indication = onClickIndication,
+                            onClickLabel = onClickLabel,
+                            onClick = onClick,
+                        )
+                    } else {
+                        Modifier.clickable(
+                            onClickLabel = onClickLabel,
+                            onClick = onClick,
+                        )
+                    }
+                } else {
+                    Modifier
+                },
+            )
             .fillMaxWidth()
+            .padding(vertical = 4.dp)
             .padding(horizontal = 16.dp),
     ) {
-        Text(
-            text = key,
-            fontWeight = FontWeight.Medium,
-            fontSize = 14.sp,
-        )
-        TextPill(
-            text = value,
-            containerColor = containerColor,
-            leadingIcon = leadingValueIcon,
-            trailingIcon = trailingValueIcon,
-            onClick = onValueClick,
-        )
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier.weight(1f),
+        ) {
+            Text(
+                text = key,
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+            )
+            TextPill(
+                text = value,
+                containerColor = containerColor,
+                leadingIcon = leadingValueIcon,
+                trailingIcon = trailingValueIcon,
+                onClick = onValueClick,
+                onClickInteractionSource = onValueClickInteractionSource,
+                onClickIndication = onValueClickIndication,
+            )
+        }
+        if (trailingIcon != null) {
+            Icon(
+                painter = trailingIcon,
+                contentDescription = null,
+            )
+        }
+        trailingContent?.invoke()
     }
 }
 
@@ -114,6 +165,13 @@ private fun PreviewContent() {
             containerColor = KepkoTheme.colors.information,
             leadingValueIcon = Icons.info,
             trailingValueIcon = Icons.chevronForward,
+        )
+        KeyValue(
+            key = "With Row Trailing Icon",
+            value = "Editable",
+            containerColor = KepkoTheme.colors.foreground,
+            trailingIcon = Icons.edit,
+            onClick = {},
         )
     }
 }
