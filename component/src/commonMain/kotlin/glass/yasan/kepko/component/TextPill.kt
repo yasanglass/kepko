@@ -38,7 +38,7 @@ import org.jetbrains.compose.resources.painterResource
 public fun TextPill(
     annotation: PreferenceAnnotation,
     modifier: Modifier = Modifier,
-    shape: Shape = KepkoTheme.shapes.medium,
+    shape: Shape = TextPillDefaults.shape,
     animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
     onClick: (() -> Unit)? = null,
     onClickInteractionSource: MutableInteractionSource? = null,
@@ -68,7 +68,7 @@ public fun TextPill(
     trailingIcon: Painter? = null,
     contentColor: Color = contentColorFor(containerColor),
     border: BorderStroke? = borderStrokeFor(containerColor),
-    shape: Shape = KepkoTheme.shapes.medium,
+    shape: Shape = TextPillDefaults.shape,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Medium,
     textTransformation: (String) -> String = { it.uppercase() },
