@@ -63,7 +63,7 @@ private fun ColorPalette.asOnboardingRadioGroupItem(): PreferenceRadioGroupItem 
 @Composable
 internal fun PersistentOnboardingThemeContentSystemPreview() {
     PreviewPersistentKepkoTheme {
-        PersistentOnboardingThemeContent()
+        PersistentOnboardingThemeContent(isSystemInDarkTheme = false)
     }
 }
 
