@@ -14,41 +14,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
-
-@Composable
-public fun IconButton(
-    imageVector: ImageVector,
-    contentDescription: String?,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current,
-    enabled: Boolean = true,
-    onClickLabel: String? = null,
-    outerPadding: PaddingValues = IconButtonDefaults.OuterPadding,
-    innerPadding: PaddingValues = IconButtonDefaults.InnerPadding,
-    interactionSource: MutableInteractionSource? = null,
-    indication: Indication? = LocalIndication.current,
-) {
-    Icon(
-        imageVector = imageVector,
-        contentDescription = contentDescription,
-        tint = tint,
-        modifier = modifier
-            .padding(outerPadding)
-            .clip(KepkoTheme.shapes.extraLarge)
-            .clickable(
-                enabled = enabled,
-                onClick = onClick,
-                onClickLabel = onClickLabel,
-                interactionSource = interactionSource,
-                indication = indication,
-            )
-            .padding(innerPadding),
-    )
-}
 
 @Composable
 public fun IconButton(

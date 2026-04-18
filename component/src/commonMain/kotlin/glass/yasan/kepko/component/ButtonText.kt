@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
@@ -80,67 +79,6 @@ public fun ButtonText(
             trailingIcon?.let { painter ->
                 Icon(
                     painter = painter,
-                    contentDescription = null,
-                    modifier = Modifier.padding(start = 12.dp),
-                )
-            }
-        },
-    )
-}
-
-@Composable
-public fun ButtonText(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier,
-    containerColor: Color = KepkoTheme.colors.foreground,
-    contentColor: Color = contentColorFor(containerColor),
-    enabled: Boolean = true,
-    shape: Shape = ButtonTextDefaults.shape(),
-    textAlign: TextAlign = TextAlign.Start,
-    fontSize: TextUnit = TextUnit.Unspecified,
-    fontWeight: FontWeight = FontWeight.Bold,
-    border: BorderStroke? = borderStrokeFor(containerColor),
-    elevation: ButtonElevation? = ButtonTextDefaults.buttonElevation(),
-    contentPadding: PaddingValues = ButtonTextDefaults.contentPadding(),
-    interactionSource: MutableInteractionSource? = null,
-    fillWidth: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
-    leadingIcon: ImageVector?,
-    trailingIcon: ImageVector?,
-) {
-    ButtonText(
-        text = text,
-        onClick = onClick,
-        modifier = modifier,
-        contentModifier = contentModifier,
-        containerColor = containerColor,
-        contentColor = contentColor,
-        enabled = enabled,
-        shape = shape,
-        textAlign = textAlign,
-        fontSize = fontSize,
-        fontWeight = fontWeight,
-        border = border,
-        elevation = elevation,
-        contentPadding = contentPadding,
-        interactionSource = interactionSource,
-        fillWidth = fillWidth,
-        annotation = annotation,
-        leadingContent = {
-            leadingIcon?.let { imageVector ->
-                Icon(
-                    imageVector = imageVector,
-                    contentDescription = null,
-                    modifier = Modifier.padding(end = 12.dp),
-                )
-            }
-        },
-        trailingContent = {
-            trailingIcon?.let { imageVector ->
-                Icon(
-                    imageVector = imageVector,
                     contentDescription = null,
                     modifier = Modifier.padding(start = 12.dp),
                 )

@@ -8,28 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import androidx.compose.material3.Icon as Material3Icon
-
-@Composable
-public fun Icon(
-    imageVector: ImageVector,
-    contentDescription: String?,
-    tint: Color = LocalContentColor.current,
-    modifier: Modifier = Modifier,
-    size: Dp = KepkoTheme.dimensions.iconSize,
-) {
-    Material3Icon(
-        imageVector = imageVector,
-        tint = tint,
-        contentDescription = contentDescription,
-        modifier = modifier
-            .size(size),
-    )
-}
 
 @Composable
 public fun Icon(

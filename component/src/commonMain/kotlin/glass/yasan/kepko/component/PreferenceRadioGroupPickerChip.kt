@@ -23,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -67,45 +66,6 @@ public fun PreferenceRadioGroupPickerChip(
         leadingContent = {
             Icon(
                 painter = leadingIcon,
-                contentDescription = null,
-                modifier = Modifier.padding(end = 12.dp),
-            )
-        },
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@ExperimentalKepkoApi
-@Composable
-public fun PreferenceRadioGroupPickerChip(
-    title: String,
-    selectedId: String?,
-    items: List<PreferenceRadioGroupItem>,
-    onSelectId: (String) -> Unit,
-    leadingIcon: ImageVector,
-    modifier: Modifier = Modifier,
-    sheetState: SheetState = rememberModalBottomSheetState(),
-    description: String? = null,
-    enabled: Boolean = true,
-    closeOnSelection: Boolean = true,
-    displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
-    colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
-) {
-    PreferenceRadioGroupPickerChip(
-        title = title,
-        selectedId = selectedId,
-        items = items,
-        onSelectId = onSelectId,
-        modifier = modifier,
-        sheetState = sheetState,
-        description = description,
-        enabled = enabled,
-        closeOnSelection = closeOnSelection,
-        displayMode = displayMode,
-        colors = colors,
-        leadingContent = {
-            Icon(
-                imageVector = leadingIcon,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 12.dp),
             )

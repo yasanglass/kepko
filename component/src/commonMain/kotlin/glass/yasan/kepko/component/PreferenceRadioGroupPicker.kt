@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
@@ -48,42 +47,6 @@ public fun PreferenceRadioGroupPicker(
         leadingContent = {
             Icon(
                 painter = leadingIcon,
-                contentDescription = null,
-                modifier = Modifier.padding(end = 12.dp),
-            )
-        },
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-public fun PreferenceRadioGroupPicker(
-    title: String,
-    selectedId: String?,
-    items: List<PreferenceRadioGroupItem>,
-    onSelectId: (String) -> Unit,
-    leadingIcon: ImageVector,
-    modifier: Modifier = Modifier,
-    sheetState: SheetState = rememberModalBottomSheetState(),
-    description: String? = null,
-    annotation: PreferenceAnnotation? = null,
-    enabled: Boolean = true,
-    closeOnSelection: Boolean = true,
-) {
-    PreferenceRadioGroupPicker(
-        title = title,
-        selectedId = selectedId,
-        items = items,
-        onSelectId = onSelectId,
-        modifier = modifier,
-        sheetState = sheetState,
-        description = description,
-        annotation = annotation,
-        enabled = enabled,
-        closeOnSelection = closeOnSelection,
-        leadingContent = {
-            Icon(
-                imageVector = leadingIcon,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 12.dp),
             )
