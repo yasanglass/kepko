@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ButtonElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +29,9 @@ import org.jetbrains.compose.resources.painterResource
 public fun ButtonText(
     text: String?,
     onClick: () -> Unit,
+    leadingIcon: Painter?,
     modifier: Modifier = Modifier,
+    onClickLabel: String? = null,
     contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
@@ -40,18 +41,17 @@ public fun ButtonText(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    elevation: ButtonElevation? = ButtonTextDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonTextDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     annotation: PreferenceAnnotation? = null,
-    leadingIcon: Painter?,
-    trailingIcon: Painter?,
+    trailingIcon: Painter?= null,
 ) {
-    ButtonText(
+    ButtonTextInternal(
         text = text,
-        onClick = onClick,
         modifier = modifier,
+        onClick = onClick,
+        onClickLabel = onClickLabel,
         contentModifier = contentModifier,
         containerColor = containerColor,
         contentColor = contentColor,
@@ -61,7 +61,6 @@ public fun ButtonText(
         fontSize = fontSize,
         fontWeight = fontWeight,
         border = border,
-        elevation = elevation,
         contentPadding = contentPadding,
         interactionSource = interactionSource,
         fillWidth = fillWidth,
@@ -92,6 +91,7 @@ public fun ButtonText(
     text: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onClickLabel: String? = null,
     contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
@@ -101,7 +101,6 @@ public fun ButtonText(
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    elevation: ButtonElevation? = ButtonTextDefaults.buttonElevation(),
     contentPadding: PaddingValues = ButtonTextDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
@@ -109,8 +108,55 @@ public fun ButtonText(
     leadingContent: @Composable RowScope.() -> Unit = {},
     trailingContent: @Composable RowScope.() -> Unit = {},
 ) {
+    ButtonTextInternal(
+        text = text,
+        modifier = modifier,
+        onClick = onClick,
+        onClickLabel = onClickLabel,
+        contentModifier = contentModifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        enabled = enabled,
+        shape = shape,
+        textAlign = textAlign,
+        fontSize = fontSize,
+        fontWeight = fontWeight,
+        border = border,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource,
+        fillWidth = fillWidth,
+        annotation = annotation,
+        leadingContent = leadingContent,
+        trailingContent = trailingContent,
+    )
+}
+
+@Suppress("LongParameterList")
+@Composable
+internal fun ButtonTextInternal(
+    text: String?,
+    modifier: Modifier,
+    onClick: () -> Unit,
+    onClickLabel: String?,
+    contentModifier: Modifier,
+    containerColor: Color,
+    contentColor: Color,
+    enabled: Boolean,
+    shape: Shape,
+    textAlign: TextAlign,
+    fontSize: TextUnit,
+    fontWeight: FontWeight,
+    border: BorderStroke?,
+    contentPadding: PaddingValues,
+    interactionSource: MutableInteractionSource?,
+    fillWidth: Boolean,
+    annotation: PreferenceAnnotation?,
+    leadingContent: @Composable RowScope.() -> Unit,
+    trailingContent: @Composable RowScope.() -> Unit,
+) {
     ButtonPrimitive(
         onClick = onClick,
+        onClickLabel = onClickLabel,
         content = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -149,9 +195,8 @@ public fun ButtonText(
         enabled = enabled,
         shape = shape,
         border = border,
-        elevation = elevation,
         contentPadding = contentPadding,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     )
 }
 

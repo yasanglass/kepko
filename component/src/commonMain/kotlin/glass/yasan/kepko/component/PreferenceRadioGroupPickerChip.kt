@@ -123,7 +123,6 @@ public fun PreferenceRadioGroupPickerChip(
         contentColor = colors.contentColor,
         border = borderStroke(color = colors.outlineColor),
         shape = ButtonTextDefaults.shape(),
-        elevation = ButtonTextDefaults.buttonElevation(),
         contentPadding = ButtonTextDefaults.contentPadding(),
         modifier = modifier.then(
             if (hiddenSelectedTitle != null) {
