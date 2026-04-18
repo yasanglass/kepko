@@ -28,7 +28,7 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 public fun ButtonText(
-    text: String,
+    text: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     contentModifier: Modifier = Modifier,
@@ -71,7 +71,7 @@ public fun ButtonText(
                 Icon(
                     painter = painter,
                     contentDescription = null,
-                    modifier = Modifier.padding(end = 12.dp),
+                    modifier = if (text != null) Modifier.padding(end = 12.dp) else Modifier,
                 )
             }
         },
@@ -80,7 +80,7 @@ public fun ButtonText(
                 Icon(
                     painter = painter,
                     contentDescription = null,
-                    modifier = Modifier.padding(start = 12.dp),
+                    modifier = if (text != null) Modifier.padding(start = 12.dp) else Modifier,
                 )
             }
         },
@@ -89,7 +89,7 @@ public fun ButtonText(
 
 @Composable
 public fun ButtonText(
-    text: String,
+    text: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     contentModifier: Modifier = Modifier,
@@ -123,15 +123,17 @@ public fun ButtonText(
                     .then(contentModifier),
             ) {
                 leadingContent()
-                Text(
-                    text = text.uppercase(),
-                    textAlign = textAlign,
-                    fontSize = fontSize,
-                    fontWeight = fontWeight,
-                    maxLines = 1,
-                    modifier = Modifier
-                        .then(if (fillWidth) Modifier.weight(1f) else Modifier)
-                )
+                text?.let {
+                    Text(
+                        text = it.uppercase(),
+                        textAlign = textAlign,
+                        fontSize = fontSize,
+                        fontWeight = fontWeight,
+                        maxLines = 1,
+                        modifier = Modifier
+                            .then(if (fillWidth) Modifier.weight(1f) else Modifier)
+                    )
+                }
                 annotation?.let {
                     TextPill(
                         annotation = it,
@@ -182,6 +184,61 @@ internal fun ButtonTextSolarizedLightPreview() {
 @Composable
 internal fun ButtonTextSolarizedDarkPreview() {
     KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ButtonTextIconOnlyLightPreview() {
+    KepkoTheme(palette = LIGHT) { IconOnlyPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ButtonTextIconOnlyDarkPreview() {
+    KepkoTheme(palette = DARK) { IconOnlyPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ButtonTextIconOnlyBlackPreview() {
+    KepkoTheme(palette = BLACK) { IconOnlyPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ButtonTextIconOnlySolarizedLightPreview() {
+    KepkoTheme(palette = SOLARIZED_LIGHT) { IconOnlyPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ButtonTextIconOnlySolarizedDarkPreview() {
+    KepkoTheme(palette = SOLARIZED_DARK) { IconOnlyPreviewContent() }
+}
+
+@Composable
+private fun IconOnlyPreviewContent() {
+    val containerColors = KepkoTheme.colors.getSemanticColors() +
+            KepkoTheme.colors.foreground +
+            KepkoTheme.colors.content
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier
+            .background(KepkoTheme.colors.foreground)
+            .padding(8.dp),
+    ) {
+        containerColors.forEach { containerColor ->
+            ButtonText(
+                text = null,
+                onClick = {},
+                containerColor = containerColor,
+                leadingIcon = painterResource(Res.drawable.ic_asterisk),
+                trailingIcon = null,
+                fillWidth = false,
+            )
+        }
+    }
 }
 
 @Composable

@@ -1279,6 +1279,16 @@ private fun LazyListScope.exampleButtonText() {
             enabled = false,
         )
     }
+    item {
+        ButtonText(
+            text = null,
+            leadingIcon = painterResource(Res.drawable.ic_bolt),
+            trailingIcon = null,
+            containerColor = KepkoTheme.colors.foreground,
+            onClick = {},
+            fillWidth = false,
+        )
+    }
 }
 
 private fun LazyListScope.exampleTextPill() {
