@@ -53,7 +53,6 @@ kotlin {
             dependencies {
                 api(project(":foundation"))
 
-                implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.jetbrains.compose.components.resources)
                 implementation(libs.jetbrains.compose.ui.tooling.preview)
                 implementation(libs.jetbrains.compose.foundation)
@@ -95,7 +94,6 @@ kotlin {
             dependencies {
                 implementation(libs.composable.preview.scanner.jvm)
                 implementation(libs.roborazzi.compose.desktop)
-                implementation(libs.jetbrains.kotlin.reflect)
                 implementation(libs.jetbrains.kotlin.test)
                 implementation(libs.jetbrains.compose.ui.test)
             }

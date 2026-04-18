@@ -74,7 +74,6 @@ kotlin {
             dependencies {
                 implementation(libs.composable.preview.scanner.jvm)
                 implementation(libs.roborazzi.compose.desktop)
-                implementation(libs.jetbrains.kotlin.reflect)
                 implementation(libs.jetbrains.kotlin.test)
                 implementation(libs.jetbrains.compose.ui.test)
             }
