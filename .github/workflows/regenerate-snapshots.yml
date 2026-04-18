@@ -1,0 +1,43 @@
+name: Regenerate Snapshots
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  regenerate-snapshots:
+    name: Regenerate Snapshots
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
+          submodules: true
+          lfs: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Regenerate Snapshots
+        run: ./gradlew :resource:cleanRecordSnapshots :component:cleanRecordSnapshots :persistence:cleanRecordSnapshots :sample:composeApp:cleanRecordSnapshots
+
+      - name: Commit Snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add resource/src/jvmTest/snapshots/ component/src/jvmTest/snapshots/ persistence/src/jvmTest/snapshots/ sample/composeApp/assets/readme/
+          if git diff --staged --quiet; then
+            echo "No snapshot changes to commit"
+          else
+            git commit -m "Regenerate snapshots"
+            git push
+          fi
