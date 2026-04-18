@@ -109,7 +109,7 @@ public fun ButtonText(
     leadingContent: @Composable RowScope.() -> Unit = {},
     trailingContent: @Composable RowScope.() -> Unit = {},
 ) {
-    Button(
+    ButtonPrimitive(
         onClick = onClick,
         content = {
             Row(

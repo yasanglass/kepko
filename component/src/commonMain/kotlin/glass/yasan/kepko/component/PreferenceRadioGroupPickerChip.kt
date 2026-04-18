@@ -116,7 +116,7 @@ public fun PreferenceRadioGroupPickerChip(
         showTitle = false
     }
 
-    Button(
+    ButtonPrimitive(
         onClick = { showSheet = true },
         enabled = enabled,
         containerColor = colors.containerColor,

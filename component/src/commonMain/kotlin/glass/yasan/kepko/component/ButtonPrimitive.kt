@@ -25,7 +25,7 @@ import androidx.compose.material3.Button as Material3Button
 import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
 
 @Composable
-public fun Button(
+public fun ButtonPrimitive(
     onClick: () -> Unit,
     content: @Composable RowScope.() -> Unit,
     modifier: Modifier = Modifier,
@@ -63,31 +63,31 @@ public fun Button(
 
 @PreviewWithTest
 @Composable
-internal fun ButtonLightPreview() {
+internal fun ButtonPrimitiveLightPreview() {
     KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonDarkPreview() {
+internal fun ButtonPrimitiveDarkPreview() {
     KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonBlackPreview() {
+internal fun ButtonPrimitiveBlackPreview() {
     KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonSolarizedLightPreview() {
+internal fun ButtonPrimitiveSolarizedLightPreview() {
     KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonSolarizedDarkPreview() {
+internal fun ButtonPrimitiveSolarizedDarkPreview() {
     KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
@@ -109,7 +109,7 @@ private fun PreviewContent() {
                     horizontal = 4.dp,
                 ),
             ) {
-                Button(
+                ButtonPrimitive(
                     onClick = {},
                     containerColor = containerColor,
                     content = {
@@ -120,7 +120,7 @@ private fun PreviewContent() {
                     },
                     modifier = Modifier.weight(1f),
                 )
-                Button(
+                ButtonPrimitive(
                     onClick = {},
                     enabled = false,
                     containerColor = containerColor,
