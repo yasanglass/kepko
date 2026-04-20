@@ -32,6 +32,9 @@ public fun ButtonText(
     leadingIcon: Painter?,
     modifier: Modifier = Modifier,
     onClickLabel: String? = null,
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
+    onDoubleClick: (() -> Unit)? = null,
     contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
@@ -45,13 +48,17 @@ public fun ButtonText(
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     annotation: PreferenceAnnotation? = null,
-    trailingIcon: Painter?= null,
+    trailingIcon: Painter? = null,
+    hapticFeedbackEnabled: Boolean = true,
 ) {
     ButtonTextInternal(
         text = text,
         modifier = modifier,
         onClick = onClick,
         onClickLabel = onClickLabel,
+        onLongClick = onLongClick,
+        onLongClickLabel = onLongClickLabel,
+        onDoubleClick = onDoubleClick,
         contentModifier = contentModifier,
         containerColor = containerColor,
         contentColor = contentColor,
@@ -65,6 +72,7 @@ public fun ButtonText(
         interactionSource = interactionSource,
         fillWidth = fillWidth,
         annotation = annotation,
+        hapticFeedbackEnabled = hapticFeedbackEnabled,
         leadingContent = {
             leadingIcon?.let { painter ->
                 Icon(
@@ -92,6 +100,9 @@ public fun ButtonText(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     onClickLabel: String? = null,
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
+    onDoubleClick: (() -> Unit)? = null,
     contentModifier: Modifier = Modifier,
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
@@ -105,6 +116,7 @@ public fun ButtonText(
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     annotation: PreferenceAnnotation? = null,
+    hapticFeedbackEnabled: Boolean = true,
     leadingContent: @Composable RowScope.() -> Unit = {},
     trailingContent: @Composable RowScope.() -> Unit = {},
 ) {
@@ -113,6 +125,9 @@ public fun ButtonText(
         modifier = modifier,
         onClick = onClick,
         onClickLabel = onClickLabel,
+        onLongClick = onLongClick,
+        onLongClickLabel = onLongClickLabel,
+        onDoubleClick = onDoubleClick,
         contentModifier = contentModifier,
         containerColor = containerColor,
         contentColor = contentColor,
@@ -128,6 +143,7 @@ public fun ButtonText(
         annotation = annotation,
         leadingContent = leadingContent,
         trailingContent = trailingContent,
+        hapticFeedbackEnabled = hapticFeedbackEnabled,
     )
 }
 
@@ -138,6 +154,9 @@ internal fun ButtonTextInternal(
     modifier: Modifier,
     onClick: () -> Unit,
     onClickLabel: String?,
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
+    onDoubleClick: (() -> Unit)? = null,
     contentModifier: Modifier,
     containerColor: Color,
     contentColor: Color,
@@ -153,10 +172,14 @@ internal fun ButtonTextInternal(
     annotation: PreferenceAnnotation?,
     leadingContent: @Composable RowScope.() -> Unit,
     trailingContent: @Composable RowScope.() -> Unit,
+    hapticFeedbackEnabled: Boolean,
 ) {
     ButtonPrimitive(
         onClick = onClick,
         onClickLabel = onClickLabel,
+        onLongClick = onLongClick,
+        onDoubleClick = onDoubleClick,
+        onLongClickLabel = onLongClickLabel,
         content = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -197,6 +220,7 @@ internal fun ButtonTextInternal(
         border = border,
         contentPadding = contentPadding,
         interactionSource = interactionSource,
+        hapticFeedbackEnabled = hapticFeedbackEnabled,
     )
 }
 
