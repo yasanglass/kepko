@@ -18,12 +18,14 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.delay
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -1169,6 +1171,64 @@ private fun LazyListScope.exampleAlertDialog() {
 @Suppress("LongMethod")
 private fun LazyListScope.exampleButtonText() {
     item { HorizontalDivider() }
+    item {
+        val colors = listOf(
+            KepkoTheme.colors.success,
+            KepkoTheme.colors.information,
+            KepkoTheme.colors.caution,
+            KepkoTheme.colors.danger,
+            KepkoTheme.colors.foreground,
+        )
+        var colorIndex by remember { mutableIntStateOf(0) }
+
+        LaunchedEffect(Unit) {
+            while (true) {
+                delay(2000)
+                colorIndex = (colorIndex + 1) % colors.size
+            }
+        }
+
+        ButtonText(
+            text = "Color changes every 2s",
+            leadingIcon = Icons.palette,
+            trailingIcon = Icons.chevronForward,
+            containerColor = colors[colorIndex],
+            onClick = {},
+        )
+    }
+    item {
+        var expanded by remember { mutableStateOf(false) }
+
+        ButtonText(
+            text = if (expanded) "Tap to shrink" else "Tap",
+            onClick = { expanded = !expanded },
+            fillWidth = false,
+        )
+    }
+    item {
+        val variants = listOf(
+            "Short" to KepkoTheme.colors.success,
+            "A bit longer" to KepkoTheme.colors.information,
+            "The longest label here" to KepkoTheme.colors.caution,
+        )
+        var variantIndex by remember { mutableIntStateOf(0) }
+
+        LaunchedEffect(Unit) {
+            while (true) {
+                delay(1500)
+                variantIndex = (variantIndex + 1) % variants.size
+            }
+        }
+
+        val (text, containerColor) = variants[variantIndex]
+
+        ButtonText(
+            text = text,
+            onClick = {},
+            containerColor = containerColor,
+            fillWidth = false,
+        )
+    }
     item {
         ButtonText(
             text = "ButtonText",
