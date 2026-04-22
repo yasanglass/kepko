@@ -1,6 +1,5 @@
 package glass.yasan.kepko.component
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,7 +15,21 @@ import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.LinearProgressIndicator as Material3LinearProgressIndicator
 import androidx.compose.material3.CircularProgressIndicator as Material3CircularProgressIndicator
 
-@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+public fun CircularProgressIndicator(
+    progress: () -> Float,
+    modifier: Modifier = Modifier,
+    color: Color = ProgressIndicatorDefaults.color,
+    trackColor: Color = ProgressIndicatorDefaults.trackColor,
+) {
+    Material3CircularProgressIndicator(
+        progress = progress,
+        modifier = modifier,
+        color = color,
+        trackColor = trackColor,
+    )
+}
+
 @Composable
 public fun CircularProgressIndicator(
     modifier: Modifier = Modifier,
@@ -30,7 +43,21 @@ public fun CircularProgressIndicator(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+public fun LinearProgressIndicator(
+    progress: () -> Float,
+    modifier: Modifier = Modifier,
+    color: Color = ProgressIndicatorDefaults.color,
+    trackColor: Color = ProgressIndicatorDefaults.trackColor,
+) {
+    Material3LinearProgressIndicator(
+        progress = progress,
+        modifier = modifier,
+        color = color,
+        trackColor = trackColor,
+    )
+}
+
 @Composable
 public fun LinearProgressIndicator(
     modifier: Modifier = Modifier,
@@ -97,7 +124,12 @@ private fun ProgressIndicatorPreviewContent() {
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             CircularProgressIndicator()
+            CircularProgressIndicator(progress = { 0.5f })
         }
         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        LinearProgressIndicator(
+            progress = { 0.5f },
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
 }

@@ -1404,6 +1404,30 @@ private fun RowScope.ColorBox(
 
 private fun LazyListScope.exampleProgressIndicator() {
     item { HorizontalDivider() }
-    item { CircularProgressIndicator() }
-    item { LinearProgressIndicator() }
+    item {
+        var progress by remember { mutableStateOf(0f) }
+
+        LaunchedEffect(Unit) {
+            while (true) {
+                delay(50)
+                progress = (progress + 0.01f) % 1f
+            }
+        }
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+        ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                CircularProgressIndicator()
+                CircularProgressIndicator(progress = { progress })
+            }
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            LinearProgressIndicator(
+                progress = { progress },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
 }
