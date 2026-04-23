@@ -1,5 +1,8 @@
 package glass.yasan.kepko.component
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -8,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -50,6 +54,7 @@ public fun ButtonText(
     annotation: PreferenceAnnotation? = null,
     trailingIcon: Painter? = null,
     hapticFeedbackEnabled: Boolean = true,
+    iconTransitionSpecs: ButtonTextIconTransitionSpecs = ButtonTextDefaults.iconTransitionSpecs(),
 ) {
     ButtonTextInternal(
         text = text,
@@ -74,24 +79,57 @@ public fun ButtonText(
         annotation = annotation,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
         leadingContent = {
-            leadingIcon?.let { painter ->
-                Icon(
-                    painter = painter,
-                    contentDescription = null,
-                    modifier = if (text != null) Modifier.padding(end = 12.dp) else Modifier,
-                )
-            }
+            AnimatedIcon(
+                painter = leadingIcon,
+                hasText = text != null,
+                alignment = Alignment.CenterStart,
+                paddingEdgeIsStart = false,
+                transitionSpec = iconTransitionSpecs.leading,
+                label = "leadingIcon",
+            )
         },
         trailingContent = {
-            trailingIcon?.let { painter ->
-                Icon(
-                    painter = painter,
-                    contentDescription = null,
-                    modifier = if (text != null) Modifier.padding(start = 12.dp) else Modifier,
-                )
-            }
+            AnimatedIcon(
+                painter = trailingIcon,
+                hasText = text != null,
+                alignment = Alignment.CenterEnd,
+                paddingEdgeIsStart = true,
+                transitionSpec = iconTransitionSpecs.trailing,
+                label = "trailingIcon",
+            )
         },
     )
+}
+
+@Composable
+private fun AnimatedIcon(
+    painter: Painter?,
+    hasText: Boolean,
+    alignment: Alignment,
+    paddingEdgeIsStart: Boolean,
+    transitionSpec: AnimatedContentTransitionScope<Painter?>.() -> ContentTransform,
+    label: String,
+) {
+    AnimatedContent(
+        targetState = painter,
+        transitionSpec = transitionSpec,
+        contentAlignment = alignment,
+        modifier = Modifier.heightIn(min = KepkoTheme.dimensions.iconSize),
+        label = label,
+    ) { target ->
+        if (target != null) {
+            val padding = when {
+                !hasText -> Modifier
+                paddingEdgeIsStart -> Modifier.padding(start = 12.dp)
+                else -> Modifier.padding(end = 12.dp)
+            }
+            Icon(
+                painter = target,
+                contentDescription = null,
+                modifier = padding,
+            )
+        }
+    }
 }
 
 @Composable
@@ -189,6 +227,7 @@ internal fun ButtonTextInternal(
                         vertical = 8.dp,
                         horizontal = 4.dp,
                     )
+                    .heightIn(min = KepkoTheme.dimensions.iconSize)
                     .then(contentModifier),
             ) {
                 leadingContent()
