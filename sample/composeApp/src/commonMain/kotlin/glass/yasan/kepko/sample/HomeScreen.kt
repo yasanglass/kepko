@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextAlign.Companion.Center
@@ -1177,22 +1178,33 @@ private fun LazyListScope.exampleButtonText() {
             KepkoTheme.colors.information,
             KepkoTheme.colors.caution,
             KepkoTheme.colors.danger,
-            KepkoTheme.colors.foreground,
         )
-        var colorIndex by remember { mutableIntStateOf(0) }
+        val leadingIcons = listOf<Painter?>(
+            painterResource(Res.drawable.ic_eco),
+            painterResource(Res.drawable.ic_bolt),
+            null,
+            null,
+        )
+        val trailingIcons = listOf<Painter?>(
+            Icons.chevronForward,
+            null,
+            Icons.shapes,
+            null,
+        )
+        var index by remember { mutableIntStateOf(0) }
 
         LaunchedEffect(Unit) {
             while (true) {
                 delay(2000)
-                colorIndex = (colorIndex + 1) % colors.size
+                index = (index + 1) % colors.size
             }
         }
 
         ButtonText(
-            text = "Color changes every 2s",
-            leadingIcon = Icons.palette,
-            trailingIcon = Icons.chevronForward,
-            containerColor = colors[colorIndex],
+            text = "Cycles all icon combinations",
+            leadingIcon = leadingIcons[index],
+            trailingIcon = trailingIcons[index],
+            containerColor = colors[index],
             onClick = {},
         )
     }
@@ -1206,26 +1218,40 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        val variants = listOf(
-            "Short" to KepkoTheme.colors.success,
-            "A bit longer" to KepkoTheme.colors.information,
-            "The longest label here" to KepkoTheme.colors.caution,
+        val texts = listOf("Short", "A bit longer", "Trailing only", "No icons here")
+        val colors = listOf(
+            KepkoTheme.colors.success,
+            KepkoTheme.colors.information,
+            KepkoTheme.colors.caution,
+            KepkoTheme.colors.danger,
         )
-        var variantIndex by remember { mutableIntStateOf(0) }
+        val leadingIcons = listOf<Painter?>(
+            painterResource(Res.drawable.ic_eco),
+            painterResource(Res.drawable.ic_family_star),
+            null,
+            null,
+        )
+        val trailingIcons = listOf<Painter?>(
+            painterResource(Res.drawable.ic_bolt),
+            null,
+            painterResource(Res.drawable.ic_new_releases),
+            null,
+        )
+        var index by remember { mutableIntStateOf(0) }
 
         LaunchedEffect(Unit) {
             while (true) {
                 delay(1500)
-                variantIndex = (variantIndex + 1) % variants.size
+                index = (index + 1) % texts.size
             }
         }
 
-        val (text, containerColor) = variants[variantIndex]
-
         ButtonText(
-            text = text,
+            text = texts[index],
+            leadingIcon = leadingIcons[index],
+            trailingIcon = trailingIcons[index],
             onClick = {},
-            containerColor = containerColor,
+            containerColor = colors[index],
             fillWidth = false,
         )
     }
