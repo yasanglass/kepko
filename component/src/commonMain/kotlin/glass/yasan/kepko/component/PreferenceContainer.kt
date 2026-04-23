@@ -37,10 +37,10 @@ public fun PreferenceContainer(
     indication: Indication? = null,
     shape: Shape = KepkoTheme.shapes.extraLarge,
     contentPadding: PaddingValues = PaddingValues(horizontal = 20.dp),
+    colors: PreferenceContainerColors = PreferenceContainerDefaults.colors(),
     content: @Composable (PaddingValues) -> Unit,
 ) {
-    val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
-    val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
+    val animated = colors.animated(enabled)
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -54,12 +54,12 @@ public fun PreferenceContainer(
                 enabled = enabled,
                 onClick = onClick,
             )
-            .background(KepkoTheme.colors.foreground)
+            .background(animated.containerColor)
             .padding(vertical = 16.dp),
     ) {
         Text(
             text = title,
-            color = titleContentColor,
+            color = animated.contentColor,
             fontWeight = FontWeight.Medium,
             fontSize = 16.sp,
             modifier = Modifier.padding(contentPadding),
@@ -67,13 +67,13 @@ public fun PreferenceContainer(
         description?.let {
             Text(
                 text = it,
-                color = descriptionContentColor,
+                color = animated.descriptionColor,
                 lineHeight = 16.sp,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(contentPadding),
             )
         }
-        ProvideLocalContentColor(titleContentColor) {
+        ProvideLocalContentColor(animated.contentColor) {
             content(contentPadding)
         }
         annotation?.let {
@@ -100,9 +100,9 @@ public fun PreferenceContainer(
     annotation: PreferenceAnnotation? = null,
     interactionSource: MutableInteractionSource? = null,
     shape: Shape = KepkoTheme.shapes.extraLarge,
+    colors: PreferenceContainerColors = PreferenceContainerDefaults.colors(),
 ) {
-    val titleContentColor = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled
-    val descriptionContentColor = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled
+    val animated = colors.animated(enabled)
 
     Column(
         modifier = modifier
@@ -113,7 +113,7 @@ public fun PreferenceContainer(
                 enabled = enabled,
                 onClick = onClick,
             )
-            .background(KepkoTheme.colors.foreground)
+            .background(animated.containerColor)
             .padding(
                 vertical = 8.dp,
                 horizontal = 20.dp,
@@ -124,7 +124,7 @@ public fun PreferenceContainer(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            ProvideLocalContentColor(titleContentColor) {
+            ProvideLocalContentColor(animated.contentColor) {
                 leadingContent()
             }
             Column(
@@ -133,14 +133,14 @@ public fun PreferenceContainer(
             ) {
                 Text(
                     text = title,
-                    color = titleContentColor,
+                    color = animated.contentColor,
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
                 )
                 description?.let {
                     Text(
                         text = it,
-                        color = descriptionContentColor,
+                        color = animated.descriptionColor,
                         lineHeight = 16.sp,
                         fontSize = 12.sp,
                     )
