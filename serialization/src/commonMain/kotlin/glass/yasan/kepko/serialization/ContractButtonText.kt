@@ -39,7 +39,7 @@ public fun ContractButtonText(
                 { handler(action) }
             }
         },
-        onLongClickLabel = contract.onLongClickLabel,
+        onLongClickLabel = contract.onLongClickLabel?.takeIf { onLongClick != null },
         onDoubleClick = contract.onDoubleClick?.let { action ->
             onDoubleClick?.let { handler ->
                 { handler(action) }
