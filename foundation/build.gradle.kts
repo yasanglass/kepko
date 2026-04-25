@@ -87,6 +87,13 @@ kotlin {
             }
         }
 
+        val jvmTest by getting {
+            dependencies {
+                implementation(libs.jetbrains.kotlin.reflect)
+                implementation(libs.jetbrains.kotlin.test)
+            }
+        }
+
         val jsMain by getting {
             dependsOn(nonMobileMain)
         }
