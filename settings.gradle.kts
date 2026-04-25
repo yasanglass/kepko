@@ -17,6 +17,7 @@ rootProject.name = "kepko"
 include(":resource")
 include(":foundation")
 include(":component")
+include(":serialization")
 include(":persistence")
 include(":sample")
 include(":sample:composeApp")

@@ -96,6 +96,45 @@ PersistentPreferenceThemeScreen(
 - [`LocalKepkoColorPalette`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the currently active [`ColorPalette`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ColorPalette.kt)
 - [`LocalKepkoPersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the [`PersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt) instance for direct access to persistence state
 
+## Serialization
+
+An optional experimental module that allows constructing Kepko components from JSON strings by providing serialization contracts for the components.
+
+```kotlin
+implementation("glass.yasan.kepko:serialization:<version>")
+```
+
+Simple JSON:
+
+```json
+{
+  "on_click": "on-click",
+  "text": "Text Value",
+  "leading_icon": "info"
+}
+```
+
+Result (decoded contract → composable):
+
+```kotlin
+val contract = Json(from = kepkoJson).decodeFromString<ButtonTextContract>(jsonString)
+
+ContractButtonText(
+    contract = contract,
+    onClick = { action: String -> println(action) },
+)
+```
+
+Equivalent to using `ButtonText` directly:
+
+```kotlin
+ButtonText(
+    text = "Text Value",
+    onClick = { println("on-click") },
+    leadingIcon = NamedIcon.INFO.painter(),
+)
+```
+
 ## Sample Project
 
 Explore Kepko in a real project with the included [sample project](https://github.com/yasanglass/kepko/tree/main/sample).

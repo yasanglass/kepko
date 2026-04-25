@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.roborazzi)
 }
 
@@ -72,6 +73,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(project(":persistence"))
+                implementation(project(":serialization"))
 
                 implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.foundation)
@@ -81,6 +83,7 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui.tooling.preview)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.platformtools.darkmodedetector)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
         val nonMobileMain by creating {

@@ -86,6 +86,7 @@ internal fun HomeScreen(
     onNavigateToTheme: () -> Unit,
     onNavigateToIcons: () -> Unit,
     onNavigateToOnboarding: () -> Unit,
+    onNavigateToSerialization: () -> Unit,
 ) {
     Scaffold(
         title = stringResource(Res.string.app_name),
@@ -101,7 +102,12 @@ internal fun HomeScreen(
                 modifier = Modifier.widthIn(max = 512.dp),
             ) {
                 colorPalette()
-                navigationButtons(onNavigateToTheme, onNavigateToIcons, onNavigateToOnboarding)
+                navigationButtons(
+                    onThemeClick = onNavigateToTheme,
+                    onIconsClick = onNavigateToIcons,
+                    onOnboardingClick = onNavigateToOnboarding,
+                    onSerializationClick = onNavigateToSerialization,
+                )
                 examplePreferenceSlider()
                 examplePreferenceCheckbox()
                 exampleCheckboxText()
@@ -172,6 +178,7 @@ private fun LazyListScope.navigationButtons(
     onThemeClick: () -> Unit,
     onIconsClick: () -> Unit,
     onOnboardingClick: () -> Unit,
+    onSerializationClick: () -> Unit,
 ) {
     item { HorizontalDivider() }
     item {
@@ -195,6 +202,14 @@ private fun LazyListScope.navigationButtons(
             text = stringResource(Res.string.onboarding),
             onClick = onOnboardingClick,
             leadingIcon = Icons.palette,
+            trailingIcon = Icons.chevronForward,
+        )
+    }
+    item {
+        ButtonText(
+            text = "Serialization",
+            onClick = onSerializationClick,
+            leadingIcon = Icons.code,
             trailingIcon = Icons.chevronForward,
         )
     }
