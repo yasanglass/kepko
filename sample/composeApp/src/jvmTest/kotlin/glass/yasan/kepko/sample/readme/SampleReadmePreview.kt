@@ -19,6 +19,7 @@ internal fun SampleLightReadmePreview() {
                 onNavigateToTheme = {},
                 onNavigateToIcons = {},
                 onNavigateToOnboarding = {},
+                onNavigateToSerialization = {},
             )
         }
     }
@@ -33,6 +34,7 @@ internal fun SampleDarkReadmePreview() {
                 onNavigateToTheme = {},
                 onNavigateToIcons = {},
                 onNavigateToOnboarding = {},
+                onNavigateToSerialization = {},
             )
         }
     }

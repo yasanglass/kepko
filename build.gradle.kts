@@ -19,11 +19,13 @@ dependencies {
     dokka(project(":resource"))
     dokka(project(":foundation"))
     dokka(project(":component"))
+    dokka(project(":serialization"))
     dokka(project(":persistence"))
 
     kover(project(":resource"))
     kover(project(":foundation"))
     kover(project(":component"))
+    kover(project(":serialization"))
     kover(project(":persistence"))
 }
 
