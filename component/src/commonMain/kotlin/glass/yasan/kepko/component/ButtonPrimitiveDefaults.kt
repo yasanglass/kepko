@@ -13,7 +13,7 @@ import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import androidx.compose.material3.ButtonDefaults as Material3ButtonDefaults
 
-public object ButtonDefaults {
+public object ButtonPrimitiveDefaults {
     public val ContentPadding: PaddingValues = Material3ButtonDefaults.ContentPadding
 
     @Composable
