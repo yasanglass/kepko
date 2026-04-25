@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 
 @ExperimentalKepkoApi
 @Serializable
-public data class ButtonTextContract(
+public data class ButtonContract(
     @SerialName("on_click")
     public val onClick: String,
     @SerialName("text")

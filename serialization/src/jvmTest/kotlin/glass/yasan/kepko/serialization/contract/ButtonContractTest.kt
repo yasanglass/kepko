@@ -7,13 +7,13 @@ import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
-internal class ButtonTextContractTest {
+internal class ButtonContractTest {
 
     private val json = kepkoJson
 
     @Test
     fun givenConfig_whenSerializedAndDeserialized_thenRoundTripMatches() {
-        val contract = ButtonTextContract(
+        val contract = ButtonContract(
             onClick = "settings/open",
             text = "Button Text",
             onClickLabel = "Open settings",
@@ -36,7 +36,7 @@ internal class ButtonTextContractTest {
         )
 
         val encoded = json.encodeToString(contract)
-        val decoded = json.decodeFromString<ButtonTextContract>(encoded)
+        val decoded = json.decodeFromString<ButtonContract>(encoded)
 
         assertContains(encoded, "\"on_click\":\"settings/open\"")
         assertContains(encoded, "\"leading_icon\":\"${NamedIcon.LOCK.id}\"")
@@ -49,6 +49,6 @@ internal class ButtonTextContractTest {
 
     @Test
     fun givenDefaultConfig_whenCreated_thenEnabledDefaultsToTrue() {
-        assertEquals(true, ButtonTextContract(onClick = "id").enabled)
+        assertEquals(true, ButtonContract(onClick = "id").enabled)
     }
 }

@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 
-public object ButtonTextDefaults {
+public object ButtonDefaults {
     public val ContentPadding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
 
     @Composable
@@ -33,7 +33,7 @@ public object ButtonTextDefaults {
             iconTransitionSpec(slideFromStart = true),
         trailing: AnimatedContentTransitionScope<Painter?>.() -> ContentTransform =
             iconTransitionSpec(slideFromStart = false),
-    ): ButtonTextIconTransitionSpecs = ButtonTextIconTransitionSpecs(
+    ): ButtonIconTransitionSpecs = ButtonIconTransitionSpecs(
         leading = leading,
         trailing = trailing,
     )

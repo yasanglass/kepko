@@ -71,7 +71,7 @@ public fun PreferenceRadioGroupPicker(
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
-    ButtonText(
+    Button(
         text = title,
         onClick = { showSheet = true },
         enabled = enabled,

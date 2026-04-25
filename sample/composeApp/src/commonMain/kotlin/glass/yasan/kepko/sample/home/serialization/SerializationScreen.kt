@@ -27,8 +27,8 @@ import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextButton
 import glass.yasan.kepko.component.TextField
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.serialization.ContractButtonText
-import glass.yasan.kepko.serialization.contract.ButtonTextContract
+import glass.yasan.kepko.serialization.ContractButton
+import glass.yasan.kepko.serialization.contract.ButtonContract
 import glass.yasan.kepko.serialization.contract.PreferenceAnnotationContract
 import glass.yasan.kepko.serialization.serializer.kepkoJson
 import kotlinx.serialization.decodeFromString
@@ -65,7 +65,7 @@ private fun rememberSerializationPresets(
     remember(json) {
         SerializationPresets(
             simpleJson = json.encodeToString(
-                ButtonTextContract(
+                ButtonContract(
                     onClick = "simple-on-click",
                     text = "Text Value",
                     onClickLabel = "simple-on-click-label",
@@ -75,7 +75,7 @@ private fun rememberSerializationPresets(
                 ),
             ),
             withAnnotationJson = json.encodeToString(
-                ButtonTextContract(
+                ButtonContract(
                     onClick = "annotation-on-click",
                     text = "Text Value",
                     onClickLabel = "annotation-on-click-label",
@@ -89,7 +89,7 @@ private fun rememberSerializationPresets(
                 ),
             ),
             completeJson = json.encodeToString(
-                ButtonTextContract(
+                ButtonContract(
                     onClick = "on-click",
                     text = "Text Value",
                     onClickLabel = "on-click-label",
@@ -122,7 +122,7 @@ private fun SerializationScreenContent(
 ) {
     var draftJson by rememberSaveable { mutableStateOf(presets.simpleJson) }
     var lastValidContract by remember {
-        mutableStateOf(json.decodeFromString<ButtonTextContract>(presets.simpleJson))
+        mutableStateOf(json.decodeFromString<ButtonContract>(presets.simpleJson))
     }
     var errorMessage by rememberSaveable { mutableStateOf<String?>(null) }
     var lastAction by rememberSaveable { mutableStateOf<String?>(null) }
@@ -149,7 +149,7 @@ private fun SerializationScreenContent(
                 onApplyPreset = ::applyPreset,
                 onJsonChange = { next ->
                     draftJson = next
-                    runCatching { json.decodeFromString<ButtonTextContract>(next) }
+                    runCatching { json.decodeFromString<ButtonContract>(next) }
                         .onSuccess { decoded ->
                             lastValidContract = decoded
                             errorMessage = null
@@ -248,7 +248,7 @@ private fun JsonSection(
 
 @Composable
 private fun ComposableSection(
-    contract: ButtonTextContract,
+    contract: ButtonContract,
     lastAction: String?,
     errorMessage: String?,
     onCaptureAction: (String) -> Unit,
@@ -260,7 +260,7 @@ private fun ComposableSection(
             .padding(top = 12.dp, bottom = 4.dp),
     )
 
-    ContractButtonText(
+    ContractButton(
         contract = contract,
         onClick = { action -> onCaptureAction("on_click: $action") },
         onLongClick = { action -> onCaptureAction("on_long_click: $action") },

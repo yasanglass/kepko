@@ -36,7 +36,7 @@ Wrap your app content with [`KepkoTheme`](https://github.com/yasanglass/kepko/bl
 
 | Light | Dark |
 |---|---|
-| <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonTextLightReadmePreview.png" alt="ButtonText Light" width="300"/> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonTextDarkReadmePreview.png" alt="ButtonText Dark" width="300"/> |
+| <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonLightReadmePreview.png" alt="Button Light" width="300"/> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ButtonDarkReadmePreview.png" alt="Button Dark" width="300"/> |
 | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/OutlinedTextFieldLightReadmePreview.png" alt="OutlinedTextField Light" width="300"/> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/OutlinedTextFieldDarkReadmePreview.png" alt="OutlinedTextField Dark" width="300"/> |
 | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceCheckboxLightReadmePreview.png" alt="PreferenceCheckbox Light" width="300"/> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceCheckboxDarkReadmePreview.png" alt="PreferenceCheckbox Dark" width="300"/> |
 | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioButtonLightReadmePreview.png" alt="PreferenceRadioButton Light" width="300"/> | <img src="https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/PreferenceRadioButtonDarkReadmePreview.png" alt="PreferenceRadioButton Dark" width="300"/> |
@@ -117,18 +117,18 @@ Simple JSON:
 Result (decoded contract → composable):
 
 ```kotlin
-val contract = Json(from = kepkoJson).decodeFromString<ButtonTextContract>(jsonString)
+val contract = Json(from = kepkoJson).decodeFromString<ButtonContract>(jsonString)
 
-ContractButtonText(
+ContractButton(
     contract = contract,
     onClick = { action: String -> println(action) },
 )
 ```
 
-Equivalent to using `ButtonText` directly:
+Equivalent to using `Button` directly:
 
 ```kotlin
-ButtonText(
+Button(
     text = "Text Value",
     onClick = { println("on-click") },
     leadingIcon = NamedIcon.INFO.painter(),

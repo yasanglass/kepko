@@ -25,8 +25,8 @@ public fun SelectableChip(
     modifier: Modifier = Modifier,
     leadingIcon: Painter? = null,
     enabled: Boolean = true,
-    shape: Shape = ButtonTextDefaults.shape(),
-    contentPadding: PaddingValues = ButtonTextDefaults.contentPadding(),
+    shape: Shape = ButtonDefaults.shape(),
+    contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
     colors: SelectableChipColors = SelectableChipDefaults.colors(),
 ) {
     ButtonPrimitive(

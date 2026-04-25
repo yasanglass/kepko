@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import glass.yasan.kepko.component.ButtonText
+import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.OutlinedTextField
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.component.PreferenceCheckbox
@@ -24,30 +24,30 @@ import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
 
 @ReadmePreview
 @Composable
-internal fun ButtonTextLightReadmePreview() {
+internal fun ButtonLightReadmePreview() {
     KepkoTheme(palette = defaultLight) {
-        ButtonTextReadmeContent()
+        ButtonReadmeContent()
     }
 }
 
 @ReadmePreview
 @Composable
-internal fun ButtonTextDarkReadmePreview() {
+internal fun ButtonDarkReadmePreview() {
     KepkoTheme(palette = defaultDark) {
-        ButtonTextReadmeContent()
+        ButtonReadmeContent()
     }
 }
 
 @Composable
-private fun ButtonTextReadmeContent() {
+private fun ButtonReadmeContent() {
     Column(
         modifier = Modifier
             .width(previewWidth)
             .background(KepkoTheme.colors.midground)
             .padding(16.dp),
     ) {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             onClick = {},
             containerColor = KepkoTheme.colors.foreground,
             leadingIcon = Icons.star,

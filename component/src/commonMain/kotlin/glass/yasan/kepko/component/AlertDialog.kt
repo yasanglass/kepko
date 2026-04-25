@@ -32,7 +32,7 @@ public fun AlertDialog(
     AlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
-            ButtonText(
+            Button(
                 text = confirmButtonText,
                 onClick = onConfirmClick,
                 containerColor = colors.confirmButtonContainerColor,
@@ -42,7 +42,7 @@ public fun AlertDialog(
         modifier = modifier,
         dismissButton = dismissButtonText?.let { buttonText ->
             {
-                ButtonText(
+                Button(
                     text = buttonText,
                     onClick = onDismissClick ?: onDismissRequest,
                     fillWidth = false,

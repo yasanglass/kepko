@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.AlertDialog
 import glass.yasan.kepko.component.AlertDialogDefaults
 import glass.yasan.kepko.component.BasicAlertDialog
-import glass.yasan.kepko.component.ButtonText
+import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.CircularProgressIndicator
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.Icon
@@ -121,7 +121,7 @@ internal fun HomeScreen(
                 exampleOutlinedTextField()
                 exampleAlertDialog()
                 exampleKeyValue()
-                exampleButtonText()
+                exampleButton()
                 exampleTextPill()
                 exampleTextTabular()
                 exampleProgressIndicator()
@@ -182,7 +182,7 @@ private fun LazyListScope.navigationButtons(
 ) {
     item { HorizontalDivider() }
     item {
-        ButtonText(
+        Button(
             text = Strings.preferenceThemeScreenTitle,
             onClick = onThemeClick,
             leadingIcon = Icons.palette,
@@ -190,7 +190,7 @@ private fun LazyListScope.navigationButtons(
         )
     }
     item {
-        ButtonText(
+        Button(
             text = "Icons",
             onClick = onIconsClick,
             leadingIcon = Icons.shapes,
@@ -198,7 +198,7 @@ private fun LazyListScope.navigationButtons(
         )
     }
     item {
-        ButtonText(
+        Button(
             text = stringResource(Res.string.onboarding),
             onClick = onOnboardingClick,
             leadingIcon = Icons.palette,
@@ -206,7 +206,7 @@ private fun LazyListScope.navigationButtons(
         )
     }
     item {
-        ButtonText(
+        Button(
             text = "Serialization",
             onClick = onSerializationClick,
             leadingIcon = Icons.code,
@@ -1078,12 +1078,12 @@ private fun LazyListScope.exampleAlertDialog() {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            ButtonText(
+            Button(
                 text = "Show AlertDialog",
                 onClick = { dialogStyle.intValue = 1 },
                 fillWidth = false,
             )
-            ButtonText(
+            Button(
                 text = "Show AlertDialog",
                 onClick = { dialogStyle.intValue = 2 },
                 fillWidth = false,
@@ -1092,7 +1092,7 @@ private fun LazyListScope.exampleAlertDialog() {
                     containerColor = { KepkoTheme.colors.caution },
                 ),
             )
-            ButtonText(
+            Button(
                 text = "Show AlertDialog",
                 onClick = { dialogStyle.intValue = 3 },
                 fillWidth = false,
@@ -1101,7 +1101,7 @@ private fun LazyListScope.exampleAlertDialog() {
                     containerColor = { KepkoTheme.colors.danger },
                 ),
             )
-            ButtonText(
+            Button(
                 text = "Show BasicAlertDialog",
                 onClick = { dialogStyle.intValue = 4 },
                 fillWidth = false,
@@ -1167,12 +1167,12 @@ private fun LazyListScope.exampleAlertDialog() {
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.align(Alignment.End),
                     ) {
-                        ButtonText(
+                        Button(
                             text = "Dismiss",
                             onClick = { dialogStyle.intValue = 0 },
                             fillWidth = false,
                         )
-                        ButtonText(
+                        Button(
                             text = "Confirm",
                             onClick = { dialogStyle.intValue = 0 },
                             fillWidth = false,
@@ -1187,7 +1187,7 @@ private fun LazyListScope.exampleAlertDialog() {
 
 
 @Suppress("LongMethod")
-private fun LazyListScope.exampleButtonText() {
+private fun LazyListScope.exampleButton() {
     item { HorizontalDivider() }
     item {
         val colors = listOf(
@@ -1217,7 +1217,7 @@ private fun LazyListScope.exampleButtonText() {
             }
         }
 
-        ButtonText(
+        Button(
             text = "Cycles all icon combinations",
             leadingIcon = leadingIcons[index],
             trailingIcon = trailingIcons[index],
@@ -1228,7 +1228,7 @@ private fun LazyListScope.exampleButtonText() {
     item {
         var expanded by remember { mutableStateOf(false) }
 
-        ButtonText(
+        Button(
             text = if (expanded) "Tap to shrink" else "Tap",
             onClick = { expanded = !expanded },
             fillWidth = false,
@@ -1263,7 +1263,7 @@ private fun LazyListScope.exampleButtonText() {
             }
         }
 
-        ButtonText(
+        Button(
             text = texts[index],
             leadingIcon = leadingIcons[index],
             trailingIcon = trailingIcons[index],
@@ -1273,8 +1273,8 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = Icons.chevronBackward,
             trailingIcon = painterResource(Res.drawable.ic_bolt),
             containerColor = KepkoTheme.colors.foreground,
@@ -1283,16 +1283,16 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = painterResource(Res.drawable.ic_bolt),
             trailingIcon = Icons.chevronForward,
             onClick = {},
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = null,
             trailingIcon = painterResource(Res.drawable.ic_new_releases),
             containerColor = KepkoTheme.colors.information,
@@ -1300,8 +1300,8 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = painterResource(Res.drawable.ic_family_star),
             trailingIcon = null,
             containerColor = KepkoTheme.colors.caution,
@@ -1309,8 +1309,8 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = painterResource(Res.drawable.ic_heart_smile),
             trailingIcon = null,
             containerColor = KepkoTheme.colors.danger,
@@ -1318,16 +1318,16 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             containerColor = KepkoTheme.colors.foreground,
             onClick = {},
             textAlign = TextAlign.Center,
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = painterResource(Res.drawable.ic_new_releases),
             trailingIcon = painterResource(Res.drawable.ic_family_star),
             containerColor = KepkoTheme.colors.foreground,
@@ -1337,8 +1337,8 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = painterResource(Res.drawable.ic_heart_smile),
             trailingIcon = null,
             containerColor = KepkoTheme.colors.foreground,
@@ -1347,8 +1347,8 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = null,
             trailingIcon = painterResource(Res.drawable.ic_eco),
             containerColor = KepkoTheme.colors.success,
@@ -1357,8 +1357,8 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             containerColor = KepkoTheme.colors.foreground,
             onClick = {},
             fillWidth = false,
@@ -1366,16 +1366,16 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             containerColor = KepkoTheme.colors.foreground,
             onClick = {},
             fillWidth = false,
         )
     }
     item {
-        ButtonText(
-            text = "ButtonText",
+        Button(
+            text = "Button",
             leadingIcon = painterResource(Res.drawable.ic_bolt),
             trailingIcon = Icons.chevronForward,
             onClick = {},
@@ -1383,7 +1383,7 @@ private fun LazyListScope.exampleButtonText() {
         )
     }
     item {
-        ButtonText(
+        Button(
             text = null,
             leadingIcon = painterResource(Res.drawable.ic_bolt),
             trailingIcon = null,

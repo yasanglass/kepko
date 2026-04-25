@@ -3,24 +3,24 @@ package glass.yasan.kepko.serialization
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import glass.yasan.kepko.component.ButtonText
+import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.PreferenceAnnotation
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.NamedColor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.serialization.contract.ButtonTextContract
+import glass.yasan.kepko.serialization.contract.ButtonContract
 import glass.yasan.kepko.serialization.contract.PreferenceAnnotationContract
 
 /**
- * Constructs a [ButtonText] from a [ButtonTextContract].
- * 
+ * Constructs a [Button] from a [ButtonContract].
+ *
  * @param onClick invokes the provided function with the action string provided in the [contract].
  */
 @ExperimentalKepkoApi
 @Composable
-public fun ContractButtonText(
-    contract: ButtonTextContract,
+public fun ContractButton(
+    contract: ButtonContract,
     onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     onLongClick: ((String) -> Unit)? = null,
@@ -29,7 +29,7 @@ public fun ContractButtonText(
     val containerColor = contract.containerColor.resolveColor()
     val contentColor = contract.contentColor.resolveContentColor(containerColor)
 
-    ButtonText(
+    Button(
         text = contract.text,
         onClick = { onClick(contract.onClick) },
         modifier = modifier,

@@ -30,7 +30,7 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-public fun ButtonText(
+public fun Button(
     text: String?,
     onClick: () -> Unit,
     leadingIcon: Painter?,
@@ -43,20 +43,20 @@ public fun ButtonText(
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
-    shape: Shape = ButtonTextDefaults.shape(),
+    shape: Shape = ButtonDefaults.shape(),
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    contentPadding: PaddingValues = ButtonTextDefaults.contentPadding(),
+    contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     annotation: PreferenceAnnotation? = null,
     trailingIcon: Painter? = null,
     hapticFeedbackEnabled: Boolean = true,
-    iconTransitionSpecs: ButtonTextIconTransitionSpecs = ButtonTextDefaults.iconTransitionSpecs(),
+    iconTransitionSpecs: ButtonIconTransitionSpecs = ButtonDefaults.iconTransitionSpecs(),
 ) {
-    ButtonTextInternal(
+    ButtonInternal(
         text = text,
         modifier = modifier,
         onClick = onClick,
@@ -133,7 +133,7 @@ private fun AnimatedIcon(
 }
 
 @Composable
-public fun ButtonText(
+public fun Button(
     text: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -145,12 +145,12 @@ public fun ButtonText(
     containerColor: Color = KepkoTheme.colors.foreground,
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
-    shape: Shape = ButtonTextDefaults.shape(),
+    shape: Shape = ButtonDefaults.shape(),
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontWeight: FontWeight = FontWeight.Bold,
     border: BorderStroke? = borderStrokeFor(containerColor),
-    contentPadding: PaddingValues = ButtonTextDefaults.contentPadding(),
+    contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     annotation: PreferenceAnnotation? = null,
@@ -158,7 +158,7 @@ public fun ButtonText(
     leadingContent: @Composable RowScope.() -> Unit = {},
     trailingContent: @Composable RowScope.() -> Unit = {},
 ) {
-    ButtonTextInternal(
+    ButtonInternal(
         text = text,
         modifier = modifier,
         onClick = onClick,
@@ -187,7 +187,7 @@ public fun ButtonText(
 
 @Suppress("LongParameterList")
 @Composable
-internal fun ButtonTextInternal(
+internal fun ButtonInternal(
     text: String?,
     modifier: Modifier,
     onClick: () -> Unit,
@@ -266,61 +266,61 @@ internal fun ButtonTextInternal(
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextLightPreview() {
+internal fun ButtonLightPreview() {
     KepkoTheme(palette = LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextDarkPreview() {
+internal fun ButtonDarkPreview() {
     KepkoTheme(palette = DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextBlackPreview() {
+internal fun ButtonBlackPreview() {
     KepkoTheme(palette = BLACK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextSolarizedLightPreview() {
+internal fun ButtonSolarizedLightPreview() {
     KepkoTheme(palette = SOLARIZED_LIGHT) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextSolarizedDarkPreview() {
+internal fun ButtonSolarizedDarkPreview() {
     KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextIconOnlyLightPreview() {
+internal fun ButtonIconOnlyLightPreview() {
     KepkoTheme(palette = LIGHT) { IconOnlyPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextIconOnlyDarkPreview() {
+internal fun ButtonIconOnlyDarkPreview() {
     KepkoTheme(palette = DARK) { IconOnlyPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextIconOnlyBlackPreview() {
+internal fun ButtonIconOnlyBlackPreview() {
     KepkoTheme(palette = BLACK) { IconOnlyPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextIconOnlySolarizedLightPreview() {
+internal fun ButtonIconOnlySolarizedLightPreview() {
     KepkoTheme(palette = SOLARIZED_LIGHT) { IconOnlyPreviewContent() }
 }
 
 @PreviewWithTest
 @Composable
-internal fun ButtonTextIconOnlySolarizedDarkPreview() {
+internal fun ButtonIconOnlySolarizedDarkPreview() {
     KepkoTheme(palette = SOLARIZED_DARK) { IconOnlyPreviewContent() }
 }
 
@@ -337,7 +337,7 @@ private fun IconOnlyPreviewContent() {
             .padding(8.dp),
     ) {
         containerColors.forEach { containerColor ->
-            ButtonText(
+            Button(
                 text = null,
                 onClick = {},
                 containerColor = containerColor,
@@ -369,7 +369,7 @@ private fun PreviewContent() {
                         horizontal = 8.dp,
                     ),
             ) {
-                ButtonText(
+                Button(
                     text = "Button Text",
                     onClick = {},
                     containerColor = containerColor,
@@ -377,7 +377,7 @@ private fun PreviewContent() {
                     trailingIcon = painterResource(Res.drawable.ic_asterisk),
                     annotation = PreferenceAnnotation.preview,
                 )
-                ButtonText(
+                Button(
                     text = "Button Text",
                     onClick = {},
                     containerColor = containerColor,

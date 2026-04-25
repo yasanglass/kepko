@@ -122,8 +122,8 @@ public fun PreferenceRadioGroupPickerChip(
         containerColor = colors.containerColor,
         contentColor = colors.contentColor,
         border = borderStroke(color = colors.outlineColor),
-        shape = ButtonTextDefaults.shape(),
-        contentPadding = ButtonTextDefaults.contentPadding(),
+        shape = ButtonDefaults.shape(),
+        contentPadding = ButtonDefaults.contentPadding(),
         modifier = modifier.then(
             if (hiddenSelectedTitle != null) {
                 Modifier.semantics { contentDescription = hiddenSelectedTitle }

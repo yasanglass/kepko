@@ -6,7 +6,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.painter.Painter
 
 @Immutable
-public data class ButtonTextIconTransitionSpecs(
+public data class ButtonIconTransitionSpecs(
     val leading: AnimatedContentTransitionScope<Painter?>.() -> ContentTransform,
     val trailing: AnimatedContentTransitionScope<Painter?>.() -> ContentTransform,
 )
