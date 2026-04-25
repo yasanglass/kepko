@@ -162,6 +162,9 @@ public object Icons {
     public val publicOff: Painter
         @Composable get() = painterResource(Res.drawable.ic_public_off)
 
+    public val releaseAlert: Painter
+        @Composable get() = painterResource(Res.drawable.ic_release_alert)
+
     public val refresh: Painter
         @Composable get() = painterResource(Res.drawable.ic_refresh)
 
