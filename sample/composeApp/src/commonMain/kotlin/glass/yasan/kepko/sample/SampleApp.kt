@@ -35,6 +35,7 @@ fun SampleApp() {
     }
 }
 
+@Suppress("LongMethod")
 @Composable
 private fun SampleNavHost(
     navController: NavHostController,
@@ -56,6 +57,9 @@ private fun SampleNavHost(
                     },
                     onNavigateToSerialization = {
                         navController.navigate(Route.Serialization.path)
+                    },
+                    onNavigateToTitleBar = {
+                        navController.navigate(Route.TitleBar.path)
                     },
                 )
             }
@@ -87,6 +91,11 @@ private fun SampleNavHost(
             }
             composable(Route.Serialization.path) {
                 SerializationScreen(
+                    onBackClick = { navController.popBackStack() },
+                )
+            }
+            composable(Route.TitleBar.path) {
+                TitleBarScreen(
                     onBackClick = { navController.popBackStack() },
                 )
             }

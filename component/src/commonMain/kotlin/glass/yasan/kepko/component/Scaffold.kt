@@ -1,7 +1,6 @@
 package glass.yasan.kepko.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -16,10 +15,8 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -27,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
-import glass.yasan.kepko.resource.Strings
 import androidx.compose.material3.Scaffold as Material3Scaffold
 
 @Composable
@@ -48,50 +44,17 @@ public fun Scaffold(
     reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
-    val effectiveLeading = if (reverse) trailingContent else leadingContent
-    val effectiveTrailing = if (reverse) leadingContent else trailingContent
-
     Scaffold(
         modifier = modifier,
         topBar = {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                effectiveLeading?.let { it() }
-                if (reverse) {
-                    badge?.let {
-                        TextPill(
-                            badge = it,
-                            modifier = Modifier.padding(horizontal = 12.dp),
-                        )
-                    }
-                }
-                Text(
-                    text = title.uppercase(),
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    textAlign = when {
-                        textAlign == TextAlign.Center -> TextAlign.Center
-                        reverse -> TextAlign.End
-                        else -> TextAlign.Start
-                    },
-                    modifier = Modifier
-                        .let { if (effectiveLeading == null) it.padding(start = 16.dp) else it }
-                        .padding(vertical = 16.dp)
-                        .let { if (effectiveTrailing == null) it.padding(end = 16.dp) else it }
-                        .weight(1f)
-                )
-                if (!reverse) {
-                    badge?.let {
-                        TextPill(
-                            badge = it,
-                            modifier = Modifier.padding(horizontal = 12.dp),
-                        )
-                    }
-                }
-                effectiveTrailing?.let { it() }
-            }
+            TitleBar(
+                title = title,
+                leadingContent = leadingContent,
+                trailingContent = trailingContent,
+                badge = badge,
+                textAlign = textAlign,
+                reverse = reverse,
+            )
         },
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
@@ -124,19 +87,18 @@ public fun Scaffold(
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
     Scaffold(
-        title = title,
         modifier = modifier,
-        leadingContent = {
-            IconButton(
-                painter = backIcon,
-                contentDescription = Strings.back,
-                onClick = onBackClick,
-                onClickLabel = Strings.goBack,
-                modifier = Modifier
-                    .let { if (reverse) it.graphicsLayer(scaleX = -1f) else it },
+        topBar = {
+            TitleBar(
+                title = title,
+                onBackClick = onBackClick,
+                backIcon = backIcon,
+                trailingContent = trailingContent,
+                badge = badge,
+                textAlign = textAlign,
+                reverse = reverse,
             )
         },
-        trailingContent = trailingContent,
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
         floatingActionButton = floatingActionButton,
@@ -144,9 +106,6 @@ public fun Scaffold(
         containerColor = containerColor,
         contentColor = contentColor,
         contentWindowInsets = contentWindowInsets,
-        badge = badge,
-        textAlign = textAlign,
-        reverse = reverse,
         content = content,
     )
 }
@@ -154,7 +113,7 @@ public fun Scaffold(
 @Composable
 public fun Scaffold(
     modifier: Modifier = Modifier,
-    topBar: @Composable RowScope.() -> Unit,
+    topBar: @Composable () -> Unit,
     bottomBar: @Composable (RowScope.() -> Unit) = {},
     snackbarHost: @Composable () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},
@@ -167,20 +126,13 @@ public fun Scaffold(
     Material3Scaffold(
         modifier = modifier,
         topBar = {
-            Column(
-                modifier = Modifier
-                    .windowInsetsPadding(
-                        insets = WindowInsets.safeDrawing
-                            .only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal),
-                    )
-            ) {
-                Row(
-                    content = topBar,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(KepkoTheme.colors.foreground)
+            Column {
+                topBar()
+                HorizontalDivider(
+                    modifier = Modifier.windowInsetsPadding(
+                        insets = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal),
+                    ),
                 )
-                HorizontalDivider()
             }
         },
         bottomBar = {
@@ -371,11 +323,13 @@ internal fun ScaffoldWithCustomTopBarPreview() {
     KepkoTheme {
         Scaffold(
             topBar = {
-                Text(
-                    text = "Top Bar",
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp),
-                )
+                TitleBar {
+                    Text(
+                        text = "Top Bar",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(16.dp),
+                    )
+                }
             },
         ) { paddingValues ->
             PreviewScaffoldContent(paddingValues)
@@ -389,11 +343,13 @@ internal fun ScaffoldWithCustomTopBarAndBottomBarPreview() {
     KepkoTheme {
         Scaffold(
             topBar = {
-                Text(
-                    text = "Top Bar",
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp),
-                )
+                TitleBar {
+                    Text(
+                        text = "Top Bar",
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(16.dp),
+                    )
+                }
             },
             bottomBar = {
                 Text(

@@ -24,4 +24,8 @@ internal sealed interface Route {
         override val path = "serialization"
     }
 
+    data object TitleBar : Route {
+        override val path = "title-bar"
+    }
+
 }
