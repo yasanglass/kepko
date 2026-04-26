@@ -124,5 +124,14 @@ subprojects {
         apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "org.jetbrains.kotlinx.kover")
         configurePublishing()
+
+        tasks.withType<Jar>().configureEach {
+            from(rootProject.file("LICENSE")) {
+                into("META-INF")
+            }
+            from(rootProject.file("NOTICE")) {
+                into("META-INF")
+            }
+        }
     }
 }
