@@ -91,7 +91,7 @@ private fun TextMonoPreviewContent() {
             .padding(16.dp),
     ) {
         TextMono(text = Strings.preferenceLightPaletteTitle)
-        TextMono(text = Strings.preferenceAnnotationActive, fontWeight = FontWeight.Bold)
+        TextMono(text = Strings.preferenceBadgeActive, fontWeight = FontWeight.Bold)
         TextMono(text = Strings.colorPaletteLightSolarized, fontSize = 12.sp)
         TextMono(text = Strings.preferenceGrayscaleTitle, fontSize = 24.sp)
         TextMono(text = Strings.preferenceLightPaletteDescription, maxLines = 1)

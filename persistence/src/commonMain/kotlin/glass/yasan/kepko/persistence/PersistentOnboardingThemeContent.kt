@@ -2,7 +2,7 @@ package glass.yasan.kepko.persistence
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import glass.yasan.kepko.component.PreferenceAnnotation
+import glass.yasan.kepko.component.Badge
 import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -27,7 +27,7 @@ public fun PersistentOnboardingThemeContent(
     ) {
         val systemItem = PreferenceRadioGroupItem(
             id = PALETTE_ID_SYSTEM,
-            annotation = PreferenceAnnotation.default,
+            badge = Badge.default,
         ) { Strings.colorPaletteSystem }
 
         val paletteItems = ColorPalette.entries.map { palette ->

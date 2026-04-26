@@ -32,7 +32,7 @@ public fun PreferenceContainer(
     onClick: () -> Unit = {},
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     interactionSource: MutableInteractionSource? = null,
     indication: Indication? = null,
     shape: Shape = KepkoTheme.shapes.extraLarge,
@@ -76,9 +76,9 @@ public fun PreferenceContainer(
         ProvideLocalContentColor(animated.contentColor) {
             content(contentPadding)
         }
-        annotation?.let {
+        badge?.let {
             TextPill(
-                annotation = it,
+                badge = it,
                 modifier = Modifier
                     .padding(contentPadding)
                     .padding(vertical = 4.dp),
@@ -97,7 +97,7 @@ public fun PreferenceContainer(
     additionalContent: (@Composable () -> Unit)? = null,
     leadingContent: @Composable () -> Unit = {},
     trailingContent: @Composable () -> Unit = {},
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     interactionSource: MutableInteractionSource? = null,
     shape: Shape = KepkoTheme.shapes.extraLarge,
     colors: PreferenceContainerColors = PreferenceContainerDefaults.colors(),
@@ -146,9 +146,9 @@ public fun PreferenceContainer(
                     )
                 }
                 additionalContent?.invoke()
-                annotation?.let {
+                badge?.let {
                     TextPill(
-                        annotation = it,
+                        badge = it,
                         modifier = Modifier.padding(vertical = 4.dp),
                     )
                 }
@@ -190,7 +190,7 @@ internal fun PreferenceContainerHorizontalSolarizedDarkPreview() {
 
 @Composable
 private fun HorizontalPreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.alpha, null)
+    val badges = arrayOf(Badge.alpha, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null
@@ -202,13 +202,13 @@ private fun HorizontalPreviewContent() {
             .background(KepkoTheme.colors.midground)
             .padding(vertical = 16.dp),
     ) {
-        annotations.forEach { annotation ->
+        badges.forEach { badge ->
             descriptions.forEach { description ->
                 PreferenceContainer(
                     title = "PreferenceContainer",
                     description = description,
                     enabled = true,
-                    annotation = annotation,
+                    badge = badge,
                     modifier = Modifier.padding(horizontal = 16.dp),
                     content = {
                         Spacer(
@@ -256,7 +256,7 @@ internal fun PreferenceContainerVerticalSolarizedDarkPreview() {
 
 @Composable
 private fun VerticalPreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.legacy, null)
+    val badges = arrayOf(Badge.legacy, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null
@@ -268,13 +268,13 @@ private fun VerticalPreviewContent() {
             .background(KepkoTheme.colors.midground)
             .padding(vertical = 16.dp),
     ) {
-        annotations.forEach { annotation ->
+        badges.forEach { badge ->
             descriptions.forEach { description ->
                 PreferenceContainer(
                     title = "PreferenceContainer",
                     description = description,
                     enabled = true,
-                    annotation = annotation,
+                    badge = badge,
                     modifier = Modifier.padding(horizontal = 16.dp),
                     additionalContent = {
                         Spacer(

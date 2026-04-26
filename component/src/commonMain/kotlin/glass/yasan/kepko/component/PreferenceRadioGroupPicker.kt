@@ -29,7 +29,7 @@ public fun PreferenceRadioGroupPicker(
     modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(),
     description: String? = null,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
 ) {
@@ -41,7 +41,7 @@ public fun PreferenceRadioGroupPicker(
         modifier = modifier,
         sheetState = sheetState,
         description = description,
-        annotation = annotation,
+        badge = badge,
         enabled = enabled,
         closeOnSelection = closeOnSelection,
         leadingContent = {
@@ -64,7 +64,7 @@ public fun PreferenceRadioGroupPicker(
     modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(),
     description: String? = null,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
     leadingContent: @Composable () -> Unit = {},
@@ -75,7 +75,7 @@ public fun PreferenceRadioGroupPicker(
         text = title,
         onClick = { showSheet = true },
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         modifier = modifier,
         leadingContent = { leadingContent() },
         trailingContent = {
@@ -139,7 +139,7 @@ internal fun PreferenceRadioGroupPickerSolarizedDarkPreview() {
 private fun PreviewContent() {
     val items = listOf(
         PreferenceRadioGroupItem("item1") { "Item 1" },
-        PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
+        PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
         PreferenceRadioGroupItem("item3", segment = 1) { "Item 3" },
         PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },
     )
@@ -156,7 +156,7 @@ private fun PreviewContent() {
             items = items,
             onSelectId = {},
             description = "Lorem ipsum dolor sit amet.",
-            annotation = PreferenceAnnotation.beta,
+            badge = Badge.beta,
             leadingIcon = Icons.settings,
             modifier = Modifier.padding(horizontal = 16.dp),
         )

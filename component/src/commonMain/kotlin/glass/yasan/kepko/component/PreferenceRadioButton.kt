@@ -20,7 +20,7 @@ public fun PreferenceRadioButton(
     modifier: Modifier = Modifier,
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     reverse: Boolean = false,
 ) {
     PreferenceRadioButton(
@@ -30,7 +30,7 @@ public fun PreferenceRadioButton(
         modifier = modifier,
         description = description,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         reverse = reverse,
         leadingContent = {
             Icon(
@@ -50,7 +50,7 @@ public fun PreferenceRadioButton(
     description: String? = null,
     enabled: Boolean = true,
     leadingContent: @Composable () -> Unit = {},
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     reverse: Boolean = false,
 ) {
     val radio: @Composable () -> Unit = {
@@ -70,7 +70,7 @@ public fun PreferenceRadioButton(
         description = description,
         onClick = onClick,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         modifier = modifier,
         leadingContent = leading,
         trailingContent = trailing,
@@ -109,7 +109,7 @@ internal fun PreferenceRadioButtonSolarizedDarkPreview() {
 
 @Composable
 private fun PreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.new, null)
+    val badges = arrayOf(Badge.new, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null
@@ -121,7 +121,7 @@ private fun PreviewContent() {
             .background(KepkoTheme.colors.midground)
             .padding(vertical = 16.dp),
     ) {
-        annotations.forEachIndexed { annotationIndex, annotation ->
+        badges.forEachIndexed { annotationIndex, badge ->
             descriptions.forEachIndexed { descriptionIndex, description ->
                 PreferenceRadioButton(
                     title = "PreferenceRadioButton",
@@ -130,7 +130,7 @@ private fun PreviewContent() {
                     leadingIcon = painterResource(Res.drawable.ic_asterisk),
                     modifier = Modifier.padding(horizontal = 16.dp),
                     description = description,
-                    annotation = annotation,
+                    badge = badge,
                 )
             }
         }

@@ -20,7 +20,7 @@ public fun PreferenceCheckbox(
     modifier: Modifier = Modifier,
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
 ) {
     PreferenceCheckbox(
         title = title,
@@ -29,7 +29,7 @@ public fun PreferenceCheckbox(
         modifier = modifier,
         description = description,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         leadingContent = {
             Icon(
                 painter = leadingIcon,
@@ -48,14 +48,14 @@ public fun PreferenceCheckbox(
     description: String? = null,
     enabled: Boolean = true,
     leadingContent: @Composable () -> Unit = {},
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
 ) {
     PreferenceContainer(
         title = title,
         description = description,
         onClick = { onCheckedChange(!checked) },
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         modifier = modifier,
         leadingContent = leadingContent,
         trailingContent = {
@@ -100,7 +100,7 @@ internal fun PreferenceCheckboxSolarizedDarkPreview() {
 
 @Composable
 private fun PreviewContent() {
-    val annotations = arrayOf(PreferenceAnnotation.new, null)
+    val badges = arrayOf(Badge.new, null)
     val descriptions = arrayOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         null
@@ -112,7 +112,7 @@ private fun PreviewContent() {
             .background(KepkoTheme.colors.midground)
             .padding(vertical = 16.dp),
     ) {
-        annotations.forEach { annotation ->
+        badges.forEach { badge ->
             descriptions.forEach { description ->
                 PreferenceCheckbox(
                     title = "PreferenceCheckbox",
@@ -120,7 +120,7 @@ private fun PreviewContent() {
                     checked = true,
                     enabled = true,
                     onCheckedChange = {},
-                    annotation = annotation,
+                    badge = badge,
                     leadingIcon = painterResource(Res.drawable.ic_asterisk),
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )

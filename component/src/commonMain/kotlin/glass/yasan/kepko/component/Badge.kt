@@ -10,7 +10,7 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Strings
 
 @Immutable
-public data class PreferenceAnnotation(
+public data class Badge(
     public val text: @Composable () -> String,
     public val containerColor: @Composable () -> Color = { KepkoTheme.colors.foreground },
     public val contentColor: @Composable () -> Color = { contentColorFor(containerColor()) },
@@ -20,52 +20,52 @@ public data class PreferenceAnnotation(
 
     public companion object {
 
-        public val active: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationActive },
+        public val active: Badge = Badge(
+            text = { Strings.preferenceBadgeActive },
             containerColor = { KepkoTheme.colors.information },
         )
 
-        public val new: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationNew },
+        public val new: Badge = Badge(
+            text = { Strings.preferenceBadgeNew },
             containerColor = { KepkoTheme.colors.information },
         )
 
-        public val default: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationDefault },
+        public val default: Badge = Badge(
+            text = { Strings.preferenceBadgeDefault },
             containerColor = { KepkoTheme.colors.content },
         )
 
-        public val earlyAccess: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationEarlyAccess },
+        public val earlyAccess: Badge = Badge(
+            text = { Strings.preferenceBadgeEarlyAccess },
             containerColor = { KepkoTheme.colors.danger },
         )
 
-        public val preview: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationPreview },
+        public val preview: Badge = Badge(
+            text = { Strings.preferenceBadgePreview },
             containerColor = { KepkoTheme.colors.content },
         )
 
-        public val experimental: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationExperimental },
+        public val experimental: Badge = Badge(
+            text = { Strings.preferenceBadgeExperimental },
             containerColor = { KepkoTheme.colors.danger },
         )
 
-        public val beta: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationBeta },
+        public val beta: Badge = Badge(
+            text = { Strings.preferenceBadgeBeta },
             containerColor = { KepkoTheme.colors.caution },
         )
 
-        public val alpha: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationAlpha },
+        public val alpha: Badge = Badge(
+            text = { Strings.preferenceBadgeAlpha },
             containerColor = { KepkoTheme.colors.danger },
         )
 
-        public val legacy: PreferenceAnnotation = PreferenceAnnotation(
-            text = { Strings.preferenceAnnotationLegacy },
+        public val legacy: Badge = Badge(
+            text = { Strings.preferenceBadgeLegacy },
             containerColor = { KepkoTheme.colors.danger },
         )
 
-        public val all: List<PreferenceAnnotation> = listOf(
+        public val all: List<Badge> = listOf(
             new,
             default,
             earlyAccess,
@@ -79,7 +79,7 @@ public data class PreferenceAnnotation(
     }
 
     @ExperimentalKepkoApi
-    public fun subtle(): PreferenceAnnotation = copy(
+    public fun subtle(): Badge = copy(
         containerColor = { KepkoTheme.colors.foreground },
         contentColor = { KepkoTheme.colors.contentDisabled },
     )

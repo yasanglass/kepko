@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.painter.Painter
 @Immutable
 public data class PreferenceRadioGroupItem(
     val id: String,
-    val annotation: PreferenceAnnotation? = null,
+    val badge: Badge? = null,
     val segment: Int = 0,
     val enabled: Boolean = true,
     val icon: Painter? = null,

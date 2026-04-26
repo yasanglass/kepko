@@ -82,7 +82,7 @@ public fun PreferenceRadioGroupSheet(
                             selected = item.id == selectedId,
                             onClick = { onSelectItem(item) },
                             enabled = item.enabled,
-                            annotation = item.annotation,
+                            badge = item.badge,
                             leadingContent = {
                                 item.icon?.let { painter ->
                                     Icon(
@@ -175,7 +175,7 @@ internal fun PreferenceRadioGroupSheetContentSolarizedDarkPreview() {
 private fun SheetContentPreviewContent() {
     val items = listOf(
         PreferenceRadioGroupItem("item1", icon = Icons.check) { "Item 1" },
-        PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
+        PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
     )
 
     PreferenceRadioGroupSheet(

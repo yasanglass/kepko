@@ -161,9 +161,9 @@ public fun PreferenceRadioGroupPickerChip(
                                 maxLines = 1,
                                 modifier = if (item.icon != null) Modifier.padding(start = 12.dp) else Modifier,
                             )
-                            item.annotation?.let {
+                            item.badge?.let {
                                 TextPill(
-                                    annotation = it,
+                                    badge = it,
                                     modifier = Modifier.padding(start = 12.dp),
                                 )
                             }
@@ -230,7 +230,7 @@ internal fun PreferenceRadioGroupPickerChipSolarizedDarkPreview() {
 private fun CompactPreviewContent() {
     val items = listOf(
         PreferenceRadioGroupItem("item1", icon = Icons.check) { "Item 1" },
-        PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
+        PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
         PreferenceRadioGroupItem("item3", segment = 1, icon = Icons.info) { "Item 3" },
         PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },
     )

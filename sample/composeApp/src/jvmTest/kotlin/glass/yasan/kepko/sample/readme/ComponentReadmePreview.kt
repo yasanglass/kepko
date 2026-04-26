@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.OutlinedTextField
-import glass.yasan.kepko.component.PreferenceAnnotation
+import glass.yasan.kepko.component.Badge
 import glass.yasan.kepko.component.PreferenceCheckbox
 import glass.yasan.kepko.component.PreferenceRadioButton
 import glass.yasan.kepko.component.PreferenceRadioGroup
@@ -52,7 +52,7 @@ private fun ButtonReadmeContent() {
             containerColor = KepkoTheme.colors.foreground,
             leadingIcon = Icons.star,
             trailingIcon = Icons.chevronForward,
-            annotation = PreferenceAnnotation(
+            badge = Badge(
                 text = { "TextPill" },
                 containerColor = { KepkoTheme.colors.caution },
             ),
@@ -123,7 +123,7 @@ private fun PreferenceCheckboxReadmeContent() {
             onCheckedChange = {},
             leadingIcon = Icons.privacyTip,
             description = LOREM_IPSUM,
-            annotation = PreferenceAnnotation(
+            badge = Badge(
                 text = { "TextPill" },
                 containerColor = { KepkoTheme.colors.information },
             ),
@@ -161,7 +161,7 @@ private fun PreferenceRadioButtonReadmeContent() {
             onClick = {},
             leadingIcon = Icons.favorite,
             description = LOREM_IPSUM,
-            annotation = PreferenceAnnotation(
+            badge = Badge(
                 text = { "TextPill" },
                 containerColor = { KepkoTheme.colors.danger },
             ),
@@ -205,7 +205,7 @@ private fun PreferenceRadioGroupReadmeContent() {
             selected = items.first(),
             items = items,
             onSelect = {},
-            annotation = PreferenceAnnotation(
+            badge = Badge(
                 text = { "TextPill" },
                 containerColor = { KepkoTheme.colors.caution },
             ),
@@ -243,7 +243,7 @@ private fun PreferenceSliderReadmeContent() {
             value = 0.7f,
             onValueChange = {},
             steps = 9,
-            annotation = PreferenceAnnotation(
+            badge = Badge(
                 text = { "TextPill" },
                 containerColor = { KepkoTheme.colors.success },
             ),
@@ -281,7 +281,7 @@ private fun PreferenceSwitchReadmeContent() {
             onCheckedChange = {},
             leadingIcon = Icons.warning,
             description = LOREM_IPSUM,
-            annotation = PreferenceAnnotation(
+            badge = Badge(
                 text = { "TextPill" },
                 containerColor = { KepkoTheme.colors.content },
             ),

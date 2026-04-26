@@ -76,13 +76,13 @@ private fun rememberSerializationPresets(
             ),
             withAnnotationJson = json.encodeToString(
                 ButtonContract(
-                    onClick = "annotation-on-click",
+                    onClick = "badge-on-click",
                     text = "Text Value",
-                    onClickLabel = "annotation-on-click-label",
-                    onLongClick = "annotation-on-long-click",
-                    onLongClickLabel = "annotation-on-long-click-label",
-                    onDoubleClick = "annotation-on-double-click",
-                    annotation = PreferenceAnnotationContract(
+                    onClickLabel = "badge-on-click-label",
+                    onLongClick = "badge-on-long-click",
+                    onLongClickLabel = "badge-on-long-click-label",
+                    onDoubleClick = "badge-on-double-click",
+                    badge = PreferenceAnnotationContract(
                         text = "new",
                         containerColor = NamedColor.INFORMATION,
                     ),
@@ -102,7 +102,7 @@ private fun rememberSerializationPresets(
                     trailingIcon = NamedIcon.ERROR,
                     enabled = true,
                     fillWidth = false,
-                    annotation = PreferenceAnnotationContract(
+                    badge = PreferenceAnnotationContract(
                         text = "beta",
                         containerColor = NamedColor.CONTENT,
                         contentColor = NamedColor.FOREGROUND,
@@ -308,7 +308,7 @@ private fun PresetButtonsRow(
 
         TextButton(
             onClick = onWithAnnotationClick,
-            content = { Text(text = "With annotation", maxLines = 1) },
+            content = { Text(text = "With badge", maxLines = 1) },
             contentPadding = padding,
             modifier = Modifier.weight(1f),
         )

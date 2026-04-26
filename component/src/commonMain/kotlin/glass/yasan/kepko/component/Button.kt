@@ -51,7 +51,7 @@ public fun Button(
     contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     trailingIcon: Painter? = null,
     hapticFeedbackEnabled: Boolean = true,
     iconTransitionSpecs: ButtonIconTransitionSpecs = ButtonDefaults.iconTransitionSpecs(),
@@ -76,7 +76,7 @@ public fun Button(
         contentPadding = contentPadding,
         interactionSource = interactionSource,
         fillWidth = fillWidth,
-        annotation = annotation,
+        badge = badge,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
         leadingContent = {
             AnimatedIcon(
@@ -153,7 +153,7 @@ public fun Button(
     contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     hapticFeedbackEnabled: Boolean = true,
     leadingContent: @Composable RowScope.() -> Unit = {},
     trailingContent: @Composable RowScope.() -> Unit = {},
@@ -178,7 +178,7 @@ public fun Button(
         contentPadding = contentPadding,
         interactionSource = interactionSource,
         fillWidth = fillWidth,
-        annotation = annotation,
+        badge = badge,
         leadingContent = leadingContent,
         trailingContent = trailingContent,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
@@ -207,7 +207,7 @@ internal fun ButtonInternal(
     contentPadding: PaddingValues,
     interactionSource: MutableInteractionSource?,
     fillWidth: Boolean,
-    annotation: PreferenceAnnotation?,
+    badge: Badge?,
     leadingContent: @Composable RowScope.() -> Unit,
     trailingContent: @Composable RowScope.() -> Unit,
     hapticFeedbackEnabled: Boolean,
@@ -242,9 +242,9 @@ internal fun ButtonInternal(
                             .then(if (fillWidth) Modifier.weight(1f) else Modifier)
                     )
                 }
-                annotation?.let {
+                badge?.let {
                     TextPill(
-                        annotation = it,
+                        badge = it,
                         modifier = Modifier.padding(start = 12.dp),
                     )
                 }
@@ -375,7 +375,7 @@ private fun PreviewContent() {
                     containerColor = containerColor,
                     leadingIcon = painterResource(Res.drawable.ic_asterisk),
                     trailingIcon = painterResource(Res.drawable.ic_asterisk),
-                    annotation = PreferenceAnnotation.preview,
+                    badge = Badge.preview,
                 )
                 Button(
                     text = "Button Text",

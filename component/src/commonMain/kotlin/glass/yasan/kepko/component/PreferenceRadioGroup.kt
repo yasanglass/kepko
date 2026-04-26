@@ -28,7 +28,7 @@ public fun PreferenceRadioGroup(
     modifier: Modifier = Modifier,
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     content: @Composable () -> Unit = {},
 ) {
     PreferenceRadioGroup(
@@ -39,7 +39,7 @@ public fun PreferenceRadioGroup(
         modifier = modifier,
         description = description,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         content = content,
     )
 }
@@ -54,14 +54,14 @@ public fun PreferenceRadioGroup(
     modifier: Modifier = Modifier,
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     content: @Composable () -> Unit = {},
 ) {
     PreferenceContainer(
         title = title,
         description = description,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         modifier = modifier,
         interactionSource = null,
         indication = null,
@@ -133,11 +133,11 @@ private fun RadioGroupRow(
             color = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
             modifier = Modifier.weight(1f),
         )
-        item.annotation?.let { itemAnnotation ->
-            val annotation = if (enabled) itemAnnotation else itemAnnotation.subtle()
+        item.badge?.let { itemAnnotation ->
+            val badge = if (enabled) itemAnnotation else itemAnnotation.subtle()
 
             TextPill(
-                annotation = annotation,
+                badge = badge,
                 modifier = Modifier.padding(horizontal = 12.dp),
             )
         }
@@ -183,7 +183,7 @@ private fun PreviewContent() {
 
     val items = listOf(
         PreferenceRadioGroupItem("item1", icon = Icons.check) { "Item 1" },
-        PreferenceRadioGroupItem("item2", PreferenceAnnotation.experimental) { "Item 2" },
+        PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
         PreferenceRadioGroupItem("item3", segment = 1, icon = Icons.info) { "Item 3" },
         PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },
     )
@@ -199,7 +199,7 @@ private fun PreviewContent() {
                 title = "PreferenceSlider",
                 modifier = Modifier.padding(horizontal = 16.dp),
                 description = description,
-                annotation = PreferenceAnnotation.beta,
+                badge = Badge.beta,
                 selected = items.first(),
                 items = items,
                 onSelect = {},

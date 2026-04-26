@@ -31,7 +31,7 @@ public fun PreferenceSlider(
     modifier: Modifier = Modifier,
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     @IntRange(from = 0) steps: Int = 0,
     valueLabelPrefix: String? = null,
@@ -59,7 +59,7 @@ public fun PreferenceSlider(
         modifier = modifier,
         description = description,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         valueRange = valueRange,
         steps = steps,
         valueLabel = {
@@ -92,7 +92,7 @@ public fun PreferenceSlider(
     modifier: Modifier = Modifier,
     description: String? = null,
     enabled: Boolean = true,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     @IntRange(from = 0) steps: Int = 0,
     content: @Composable () -> Unit = {},
@@ -101,7 +101,7 @@ public fun PreferenceSlider(
         title = title,
         description = description,
         enabled = enabled,
-        annotation = annotation,
+        badge = badge,
         modifier = modifier,
         interactionSource = null,
         indication = null,
@@ -195,11 +195,11 @@ private fun PreviewContent() {
             modifier = Modifier.padding(horizontal = 16.dp),
         )
         PreferenceSlider(
-            title = "With annotation",
+            title = "With badge",
             value = 0.5f,
             steps = 5,
             onValueChange = {},
-            annotation = PreferenceAnnotation.earlyAccess,
+            badge = Badge.earlyAccess,
             modifier = Modifier.padding(horizontal = 16.dp),
         )
     }

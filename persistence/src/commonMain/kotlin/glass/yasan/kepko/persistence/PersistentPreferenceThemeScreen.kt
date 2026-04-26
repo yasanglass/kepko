@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.IconButton
-import glass.yasan.kepko.component.PreferenceAnnotation
+import glass.yasan.kepko.component.Badge
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
@@ -89,7 +89,7 @@ public fun PersistentPreferenceThemeContent(
         }
         val systemItem = PreferenceRadioGroupItem(
             id = PALETTE_ID_SYSTEM,
-            annotation = PreferenceAnnotation.default,
+            badge = Badge.default,
         ) { Strings.colorPaletteSystem }
 
         Column(
@@ -238,7 +238,7 @@ private fun PersistentPreferenceThemeLight(
         },
         onSelectId = { id -> ColorPalette.fromIdOrNull(id)?.let { persistence.paletteLight = it } },
         description = Strings.preferenceLightPaletteDescription,
-        annotation = PreferenceAnnotation.active.takeIf { !isSystemInDarkTheme },
+        badge = Badge.active.takeIf { !isSystemInDarkTheme },
         leadingIcon = Icons.lightMode,
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
@@ -263,7 +263,7 @@ private fun PersistentPreferenceThemeDark(
         },
         onSelectId = { id -> ColorPalette.fromIdOrNull(id)?.let { persistence.paletteDark = it } },
         description = Strings.preferenceDarkPaletteDescription,
-        annotation = PreferenceAnnotation.active.takeIf { isSystemInDarkTheme },
+        badge = Badge.active.takeIf { isSystemInDarkTheme },
         leadingIcon = Icons.modeNight,
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
@@ -327,10 +327,10 @@ private fun ColorPalette.asPreferenceRadioGroupItem(
 ): PreferenceRadioGroupItem = PreferenceRadioGroupItem(
     id = id,
     segment = segment,
-    annotation = when {
-        isDefault -> PreferenceAnnotation.default
-        category == ColorPalette.Category.CATPPUCCIN -> PreferenceAnnotation.experimental
-        category == ColorPalette.Category.GRUVBOX -> PreferenceAnnotation.experimental
+    badge = when {
+        isDefault -> Badge.default
+        category == ColorPalette.Category.CATPPUCCIN -> Badge.experimental
+        category == ColorPalette.Category.GRUVBOX -> Badge.experimental
         else -> null
     },
 ) {

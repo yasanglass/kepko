@@ -45,7 +45,7 @@ import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.LinearProgressIndicator
 import glass.yasan.kepko.component.OutlinedTextField
-import glass.yasan.kepko.component.PreferenceAnnotation
+import glass.yasan.kepko.component.Badge
 import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.PreferenceCheckbox
 import glass.yasan.kepko.component.PreferenceRadioButton
@@ -228,7 +228,7 @@ private fun LazyListScope.examplePreferenceRadioButton() {
             selected = radioButtonValue.value,
             onClick = { radioButtonValue.value = radioButtonValue.value.not() },
             leadingIcon = painterResource(Res.drawable.ic_heart_smile),
-            annotation = PreferenceAnnotation.new,
+            badge = Badge.new,
         )
     }
     item {
@@ -285,7 +285,7 @@ private fun LazyListScope.examplePreferenceSwitch() {
             description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             checked = switchValue.value,
             onCheckedChange = { switchValue.value = it },
-            annotation = PreferenceAnnotation.preview,
+            badge = Badge.preview,
             leadingIcon = painterResource(Res.drawable.ic_bolt)
         )
     }
@@ -297,7 +297,7 @@ private fun LazyListScope.examplePreferenceSwitch() {
             description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             checked = switchValue.value,
             onCheckedChange = { switchValue.value = it },
-            annotation = PreferenceAnnotation.alpha,
+            badge = Badge.alpha,
         )
     }
     item {
@@ -352,7 +352,7 @@ private fun LazyListScope.examplePreferenceCheckbox() {
             description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             checked = checkboxValue.value,
             onCheckedChange = { checkboxValue.value = it },
-            annotation = PreferenceAnnotation.beta,
+            badge = Badge.beta,
         )
     }
     item {
@@ -396,7 +396,7 @@ private fun LazyListScope.examplePreferenceSlider() {
             value = sliderValue.value,
             onValueChange = { sliderValue.value = it },
             steps = 9,
-            annotation = PreferenceAnnotation.legacy,
+            badge = Badge.legacy,
         )
     }
     item {
@@ -463,7 +463,7 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
             selected = selected.value,
             items = items,
             onSelect = { selected.value = it },
-            annotation = PreferenceAnnotation.alpha,
+            badge = Badge.alpha,
         )
     }
     item {
@@ -472,11 +472,11 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
             PreferenceRadioGroupItem("item2", icon = painterResource(Res.drawable.ic_eco)) { "Item 2" },
             PreferenceRadioGroupItem(
                 "item3",
-                annotation = PreferenceAnnotation.new,
+                badge = Badge.new,
                 icon = painterResource(Res.drawable.ic_heart_smile),
             ) { "Item 3" },
             PreferenceRadioGroupItem("item4", segment = 1) { "Item 4" },
-            PreferenceRadioGroupItem("item5", annotation = PreferenceAnnotation.experimental, segment = 1) { "Item 5" },
+            PreferenceRadioGroupItem("item5", badge = Badge.experimental, segment = 1) { "Item 5" },
         )
         val selected = remember { mutableStateOf(items.first()) }
 
@@ -521,8 +521,8 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
         val items = listOf(
             PreferenceRadioGroupItem("item1") { "Item 1" },
             PreferenceRadioGroupItem("item2", enabled = false) { "Item 2" },
-            PreferenceRadioGroupItem("item3", annotation = PreferenceAnnotation.experimental) { "Item 3" },
-            PreferenceRadioGroupItem("item4", annotation = PreferenceAnnotation.legacy, enabled = false) { "Item 4" },
+            PreferenceRadioGroupItem("item3", badge = Badge.experimental) { "Item 3" },
+            PreferenceRadioGroupItem("item4", badge = Badge.legacy, enabled = false) { "Item 4" },
         )
         val selected = remember { mutableStateOf(items.first()) }
 
@@ -545,7 +545,7 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
             PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_bolt)) { "Item 1" },
             PreferenceRadioGroupItem(
                 "item2",
-                annotation = PreferenceAnnotation.new,
+                badge = Badge.new,
                 icon = painterResource(Res.drawable.ic_eco),
             ) { "Item 2" },
             PreferenceRadioGroupItem("item3", icon = painterResource(Res.drawable.ic_heart_smile)) { "Item 3" },
@@ -558,7 +558,7 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
             selectedId = selectedId,
             items = items,
             onSelectId = { selectedId = it },
-            annotation = PreferenceAnnotation.beta,
+            badge = Badge.beta,
             leadingIcon = Icons.settings,
         )
     }
@@ -570,8 +570,8 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
                 enabled = false,
                 icon = painterResource(Res.drawable.ic_new_releases),
             ) { "Item 2 (Disabled)" },
-            PreferenceRadioGroupItem("item3", annotation = PreferenceAnnotation.experimental) { "Item 3" },
-            PreferenceRadioGroupItem("item4", annotation = PreferenceAnnotation.legacy, enabled = false) {
+            PreferenceRadioGroupItem("item3", badge = Badge.experimental) { "Item 3" },
+            PreferenceRadioGroupItem("item4", badge = Badge.legacy, enabled = false) {
                 "Item 4 (Disabled)"
             },
         )
@@ -629,7 +629,7 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
             PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "S" },
             PreferenceRadioGroupItem(
                 "medium",
-                annotation = PreferenceAnnotation.new,
+                badge = Badge.new,
                 icon = painterResource(Res.drawable.ic_family_star),
             ) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Extra Large" },
@@ -1087,7 +1087,7 @@ private fun LazyListScope.exampleAlertDialog() {
                 text = "Show AlertDialog",
                 onClick = { dialogStyle.intValue = 2 },
                 fillWidth = false,
-                annotation = PreferenceAnnotation(
+                badge = Badge(
                     text = { "Caution" },
                     containerColor = { KepkoTheme.colors.caution },
                 ),
@@ -1096,7 +1096,7 @@ private fun LazyListScope.exampleAlertDialog() {
                 text = "Show AlertDialog",
                 onClick = { dialogStyle.intValue = 3 },
                 fillWidth = false,
-                annotation = PreferenceAnnotation(
+                badge = Badge(
                     text = { "Danger" },
                     containerColor = { KepkoTheme.colors.danger },
                 ),
@@ -1278,7 +1278,7 @@ private fun LazyListScope.exampleButton() {
             leadingIcon = Icons.chevronBackward,
             trailingIcon = painterResource(Res.drawable.ic_bolt),
             containerColor = KepkoTheme.colors.foreground,
-            annotation = PreferenceAnnotation.new,
+            badge = Badge.new,
             onClick = {},
         )
     }
@@ -1332,7 +1332,7 @@ private fun LazyListScope.exampleButton() {
             trailingIcon = painterResource(Res.drawable.ic_family_star),
             containerColor = KepkoTheme.colors.foreground,
             onClick = {},
-            annotation = PreferenceAnnotation.alpha,
+            badge = Badge.alpha,
             fillWidth = false,
         )
     }
@@ -1362,7 +1362,7 @@ private fun LazyListScope.exampleButton() {
             containerColor = KepkoTheme.colors.foreground,
             onClick = {},
             fillWidth = false,
-            annotation = PreferenceAnnotation.beta,
+            badge = Badge.beta,
         )
     }
     item {
@@ -1397,9 +1397,9 @@ private fun LazyListScope.exampleButton() {
 private fun LazyListScope.exampleTextPill() {
     item { HorizontalDivider() }
     item {
-        PreferenceAnnotation.all.forEach { annotation ->
+        Badge.all.forEach { badge ->
             TextPill(
-                annotation = annotation,
+                badge = badge,
                 modifier = Modifier.padding(top = 12.dp),
             )
         }
@@ -1414,7 +1414,7 @@ private fun LazyListScope.exampleAppIdentity() {
             versionName = "1.0.0",
             icon = painterResource(Res.drawable.ic_heart_smile),
             extras = arrayOf("100", "beta"),
-            annotation = PreferenceAnnotation.preview,
+            badge = Badge.preview,
         )
     }
 }

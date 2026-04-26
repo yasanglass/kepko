@@ -43,7 +43,7 @@ public fun Scaffold(
     containerColor: Color = KepkoTheme.colors.midground,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     textAlign: TextAlign = TextAlign.Unspecified,
     reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
@@ -60,9 +60,9 @@ public fun Scaffold(
             ) {
                 effectiveLeading?.let { it() }
                 if (reverse) {
-                    annotation?.let {
+                    badge?.let {
                         TextPill(
-                            annotation = it,
+                            badge = it,
                             modifier = Modifier.padding(horizontal = 12.dp),
                         )
                     }
@@ -83,9 +83,9 @@ public fun Scaffold(
                         .weight(1f)
                 )
                 if (!reverse) {
-                    annotation?.let {
+                    badge?.let {
                         TextPill(
-                            annotation = it,
+                            badge = it,
                             modifier = Modifier.padding(horizontal = 12.dp),
                         )
                     }
@@ -118,7 +118,7 @@ public fun Scaffold(
     containerColor: Color = KepkoTheme.colors.midground,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     textAlign: TextAlign = TextAlign.Unspecified,
     reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
@@ -144,7 +144,7 @@ public fun Scaffold(
         containerColor = containerColor,
         contentColor = contentColor,
         contentWindowInsets = contentWindowInsets,
-        annotation = annotation,
+        badge = badge,
         textAlign = textAlign,
         reverse = reverse,
         content = content,
@@ -280,7 +280,7 @@ internal fun ScaffoldWithAnnotationPreview() {
     KepkoTheme {
         Scaffold(
             title = "Title",
-            annotation = PreferenceAnnotation.new,
+            badge = Badge.new,
         ) { paddingValues ->
             PreviewScaffoldContent(paddingValues)
         }
@@ -312,7 +312,7 @@ internal fun ScaffoldWithTrailingContentAndAnnotationPreview() {
     KepkoTheme {
         Scaffold(
             title = "Title",
-            annotation = PreferenceAnnotation.experimental,
+            badge = Badge.experimental,
             trailingContent = {
                 Icon(
                     painter = Icons.chevronForward,

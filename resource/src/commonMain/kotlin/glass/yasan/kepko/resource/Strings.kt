@@ -11,32 +11,32 @@ public object Strings {
     public val goBack: String
         @Composable get() = stringResource(Res.string.go_back)
 
-    public val preferenceAnnotationActive: String
-        @Composable get() = stringResource(Res.string.preference_annotation_active)
+    public val preferenceBadgeActive: String
+        @Composable get() = stringResource(Res.string.preference_badge_active)
 
-    public val preferenceAnnotationAlpha: String
-        @Composable get() = stringResource(Res.string.preference_annotation_alpha)
+    public val preferenceBadgeAlpha: String
+        @Composable get() = stringResource(Res.string.preference_badge_alpha)
 
-    public val preferenceAnnotationBeta: String
-        @Composable get() = stringResource(Res.string.preference_annotation_beta)
+    public val preferenceBadgeBeta: String
+        @Composable get() = stringResource(Res.string.preference_badge_beta)
 
-    public val preferenceAnnotationDefault: String
-        @Composable get() = stringResource(Res.string.preference_annotation_default)
+    public val preferenceBadgeDefault: String
+        @Composable get() = stringResource(Res.string.preference_badge_default)
 
-    public val preferenceAnnotationEarlyAccess: String
-        @Composable get() = stringResource(Res.string.preference_annotation_early_access)
+    public val preferenceBadgeEarlyAccess: String
+        @Composable get() = stringResource(Res.string.preference_badge_early_access)
 
-    public val preferenceAnnotationExperimental: String
-        @Composable get() = stringResource(Res.string.preference_annotation_experimental)
+    public val preferenceBadgeExperimental: String
+        @Composable get() = stringResource(Res.string.preference_badge_experimental)
 
-    public val preferenceAnnotationLegacy: String
-        @Composable get() = stringResource(Res.string.preference_annotation_legacy)
+    public val preferenceBadgeLegacy: String
+        @Composable get() = stringResource(Res.string.preference_badge_legacy)
 
-    public val preferenceAnnotationNew: String
-        @Composable get() = stringResource(Res.string.preference_annotation_new)
+    public val preferenceBadgeNew: String
+        @Composable get() = stringResource(Res.string.preference_badge_new)
 
-    public val preferenceAnnotationPreview: String
-        @Composable get() = stringResource(Res.string.preference_annotation_preview)
+    public val preferenceBadgePreview: String
+        @Composable get() = stringResource(Res.string.preference_badge_preview)
 
     public val colorPaletteSystem: String
         @Composable get() = stringResource(Res.string.color_palette_system)

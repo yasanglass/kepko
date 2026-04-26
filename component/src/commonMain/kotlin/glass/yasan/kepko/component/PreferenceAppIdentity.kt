@@ -27,7 +27,7 @@ public fun PreferenceAppIdentity(
     icon: Painter? = null,
     iconTint: Color? = KepkoTheme.colors.content,
     extras: Array<String> = emptyArray(),
-    annotation: PreferenceAnnotation? = null,
+    badge: Badge? = null,
     contentPadding: PaddingValues = PaddingValues(all = 16.dp),
 ) {
     val extrasString = remember {
@@ -59,7 +59,7 @@ public fun PreferenceAppIdentity(
             )
         }
 
-        if (extras.isNotEmpty() || annotation != null) {
+        if (extras.isNotEmpty() || badge != null) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
             ) {
@@ -70,7 +70,7 @@ public fun PreferenceAppIdentity(
                     )
                 }
 
-                annotation?.let {
+                badge?.let {
                     TextPill(it)
                 }
             }
@@ -122,7 +122,7 @@ private fun PreviewContent() {
                 versionName = versionName,
                 icon = painterResource(resource = Res.drawable.ic_asterisk),
                 extras = arrayOf(100.toString(), "flavor"),
-                annotation = PreferenceAnnotation.beta,
+                badge = Badge.beta,
             )
             HorizontalDivider()
             PreferenceAppIdentity(

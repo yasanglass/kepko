@@ -26,7 +26,7 @@ internal class ButtonContractTest {
             trailingIcon = NamedIcon.CHEVRON_FORWARD,
             enabled = false,
             fillWidth = false,
-            annotation = PreferenceAnnotationContract(
+            badge = PreferenceAnnotationContract(
                 text = "NEW",
                 containerColor = NamedColor.INFORMATION,
                 contentColor = null,
@@ -43,7 +43,7 @@ internal class ButtonContractTest {
         assertContains(encoded, "\"trailing_icon\":\"${NamedIcon.CHEVRON_FORWARD.id}\"")
         assertContains(encoded, "\"container_color\":\"${NamedColor.CAUTION.id}\"")
         assertContains(encoded, "\"content_color\":\"${NamedColor.ON_CAUTION.id}\"")
-        assertContains(encoded, "\"annotation\":{")
+        assertContains(encoded, "\"badge\":{")
         assertEquals(contract, decoded)
     }
 

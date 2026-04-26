@@ -36,7 +36,7 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 public fun TextPill(
-    annotation: PreferenceAnnotation,
+    badge: Badge,
     modifier: Modifier = Modifier,
     shape: Shape = TextPillDefaults.shape,
     animations: TextPillDefaults.Animations = TextPillDefaults.animations(),
@@ -45,11 +45,11 @@ public fun TextPill(
     onClickIndication: Indication? = null,
 ) {
     TextPill(
-        text = annotation.text(),
-        containerColor = annotation.containerColor(),
-        contentColor = annotation.contentColor(),
-        leadingIcon = annotation.leadingIcon?.invoke(),
-        trailingIcon = annotation.trailingIcon?.invoke(),
+        text = badge.text(),
+        containerColor = badge.containerColor(),
+        contentColor = badge.contentColor(),
+        leadingIcon = badge.leadingIcon?.invoke(),
+        trailingIcon = badge.trailingIcon?.invoke(),
         onClick = onClick,
         onClickInteractionSource = onClickInteractionSource,
         onClickIndication = onClickIndication,
@@ -174,7 +174,7 @@ private fun PreviewContent() {
             .padding(4.dp)
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            TextPill(annotation = PreferenceAnnotation(text = { "TextPill" }))
+            TextPill(badge = Badge(text = { "TextPill" }))
         }
         containerColors.forEach { containerColor ->
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {

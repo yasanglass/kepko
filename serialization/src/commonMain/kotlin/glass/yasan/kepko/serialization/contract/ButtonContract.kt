@@ -39,6 +39,6 @@ public data class ButtonContract(
     public val enabled: Boolean = true,
     @SerialName("fill_width")
     public val fillWidth: Boolean = true,
-    @SerialName("annotation")
-    public val annotation: PreferenceAnnotationContract? = null,
+    @SerialName("badge")
+    public val badge: PreferenceAnnotationContract? = null,
 )

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import glass.yasan.kepko.component.Button
-import glass.yasan.kepko.component.PreferenceAnnotation
+import glass.yasan.kepko.component.Badge
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.color.NamedColor
 import glass.yasan.kepko.foundation.color.contentColorFor
@@ -49,7 +49,7 @@ public fun ContractButton(
         contentColor = contentColor,
         enabled = contract.enabled,
         fillWidth = contract.fillWidth,
-        annotation = contract.annotation?.toPreferenceAnnotation(),
+        badge = contract.badge?.toBadge(),
         leadingIcon = contract.leadingIcon?.painter?.invoke(),
         trailingIcon = contract.trailingIcon?.painter?.invoke(),
     )
@@ -64,8 +64,8 @@ private fun NamedColor?.resolveContentColor(containerColor: Color): Color =
     this?.resolve(KepkoTheme.colors) ?: contentColorFor(containerColor)
 
 @Composable
-private fun PreferenceAnnotationContract.toPreferenceAnnotation(): PreferenceAnnotation =
-    PreferenceAnnotation(
+private fun PreferenceAnnotationContract.toBadge(): Badge =
+    Badge(
         text = { text },
         containerColor = {
             containerColor.resolveColor()
