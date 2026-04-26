@@ -1,9 +1,12 @@
 Kepko
 Copyright 2025 Yasan Ghaffarian
 
-This product includes color palettes derived from the following third-party
-projects, each licensed under the MIT License:
+Kepko itself is licensed under the Apache License, Version 2.0.
+See the root LICENSE file for the full Apache-2.0 license text.
 
+This NOTICE file also includes attribution and license information for
+color palettes derived from the following third-party projects, each licensed
+under the MIT License:
 ================================================================================
 Solarized
 ================================================================================
