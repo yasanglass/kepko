@@ -1,9 +1,5 @@
 package glass.yasan.kepko.component
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
@@ -23,7 +19,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,17 +51,11 @@ public fun ButtonPrimitive(
     interactionSource: MutableInteractionSource? = null,
 ) {
     val resolvedInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val targetContainerColor = if (enabled) containerColor else containerColor.copy(alpha = 0.50f)
-    val targetContentColor = if (enabled) contentColor else contentColor.copy(alpha = 0.70f)
-    val colorAnimationSpec = spring<Color>(
-        dampingRatio = Spring.DampingRatioNoBouncy,
-        stiffness = Spring.StiffnessLow,
-    )
-    val animatedContainerColor by animateColorAsState(targetContainerColor, colorAnimationSpec)
-    val animatedContentColor by animateColorAsState(targetContentColor, colorAnimationSpec)
+    val resolvedContainerColor = if (enabled) containerColor else containerColor.copy(alpha = 0.50f)
+    val resolvedContentColor = if (enabled) contentColor else contentColor.copy(alpha = 0.70f)
 
     ProvideLocalContentColor(
-        color = animatedContentColor,
+        color = resolvedContentColor,
     ) {
         Surface(
             modifier = modifier
@@ -85,19 +74,13 @@ public fun ButtonPrimitive(
                     onClick = onClick,
                 ),
             shape = shape,
-            color = animatedContainerColor,
-            contentColor = animatedContentColor,
+            color = resolvedContainerColor,
+            contentColor = resolvedContentColor,
             border = border,
         ) {
             CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.labelLarge) {
                 Row(
                     modifier = Modifier
-                        .animateContentSize(
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioNoBouncy,
-                                stiffness = Spring.StiffnessLow,
-                            ),
-                        )
                         .defaultMinSize(
                             minWidth = Material3ButtonDefaults.MinWidth,
                             minHeight = Material3ButtonDefaults.MinHeight,
