@@ -1,8 +1,5 @@
 package glass.yasan.kepko.component
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.ContentTransform
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -54,7 +51,6 @@ public fun Button(
     badge: Badge? = null,
     trailingIcon: Painter? = null,
     hapticFeedbackEnabled: Boolean = true,
-    iconTransitionSpecs: ButtonIconTransitionSpecs = ButtonDefaults.iconTransitionSpecs(),
 ) {
     ButtonInternal(
         text = text,
@@ -79,57 +75,39 @@ public fun Button(
         badge = badge,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
         leadingContent = {
-            AnimatedIcon(
+            ButtonIcon(
                 painter = leadingIcon,
                 hasText = text != null,
-                alignment = Alignment.CenterStart,
                 paddingEdgeIsStart = false,
-                transitionSpec = iconTransitionSpecs.leading,
-                label = "leadingIcon",
             )
         },
         trailingContent = {
-            AnimatedIcon(
+            ButtonIcon(
                 painter = trailingIcon,
                 hasText = text != null,
-                alignment = Alignment.CenterEnd,
                 paddingEdgeIsStart = true,
-                transitionSpec = iconTransitionSpecs.trailing,
-                label = "trailingIcon",
             )
         },
     )
 }
 
 @Composable
-private fun AnimatedIcon(
+private fun ButtonIcon(
     painter: Painter?,
     hasText: Boolean,
-    alignment: Alignment,
     paddingEdgeIsStart: Boolean,
-    transitionSpec: AnimatedContentTransitionScope<Painter?>.() -> ContentTransform,
-    label: String,
 ) {
-    AnimatedContent(
-        targetState = painter,
-        transitionSpec = transitionSpec,
-        contentAlignment = alignment,
-        modifier = Modifier.heightIn(min = KepkoTheme.dimensions.iconSize),
-        label = label,
-    ) { target ->
-        if (target != null) {
-            val padding = when {
-                !hasText -> Modifier
-                paddingEdgeIsStart -> Modifier.padding(start = 12.dp)
-                else -> Modifier.padding(end = 12.dp)
-            }
-            Icon(
-                painter = target,
-                contentDescription = null,
-                modifier = padding,
-            )
-        }
+    if (painter == null) return
+    val padding = when {
+        !hasText -> Modifier
+        paddingEdgeIsStart -> Modifier.padding(start = 12.dp)
+        else -> Modifier.padding(end = 12.dp)
     }
+    Icon(
+        painter = painter,
+        contentDescription = null,
+        modifier = padding,
+    )
 }
 
 @Composable
