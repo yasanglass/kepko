@@ -4,14 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.border.borderStroke
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -27,36 +24,21 @@ public fun SelectableChip(
     enabled: Boolean = true,
     shape: Shape = ButtonDefaults.shape(),
     contentPadding: PaddingValues = ButtonDefaults.contentPadding(),
+    fillWidth: Boolean = false,
     colors: SelectableChipColors = SelectableChipDefaults.colors(),
 ) {
-    ButtonPrimitive(
+    Button(
+        text = title,
         onClick = { onSelectedChange(!selected) },
-        enabled = enabled,
+        leadingIcon = leadingIcon,
+        modifier = modifier,
         containerColor = if (selected) colors.selectedContainerColor else colors.unselectedContainerColor,
         contentColor = if (selected) colors.selectedContentColor else colors.unselectedContentColor,
+        enabled = enabled,
         shape = shape,
-        contentPadding = contentPadding,
         border = borderStroke(color = colors.outlineColor),
-        modifier = modifier,
-        content = {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
-            ) {
-                if (leadingIcon != null) {
-                    Icon(
-                        painter = leadingIcon,
-                        contentDescription = null,
-                        modifier = Modifier.padding(end = 12.dp),
-                    )
-                }
-                Text(
-                    text = title.uppercase(),
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                )
-            }
-        },
+        contentPadding = contentPadding,
+        fillWidth = fillWidth,
     )
 }
 
