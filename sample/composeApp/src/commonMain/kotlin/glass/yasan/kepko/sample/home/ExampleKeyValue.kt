@@ -27,14 +27,6 @@ internal fun LazyListScope.exampleKeyValue() {
     item {
         val clickCount = remember { mutableIntStateOf(0) }
         KeyValue(
-            key = "KeyValue Value Clickable",
-            value = clickCount.intValue.toString(),
-            onValueClick = { clickCount.intValue++ },
-        )
-    }
-    item {
-        val clickCount = remember { mutableIntStateOf(0) }
-        KeyValue(
             key = "KeyValue Row Clickable",
             value = clickCount.intValue.toString(),
             onClick = { clickCount.intValue++ },
@@ -42,10 +34,10 @@ internal fun LazyListScope.exampleKeyValue() {
     }
     item {
         val entries = listOf(
-            "S" to KepkoTheme.colors.caution,
-            "Medium" to KepkoTheme.colors.information,
-            "Longer text" to KepkoTheme.colors.success,
-            "This is a much longer text pill that keeps on going and going" to KepkoTheme.colors.danger,
+            "S",
+            "Medium",
+            "Longer text" ,
+            "This is a much longer text pill that keeps on going and going" ,
         )
         val selectedIndex = remember { mutableIntStateOf(0) }
 
@@ -58,31 +50,7 @@ internal fun LazyListScope.exampleKeyValue() {
 
         KeyValue(
             key = "KeyValue Animated",
-            value = entries[selectedIndex.intValue].first,
-            containerColor = entries[selectedIndex.intValue].second,
-        )
-    }
-    item {
-        KeyValue(
-            key = "KeyValue Information",
-            value = "Active",
-            containerColor = KepkoTheme.colors.information,
-        )
-    }
-    item {
-        KeyValue(
-            key = "KeyValue Danger",
-            value = "Locked",
-            containerColor = KepkoTheme.colors.danger,
-            trailingValueIcon = Icons.lock,
-        )
-    }
-    item {
-        KeyValue(
-            key = "KeyValue Success",
-            value = "Success",
-            containerColor = KepkoTheme.colors.success,
-            leadingValueIcon = Icons.check,
+            value = entries[selectedIndex.intValue],
         )
     }
     item {

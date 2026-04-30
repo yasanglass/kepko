@@ -27,20 +27,17 @@ public fun KeyValue(
     key: String,
     value: String,
     modifier: Modifier = Modifier,
-    containerColor: Color = KepkoTheme.colors.foreground,
-    leadingValueIcon: Painter? = null,
-    trailingValueIcon: Painter? = null,
-    onValueClick: (() -> Unit)? = null,
-    onValueClickInteractionSource: MutableInteractionSource? = null,
-    onValueClickIndication: Indication? = null,
     onClick: (() -> Unit)? = null,
     onClickLabel: String? = null,
     onClickInteractionSource: MutableInteractionSource? = null,
     onClickIndication: Indication? = null,
+    leadingIcon: Painter? = null,
+    leadingContent: @Composable (() -> Unit)? = null,
     trailingIcon: Painter? = null,
     trailingContent: @Composable (() -> Unit)? = null,
 ) {
     Row(
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .clip(
@@ -67,25 +64,29 @@ public fun KeyValue(
             )
             .fillMaxWidth()
             .padding(vertical = 4.dp)
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 20.dp),
     ) {
+        leadingContent?.invoke()
+        if (leadingIcon != null) {
+            Icon(
+                painter = leadingIcon,
+                contentDescription = null,
+            )
+        }
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier.weight(1f),
         ) {
             Text(
                 text = key,
-                fontWeight = FontWeight.Medium,
+                color = KepkoTheme.colors.contentSubtle,
                 fontSize = 14.sp,
             )
-            TextPill(
+            Text(
                 text = value,
-                containerColor = containerColor,
-                leadingIcon = leadingValueIcon,
-                trailingIcon = trailingValueIcon,
-                onClick = onValueClick,
-                onClickInteractionSource = onValueClickInteractionSource,
-                onClickIndication = onValueClickIndication,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                maxLines = 1,
             )
         }
         if (trailingIcon != null) {
@@ -130,47 +131,26 @@ internal fun KeyValueSolarizedDarkPreview() {
 
 @Composable
 private fun PreviewContent() {
-    val containerColors = KepkoTheme.colors.getSemanticColors() +
-            KepkoTheme.colors.foreground +
-            KepkoTheme.colors.content
-
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier
             .background(KepkoTheme.colors.foreground)
             .padding(4.dp),
     ) {
-        containerColors.forEach { containerColor ->
-            KeyValue(
-                key = "Key",
-                value = "Value",
-                containerColor = containerColor,
-            )
-        }
         KeyValue(
-            key = "With Leading Icon",
-            value = "Star",
-            containerColor = KepkoTheme.colors.caution,
-            leadingValueIcon = Icons.star,
-        )
-        KeyValue(
-            key = "With Trailing Icon",
-            value = "Check",
-            containerColor = KepkoTheme.colors.success,
-            trailingValueIcon = Icons.check,
-        )
-        KeyValue(
-            key = "With Both Icons",
-            value = "Info",
-            containerColor = KepkoTheme.colors.information,
-            leadingValueIcon = Icons.info,
-            trailingValueIcon = Icons.chevronForward,
+            key = "Key",
+            value = "Value",
         )
         KeyValue(
             key = "With Row Trailing Icon",
             value = "Editable",
-            containerColor = KepkoTheme.colors.foreground,
             trailingIcon = Icons.edit,
+            onClick = {},
+        )
+        KeyValue(
+            key = "With Row Trailing Icon",
+            value = "Editable",
+            leadingIcon = Icons.edit,
             onClick = {},
         )
     }
