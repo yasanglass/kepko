@@ -119,7 +119,6 @@ public fun TextPill(
             fontSize = resolvedFontSize,
             color = animatedContentColor,
             fontWeight = fontWeight,
-            maxLines = 1,
         )
         trailingIcon?.let {
             Image(
