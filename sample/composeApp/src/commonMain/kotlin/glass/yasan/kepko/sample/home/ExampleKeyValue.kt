@@ -64,6 +64,30 @@ internal fun LazyListScope.exampleKeyValue() {
     }
     item {
         KeyValue(
+            key = "KeyValue Leading Info Icon",
+            value = "Heads up",
+            leadingIcon = Icons.info,
+        )
+    }
+    item {
+        val clickCount = remember { mutableIntStateOf(0) }
+        KeyValue(
+            key = "KeyValue Leading Warning Icon",
+            value = clickCount.intValue.toString(),
+            leadingIcon = Icons.warning,
+            onClick = { clickCount.intValue++ },
+        )
+    }
+    item {
+        KeyValue(
+            key = "KeyValue Leading and Trailing Icons",
+            value = "Verified",
+            leadingIcon = Icons.verified,
+            trailingIcon = Icons.chevronForward,
+        )
+    }
+    item {
+        KeyValue(
             key = "KeyValue Trailing Content",
             value = "Custom",
             trailingContent = {

@@ -149,9 +149,21 @@ private fun PreviewContent() {
             onClick = {},
         )
         KeyValue(
-            key = "With Row Trailing Icon",
+            key = "With Row Leading Icon",
             value = "Editable",
             leadingIcon = Icons.edit,
+        )
+        KeyValue(
+            key = "With Row Leading Icon",
+            value = "Editable",
+            leadingIcon = Icons.edit,
+            onClick = {},
+        )
+        KeyValue(
+            key = "With Row Leading and Trailing Icons",
+            value = "Editable",
+            leadingIcon = Icons.edit,
+            trailingIcon = Icons.edit,
             onClick = {},
         )
     }
