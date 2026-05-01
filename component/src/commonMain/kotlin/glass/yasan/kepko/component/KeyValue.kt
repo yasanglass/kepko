@@ -13,12 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 
@@ -40,27 +38,12 @@ public fun KeyValue(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .clip(
-                shape = KepkoTheme.shapes.extraLarge,
-            )
-            .then(
-                if (onClick != null) {
-                    if (onClickInteractionSource != null || onClickIndication != null) {
-                        Modifier.clickable(
-                            interactionSource = onClickInteractionSource,
-                            indication = onClickIndication,
-                            onClickLabel = onClickLabel,
-                            onClick = onClick,
-                        )
-                    } else {
-                        Modifier.clickable(
-                            onClickLabel = onClickLabel,
-                            onClick = onClick,
-                        )
-                    }
-                } else {
-                    Modifier
-                },
+            .clip(shape = KepkoTheme.shapes.extraLarge)
+            .clickableIfPresent(
+                onClick = onClick,
+                onClickLabel = onClickLabel,
+                interactionSource = onClickInteractionSource,
+                indication = onClickIndication,
             )
             .fillMaxWidth()
             .padding(vertical = 4.dp)
@@ -97,6 +80,25 @@ public fun KeyValue(
         }
         trailingContent?.invoke()
     }
+}
+
+private fun Modifier.clickableIfPresent(
+    onClick: (() -> Unit)?,
+    onClickLabel: String?,
+    interactionSource: MutableInteractionSource?,
+    indication: Indication?,
+): Modifier = when {
+    onClick == null -> this
+    interactionSource != null || indication != null -> clickable(
+        interactionSource = interactionSource,
+        indication = indication,
+        onClickLabel = onClickLabel,
+        onClick = onClick,
+    )
+    else -> clickable(
+        onClickLabel = onClickLabel,
+        onClick = onClick,
+    )
 }
 
 @PreviewWithTest
