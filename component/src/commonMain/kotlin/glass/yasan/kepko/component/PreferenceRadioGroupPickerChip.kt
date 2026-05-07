@@ -51,7 +51,7 @@ public fun PreferenceRadioGroupPickerChip(
     displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
     colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
 ) {
-    PreferenceRadioGroupPickerChip(
+    PreferenceRadioGroupPickerChipContent(
         title = title,
         selectedId = selectedId,
         items = items,
@@ -63,6 +63,7 @@ public fun PreferenceRadioGroupPickerChip(
         closeOnSelection = closeOnSelection,
         displayMode = displayMode,
         colors = colors,
+        titleIcon = leadingIcon,
         leadingContent = {
             Icon(
                 painter = leadingIcon,
@@ -73,7 +74,6 @@ public fun PreferenceRadioGroupPickerChip(
     )
 }
 
-@Suppress("LongMethod")
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalKepkoApi
 @Composable
@@ -89,6 +89,40 @@ public fun PreferenceRadioGroupPickerChip(
     closeOnSelection: Boolean = true,
     displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
     colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
+    leadingContent: @Composable () -> Unit = {},
+) {
+    PreferenceRadioGroupPickerChipContent(
+        title = title,
+        selectedId = selectedId,
+        items = items,
+        onSelectId = onSelectId,
+        modifier = modifier,
+        sheetState = sheetState,
+        description = description,
+        enabled = enabled,
+        closeOnSelection = closeOnSelection,
+        displayMode = displayMode,
+        colors = colors,
+        leadingContent = leadingContent,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalKepkoApi
+@Composable
+private fun PreferenceRadioGroupPickerChipContent(
+    title: String,
+    selectedId: String?,
+    items: List<PreferenceRadioGroupItem>,
+    onSelectId: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    sheetState: SheetState = rememberModalBottomSheetState(),
+    description: String? = null,
+    enabled: Boolean = true,
+    closeOnSelection: Boolean = true,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
+    colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
+    titleIcon: Painter? = null,
     leadingContent: @Composable () -> Unit = {},
 ) {
     var showSheet by remember { mutableStateOf(false) }
@@ -116,8 +150,48 @@ public fun PreferenceRadioGroupPickerChip(
         showTitle = false
     }
 
-    ButtonPrimitive(
+    PreferenceRadioGroupPickerChipButton(
+        title = title,
+        selectedItem = selectedItem,
+        showTitle = showTitle,
+        hiddenSelectedTitle = hiddenSelectedTitle,
+        displayMode = displayMode,
         onClick = { showSheet = true },
+        enabled = enabled,
+        colors = colors,
+        modifier = modifier,
+        leadingContent = leadingContent,
+    )
+
+    PreferenceRadioGroupSheet(
+        title = title,
+        description = description,
+        selectedId = selectedId,
+        items = items,
+        onSelectId = onSelectId,
+        visible = showSheet,
+        onDismiss = { showSheet = false },
+        sheetState = sheetState,
+        closeOnSelection = closeOnSelection,
+        icon = titleIcon,
+    )
+}
+
+@Composable
+private fun PreferenceRadioGroupPickerChipButton(
+    title: String,
+    selectedItem: PreferenceRadioGroupItem?,
+    showTitle: Boolean,
+    hiddenSelectedTitle: String?,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode,
+    onClick: () -> Unit,
+    enabled: Boolean,
+    colors: PreferenceRadioGroupPickerChipColors,
+    modifier: Modifier = Modifier,
+    leadingContent: @Composable () -> Unit = {},
+) {
+    ButtonPrimitive(
+        onClick = onClick,
         enabled = enabled,
         containerColor = colors.containerColor,
         contentColor = colors.contentColor,
@@ -132,66 +206,110 @@ public fun PreferenceRadioGroupPickerChip(
             }
         ),
         content = {
-            AnimatedContent(
-                targetState = selectedItem to showTitle,
-                transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform(clip = false) },
-                contentKey = { (item, title) -> item?.id to title },
-                label = "selectedItem",
-            ) { (item, titleVisible) ->
-                val shouldShowTitle = when {
-                    item == null -> false
-                    item.icon == null -> true
-                    displayMode == ICON_WITH_TEXT -> true
-                    else -> titleVisible
-                }
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .padding(vertical = 8.dp, horizontal = 4.dp)
-                        .defaultMinSize(minHeight = KepkoTheme.dimensions.iconSize),
-                ) {
-                    if (item != null) {
-                        item.icon?.let { painter ->
-                            Icon(painter = painter)
-                        }
-                        if (shouldShowTitle) {
-                            Text(
-                                text = item.title().uppercase(),
-                                fontWeight = FontWeight.Bold,
-                                maxLines = 1,
-                                modifier = if (item.icon != null) Modifier.padding(start = 12.dp) else Modifier,
-                            )
-                            item.badge?.let {
-                                TextPill(
-                                    badge = it,
-                                    modifier = Modifier.padding(start = 12.dp),
-                                )
-                            }
-                        }
-                    } else {
-                        leadingContent()
-                        Text(
-                            text = title.uppercase(),
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 1,
-                        )
-                    }
-                }
-            }
+            PreferenceRadioGroupPickerChipAnimatedContent(
+                title = title,
+                selectedItem = selectedItem,
+                showTitle = showTitle,
+                displayMode = displayMode,
+                leadingContent = leadingContent,
+            )
         },
     )
+}
 
-    PreferenceRadioGroupSheet(
-        title = title,
-        description = description,
-        selectedId = selectedId,
-        items = items,
-        onSelectId = onSelectId,
-        visible = showSheet,
-        onDismiss = { showSheet = false },
-        sheetState = sheetState,
-        closeOnSelection = closeOnSelection,
-        leadingContent = leadingContent,
+@Composable
+private fun PreferenceRadioGroupPickerChipAnimatedContent(
+    title: String,
+    selectedItem: PreferenceRadioGroupItem?,
+    showTitle: Boolean,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode,
+    leadingContent: @Composable () -> Unit,
+) {
+    AnimatedContent(
+        targetState = selectedItem to showTitle,
+        transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform(clip = false) },
+        contentKey = { (item, title) -> item?.id to title },
+        label = "selectedItem",
+    ) { (item, titleVisible) ->
+        PreferenceRadioGroupPickerChipRow(
+            title = title,
+            item = item,
+            showTitle = titleVisible,
+            displayMode = displayMode,
+            leadingContent = leadingContent,
+        )
+    }
+}
+
+@Composable
+private fun PreferenceRadioGroupPickerChipRow(
+    title: String,
+    item: PreferenceRadioGroupItem?,
+    showTitle: Boolean,
+    displayMode: PreferenceRadioGroupPickerChipDisplayMode,
+    leadingContent: @Composable () -> Unit,
+) {
+    val shouldShowTitle = when {
+        item == null -> false
+        item.icon == null -> true
+        displayMode == ICON_WITH_TEXT -> true
+        else -> showTitle
+    }
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(vertical = 8.dp, horizontal = 4.dp)
+            .defaultMinSize(minHeight = KepkoTheme.dimensions.iconSize),
+    ) {
+        if (item != null) {
+            PreferenceRadioGroupPickerChipSelectedItem(
+                item = item,
+                showTitle = shouldShowTitle,
+            )
+        } else {
+            PreferenceRadioGroupPickerChipPlaceholder(
+                title = title,
+                leadingContent = leadingContent,
+            )
+        }
+    }
+}
+
+@Composable
+private fun PreferenceRadioGroupPickerChipSelectedItem(
+    item: PreferenceRadioGroupItem,
+    showTitle: Boolean,
+) {
+    item.icon?.let { painter ->
+        Icon(painter = painter)
+    }
+    if (showTitle) {
+        Text(
+            text = item.title().uppercase(),
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            modifier = if (item.icon != null) Modifier.padding(start = 12.dp) else Modifier,
+        )
+        item.badge?.let {
+            TextPill(
+                badge = it,
+                modifier = Modifier.padding(start = 12.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun PreferenceRadioGroupPickerChipPlaceholder(
+    title: String,
+    leadingContent: @Composable () -> Unit,
+) {
+    leadingContent()
+    Text(
+        text = title.uppercase(),
+        fontWeight = FontWeight.Bold,
+        maxLines = 1,
     )
 }
 

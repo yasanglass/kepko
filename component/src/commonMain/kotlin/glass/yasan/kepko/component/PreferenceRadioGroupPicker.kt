@@ -33,7 +33,7 @@ public fun PreferenceRadioGroupPicker(
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
 ) {
-    PreferenceRadioGroupPicker(
+    PreferenceRadioGroupPickerContent(
         title = title,
         selectedId = selectedId,
         items = items,
@@ -44,6 +44,7 @@ public fun PreferenceRadioGroupPicker(
         badge = badge,
         enabled = enabled,
         closeOnSelection = closeOnSelection,
+        titleIcon = leadingIcon,
         leadingContent = {
             Icon(
                 painter = leadingIcon,
@@ -67,6 +68,37 @@ public fun PreferenceRadioGroupPicker(
     badge: Badge? = null,
     enabled: Boolean = true,
     closeOnSelection: Boolean = true,
+    leadingContent: @Composable () -> Unit = {},
+) {
+    PreferenceRadioGroupPickerContent(
+        title = title,
+        selectedId = selectedId,
+        items = items,
+        onSelectId = onSelectId,
+        modifier = modifier,
+        sheetState = sheetState,
+        description = description,
+        badge = badge,
+        enabled = enabled,
+        closeOnSelection = closeOnSelection,
+        leadingContent = leadingContent,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun PreferenceRadioGroupPickerContent(
+    title: String,
+    selectedId: String?,
+    items: List<PreferenceRadioGroupItem>,
+    onSelectId: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    sheetState: SheetState = rememberModalBottomSheetState(),
+    description: String? = null,
+    badge: Badge? = null,
+    enabled: Boolean = true,
+    closeOnSelection: Boolean = true,
+    titleIcon: Painter? = null,
     leadingContent: @Composable () -> Unit = {},
 ) {
     var showSheet by remember { mutableStateOf(false) }
@@ -100,7 +132,7 @@ public fun PreferenceRadioGroupPicker(
         onDismiss = { showSheet = false },
         sheetState = sheetState,
         closeOnSelection = closeOnSelection,
-        leadingContent = leadingContent,
+        icon = titleIcon,
     )
 }
 

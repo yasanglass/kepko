@@ -4,7 +4,6 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,9 +14,8 @@ import androidx.compose.material3.SheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.extensions.isFullWidth
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -25,7 +23,6 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import kotlinx.coroutines.launch
 
-@Suppress("LongMethod")
 @ExperimentalKepkoApi
 @Composable
 public fun PreferenceRadioGroupSheet(
@@ -34,6 +31,71 @@ public fun PreferenceRadioGroupSheet(
     items: List<PreferenceRadioGroupItem>,
     onSelectItem: (PreferenceRadioGroupItem) -> Unit,
     modifier: Modifier = Modifier,
+    description: String? = null,
+    leadingContent: @Composable () -> Unit = {},
+) {
+    PreferenceRadioGroupSheetContent(
+        title = title,
+        description = description,
+        selectedId = selectedId,
+        items = items,
+        onSelectItem = onSelectItem,
+        modifier = modifier,
+        leadingContent = leadingContent,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalKepkoApi
+@Composable
+public fun PreferenceRadioGroupSheet(
+    title: String,
+    description: String?,
+    selectedId: String?,
+    items: List<PreferenceRadioGroupItem>,
+    onSelectId: (String) -> Unit,
+    visible: Boolean,
+    onDismiss: () -> Unit,
+    sheetState: SheetState,
+    closeOnSelection: Boolean,
+    icon: Painter? = null,
+) {
+    if (visible) {
+        val scope = rememberCoroutineScope()
+
+        ModalBottomSheet(
+            onDismissRequest = onDismiss,
+            sheetState = sheetState,
+            title = ModalBottomSheetTitle(
+                text = title,
+                icon = icon,
+                description = description,
+            ),
+            content = {
+                PreferenceRadioGroupSheetContent(
+                    selectedId = selectedId,
+                    items = items,
+                    onSelectItem = { item ->
+                        onSelectId(item.id)
+                        if (closeOnSelection) {
+                            scope
+                                .launch { sheetState.hide() }
+                                .invokeOnCompletion { onDismiss() }
+                        }
+                    },
+                )
+            },
+        )
+    }
+}
+
+@Composable
+private fun PreferenceRadioGroupSheetContent(
+    selectedId: String?,
+    items: List<PreferenceRadioGroupItem>,
+    onSelectItem: (PreferenceRadioGroupItem) -> Unit,
+    modifier: Modifier = Modifier,
+    title: String? = null,
     description: String? = null,
     leadingContent: @Composable () -> Unit = {},
 ) {
@@ -46,31 +108,17 @@ public fun PreferenceRadioGroupSheet(
         )
 
         Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(vertical = 16.dp),
+            modifier = Modifier.verticalScroll(rememberScrollState()),
         ) {
-            Row(
-                verticalAlignment = if (description == null) Alignment.Top else Alignment.CenterVertically,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            ) {
-                leadingContent()
-                Column {
-                    Text(
-                        text = title.uppercase(),
-                        fontWeight = FontWeight.Bold,
-                        color = KepkoTheme.colors.content,
-                    )
-                    if (description != null) {
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            text = description,
-                            color = KepkoTheme.colors.contentSubtle,
-                        )
-                    }
-                }
+            if (title != null) {
+                PreferenceRadioGroupSheetTitle(
+                    title = ModalBottomSheetTitle(
+                        text = title,
+                        description = description,
+                    ),
+                    leadingContent = leadingContent,
+                )
             }
-            Spacer(Modifier.height(16.dp))
             SegmentedColumn(items = items) { segmentItems ->
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -95,50 +143,20 @@ public fun PreferenceRadioGroupSheet(
                     }
                 }
             }
+            Spacer(Modifier.height(16.dp))
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@ExperimentalKepkoApi
 @Composable
-public fun PreferenceRadioGroupSheet(
-    title: String,
-    description: String?,
-    selectedId: String?,
-    items: List<PreferenceRadioGroupItem>,
-    onSelectId: (String) -> Unit,
-    visible: Boolean,
-    onDismiss: () -> Unit,
-    sheetState: SheetState,
-    closeOnSelection: Boolean,
-    leadingContent: @Composable () -> Unit = {},
+private fun PreferenceRadioGroupSheetTitle(
+    title: ModalBottomSheetTitle,
+    leadingContent: @Composable () -> Unit,
 ) {
-    if (visible) {
-        val scope = rememberCoroutineScope()
-
-        ModalBottomSheet(
-            onDismissRequest = onDismiss,
-            sheetState = sheetState,
-            content = {
-                PreferenceRadioGroupSheet(
-                    title = title,
-                    description = description,
-                    selectedId = selectedId,
-                    items = items,
-                    onSelectItem = { item ->
-                        onSelectId(item.id)
-                        if (closeOnSelection) {
-                            scope
-                                .launch { sheetState.hide() }
-                                .invokeOnCompletion { onDismiss() }
-                        }
-                    },
-                    leadingContent = leadingContent,
-                )
-            },
-        )
-    }
+    ModalBottomSheetTitleContent(
+        title = title,
+        leadingContent = leadingContent,
+    )
 }
 
 @PreviewWithTest
