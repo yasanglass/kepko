@@ -48,6 +48,9 @@ public object Icons {
     public val chevronBackward: Painter
         @Composable get() = painterResource(Res.drawable.ic_chevron_backward)
 
+    public val chevronDown: Painter
+        @Composable get() = painterResource(Res.drawable.ic_chevron_down)
+
     public val chevronForward: Painter
         @Composable get() = painterResource(Res.drawable.ic_chevron_forward)
 

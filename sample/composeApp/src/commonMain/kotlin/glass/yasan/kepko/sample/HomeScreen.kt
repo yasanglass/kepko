@@ -41,6 +41,7 @@ import glass.yasan.kepko.component.AlertDialogDefaults
 import glass.yasan.kepko.component.BasicAlertDialog
 import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.CircularProgressIndicator
+import glass.yasan.kepko.component.ExpandableColumn
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.LinearProgressIndicator
@@ -123,6 +124,7 @@ internal fun HomeScreen(
                 exampleOutlinedTextField()
                 exampleAlertDialog()
                 exampleKeyValue()
+                exampleExpandableColumn()
                 exampleButton()
                 exampleTextPill()
                 exampleTextTabular()
@@ -1191,6 +1193,67 @@ private fun LazyListScope.exampleAlertDialog() {
                         )
                     }
                 }
+            }
+        }
+    }
+}
+
+
+private fun LazyListScope.exampleExpandableColumn() {
+    item { HorizontalDivider() }
+    item {
+        var expanded by rememberSaveable { mutableStateOf(true) }
+
+        ExpandableColumn(
+            title = "ExpandableColumn",
+            expanded = expanded,
+            onExpandChange = { expanded = it },
+            icon = Icons.build,
+        ) {
+            val containerColor = KepkoTheme.colors.information
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(96.dp)
+                    .background(containerColor, KepkoTheme.shapes.extraLarge)
+                    .padding(16.dp),
+            ) {
+                Text(
+                    text = "Any composable content can live here.".uppercase(),
+                    textAlign = Center,
+                    fontWeight = FontWeight.Bold,
+                    color = contentColorFor(containerColor),
+                )
+            }
+        }
+    }
+    item {
+        var expanded by rememberSaveable { mutableStateOf(false) }
+
+        ExpandableColumn(
+            title = "Controlled ExpandableColumn",
+            expanded = expanded,
+            onExpandChange = { expanded = it },
+            icon = Icons.settings,
+        ) {
+            val containerColor = KepkoTheme.colors.success
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(96.dp)
+                    .background(containerColor, KepkoTheme.shapes.extraLarge)
+                    .padding(16.dp),
+            ) {
+                Text(
+                    text = "Controlled expanded state.".uppercase(),
+                    textAlign = Center,
+                    fontWeight = FontWeight.Bold,
+                    color = contentColorFor(containerColor),
+                )
             }
         }
     }

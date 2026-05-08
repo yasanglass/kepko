@@ -63,6 +63,10 @@ public enum class NamedIcon(
         id = "chevron_backward",
         painter = { Icons.chevronBackward }
     ),
+    CHEVRON_DOWN(
+        id = "chevron_down",
+        painter = { Icons.chevronDown }
+    ),
     CHEVRON_FORWARD(
         id = "chevron_forward",
         painter = { Icons.chevronForward }
