@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
@@ -105,6 +106,8 @@ private fun RadioGroupRow(
     onClick: () -> Unit,
     enabled: Boolean,
 ) {
+    val rowVerticalPadding = if (item.description == null) 0.dp else 8.dp
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -114,7 +117,10 @@ private fun RadioGroupRow(
                 enabled = enabled,
                 onClick = onClick,
             )
-            .padding(horizontal = 12.dp),
+            .padding(
+                horizontal = 12.dp,
+                vertical = rowVerticalPadding,
+            ),
     ) {
         RadioButton(
             selected = selected,
@@ -128,11 +134,24 @@ private fun RadioGroupRow(
                 modifier = Modifier.padding(end = 12.dp),
             )
         }
-        Text(
-            text = item.title(),
-            color = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier.weight(1f),
-        )
+        ) {
+            Text(
+                text = item.title(),
+                color = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
+            )
+            item.description?.let { description ->
+                Text(
+                    text = description,
+                    color = if (enabled) KepkoTheme.colors.contentSubtle else KepkoTheme.colors.contentDisabled,
+                    fontSize = 12.sp,
+                    lineHeight = 16.sp,
+                    maxLines = 2,
+                )
+            }
+        }
         item.badge?.let { itemAnnotation ->
             val badge = if (enabled) itemAnnotation else itemAnnotation.subtle()
 
@@ -182,7 +201,11 @@ private fun PreviewContent() {
     )
 
     val items = listOf(
-        PreferenceRadioGroupItem("item1", icon = Icons.check) { "Item 1" },
+        PreferenceRadioGroupItem(
+            "item1",
+            icon = Icons.check,
+            description = "A short description for Item 1.",
+        ) { "Item 1" },
         PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
         PreferenceRadioGroupItem("item3", segment = 1, icon = Icons.info) { "Item 3" },
         PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },

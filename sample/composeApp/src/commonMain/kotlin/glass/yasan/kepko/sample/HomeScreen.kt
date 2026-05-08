@@ -466,7 +466,10 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     item { HorizontalDivider() }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                description = "A single-item group, with supporting text.",
+            ) { "Item 1" },
         )
         val selected = remember { mutableStateOf(items.first()) }
 
@@ -481,7 +484,11 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_bolt)) { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Fast and responsive.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem("item2", icon = painterResource(Res.drawable.ic_eco)) { "Item 2" },
             PreferenceRadioGroupItem(
                 "item3",
@@ -503,7 +510,10 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                description = "A short description below the title.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem("item2") { "Item 2" },
         )
         val selected = remember { mutableStateOf(items.first()) }
@@ -517,7 +527,10 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                description = "Descriptions also work when disabled.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem("item2") { "Item 2" },
         )
 
@@ -532,7 +545,10 @@ private fun LazyListScope.examplePreferenceRadioGroup() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                description = "Enabled item.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem("item2", enabled = false) { "Item 2" },
             PreferenceRadioGroupItem("item3", badge = Badge.experimental) { "Item 3" },
             PreferenceRadioGroupItem("item4", badge = Badge.legacy, enabled = false) { "Item 4" },
@@ -555,7 +571,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     item { HorizontalDivider() }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_bolt)) { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Fast option.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem(
                 "item2",
                 badge = Badge.new,
@@ -577,16 +597,18 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1", icon = painterResource(Res.drawable.ic_family_star)) { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                icon = painterResource(Res.drawable.ic_family_star),
+                description = "Default option.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem(
                 "item2",
                 enabled = false,
                 icon = painterResource(Res.drawable.ic_new_releases),
             ) { "Item 2 (Disabled)" },
             PreferenceRadioGroupItem("item3", badge = Badge.experimental) { "Item 3" },
-            PreferenceRadioGroupItem("item4", badge = Badge.legacy, enabled = false) {
-                "Item 4 (Disabled)"
-            },
+            PreferenceRadioGroupItem("item4", badge = Badge.legacy, enabled = false) { "Item 4 (Disabled)" },
         )
         var selectedId by remember { mutableStateOf(items.first().id) }
 
@@ -601,7 +623,10 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                description = "Primary option.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem("item2") { "Item 2" },
             PreferenceRadioGroupItem("item3", segment = 1) { "Item 3" },
             PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4 (Disabled)" },
@@ -619,7 +644,10 @@ private fun LazyListScope.examplePreferenceRadioGroupPicker() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("item1") { "Item 1" },
+            PreferenceRadioGroupItem(
+                "item1",
+                description = "Descriptions still show in the sheet.",
+            ) { "Item 1" },
             PreferenceRadioGroupItem("item2") { "Item 2" },
         )
 
@@ -639,7 +667,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     item { HorizontalDivider() }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "S" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "S" },
             PreferenceRadioGroupItem(
                 "medium",
                 badge = Badge.new,
@@ -660,7 +692,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("auto", icon = painterResource(Res.drawable.ic_heart_smile)) { "Auto" },
+            PreferenceRadioGroupItem(
+                "auto",
+                icon = painterResource(Res.drawable.ic_heart_smile),
+                description = "Automatically manages schedule.",
+            ) { "Auto" },
             PreferenceRadioGroupItem("on") { "On" },
             PreferenceRadioGroupItem(
                 "custom",
@@ -682,7 +718,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("low", icon = painterResource(Res.drawable.ic_eco)) { "Low" },
+            PreferenceRadioGroupItem(
+                "low",
+                icon = painterResource(Res.drawable.ic_eco),
+                description = "Lowest intensity.",
+            ) { "Low" },
             PreferenceRadioGroupItem("medium") { "Medium" },
             PreferenceRadioGroupItem("high", icon = painterResource(Res.drawable.ic_bolt)) { "High" },
         )
@@ -699,7 +739,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -717,7 +761,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -737,7 +785,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -760,7 +812,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium") { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -778,7 +834,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium") { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -798,7 +858,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium") { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -821,7 +885,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -843,7 +911,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -867,7 +939,11 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("small", icon = painterResource(Res.drawable.ic_bolt)) { "Small" },
+            PreferenceRadioGroupItem(
+                "small",
+                icon = painterResource(Res.drawable.ic_bolt),
+                description = "Small size.",
+            ) { "Small" },
             PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium" },
             PreferenceRadioGroupItem("large", icon = painterResource(Res.drawable.ic_eco)) { "Large" },
         )
@@ -894,7 +970,10 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     }
     item {
         val items = listOf(
-            PreferenceRadioGroupItem("daily") { "Daily" },
+            PreferenceRadioGroupItem(
+                "daily",
+                description = "Runs every day.",
+            ) { "Daily" },
             PreferenceRadioGroupItem("weekly") { "Weekly" },
         )
 

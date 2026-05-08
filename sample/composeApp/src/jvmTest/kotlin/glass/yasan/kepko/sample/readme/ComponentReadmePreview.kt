@@ -188,7 +188,10 @@ internal fun PreferenceRadioGroupDarkReadmePreview() {
 @Composable
 private fun PreferenceRadioGroupReadmeContent() {
     val items = listOf(
-        PreferenceRadioGroupItem("1") { "Item 1" },
+        PreferenceRadioGroupItem(
+            "1",
+            description = "A short description below the title.",
+        ) { "Item 1" },
         PreferenceRadioGroupItem("2") { "Item 2" },
         PreferenceRadioGroupItem("3", enabled = false) { "Item 3" },
     )

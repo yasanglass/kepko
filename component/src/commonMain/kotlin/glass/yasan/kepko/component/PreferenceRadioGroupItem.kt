@@ -19,5 +19,6 @@ public data class PreferenceRadioGroupItem(
     val segment: Int = 0,
     val enabled: Boolean = true,
     val icon: Painter? = null,
+    val description: String? = null,
     val title: @Composable () -> String
 )

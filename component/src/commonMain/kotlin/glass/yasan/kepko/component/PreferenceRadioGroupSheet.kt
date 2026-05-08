@@ -127,6 +127,7 @@ private fun PreferenceRadioGroupSheetContent(
                     segmentItems.forEach { item ->
                         PreferenceRadioButton(
                             title = item.title(),
+                            description = item.description,
                             selected = item.id == selectedId,
                             onClick = { onSelectItem(item) },
                             enabled = item.enabled,
@@ -192,7 +193,11 @@ internal fun PreferenceRadioGroupSheetContentSolarizedDarkPreview() {
 @Composable
 private fun SheetContentPreviewContent() {
     val items = listOf(
-        PreferenceRadioGroupItem("item1", icon = Icons.check) { "Item 1" },
+        PreferenceRadioGroupItem(
+            "item1",
+            icon = Icons.check,
+            description = "A short description for Item 1.",
+        ) { "Item 1" },
         PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
     )
 

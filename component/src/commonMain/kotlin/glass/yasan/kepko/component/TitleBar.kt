@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
@@ -28,15 +29,34 @@ public fun TitleBar(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit,
 ) {
+    TitleBarContent(
+        modifier = modifier,
+        windowInsets = WindowInsets.safeDrawing
+            .only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal),
+        containerColor = KepkoTheme.colors.foreground,
+        content = content,
+    )
+}
+
+@Composable
+internal fun TitleBarContent(
+    modifier: Modifier = Modifier,
+    windowInsets: WindowInsets?,
+    containerColor: Color,
+    content: @Composable RowScope.() -> Unit,
+) {
     Row(
         content = content,
         modifier = modifier
-            .windowInsetsPadding(
-                insets = WindowInsets.safeDrawing
-                    .only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal),
-            )
+            .let {
+                if (windowInsets == null) {
+                    it
+                } else {
+                    it.windowInsetsPadding(windowInsets)
+                }
+            }
             .fillMaxWidth()
-            .background(KepkoTheme.colors.foreground),
+            .background(containerColor),
     )
 }
 

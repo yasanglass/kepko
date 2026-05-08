@@ -170,7 +170,10 @@ internal fun PreferenceRadioGroupPickerSolarizedDarkPreview() {
 @Composable
 private fun PreviewContent() {
     val items = listOf(
-        PreferenceRadioGroupItem("item1") { "Item 1" },
+        PreferenceRadioGroupItem(
+            "item1",
+            description = "A short description for Item 1.",
+        ) { "Item 1" },
         PreferenceRadioGroupItem("item2", Badge.experimental) { "Item 2" },
         PreferenceRadioGroupItem("item3", segment = 1) { "Item 3" },
         PreferenceRadioGroupItem("item4", segment = 1, enabled = false) { "Item 4" },

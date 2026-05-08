@@ -73,31 +73,39 @@ internal fun ModalBottomSheetTitleContent(
     modifier: Modifier = Modifier,
     leadingContent: @Composable (() -> Unit)? = null,
 ) {
-    Row(
-        verticalAlignment = if (title.description == null) Alignment.Top else Alignment.CenterVertically,
-        modifier = modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp),
+    TitleBarContent(
+        modifier = modifier,
+        windowInsets = null,
+        containerColor = KepkoTheme.colors.midground,
     ) {
-        if (leadingContent != null) {
-            leadingContent()
-        } else if (title.icon != null) {
-            Icon(
-                painter = title.icon,
-                contentDescription = null,
-                modifier = Modifier.padding(end = 12.dp),
-            )
-        }
-        Column {
-            Text(
-                text = title.text.uppercase(),
-                fontWeight = FontWeight.Bold,
-                color = KepkoTheme.colors.content,
-            )
-            if (title.description != null) {
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    text = title.description,
-                    color = KepkoTheme.colors.contentSubtle,
+        Row(
+            verticalAlignment = if (title.description == null) Alignment.Top else Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp),
+        ) {
+            if (leadingContent != null) {
+                leadingContent()
+            } else if (title.icon != null) {
+                Icon(
+                    painter = title.icon,
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = 12.dp),
                 )
+            }
+            Column {
+                Text(
+                    text = title.text.uppercase(),
+                    fontWeight = FontWeight.Bold,
+                    color = KepkoTheme.colors.content,
+                )
+                if (title.description != null) {
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = title.description,
+                        color = KepkoTheme.colors.contentSubtle,
+                    )
+                }
             }
         }
     }
