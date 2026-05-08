@@ -23,10 +23,14 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenDefaultSettings_whenRendered_thenSystemIsSelected() {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            lateinit var systemString: String
+            lateinit var themeModeString: String
+            lateinit var dynamicString: String
+            lateinit var staticString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
-                    systemString = Strings.colorPaletteSystem
+                    themeModeString = Strings.preferencePaletteModeTitle
+                    dynamicString = Strings.preferencePaletteModeDynamic
+                    staticString = Strings.preferencePaletteModeStatic
                     PersistentPreferenceThemeScreen(onBackClick = {})
                 }
             }
@@ -34,9 +38,12 @@ internal class PersistentPreferenceThemeScreenTest {
             waitForIdle()
 
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.SCREEN).assertExists()
-            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE)
                 .assertExists()
-                .assertTextContains(systemString)
+                .assertTextContains(themeModeString)
+            onNodeWithText(dynamicString).assertExists()
+            onNodeWithText(staticString).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             assertNull(persistenceManager.palettePrimary)
         }
     }
@@ -60,7 +67,7 @@ internal class PersistentPreferenceThemeScreenTest {
     }
 
     @Test
-    fun givenNonSystemSetting_whenRendered_thenMatchingPrimaryPaletteIsVisibleAndSubPickersHidden() {
+    fun givenStaticSetting_whenRendered_thenMatchingPrimaryPaletteIsVisibleAndSubPickersHidden() {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
             persistenceManager.palettePrimary = SOLARIZED_DARK
@@ -74,6 +81,7 @@ internal class PersistentPreferenceThemeScreenTest {
 
             waitForIdle()
             assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
                 .assertTextContains(solarizedDarkString)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertDoesNotExist()
@@ -82,28 +90,33 @@ internal class PersistentPreferenceThemeScreenTest {
     }
 
     @Test
-    fun givenSystemSetting_whenPrimaryPickerOpenedAndPaletteSelected_thenSelectionReflectedOnScreen() {
+    fun givenDynamicSetting_whenModeToggledAndPaletteSelected_thenStaticSelectionReflectedOnScreen() {
         runDesktopComposeUiTest(width = 1024, height = 1200) {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
             persistenceManager.palettePrimary = null
             persistenceManager.paletteLight = LIGHT
             persistenceManager.paletteDark = DARK
-            lateinit var systemString: String
             lateinit var blackString: String
+            lateinit var staticString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
-                    systemString = Strings.colorPaletteSystem
                     blackString = Strings.colorPaletteBlack
-                    PersistentPreferenceThemeScreen(onBackClick = {})
+                    staticString = Strings.preferencePaletteModeStatic
+                    PersistentPreferenceThemeScreen(
+                        onBackClick = {},
+                        isSystemInDarkTheme = true,
+                    )
                 }
             }
 
             waitForIdle()
             assertNull(persistenceManager.palettePrimary)
-            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
-                .assertTextContains(systemString)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             onNodeWithText(blackString).assertDoesNotExist()
 
+            onNodeWithText(staticString).performClick()
+            waitForIdle()
+            assertEquals(ColorPalette.DARK, persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).performClick()
             waitForIdle()
             onNodeWithText(blackString).assertExists()
@@ -115,6 +128,33 @@ internal class PersistentPreferenceThemeScreenTest {
                 .assertTextContains(blackString)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertDoesNotExist()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertDoesNotExist()
+        }
+    }
+
+    @Test
+    fun givenStaticSetting_whenModeToggled_thenDynamicOptionsAreVisible() {
+        runDesktopComposeUiTest {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            persistenceManager.palettePrimary = SOLARIZED_DARK
+            lateinit var dynamicString: String
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    dynamicString = Strings.preferencePaletteModeDynamic
+                    PersistentPreferenceThemeScreen(onBackClick = {})
+                }
+            }
+
+            waitForIdle()
+            assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertExists()
+
+            onNodeWithText(dynamicString).performClick()
+            waitForIdle()
+
+            assertNull(persistenceManager.palettePrimary)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertExists()
         }
     }
 

@@ -8,10 +8,8 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,8 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import glass.yasan.kepko.component.IconButton
 import glass.yasan.kepko.component.Badge
+import glass.yasan.kepko.component.IconButton
+import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
@@ -34,7 +33,6 @@ import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultLight
 import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
-import glass.yasan.kepko.persistence.PersistenceManager.Companion.PALETTE_ID_SYSTEM
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
 
@@ -84,22 +82,10 @@ public fun PersistentPreferenceThemeContent(
         persistence = persistence,
         isSystemInDarkTheme = isSystemInDarkTheme,
     ) {
-        val paletteItems = ColorPalette.entries.map { palette ->
-            palette.asPreferenceRadioGroupItem(segment = palette.category.ordinal)
-        }
-        val systemItem = PreferenceRadioGroupItem(
-            id = PALETTE_ID_SYSTEM,
-            badge = Badge.default,
-        ) { Strings.colorPaletteSystem }
-
         Column(
             modifier = modifier,
         ) {
-            PersistentPreferenceThemePrimary(
-                persistence = persistence,
-                paletteItems = paletteItems,
-                systemItem = systemItem,
-            )
+            PersistentPreferenceThemeMode(persistence)
             AnimatedVisibility(
                 visible = persistence.palettePrimary == null,
                 enter = expandVertically(),
@@ -109,6 +95,13 @@ public fun PersistentPreferenceThemeContent(
                     persistence = persistence,
                     isSystemInDarkTheme = isSystemInDarkTheme,
                 )
+            }
+            AnimatedVisibility(
+                visible = persistence.palettePrimary != null,
+                enter = expandVertically(),
+                exit = shrinkVertically(),
+            ) {
+                PersistentPreferenceThemeStatic(persistence)
             }
             Spacer(Modifier.height(8.dp))
             PersistentPreferenceThemeGrayscale(persistence)
@@ -133,37 +126,41 @@ private fun PersistentPreferenceThemeResetButton(persistence: PersistenceManager
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun PersistentPreferenceThemePrimary(
+private fun PersistentPreferenceThemeMode(
     persistence: PersistenceManager,
-    paletteItems: List<PreferenceRadioGroupItem>,
-    systemItem: PreferenceRadioGroupItem,
 ) {
     val primaryPalette = persistence.palettePrimary
     var lastPrimaryPalette by remember { mutableStateOf(primaryPalette) }
     if (primaryPalette != null) lastPrimaryPalette = primaryPalette
+    val fallbackPrimaryPalette = persistence.activePalette()
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        PreferenceRadioGroupPicker(
-            title = Strings.preferencePaletteTitle,
-            selectedId = persistence.palettePrimary?.id ?: PALETTE_ID_SYSTEM,
-            items = listOf(systemItem) + paletteItems,
-            onSelectId = { id ->
-                persistence.palettePrimary = if (id == PALETTE_ID_SYSTEM) {
-                    null
-                } else {
-                    ColorPalette.fromIdOrNull(id)
-                }
-            },
-            leadingIcon = Icons.palette,
-            modifier = Modifier
-                .weight(1f)
-                .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
-        )
-    }
+    PreferenceRadioGroup(
+        title = Strings.preferencePaletteModeTitle,
+        selectedId = if (primaryPalette == null) {
+            PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
+        } else {
+            PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC
+        },
+        items = listOf(
+            PreferenceRadioGroupItem(
+                id = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC,
+            ) { Strings.preferencePaletteModeDynamic },
+            PreferenceRadioGroupItem(
+                id = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC,
+            ) { Strings.preferencePaletteModeStatic },
+        ),
+        onSelectId = { selectedId ->
+            val useDynamicPalette = selectedId == PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
+            persistence.palettePrimary = if (useDynamicPalette) {
+                null
+            } else {
+                lastPrimaryPalette ?: fallbackPrimaryPalette
+            }
+        },
+        modifier = Modifier
+            .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE)
+    )
 }
 
 @Composable
@@ -171,27 +168,43 @@ private fun PersistentPreferenceThemeSystem(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Spacer(Modifier.width(32.dp))
-        Column(
-            modifier = Modifier.weight(1f),
-        ) {
-            Spacer(Modifier.height(8.dp))
-            PersistentPreferenceThemePaletteRow(
-                persistence = persistence,
-                isSystemInDarkTheme = isSystemInDarkTheme,
-                isLight = true,
-            )
-            Spacer(Modifier.height(8.dp))
-            PersistentPreferenceThemePaletteRow(
-                persistence = persistence,
-                isSystemInDarkTheme = isSystemInDarkTheme,
-                isLight = false,
-            )
-            Spacer(Modifier.height(8.dp))
-        }
+    Column {
+        Spacer(Modifier.height(8.dp))
+        PersistentPreferenceThemePaletteRow(
+            persistence = persistence,
+            isSystemInDarkTheme = isSystemInDarkTheme,
+            isLight = true,
+        )
+        Spacer(Modifier.height(8.dp))
+        PersistentPreferenceThemePaletteRow(
+            persistence = persistence,
+            isSystemInDarkTheme = isSystemInDarkTheme,
+            isLight = false,
+        )
+        Spacer(Modifier.height(8.dp))
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun PersistentPreferenceThemeStatic(
+    persistence: PersistenceManager,
+) {
+    Column {
+        Spacer(Modifier.height(8.dp))
+        PreferenceRadioGroupPicker(
+            title = Strings.preferenceStaticPaletteTitle,
+            selectedId = persistence.palettePrimary?.id,
+            items = ColorPalette.entries.map { palette ->
+                palette.asPreferenceRadioGroupItem(segment = palette.category.ordinal)
+            },
+            onSelectId = { id ->
+                ColorPalette.fromIdOrNull(id)?.let { persistence.palettePrimary = it }
+            },
+            modifier = Modifier
+                .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
+        )
+        Spacer(Modifier.height(8.dp))
     }
 }
 
@@ -239,7 +252,6 @@ private fun PersistentPreferenceThemeLight(
         onSelectId = { id -> ColorPalette.fromIdOrNull(id)?.let { persistence.paletteLight = it } },
         description = Strings.preferenceLightPaletteDescription,
         badge = Badge.active.takeIf { !isSystemInDarkTheme },
-        leadingIcon = Icons.lightMode,
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
     )
@@ -264,7 +276,6 @@ private fun PersistentPreferenceThemeDark(
         onSelectId = { id -> ColorPalette.fromIdOrNull(id)?.let { persistence.paletteDark = it } },
         description = Strings.preferenceDarkPaletteDescription,
         badge = Badge.active.takeIf { isSystemInDarkTheme },
-        leadingIcon = Icons.modeNight,
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
     )
@@ -381,6 +392,9 @@ internal fun PersistentPreferenceThemeScreenGrayscalePreview() {
 @VisibleForTesting
 internal object PersistentPreferenceThemeScreenSemantics {
     const val SCREEN = "theme_screen"
+    const val PALETTE_MODE = "theme_palette_mode"
+    const val PALETTE_MODE_DYNAMIC = "dynamic"
+    const val PALETTE_MODE_STATIC = "static"
     const val PALETTE_PICKER = "theme_palette_picker"
     const val LIGHT_PICKER = "theme_light_picker"
     const val DARK_PICKER = "theme_dark_picker"

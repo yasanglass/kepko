@@ -95,8 +95,35 @@ public object Strings {
     public val preferenceLightPaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_light_palette_title)
 
+    public val preferenceOnboardingPaletteDefault: String
+        @Composable get() = stringResource(Res.string.preference_onboarding_palette_default)
+
+    public val preferenceOnboardingPaletteAmoled: String
+        @Composable get() = stringResource(Res.string.preference_onboarding_palette_amoled)
+
+    public val preferenceOnboardingPaletteCatppuccin: String
+        @Composable get() = stringResource(Res.string.preference_onboarding_palette_catppuccin)
+
+    public val preferenceOnboardingPaletteGruvbox: String
+        @Composable get() = stringResource(Res.string.preference_onboarding_palette_gruvbox)
+
+    public val preferenceOnboardingPaletteSolarized: String
+        @Composable get() = stringResource(Res.string.preference_onboarding_palette_solarized)
+
+    public val preferencePaletteModeDynamic: String
+        @Composable get() = stringResource(Res.string.preference_palette_mode_dynamic)
+
+    public val preferencePaletteModeStatic: String
+        @Composable get() = stringResource(Res.string.preference_palette_mode_static)
+
+    public val preferencePaletteModeTitle: String
+        @Composable get() = stringResource(Res.string.preference_palette_mode_title)
+
     public val preferencePaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_palette_title)
+
+    public val preferenceStaticPaletteTitle: String
+        @Composable get() = stringResource(Res.string.preference_static_palette_title)
 
     public val preferenceOutlineTitle: String
         @Composable get() = stringResource(Res.string.preference_outline_title)
