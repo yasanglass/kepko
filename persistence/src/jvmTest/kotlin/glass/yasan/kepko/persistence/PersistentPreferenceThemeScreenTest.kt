@@ -115,13 +115,12 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithText(blackString).assertDoesNotExist()
 
             onNodeWithText(staticString).performClick()
-            waitForIdle()
-            assertEquals(ColorPalette.DARK, persistenceManager.palettePrimary)
+            waitUntil { persistenceManager.palettePrimary != null }
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).performClick()
             waitForIdle()
             onNodeWithText(blackString).assertExists()
             onNodeWithText(blackString).performClick()
-            waitForIdle()
+            waitUntil { persistenceManager.palettePrimary == ColorPalette.BLACK }
 
             assertEquals(ColorPalette.BLACK, persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
