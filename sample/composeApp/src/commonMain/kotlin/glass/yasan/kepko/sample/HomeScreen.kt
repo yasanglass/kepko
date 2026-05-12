@@ -77,6 +77,7 @@ import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
 import glass.yasan.kepko.sample.home.exampleCheckboxText
 import glass.yasan.kepko.sample.home.exampleKeyValue
+import glass.yasan.kepko.sample.home.exampleSegmentedPicker
 import glass.yasan.kepko.sample.home.exampleSelectableChip
 import glass.yasan.kepko.sample.home.exampleTextTabular
 import org.jetbrains.compose.resources.painterResource
@@ -119,6 +120,7 @@ internal fun HomeScreen(
                 examplePreferenceRadioGroup()
                 examplePreferenceRadioGroupPicker()
                 examplePreferenceRadioGroupPickerChip()
+                exampleSegmentedPicker()
                 exampleSelectableChip()
                 exampleTextField()
                 exampleOutlinedTextField()
