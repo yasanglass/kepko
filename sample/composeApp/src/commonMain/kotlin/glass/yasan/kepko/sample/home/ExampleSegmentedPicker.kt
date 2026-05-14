@@ -1,17 +1,22 @@
 package glass.yasan.kepko.sample.home
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.SegmentedPicker
 import glass.yasan.kepko.component.SegmentedPickerDefaults
 import glass.yasan.kepko.component.SegmentedPickerDisplayMode
 import glass.yasan.kepko.component.SegmentedPickerItem
+import glass.yasan.kepko.component.SelectableChip
 import glass.yasan.kepko.composeapp.generated.resources.Res
 import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
 import glass.yasan.kepko.composeapp.generated.resources.ic_eco
@@ -218,5 +223,31 @@ internal fun LazyListScope.exampleSegmentedPicker() {
             onSelect = { selected = it },
             displayMode = SegmentedPickerDisplayMode.ICON_WITH_TEXT_EXPAND,
         )
+    }
+    item {
+        val items = listOf(
+            SegmentedPickerItem(value = "day", text = "Day"),
+            SegmentedPickerItem(value = "week", text = "Week"),
+            SegmentedPickerItem(value = "month", text = "Month"),
+        )
+        var selected by rememberSaveable { mutableStateOf("week") }
+        var filterSelected by rememberSaveable { mutableStateOf(false) }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            SegmentedPicker(
+                items = items,
+                selected = selected,
+                onSelect = { selected = it },
+            )
+            SelectableChip(
+                title = "Filter",
+                selected = filterSelected,
+                onSelectedChange = { filterSelected = it },
+            )
+        }
     }
 }
