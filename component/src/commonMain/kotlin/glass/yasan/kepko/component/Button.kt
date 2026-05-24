@@ -211,7 +211,7 @@ internal fun ButtonInternal(
                 leadingContent()
                 text?.let {
                     Text(
-                        text = it.uppercase(),
+                        text = it,
                         textAlign = textAlign,
                         fontSize = fontSize,
                         fontWeight = fontWeight,

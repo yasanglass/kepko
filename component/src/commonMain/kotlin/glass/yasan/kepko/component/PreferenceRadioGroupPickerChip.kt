@@ -286,7 +286,7 @@ private fun PreferenceRadioGroupPickerChipSelectedItem(
     }
     if (showTitle) {
         Text(
-            text = item.title().uppercase(),
+            text = item.title(),
             fontWeight = FontWeight.Bold,
             maxLines = 1,
             modifier = if (item.icon != null) Modifier.padding(start = 12.dp) else Modifier,
@@ -307,7 +307,7 @@ private fun PreferenceRadioGroupPickerChipPlaceholder(
 ) {
     leadingContent()
     Text(
-        text = title.uppercase(),
+        text = title,
         fontWeight = FontWeight.Bold,
         maxLines = 1,
     )
