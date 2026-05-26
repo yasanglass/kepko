@@ -22,12 +22,14 @@ public fun DragHandle(
     width: Dp = 64.dp,
     height: Dp = 4.dp,
     shape: Shape = KepkoTheme.shapes.extraLarge,
-    color: Color = KepkoTheme.colors.contentSubtle,
+    containerColor: Color = KepkoTheme.colors.foreground,
+    contentColor: Color = KepkoTheme.colors.contentSubtle,
     topDividerColor: Color = KepkoTheme.colors.outline,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
+            .background(containerColor)
             .fillMaxWidth()
     ) {
         HorizontalDivider(
@@ -43,7 +45,7 @@ public fun DragHandle(
                     height = height,
                 )
                 .clip(shape)
-                .background(color)
+                .background(contentColor)
         )
     }
 }
