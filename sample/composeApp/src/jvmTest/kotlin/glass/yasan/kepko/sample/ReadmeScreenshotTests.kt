@@ -37,6 +37,7 @@ internal class ReadmeScreenshotTests {
                         width = (previewWidth.value * DENSITY).roundToInt(),
                         height = (previewHeight.value * DENSITY).roundToInt(),
                         density = Density(DENSITY),
+                        useStandardTestDispatcherForComposition = false,
                     )
                 ) {
                     runTest {
