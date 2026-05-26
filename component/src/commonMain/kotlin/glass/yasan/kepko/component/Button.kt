@@ -216,28 +216,15 @@ internal fun ButtonInternal(
             ) {
                 leadingContent()
                 text?.let {
-                    Column(
-                        modifier = Modifier
-                            .then(if (fillWidth) Modifier.weight(1f) else Modifier)
-                    ) {
-                        Text(
-                            text = it,
-                            textAlign = textAlign,
-                            fontSize = fontSize,
-                            fontWeight = fontWeight,
-                            maxLines = 1,
-                        )
-                        description?.let { descriptionText ->
-                            Text(
-                                text = descriptionText,
-                                textAlign = textAlign,
-                                color = contentColor.copy(alpha = 0.75f),
-                                fontSize = 12.sp,
-                                lineHeight = 16.sp,
-                                fontWeight = FontWeight.Normal,
-                            )
-                        }
-                    }
+                    ButtonLabel(
+                        text = it,
+                        description = description,
+                        textAlign = textAlign,
+                        fontSize = fontSize,
+                        fontWeight = fontWeight,
+                        contentColor = contentColor,
+                        modifier = if (fillWidth) Modifier.weight(1f) else Modifier,
+                    )
                 }
                 badge?.let {
                     TextPill(
@@ -258,6 +245,37 @@ internal fun ButtonInternal(
         interactionSource = interactionSource,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
     )
+}
+
+@Composable
+private fun ButtonLabel(
+    text: String,
+    description: String?,
+    textAlign: TextAlign,
+    fontSize: TextUnit,
+    fontWeight: FontWeight,
+    contentColor: Color,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = text,
+            textAlign = textAlign,
+            fontSize = fontSize,
+            fontWeight = fontWeight,
+            maxLines = 1,
+        )
+        description?.let {
+            Text(
+                text = it,
+                textAlign = textAlign,
+                color = contentColor.copy(alpha = 0.75f),
+                fontSize = 12.sp,
+                lineHeight = 16.sp,
+                fontWeight = FontWeight.Normal,
+            )
+        }
+    }
 }
 
 
