@@ -22,14 +22,18 @@ public fun DragHandle(
     width: Dp = 64.dp,
     height: Dp = 4.dp,
     shape: Shape = KepkoTheme.shapes.extraLarge,
-    color : Color = KepkoTheme.colors.contentSubtle,
+    color: Color = KepkoTheme.colors.contentSubtle,
+    topDividerColor: Color = KepkoTheme.colors.outline,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxWidth()
     ) {
-        HorizontalDivider(Modifier.fillMaxWidth())
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth(),
+            color = topDividerColor,
+        )
         Box(
             Modifier
                 .padding(vertical = 12.dp)
