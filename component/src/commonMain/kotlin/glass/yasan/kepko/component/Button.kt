@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.border.borderStrokeFor
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
@@ -32,6 +33,7 @@ public fun Button(
     onClick: () -> Unit,
     leadingIcon: Painter?,
     modifier: Modifier = Modifier,
+    description: String? = null,
     onClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onLongClickLabel: String? = null,
@@ -54,6 +56,7 @@ public fun Button(
 ) {
     ButtonInternal(
         text = text,
+        description = description,
         modifier = modifier,
         onClick = onClick,
         onClickLabel = onClickLabel,
@@ -115,6 +118,7 @@ public fun Button(
     text: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    description: String? = null,
     onClickLabel: String? = null,
     onLongClick: (() -> Unit)? = null,
     onLongClickLabel: String? = null,
@@ -138,6 +142,7 @@ public fun Button(
 ) {
     ButtonInternal(
         text = text,
+        description = description,
         modifier = modifier,
         onClick = onClick,
         onClickLabel = onClickLabel,
@@ -167,6 +172,7 @@ public fun Button(
 @Composable
 internal fun ButtonInternal(
     text: String?,
+    description: String?,
     modifier: Modifier,
     onClick: () -> Unit,
     onClickLabel: String?,
@@ -210,15 +216,28 @@ internal fun ButtonInternal(
             ) {
                 leadingContent()
                 text?.let {
-                    Text(
-                        text = it,
-                        textAlign = textAlign,
-                        fontSize = fontSize,
-                        fontWeight = fontWeight,
-                        maxLines = 1,
+                    Column(
                         modifier = Modifier
                             .then(if (fillWidth) Modifier.weight(1f) else Modifier)
-                    )
+                    ) {
+                        Text(
+                            text = it,
+                            textAlign = textAlign,
+                            fontSize = fontSize,
+                            fontWeight = fontWeight,
+                            maxLines = 1,
+                        )
+                        description?.let { descriptionText ->
+                            Text(
+                                text = descriptionText,
+                                textAlign = textAlign,
+                                color = contentColor.copy(alpha = 0.75f),
+                                fontSize = 12.sp,
+                                lineHeight = 16.sp,
+                                fontWeight = FontWeight.Normal,
+                            )
+                        }
+                    }
                 }
                 badge?.let {
                     TextPill(

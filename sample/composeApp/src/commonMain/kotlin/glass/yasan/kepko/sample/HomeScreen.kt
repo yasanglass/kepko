@@ -191,6 +191,7 @@ private fun LazyListScope.navigationButtons(
     item {
         Button(
             text = Strings.preferenceThemeScreenTitle,
+            description = "Browse and switch between color palettes.",
             onClick = onThemeClick,
             leadingIcon = Icons.palette,
             trailingIcon = Icons.chevronForward,
@@ -199,6 +200,7 @@ private fun LazyListScope.navigationButtons(
     item {
         Button(
             text = "Icons",
+            description = "View the full icon set with snapshot previews.",
             onClick = onIconsClick,
             leadingIcon = Icons.shapes,
             trailingIcon = Icons.chevronForward,
@@ -215,6 +217,7 @@ private fun LazyListScope.navigationButtons(
     item {
         Button(
             text = "Serialization",
+            description = "Inspect persisted preference payloads.",
             onClick = onSerializationClick,
             leadingIcon = Icons.code,
             trailingIcon = Icons.chevronForward,
@@ -1440,6 +1443,7 @@ private fun LazyListScope.exampleButton() {
     item {
         Button(
             text = "Button",
+            description = "Sentence-case description sits below the label.",
             leadingIcon = painterResource(Res.drawable.ic_bolt),
             trailingIcon = Icons.chevronForward,
             onClick = {},
@@ -1448,6 +1452,7 @@ private fun LazyListScope.exampleButton() {
     item {
         Button(
             text = "Button",
+            description = "Pairs the label with quieter supporting text.",
             leadingIcon = null,
             trailingIcon = painterResource(Res.drawable.ic_new_releases),
             containerColor = KepkoTheme.colors.information,
@@ -1457,6 +1462,7 @@ private fun LazyListScope.exampleButton() {
     item {
         Button(
             text = "Button",
+            description = "Use sparingly — descriptions add visual weight.",
             leadingIcon = painterResource(Res.drawable.ic_family_star),
             trailingIcon = null,
             containerColor = KepkoTheme.colors.caution,
