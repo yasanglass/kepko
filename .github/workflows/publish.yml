@@ -84,9 +84,7 @@ jobs:
         run: |
           ./gradlew \
             :sample:composeApp:packageDmg \
-            :sample:composeApp:packagePkg \
-            :sample:composeApp:linkReleaseExecutableMacosArm64 \
-            :sample:composeApp:linkReleaseExecutableMacosX64
+            :sample:composeApp:packagePkg
 
       - name: Upload to GitHub Release
         env:
@@ -98,16 +96,6 @@ jobs:
 
           cp sample/composeApp/build/compose/binaries/main/pkg/*.pkg "kepko-sample-macos-${TAG}.pkg"
           gh release upload "${TAG}" "kepko-sample-macos-${TAG}.pkg" --clobber
-
-          cd sample/composeApp/build/bin/macosArm64/releaseExecutable
-          zip -r "${GITHUB_WORKSPACE}/kepko-sample-macos-arm64-${TAG}.zip" .
-          cd "${GITHUB_WORKSPACE}"
-          gh release upload "${TAG}" "kepko-sample-macos-arm64-${TAG}.zip" --clobber
-
-          cd sample/composeApp/build/bin/macosX64/releaseExecutable
-          zip -r "${GITHUB_WORKSPACE}/kepko-sample-macos-x64-${TAG}.zip" .
-          cd "${GITHUB_WORKSPACE}"
-          gh release upload "${TAG}" "kepko-sample-macos-x64-${TAG}.zip" --clobber
 
   sample-linux:
     name: Sample App (Linux)

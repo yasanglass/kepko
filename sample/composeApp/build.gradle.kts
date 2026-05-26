@@ -1,8 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.Executable
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
@@ -56,22 +54,12 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
-        }
-    }
-
-    listOf(
-        macosX64(),
-        macosArm64(),
-    ).forEach { macosTarget ->
-        macosTarget.binaries.executable {
-            entryPoint = "glass.yasan.kepko.sample.main"
         }
     }
 
@@ -103,7 +91,6 @@ kotlin {
         }
         jsMain { dependsOn(nonMobileMain) }
         wasmJsMain { dependsOn(nonMobileMain) }
-        macosMain { dependsOn(nonMobileMain) }
         jvmTest {
             dependencies {
                 implementation(project(":resource"))
@@ -120,20 +107,6 @@ kotlin {
 
 dependencies {
     "androidRuntimeClasspath"(libs.jetbrains.compose.ui.tooling)
-}
-
-val macosTargets = kotlin.targets.filterIsInstance<KotlinNativeTarget>().filter { it.name.startsWith("macos") }
-for (target in macosTargets) {
-    for (executable in target.binaries.filterIsInstance<Executable>()) {
-        val taskName = "copyComposeResources" +
-            executable.name.replaceFirstChar { it.uppercaseChar() } +
-            target.name.replaceFirstChar { it.uppercaseChar() }
-        val copyResources = tasks.register<Copy>(taskName) {
-            from(tasks.named("${target.name}ProcessResources"))
-            into(executable.outputDirectory.resolve("compose-resources"))
-        }
-        executable.linkTaskProvider.configure { dependsOn(copyResources) }
-    }
 }
 
 tasks.register<Delete>("cleanSnapshots") {
