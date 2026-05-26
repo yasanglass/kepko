@@ -7,7 +7,7 @@ val artifactId = "resource"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.roborazzi)
@@ -23,11 +23,17 @@ kotlin {
         freeCompilerArgs.add("-opt-in=glass.yasan.kepko.foundation.annotation.InternalKepkoApi")
     }
 
-    androidTarget {
+    android {
+        namespace = "glass.yasan.kepko.$artifactId"
+        compileSdk = libs.versions.android.sdk.compile.get().toInt()
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
+
+        androidResources { enable = true }
     }
     jvm()
     iosX64()
@@ -66,20 +72,6 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui.test)
             }
         }
-    }
-}
-
-android {
-    namespace = "glass.yasan.kepko.$artifactId"
-    compileSdk = libs.versions.android.sdk.compile.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.sdk.min.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
