@@ -181,7 +181,6 @@ private fun PersistentPreferenceThemeSystem(
             isSystemInDarkTheme = isSystemInDarkTheme,
             isLight = false,
         )
-        Spacer(Modifier.height(8.dp))
     }
 }
 
@@ -204,7 +203,6 @@ private fun PersistentPreferenceThemeStatic(
             modifier = Modifier
                 .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
         )
-        Spacer(Modifier.height(8.dp))
     }
 }
 
