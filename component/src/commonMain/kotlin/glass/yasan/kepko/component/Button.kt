@@ -257,7 +257,14 @@ private fun ButtonLabel(
     contentColor: Color,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = when (textAlign) {
+            TextAlign.Center -> Alignment.CenterHorizontally
+            TextAlign.End -> Alignment.End
+            else -> Alignment.Start
+        },
+    ) {
         Text(
             text = text,
             textAlign = textAlign,
