@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.MeasurePolicy
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
@@ -55,6 +56,7 @@ public fun <T> SegmentedPicker(
     enabled: Boolean = true,
     shape: Shape = SegmentedPickerDefaults.shape(),
     contentPadding: PaddingValues = SegmentedPickerDefaults.contentPadding(),
+    indicatorInset: Dp = SegmentedPickerDefaults.IndicatorInset,
     displayMode: SegmentedPickerDisplayMode = ICON_WITH_TEXT,
     revealDuration: Duration = SegmentedPickerDefaults.RevealDuration,
     colors: SegmentedPickerColors = SegmentedPickerDefaults.colors(),
@@ -96,6 +98,7 @@ public fun <T> SegmentedPicker(
             selectedIndex = selectedIndex,
             animatedIndex = animatedIndex,
             expandProgress = expandProgress,
+            indicatorInset = indicatorInset,
         ),
     )
 }
@@ -336,7 +339,8 @@ private fun rememberSegmentedPickerMeasurePolicy(
     selectedIndex: Int,
     animatedIndex: State<Float>,
     expandProgress: State<Float>,
-): MeasurePolicy = remember(displayMode, selectedIndex) {
+    indicatorInset: Dp,
+): MeasurePolicy = remember(displayMode, selectedIndex, indicatorInset) {
     MeasurePolicy { measurables, constraints ->
         val indicatorMeasurable = measurables.first()
         val itemMeasurables = measurables.drop(1)
@@ -364,12 +368,16 @@ private fun rememberSegmentedPickerMeasurePolicy(
         val progress = position - fromSegment
         val indicatorX = lerp(itemOffsets[fromSegment], itemOffsets[toSegment], progress)
         val indicatorWidth = lerp(itemWidths[fromSegment], itemWidths[toSegment], progress)
+        val insetPx = indicatorInset.roundToPx()
         val indicatorPlaceable = indicatorMeasurable.measure(
-            Constraints.fixed(indicatorWidth.coerceAtLeast(1), height)
+            Constraints.fixed(
+                (indicatorWidth - 2 * insetPx).coerceAtLeast(1),
+                (height - 2 * insetPx).coerceAtLeast(1),
+            )
         )
 
         layout(totalWidth, height) {
-            indicatorPlaceable.placeRelative(x = indicatorX, y = 0)
+            indicatorPlaceable.placeRelative(x = indicatorX + insetPx, y = insetPx)
             itemPlaceables.forEachIndexed { i, placeable ->
                 placeable.placeRelative(x = itemOffsets[i], y = 0)
             }
