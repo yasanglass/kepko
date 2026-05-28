@@ -185,6 +185,7 @@ private fun PersistentPreferenceThemeMode(
                     lastPrimaryPalette ?: fallbackPrimaryPalette
                 }
             },
+            maxLines = 2,
             modifier = Modifier.testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE),
         )
     }
