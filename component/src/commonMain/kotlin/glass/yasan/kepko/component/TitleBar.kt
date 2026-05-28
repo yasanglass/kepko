@@ -88,7 +88,7 @@ public fun TitleBar(
                 }
             }
             Text(
-                text = title,
+                text = title.uppercase(),
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 textAlign = when {

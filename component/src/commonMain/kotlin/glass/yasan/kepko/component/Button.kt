@@ -217,7 +217,7 @@ internal fun ButtonInternal(
                 leadingContent()
                 text?.let {
                     ButtonLabel(
-                        text = it,
+                        text = it.uppercase(),
                         description = description,
                         textAlign = textAlign,
                         fontSize = fontSize,

@@ -95,7 +95,7 @@ internal fun ModalBottomSheetTitleContent(
             }
             Column {
                 Text(
-                    text = title.text,
+                    text = title.text.uppercase(),
                     fontWeight = FontWeight.Bold,
                     color = KepkoTheme.colors.content,
                 )
