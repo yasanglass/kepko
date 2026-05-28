@@ -58,10 +58,10 @@ public fun PreferenceContainer(
             .padding(vertical = 16.dp),
     ) {
         Text(
-            text = title,
+            text = title.uppercase(),
             color = animated.contentColor,
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp,
             modifier = Modifier.padding(contentPadding),
         )
         description?.let {
@@ -132,10 +132,10 @@ public fun PreferenceContainer(
                 modifier = Modifier.weight(1f).padding(vertical = 4.dp),
             ) {
                 Text(
-                    text = title,
+                    text = title.uppercase(),
                     color = animated.contentColor,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp,
                 )
                 description?.let {
                     Text(

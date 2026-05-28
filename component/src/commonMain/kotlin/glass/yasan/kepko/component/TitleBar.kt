@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
@@ -90,6 +91,7 @@ public fun TitleBar(
             Text(
                 text = title.uppercase(),
                 fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
                 maxLines = 1,
                 textAlign = when {
                     textAlign == TextAlign.Center -> TextAlign.Center

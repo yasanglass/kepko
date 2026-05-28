@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -139,8 +140,10 @@ private fun RadioGroupRow(
             modifier = Modifier.weight(1f),
         ) {
             Text(
-                text = item.title(),
+                text = item.title().uppercase(),
                 color = if (enabled) KepkoTheme.colors.content else KepkoTheme.colors.contentDisabled,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
             )
             item.description?.let { description ->
                 Text(

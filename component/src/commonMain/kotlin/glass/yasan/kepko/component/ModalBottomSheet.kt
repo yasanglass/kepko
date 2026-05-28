@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import androidx.compose.material3.ModalBottomSheet as Material3ModalBottomSheet
 
@@ -97,6 +98,7 @@ internal fun ModalBottomSheetTitleContent(
                 Text(
                     text = title.text.uppercase(),
                     fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp,
                     color = KepkoTheme.colors.content,
                 )
                 if (title.description != null) {

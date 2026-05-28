@@ -35,6 +35,7 @@ import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import glass.yasan.kepko.component.SegmentedPickerDisplayMode.ICON
 import glass.yasan.kepko.component.SegmentedPickerDisplayMode.ICON_WITH_TEXT
@@ -275,9 +276,10 @@ private fun <T> SegmentedPickerItemContent(
                 }
                 if (textVisible && item.text != null) {
                     Text(
-                        text = item.text,
+                        text = item.text.uppercase(),
                         color = contentColor,
-                        fontWeight = FontWeight.Medium,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp,
                         maxLines = 1,
                     )
                 }
