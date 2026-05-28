@@ -3,12 +3,20 @@ package glass.yasan.kepko.persistence
 import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -22,12 +30,13 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.Badge
 import glass.yasan.kepko.component.IconButton
-import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.PreferenceRadioGroupItem
 import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.Scaffold
+import glass.yasan.kepko.component.SegmentedPicker
+import glass.yasan.kepko.component.SegmentedPickerItem
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
@@ -82,14 +91,25 @@ public fun PersistentPreferenceThemeContent(
         persistence = persistence,
         isSystemInDarkTheme = isSystemInDarkTheme,
     ) {
+        val sizeSpring = spring(
+            dampingRatio = Spring.DampingRatioLowBouncy,
+            stiffness = Spring.StiffnessMediumLow,
+            visibilityThreshold = IntSize.VisibilityThreshold,
+        )
+        val fadeSpring = spring<Float>(stiffness = Spring.StiffnessMedium)
+        val enterTransition = expandVertically(animationSpec = sizeSpring) +
+            fadeIn(animationSpec = fadeSpring)
+        val exitTransition = shrinkVertically(animationSpec = sizeSpring) +
+            fadeOut(animationSpec = fadeSpring)
+
         Column(
             modifier = modifier,
         ) {
             PersistentPreferenceThemeMode(persistence)
             AnimatedVisibility(
                 visible = persistence.palettePrimary == null,
-                enter = expandVertically(),
-                exit = shrinkVertically(),
+                enter = enterTransition,
+                exit = exitTransition,
             ) {
                 PersistentPreferenceThemeSystem(
                     persistence = persistence,
@@ -98,8 +118,8 @@ public fun PersistentPreferenceThemeContent(
             }
             AnimatedVisibility(
                 visible = persistence.palettePrimary != null,
-                enter = expandVertically(),
-                exit = shrinkVertically(),
+                enter = enterTransition,
+                exit = exitTransition,
             ) {
                 PersistentPreferenceThemeStatic(persistence)
             }
@@ -135,32 +155,39 @@ private fun PersistentPreferenceThemeMode(
     if (primaryPalette != null) lastPrimaryPalette = primaryPalette
     val fallbackPrimaryPalette = persistence.activePalette()
 
-    PreferenceRadioGroup(
-        title = Strings.preferencePaletteModeTitle,
-        selectedId = if (primaryPalette == null) {
-            PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
-        } else {
-            PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC
-        },
-        items = listOf(
-            PreferenceRadioGroupItem(
-                id = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC,
-            ) { Strings.preferencePaletteModeDynamic },
-            PreferenceRadioGroupItem(
-                id = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC,
-            ) { Strings.preferencePaletteModeStatic },
-        ),
-        onSelectId = { selectedId ->
-            val useDynamicPalette = selectedId == PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
-            persistence.palettePrimary = if (useDynamicPalette) {
-                null
-            } else {
-                lastPrimaryPalette ?: fallbackPrimaryPalette
-            }
-        },
+    Row(
+        horizontalArrangement = Arrangement.Center,
         modifier = Modifier
-            .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE)
-    )
+            .fillMaxWidth()
+            .padding(bottom = 8.dp),
+    ) {
+        SegmentedPicker(
+            items = listOf(
+                SegmentedPickerItem(
+                    value = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC,
+                    text = Strings.preferencePaletteModeDynamic,
+                ),
+                SegmentedPickerItem(
+                    value = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC,
+                    text = Strings.preferencePaletteModeStatic,
+                ),
+            ),
+            selected = if (primaryPalette == null) {
+                PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
+            } else {
+                PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC
+            },
+            onSelect = { selectedId ->
+                val useDynamicPalette = selectedId == PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
+                persistence.palettePrimary = if (useDynamicPalette) {
+                    null
+                } else {
+                    lastPrimaryPalette ?: fallbackPrimaryPalette
+                }
+            },
+            modifier = Modifier.testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE),
+        )
+    }
 }
 
 @Composable

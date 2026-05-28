@@ -23,12 +23,10 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenDefaultSettings_whenRendered_thenSystemIsSelected() {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            lateinit var themeModeString: String
             lateinit var dynamicString: String
             lateinit var staticString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
-                    themeModeString = Strings.preferencePaletteModeTitle
                     dynamicString = Strings.preferencePaletteModeDynamic
                     staticString = Strings.preferencePaletteModeStatic
                     PersistentPreferenceThemeScreen(onBackClick = {})
@@ -38,9 +36,7 @@ internal class PersistentPreferenceThemeScreenTest {
             waitForIdle()
 
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.SCREEN).assertExists()
-            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE)
-                .assertExists()
-                .assertTextContains(themeModeString, ignoreCase = true)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).assertExists()
             onNodeWithText(dynamicString, ignoreCase = true).assertExists()
             onNodeWithText(staticString, ignoreCase = true).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
