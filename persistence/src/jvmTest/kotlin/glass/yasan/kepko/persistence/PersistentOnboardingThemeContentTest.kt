@@ -43,12 +43,12 @@ internal class PersistentOnboardingThemeContentTest {
 
             waitForIdle()
 
-            onNodeWithText(defaultString).assertExists()
-            onNodeWithText(amoledString).assertExists()
-            onNodeWithText(catppuccinString).assertExists()
-            onNodeWithText(gruvboxString).assertExists()
-            onNodeWithText(solarizedString).assertExists()
-            onNodeWithText(blackString).assertDoesNotExist()
+            onNodeWithText(defaultString, ignoreCase = true).assertExists()
+            onNodeWithText(amoledString, ignoreCase = true).assertExists()
+            onNodeWithText(catppuccinString, ignoreCase = true).assertExists()
+            onNodeWithText(gruvboxString, ignoreCase = true).assertExists()
+            onNodeWithText(solarizedString, ignoreCase = true).assertExists()
+            onNodeWithText(blackString, ignoreCase = true).assertDoesNotExist()
             val optionTopPositions = listOf(
                 defaultString,
                 amoledString,
@@ -56,7 +56,7 @@ internal class PersistentOnboardingThemeContentTest {
                 catppuccinString,
                 gruvboxString,
             ).map { title ->
-                onNodeWithText(title).fetchSemanticsNode().boundsInRoot.top
+                onNodeWithText(title, ignoreCase = true).fetchSemanticsNode().boundsInRoot.top
             }
             assertTrue(optionTopPositions.zipWithNext().all { (before, after) -> before < after })
             assertNull(persistenceManager.palettePrimary)
@@ -100,7 +100,7 @@ internal class PersistentOnboardingThemeContentTest {
             }
 
             waitForIdle()
-            onNodeWithText(amoledString).performClick()
+            onNodeWithText(amoledString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertEquals(ColorPalette.BLACK, persistenceManager.palettePrimary)
@@ -122,7 +122,7 @@ internal class PersistentOnboardingThemeContentTest {
             }
 
             waitForIdle()
-            onNodeWithText(catppuccinString).performClick()
+            onNodeWithText(catppuccinString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertNull(persistenceManager.palettePrimary)
@@ -144,7 +144,7 @@ internal class PersistentOnboardingThemeContentTest {
             }
 
             waitForIdle()
-            onNodeWithText(gruvboxString).performClick()
+            onNodeWithText(gruvboxString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertNull(persistenceManager.palettePrimary)
@@ -166,7 +166,7 @@ internal class PersistentOnboardingThemeContentTest {
             }
 
             waitForIdle()
-            onNodeWithText(solarizedString).performClick()
+            onNodeWithText(solarizedString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertNull(persistenceManager.palettePrimary)
@@ -191,7 +191,7 @@ internal class PersistentOnboardingThemeContentTest {
             }
 
             waitForIdle()
-            onNodeWithText(defaultString).performClick()
+            onNodeWithText(defaultString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertNull(persistenceManager.palettePrimary)

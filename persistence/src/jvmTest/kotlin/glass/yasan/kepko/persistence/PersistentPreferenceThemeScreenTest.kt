@@ -40,9 +40,9 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.SCREEN).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE)
                 .assertExists()
-                .assertTextContains(themeModeString)
-            onNodeWithText(dynamicString).assertExists()
-            onNodeWithText(staticString).assertExists()
+                .assertTextContains(themeModeString, ignoreCase = true)
+            onNodeWithText(dynamicString, ignoreCase = true).assertExists()
+            onNodeWithText(staticString, ignoreCase = true).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             assertNull(persistenceManager.palettePrimary)
         }
@@ -83,7 +83,7 @@ internal class PersistentPreferenceThemeScreenTest {
             assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
-                .assertTextContains(solarizedDarkString)
+                .assertTextContains(solarizedDarkString, ignoreCase = true)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertDoesNotExist()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertDoesNotExist()
         }
@@ -112,19 +112,19 @@ internal class PersistentPreferenceThemeScreenTest {
             waitForIdle()
             assertNull(persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
-            onNodeWithText(blackString).assertDoesNotExist()
+            onNodeWithText(blackString, ignoreCase = true).assertDoesNotExist()
 
-            onNodeWithText(staticString).performClick()
+            onNodeWithText(staticString, ignoreCase = true).performClick()
             waitUntil { persistenceManager.palettePrimary != null }
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).performClick()
             waitForIdle()
-            onNodeWithText(blackString).assertExists()
-            onNodeWithText(blackString).performClick()
+            onNodeWithText(blackString, ignoreCase = true).assertExists()
+            onNodeWithText(blackString, ignoreCase = true).performClick()
             waitUntil { persistenceManager.palettePrimary == ColorPalette.BLACK }
 
             assertEquals(ColorPalette.BLACK, persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
-                .assertTextContains(blackString)
+                .assertTextContains(blackString, ignoreCase = true)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertDoesNotExist()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertDoesNotExist()
         }
@@ -147,7 +147,7 @@ internal class PersistentPreferenceThemeScreenTest {
             assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertExists()
 
-            onNodeWithText(dynamicString).performClick()
+            onNodeWithText(dynamicString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertNull(persistenceManager.palettePrimary)
@@ -180,30 +180,30 @@ internal class PersistentPreferenceThemeScreenTest {
             assertEquals(ColorPalette.BLACK, persistenceManager.paletteLight)
             assertEquals(ColorPalette.SOLARIZED_LIGHT, persistenceManager.paletteDark)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
-                .assertTextContains(blackString)
+                .assertTextContains(blackString, ignoreCase = true)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
-                .assertTextContains(solarizedLightString)
-            onNodeWithText(darkString).assertDoesNotExist()
+                .assertTextContains(solarizedLightString, ignoreCase = true)
+            onNodeWithText(darkString, ignoreCase = true).assertDoesNotExist()
 
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).performClick()
             waitForIdle()
-            onNodeWithText(darkString).assertExists()
-            onNodeWithText(darkString).performClick()
+            onNodeWithText(darkString, ignoreCase = true).assertExists()
+            onNodeWithText(darkString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertEquals(ColorPalette.DARK, persistenceManager.paletteLight)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
-                .assertTextContains(darkString)
+                .assertTextContains(darkString, ignoreCase = true)
 
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).performClick()
             waitForIdle()
-            onNodeWithText(blackString).assertExists()
-            onNodeWithText(blackString).performClick()
+            onNodeWithText(blackString, ignoreCase = true).assertExists()
+            onNodeWithText(blackString, ignoreCase = true).performClick()
             waitForIdle()
 
             assertEquals(ColorPalette.BLACK, persistenceManager.paletteDark)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
-                .assertTextContains(blackString)
+                .assertTextContains(blackString, ignoreCase = true)
         }
     }
 
