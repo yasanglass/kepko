@@ -33,6 +33,7 @@ import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasurePolicy
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -59,6 +60,7 @@ public fun <T> SegmentedPicker(
     indicatorInset: Dp = SegmentedPickerDefaults.IndicatorInset,
     displayMode: SegmentedPickerDisplayMode = ICON_WITH_TEXT,
     revealDuration: Duration = SegmentedPickerDefaults.RevealDuration,
+    maxLines: Int = 1,
     colors: SegmentedPickerColors = SegmentedPickerDefaults.colors(),
 ) {
     if (items.isEmpty()) return
@@ -81,17 +83,22 @@ public fun <T> SegmentedPicker(
             .border(color = colors.outlineColor, shape = shape),
         content = {
             SegmentedPickerIndicator(shape = shape, colors = colors)
-            SegmentedPickerItems(
-                items = items,
-                selectedIndex = selectedIndex,
-                enabled = enabled,
-                displayMode = displayMode,
-                revealText = revealText,
-                expandProgress = expandProgress.value,
-                onSelect = onSelect,
-                contentPadding = contentPadding,
-                colors = colors,
-            )
+            items.forEachIndexed { index, item ->
+                val isSelected = index == selectedIndex
+                SegmentedPickerItemContent(
+                    item = item,
+                    selected = isSelected,
+                    enabled = enabled && item.enabled,
+                    showText = item.shouldShowText(displayMode, isSelected, revealText),
+                    contentAlpha = if (displayMode == ICON_WITH_TEXT_EXPAND && !isSelected) {
+                        1f - expandProgress.value
+                    } else 1f,
+                    onClick = { onSelect(item.value) },
+                    contentPadding = contentPadding,
+                    maxLines = maxLines,
+                    colors = colors,
+                )
+            }
         },
         measurePolicy = rememberSegmentedPickerMeasurePolicy(
             displayMode = displayMode,
@@ -167,12 +174,10 @@ private fun measureItems(
     widthMode: WidthMode,
 ): MeasuredItems {
     val itemCount = itemMeasurables.size
-    val intrinsicHeight = itemMeasurables.maxOf {
-        it.maxIntrinsicHeight(Constraints.Infinity)
-    }
-    val targetHeight = intrinsicHeight.coerceIn(constraints.minHeight, constraints.maxHeight)
 
     if (widthMode is WidthMode.Natural) {
+        val singleLineHeight = itemMeasurables.maxOf { it.maxIntrinsicHeight(Constraints.Infinity) }
+        val targetHeight = singleLineHeight.coerceIn(constraints.minHeight, constraints.maxHeight)
         val perItemMinWidth = if (itemCount == 0) 0 else constraints.minWidth / itemCount
         val perItemMaxWidth = if (constraints.maxWidth == Constraints.Infinity || itemCount == 0) {
             constraints.maxWidth
@@ -218,6 +223,11 @@ private fun measureItems(
         widths[correctionIndex] += correction
     }
 
+    val contentHeight = (0 until itemCount).maxOfOrNull { i ->
+        itemMeasurables[i].maxIntrinsicHeight(widths[i].coerceAtLeast(0))
+    } ?: 0
+    val targetHeight = contentHeight.coerceIn(constraints.minHeight, constraints.maxHeight)
+
     val placeables = itemMeasurables.mapIndexed { i, m ->
         m.measure(Constraints.fixed(widths[i].coerceAtLeast(0), targetHeight))
     }
@@ -233,6 +243,7 @@ private fun <T> SegmentedPickerItemContent(
     contentAlpha: Float,
     onClick: () -> Unit,
     contentPadding: PaddingValues,
+    maxLines: Int,
     colors: SegmentedPickerColors,
     modifier: Modifier = Modifier,
 ) {
@@ -283,7 +294,8 @@ private fun <T> SegmentedPickerItemContent(
                         color = contentColor,
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
-                        maxLines = 1,
+                        textAlign = TextAlign.Center,
+                        maxLines = maxLines,
                     )
                 }
             }
@@ -302,35 +314,6 @@ private fun SegmentedPickerIndicator(
             .background(colors.indicatorColor)
             .border(color = colors.outlineColor, shape = shape),
     )
-}
-
-@Composable
-private fun <T> SegmentedPickerItems(
-    items: List<SegmentedPickerItem<T>>,
-    selectedIndex: Int,
-    enabled: Boolean,
-    displayMode: SegmentedPickerDisplayMode,
-    revealText: Boolean,
-    expandProgress: Float,
-    onSelect: (T) -> Unit,
-    contentPadding: PaddingValues,
-    colors: SegmentedPickerColors,
-) {
-    items.forEachIndexed { index, item ->
-        val isSelected = index == selectedIndex
-        SegmentedPickerItemContent(
-            item = item,
-            selected = isSelected,
-            enabled = enabled && item.enabled,
-            showText = item.shouldShowText(displayMode, isSelected, revealText),
-            contentAlpha = if (displayMode == ICON_WITH_TEXT_EXPAND && !isSelected) {
-                1f - expandProgress
-            } else 1f,
-            onClick = { onSelect(item.value) },
-            contentPadding = contentPadding,
-            colors = colors,
-        )
-    }
 }
 
 @Composable
