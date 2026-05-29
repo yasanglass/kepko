@@ -2,7 +2,7 @@ package glass.yasan.kepko.persistence
 
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.runDesktopComposeUiTest
+import androidx.compose.ui.test.v2.runDesktopComposeUiTest
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import kotlin.test.Test
 import kotlin.test.assertContains
