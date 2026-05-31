@@ -114,7 +114,7 @@ private fun PreferenceRadioGroupPickerContent(
             val selectedTitle = items.firstOrNull { it.id == selectedId }?.title()
             if (selectedTitle != null) {
                 Text(
-                    text = selectedTitle,
+                    text = selectedTitle.uppercase(),
                     color = KepkoTheme.colors.contentSubtle,
                     modifier = Modifier.padding(start = 8.dp),
                 )
