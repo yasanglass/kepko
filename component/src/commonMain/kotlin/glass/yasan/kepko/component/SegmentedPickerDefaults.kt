@@ -31,6 +31,7 @@ public object SegmentedPickerDefaults {
         indicatorColor: Color = KepkoTheme.colors.foreground,
         selectedContentColor: Color = KepkoTheme.colors.content,
         unselectedContentColor: Color = KepkoTheme.colors.contentSubtle,
+        hoveredContentColor: Color = KepkoTheme.colors.content,
         disabledContentColor: Color = KepkoTheme.colors.contentDisabled,
         outlineColor: Color = KepkoTheme.colors.outline,
     ): SegmentedPickerColors = SegmentedPickerColors(
@@ -38,6 +39,7 @@ public object SegmentedPickerDefaults {
         indicatorColor = indicatorColor,
         selectedContentColor = selectedContentColor,
         unselectedContentColor = unselectedContentColor,
+        hoveredContentColor = hoveredContentColor,
         disabledContentColor = disabledContentColor,
         outlineColor = outlineColor,
     )

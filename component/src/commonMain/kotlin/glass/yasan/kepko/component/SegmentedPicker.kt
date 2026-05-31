@@ -253,7 +253,7 @@ private fun <T> SegmentedPickerItemContent(
     val targetContentColor = when {
         !enabled -> colors.disabledContentColor
         selected -> colors.selectedContentColor
-        isHovered -> colors.selectedContentColor
+        isHovered -> colors.hoveredContentColor
         else -> colors.unselectedContentColor
     }
     val contentColor by animateColorAsState(

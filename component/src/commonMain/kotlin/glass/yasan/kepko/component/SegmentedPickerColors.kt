@@ -9,6 +9,7 @@ public data class SegmentedPickerColors(
     val indicatorColor: Color,
     val selectedContentColor: Color,
     val unselectedContentColor: Color,
+    val hoveredContentColor: Color,
     val disabledContentColor: Color,
     val outlineColor: Color,
 )
