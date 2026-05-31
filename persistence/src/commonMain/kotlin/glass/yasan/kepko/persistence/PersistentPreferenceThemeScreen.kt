@@ -316,7 +316,6 @@ private fun PersistentPreferenceThemeGrayscale(
         description = Strings.preferenceGrayscaleDescription,
         checked = persistence.grayscale,
         onCheckedChange = { persistence.grayscale = it },
-        leadingIcon = Icons.filterBw,
         modifier = Modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE)
     )
