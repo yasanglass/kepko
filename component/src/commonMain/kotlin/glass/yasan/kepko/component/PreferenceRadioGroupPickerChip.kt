@@ -51,6 +51,8 @@ public fun PreferenceRadioGroupPickerChip(
     closeOnSelection: Boolean = true,
     displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
     colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
 ) {
     PreferenceRadioGroupPickerChipContent(
         title = title,
@@ -64,6 +66,8 @@ public fun PreferenceRadioGroupPickerChip(
         closeOnSelection = closeOnSelection,
         displayMode = displayMode,
         colors = colors,
+        onLongClick = onLongClick,
+        onLongClickLabel = onLongClickLabel,
         titleIcon = leadingIcon,
         leadingContent = {
             Icon(
@@ -90,6 +94,8 @@ public fun PreferenceRadioGroupPickerChip(
     closeOnSelection: Boolean = true,
     displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
     colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
     leadingContent: @Composable () -> Unit = {},
 ) {
     PreferenceRadioGroupPickerChipContent(
@@ -104,6 +110,8 @@ public fun PreferenceRadioGroupPickerChip(
         closeOnSelection = closeOnSelection,
         displayMode = displayMode,
         colors = colors,
+        onLongClick = onLongClick,
+        onLongClickLabel = onLongClickLabel,
         leadingContent = leadingContent,
     )
 }
@@ -123,6 +131,8 @@ private fun PreferenceRadioGroupPickerChipContent(
     closeOnSelection: Boolean = true,
     displayMode: PreferenceRadioGroupPickerChipDisplayMode = ICON_WITH_TEXT,
     colors: PreferenceRadioGroupPickerChipColors = PreferenceRadioGroupPickerChipDefaults.colors(),
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
     titleIcon: Painter? = null,
     leadingContent: @Composable () -> Unit = {},
 ) {
@@ -158,6 +168,8 @@ private fun PreferenceRadioGroupPickerChipContent(
         hiddenSelectedTitle = hiddenSelectedTitle,
         displayMode = displayMode,
         onClick = { showSheet = true },
+        onLongClick = onLongClick,
+        onLongClickLabel = onLongClickLabel,
         enabled = enabled,
         colors = colors,
         modifier = modifier,
@@ -189,10 +201,14 @@ private fun PreferenceRadioGroupPickerChipButton(
     enabled: Boolean,
     colors: PreferenceRadioGroupPickerChipColors,
     modifier: Modifier = Modifier,
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
     leadingContent: @Composable () -> Unit = {},
 ) {
     ButtonPrimitive(
         onClick = onClick,
+        onLongClick = onLongClick,
+        onLongClickLabel = onLongClickLabel,
         enabled = enabled,
         containerColor = colors.containerColor,
         contentColor = colors.contentColor,

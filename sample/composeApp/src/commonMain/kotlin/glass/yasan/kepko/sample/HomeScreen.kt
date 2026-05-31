@@ -976,6 +976,32 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
     item {
         val items = listOf(
             PreferenceRadioGroupItem(
+                "low",
+                icon = painterResource(Res.drawable.ic_eco),
+                description = "Tap to pick; long press to cycle to the next option.",
+            ) { "Low (long press to cycle)" },
+            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium (long press to cycle)" },
+            PreferenceRadioGroupItem("high", icon = painterResource(Res.drawable.ic_bolt)) { "High (long press to cycle)" },
+        )
+        var selectedId by remember { mutableStateOf(items.first().id) }
+
+        PreferenceRadioGroupPickerChip(
+            title = "Chip (Custom Long Press)",
+            description = "Long press runs a custom action — here it cycles to the next option.",
+            selectedId = selectedId,
+            items = items,
+            onSelectId = { selectedId = it },
+            leadingIcon = Icons.settings,
+            onLongClick = {
+                val nextIndex = (items.indexOfFirst { it.id == selectedId } + 1) % items.size
+                selectedId = items[nextIndex].id
+            },
+            onLongClickLabel = "Cycle to next option",
+        )
+    }
+    item {
+        val items = listOf(
+            PreferenceRadioGroupItem(
                 "daily",
                 description = "Runs every day.",
             ) { "Daily" },
