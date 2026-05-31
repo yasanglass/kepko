@@ -22,6 +22,7 @@ import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
 import glass.yasan.kepko.composeapp.generated.resources.ic_eco
 import glass.yasan.kepko.composeapp.generated.resources.ic_heart_smile
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.resource.Icons
 import org.jetbrains.compose.resources.painterResource
 
 @Suppress("LongMethod")
@@ -64,6 +65,32 @@ internal fun LazyListScope.exampleSegmentedPicker() {
             SegmentedPickerItem(value = "max", text = "Max"),
         )
         var selected by rememberSaveable { mutableStateOf("low") }
+
+        SegmentedPicker(
+            items = items,
+            selected = selected,
+            onSelect = { selected = it },
+        )
+    }
+    item {
+        val items = listOf(
+            SegmentedPickerItem(
+                value = "hide",
+                icon = Icons.visibilityOff,
+                text = "Hide",
+            ),
+            SegmentedPickerItem(
+                value = "auto",
+                icon = Icons.autoAwesome,
+                text = "Auto",
+            ),
+            SegmentedPickerItem(
+                value = "pin",
+                icon = Icons.star,
+                text = "Pin",
+            ),
+        )
+        var selected by rememberSaveable { mutableStateOf("auto") }
 
         SegmentedPicker(
             items = items,
