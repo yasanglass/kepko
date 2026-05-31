@@ -980,8 +980,14 @@ private fun LazyListScope.examplePreferenceRadioGroupPickerChip() {
                 icon = painterResource(Res.drawable.ic_eco),
                 description = "Tap to pick; long press to cycle to the next option.",
             ) { "Low (long press to cycle)" },
-            PreferenceRadioGroupItem("medium", icon = painterResource(Res.drawable.ic_family_star)) { "Medium (long press to cycle)" },
-            PreferenceRadioGroupItem("high", icon = painterResource(Res.drawable.ic_bolt)) { "High (long press to cycle)" },
+            PreferenceRadioGroupItem(
+                "medium",
+                icon = painterResource(Res.drawable.ic_family_star),
+            ) { "Medium (long press to cycle)" },
+            PreferenceRadioGroupItem(
+                "high",
+                icon = painterResource(Res.drawable.ic_bolt),
+            ) { "High (long press to cycle)" },
         )
         var selectedId by remember { mutableStateOf(items.first().id) }
 
