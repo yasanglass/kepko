@@ -366,8 +366,6 @@ private fun ColorPalette.asPreferenceRadioGroupItem(
     segment = segment,
     badge = when {
         isDefault -> Badge.default
-        category == ColorPalette.Category.CATPPUCCIN -> Badge.experimental
-        category == ColorPalette.Category.GRUVBOX -> Badge.experimental
         else -> null
     },
 ) {
