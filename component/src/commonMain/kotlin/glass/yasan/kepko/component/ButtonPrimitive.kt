@@ -1,10 +1,11 @@
 package glass.yasan.kepko.component
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,9 +20,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
@@ -51,6 +54,19 @@ public fun ButtonPrimitive(
     interactionSource: MutableInteractionSource? = null,
 ) {
     val resolvedInteractionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val isHovered by resolvedInteractionSource.collectIsHoveredAsState()
+    val borderHoverIncrease = border?.width?.times(0.5f)?.coerceAtMost(1.dp) ?: 0.dp
+    val animatedBorderWidth by animateDpAsState(
+        targetValue = if (enabled && isHovered && border != null) {
+            border.width + borderHoverIncrease
+        } else {
+            border?.width ?: 0.dp
+        },
+        label = "ButtonPrimitiveBorderWidth",
+    )
+    val resolvedBorder = border?.let {
+        BorderStroke(width = animatedBorderWidth, brush = it.brush)
+    }
     val resolvedContainerColor = if (enabled) containerColor else containerColor.copy(alpha = 0.50f)
     val resolvedContentColor = if (enabled) contentColor else contentColor.copy(alpha = 0.70f)
 
@@ -76,7 +92,7 @@ public fun ButtonPrimitive(
             shape = shape,
             color = resolvedContainerColor,
             contentColor = resolvedContentColor,
-            border = border,
+            border = resolvedBorder,
         ) {
             CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.labelLarge) {
                 Row(
