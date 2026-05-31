@@ -299,7 +299,7 @@ private fun <T> SegmentedPickerItemContent(
                         textAlign = TextAlign.Center,
                         maxLines = maxLines,
                         overflow = TextOverflow.Ellipsis,
-                        softWrap = false,
+                        softWrap = maxLines > 1,
                     )
                 }
             }
