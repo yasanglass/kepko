@@ -24,11 +24,9 @@ internal class PersistentPreferenceThemeScreenTest {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
             lateinit var dynamicString: String
-            lateinit var staticString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
                     dynamicString = Strings.preferencePaletteModeDynamic
-                    staticString = Strings.preferencePaletteModeStatic
                     PersistentPreferenceThemeScreen(onBackClick = {})
                 }
             }
@@ -38,7 +36,8 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.SCREEN).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).assertExists()
             onNodeWithText(dynamicString, ignoreCase = true).assertExists()
-            onNodeWithText(staticString, ignoreCase = true).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             assertNull(persistenceManager.palettePrimary)
         }
@@ -93,11 +92,9 @@ internal class PersistentPreferenceThemeScreenTest {
             persistenceManager.paletteLight = LIGHT
             persistenceManager.paletteDark = DARK
             lateinit var blackString: String
-            lateinit var staticString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
                     blackString = Strings.colorPaletteBlack
-                    staticString = Strings.preferencePaletteModeStatic
                     PersistentPreferenceThemeScreen(
                         onBackClick = {},
                         isSystemInDarkTheme = true,
@@ -110,7 +107,7 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             onNodeWithText(blackString, ignoreCase = true).assertDoesNotExist()
 
-            onNodeWithText(staticString, ignoreCase = true).performClick()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).performClick()
             waitUntil { persistenceManager.palettePrimary != null }
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).performClick()
             waitForIdle()
@@ -131,10 +128,8 @@ internal class PersistentPreferenceThemeScreenTest {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
             persistenceManager.palettePrimary = SOLARIZED_DARK
-            lateinit var dynamicString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
-                    dynamicString = Strings.preferencePaletteModeDynamic
                     PersistentPreferenceThemeScreen(onBackClick = {})
                 }
             }
@@ -143,7 +138,7 @@ internal class PersistentPreferenceThemeScreenTest {
             assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertExists()
 
-            onNodeWithText(dynamicString, ignoreCase = true).performClick()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).performClick()
             waitForIdle()
 
             assertNull(persistenceManager.palettePrimary)

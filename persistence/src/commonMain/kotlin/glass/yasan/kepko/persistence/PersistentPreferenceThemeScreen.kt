@@ -11,12 +11,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.ui.unit.IntSize
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -35,8 +33,6 @@ import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.Scaffold
-import glass.yasan.kepko.component.SegmentedPicker
-import glass.yasan.kepko.component.SegmentedPickerItem
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
@@ -123,7 +119,7 @@ public fun PersistentPreferenceThemeContent(
             ) {
                 PersistentPreferenceThemeStatic(persistence)
             }
-            Spacer(Modifier.height(8.dp))
+            Spacer(Modifier.height(24.dp))
             PersistentPreferenceThemeGrayscale(persistence)
             Spacer(Modifier.height(8.dp))
             PersistentPreferenceThemeOutline(persistence)
@@ -155,40 +151,18 @@ private fun PersistentPreferenceThemeMode(
     if (primaryPalette != null) lastPrimaryPalette = primaryPalette
     val fallbackPrimaryPalette = persistence.activePalette()
 
-    Row(
-        horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 8.dp),
-    ) {
-        SegmentedPicker(
-            items = listOf(
-                SegmentedPickerItem(
-                    value = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC,
-                    text = Strings.preferencePaletteModeDynamic,
-                ),
-                SegmentedPickerItem(
-                    value = PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC,
-                    text = Strings.preferencePaletteModeStatic,
-                ),
-            ),
-            selected = if (primaryPalette == null) {
-                PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
+    PreferenceSwitch(
+        title = Strings.preferencePaletteModeDynamic,
+        checked = primaryPalette == null,
+        onCheckedChange = { followSystem ->
+            persistence.palettePrimary = if (followSystem) {
+                null
             } else {
-                PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_STATIC
-            },
-            onSelect = { selectedId ->
-                val useDynamicPalette = selectedId == PersistentPreferenceThemeScreenSemantics.PALETTE_MODE_DYNAMIC
-                persistence.palettePrimary = if (useDynamicPalette) {
-                    null
-                } else {
-                    lastPrimaryPalette ?: fallbackPrimaryPalette
-                }
-            },
-            maxLines = 2,
-            modifier = Modifier.testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE),
-        )
-    }
+                lastPrimaryPalette ?: fallbackPrimaryPalette
+            }
+        },
+        modifier = Modifier.testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE),
+    )
 }
 
 @Composable
@@ -416,8 +390,6 @@ internal fun PersistentPreferenceThemeScreenGrayscalePreview() {
 internal object PersistentPreferenceThemeScreenSemantics {
     const val SCREEN = "theme_screen"
     const val PALETTE_MODE = "theme_palette_mode"
-    const val PALETTE_MODE_DYNAMIC = "dynamic"
-    const val PALETTE_MODE_STATIC = "static"
     const val PALETTE_PICKER = "theme_palette_picker"
     const val LIGHT_PICKER = "theme_light_picker"
     const val DARK_PICKER = "theme_dark_picker"
