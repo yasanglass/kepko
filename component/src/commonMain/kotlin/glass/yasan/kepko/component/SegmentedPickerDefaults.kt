@@ -12,8 +12,10 @@ import kotlin.time.Duration.Companion.seconds
 
 public object SegmentedPickerDefaults {
 
-    public val ContentPaddingHorizontal: Dp = 18.dp
+    public val ContentPaddingHorizontal: Dp = 24.dp
     public val ContentPaddingVertical: Dp = 16.dp
+    public val IconSize: Dp = 24.dp
+    public val IconTextSpacing: Dp = 12.dp
     public val IndicatorInset: Dp = 3.dp
     public val RevealDuration: Duration = 1.3.seconds
 

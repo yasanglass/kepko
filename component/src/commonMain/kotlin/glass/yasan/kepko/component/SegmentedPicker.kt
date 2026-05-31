@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -28,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Measurable
@@ -35,6 +37,7 @@ import androidx.compose.ui.layout.MeasurePolicy
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -250,14 +253,8 @@ private fun <T> SegmentedPickerItemContent(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
-    val targetContentColor = when {
-        !enabled -> colors.disabledContentColor
-        selected -> colors.selectedContentColor
-        isHovered -> colors.hoveredContentColor
-        else -> colors.unselectedContentColor
-    }
     val contentColor by animateColorAsState(
-        targetValue = targetContentColor,
+        targetValue = colors.contentColor(enabled = enabled, selected = selected, hovered = isHovered),
         label = "SegmentedPickerItemContentColor",
     )
 
@@ -270,18 +267,18 @@ private fun <T> SegmentedPickerItemContent(
                 enabled = enabled,
                 onClick = onClick,
             )
-            .alpha(contentAlpha)
-            .padding(contentPadding),
+            .alpha(contentAlpha),
     ) {
         AnimatedContent(
             targetState = showText,
             transitionSpec = {
                 fadeIn() togetherWith fadeOut() using SizeTransform(clip = false)
             },
+            modifier = Modifier.padding(contentPadding),
             label = "SegmentedPickerItemReveal",
         ) { textVisible ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(SegmentedPickerDefaults.IconTextSpacing),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 item.icon?.let { painter ->
@@ -289,6 +286,8 @@ private fun <T> SegmentedPickerItemContent(
                         painter = painter,
                         contentDescription = if (textVisible) null else (item.contentDescription ?: item.text),
                         tint = contentColor,
+                        modifier = Modifier.requiredSize(SegmentedPickerDefaults.IconSize),
+                        size = SegmentedPickerDefaults.IconSize,
                     )
                 }
                 if (textVisible && item.text != null) {
@@ -299,11 +298,24 @@ private fun <T> SegmentedPickerItemContent(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         maxLines = maxLines,
+                        overflow = TextOverflow.Ellipsis,
+                        softWrap = false,
                     )
                 }
             }
         }
     }
+}
+
+private fun SegmentedPickerColors.contentColor(
+    enabled: Boolean,
+    selected: Boolean,
+    hovered: Boolean,
+): Color = when {
+    !enabled -> disabledContentColor
+    selected -> selectedContentColor
+    hovered -> hoveredContentColor
+    else -> unselectedContentColor
 }
 
 @Composable
