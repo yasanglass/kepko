@@ -74,9 +74,6 @@ public object Strings {
     public val colorPaletteLightSolarized: String
         @Composable get() = stringResource(Res.string.color_palette_light_solarized)
 
-    public val preferenceColorPaletteTitle: String
-        @Composable get() = stringResource(Res.string.preference_color_palette_title)
-
     public val preferenceDarkPaletteDescription: String
         @Composable get() = stringResource(Res.string.preference_dark_palette_description)
 
@@ -112,12 +109,6 @@ public object Strings {
 
     public val preferencePaletteModeDynamic: String
         @Composable get() = stringResource(Res.string.preference_palette_mode_dynamic)
-
-    public val preferencePaletteModeStatic: String
-        @Composable get() = stringResource(Res.string.preference_palette_mode_static)
-
-    public val preferencePaletteModeTitle: String
-        @Composable get() = stringResource(Res.string.preference_palette_mode_title)
 
     public val preferencePaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_palette_title)

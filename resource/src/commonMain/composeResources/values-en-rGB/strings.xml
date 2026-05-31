@@ -14,12 +14,9 @@
     <string name="preference_onboarding_palette_gruvbox">Gruvbox</string>
     <string name="preference_onboarding_palette_solarized">Solarized</string>
     <string name="preference_palette_mode_dynamic">Follow System</string>
-    <string name="preference_palette_mode_static">Static</string>
-    <string name="preference_palette_mode_title">Theme Mode</string>
     <string name="preference_theme_screen_title">Theme</string>
     <string name="preference_palette_title">Color Palette</string>
     <string name="preference_static_palette_title">Color Palette</string>
-    <string name="preference_color_palette_title">Color Palette</string>
     <string name="color_success">Success</string>
     <string name="color_information">Information</string>
     <string name="color_caution">Caution</string>
