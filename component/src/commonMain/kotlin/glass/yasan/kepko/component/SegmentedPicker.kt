@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -247,16 +248,18 @@ private fun <T> SegmentedPickerItemContent(
     colors: SegmentedPickerColors,
     modifier: Modifier = Modifier,
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isHovered by interactionSource.collectIsHoveredAsState()
     val targetContentColor = when {
         !enabled -> colors.disabledContentColor
         selected -> colors.selectedContentColor
+        isHovered -> colors.selectedContentColor
         else -> colors.unselectedContentColor
     }
     val contentColor by animateColorAsState(
         targetValue = targetContentColor,
         label = "SegmentedPickerItemContentColor",
     )
-    val interactionSource = remember { MutableInteractionSource() }
 
     Box(
         contentAlignment = Alignment.Center,
