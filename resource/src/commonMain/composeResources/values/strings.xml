@@ -13,6 +13,7 @@
     <string name="preference_onboarding_palette_gruvbox">Gruvbox</string>
     <string name="preference_onboarding_palette_solarized">Solarized</string>
     <string name="preference_palette_mode_dynamic">Follow System</string>
+    <string name="preference_palette_mode_dynamic_description">Switch the color palette automatically when the system theme changes</string>
     <string name="preference_theme_screen_title">Theme</string>
     <string name="preference_palette_title">Color Palette</string>
     <string name="preference_static_palette_title">Color Palette</string>

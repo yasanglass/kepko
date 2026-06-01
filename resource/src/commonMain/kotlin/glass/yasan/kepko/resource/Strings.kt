@@ -110,6 +110,9 @@ public object Strings {
     public val preferencePaletteModeDynamic: String
         @Composable get() = stringResource(Res.string.preference_palette_mode_dynamic)
 
+    public val preferencePaletteModeDynamicDescription: String
+        @Composable get() = stringResource(Res.string.preference_palette_mode_dynamic_description)
+
     public val preferencePaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_palette_title)
 

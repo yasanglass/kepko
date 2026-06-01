@@ -153,6 +153,7 @@ private fun PersistentPreferenceThemeMode(
 
     PreferenceSwitch(
         title = Strings.preferencePaletteModeDynamic,
+        description = Strings.preferencePaletteModeDynamicDescription,
         checked = primaryPalette == null,
         onCheckedChange = { followSystem ->
             persistence.palettePrimary = if (followSystem) {
