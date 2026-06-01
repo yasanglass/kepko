@@ -113,6 +113,13 @@ private fun PreferenceRadioGroupPickerContent(
         description = selectedTitle,
         modifier = modifier,
         leadingContent = { leadingContent() },
+        trailingContent = {
+            Icon(
+                painter = Icons.chevronForward,
+                contentDescription = null,
+                modifier = Modifier.padding(start = 12.dp),
+            )
+        },
     )
 
     PreferenceRadioGroupSheet(
