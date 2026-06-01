@@ -51,6 +51,7 @@ public fun Button(
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     badge: Badge? = null,
+    badgePosition: ButtonBadgePosition = ButtonBadgePosition.END,
     trailingIcon: Painter? = null,
     hapticFeedbackEnabled: Boolean = true,
 ) {
@@ -76,6 +77,7 @@ public fun Button(
         interactionSource = interactionSource,
         fillWidth = fillWidth,
         badge = badge,
+        badgePosition = badgePosition,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
         leadingContent = {
             ButtonIcon(
@@ -136,6 +138,7 @@ public fun Button(
     interactionSource: MutableInteractionSource? = null,
     fillWidth: Boolean = true,
     badge: Badge? = null,
+    badgePosition: ButtonBadgePosition = ButtonBadgePosition.END,
     hapticFeedbackEnabled: Boolean = true,
     leadingContent: @Composable RowScope.() -> Unit = {},
     trailingContent: @Composable RowScope.() -> Unit = {},
@@ -162,6 +165,7 @@ public fun Button(
         interactionSource = interactionSource,
         fillWidth = fillWidth,
         badge = badge,
+        badgePosition = badgePosition,
         leadingContent = leadingContent,
         trailingContent = trailingContent,
         hapticFeedbackEnabled = hapticFeedbackEnabled,
@@ -192,6 +196,7 @@ internal fun ButtonInternal(
     interactionSource: MutableInteractionSource?,
     fillWidth: Boolean,
     badge: Badge?,
+    badgePosition: ButtonBadgePosition,
     leadingContent: @Composable RowScope.() -> Unit,
     trailingContent: @Composable RowScope.() -> Unit,
     hapticFeedbackEnabled: Boolean,
@@ -219,6 +224,7 @@ internal fun ButtonInternal(
                     ButtonLabel(
                         text = it.uppercase(),
                         description = description,
+                        badge = badge.takeIf { badgePosition == ButtonBadgePosition.BOTTOM },
                         textAlign = textAlign,
                         fontSize = fontSize,
                         fontWeight = fontWeight,
@@ -226,11 +232,13 @@ internal fun ButtonInternal(
                         modifier = if (fillWidth) Modifier.weight(1f) else Modifier,
                     )
                 }
-                badge?.let {
-                    TextPill(
-                        badge = it,
-                        modifier = Modifier.padding(start = 12.dp),
-                    )
+                if (badgePosition == ButtonBadgePosition.END) {
+                    badge?.let {
+                        TextPill(
+                            badge = it,
+                            modifier = Modifier.padding(start = 12.dp),
+                        )
+                    }
                 }
                 trailingContent()
             }
@@ -256,6 +264,7 @@ private fun ButtonLabel(
     fontWeight: FontWeight,
     contentColor: Color,
     modifier: Modifier = Modifier,
+    badge: Badge? = null,
 ) {
     Column(
         modifier = modifier,
@@ -280,6 +289,12 @@ private fun ButtonLabel(
                 fontSize = 12.sp,
                 lineHeight = 16.sp,
                 fontWeight = FontWeight.Normal,
+            )
+        }
+        badge?.let {
+            TextPill(
+                badge = it,
+                modifier = Modifier.padding(top = 8.dp),
             )
         }
     }

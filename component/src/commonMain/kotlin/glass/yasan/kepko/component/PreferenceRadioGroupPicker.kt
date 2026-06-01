@@ -108,6 +108,7 @@ private fun PreferenceRadioGroupPickerContent(
         onClick = { showSheet = true },
         enabled = enabled,
         badge = badge,
+        badgePosition = ButtonBadgePosition.BOTTOM,
         modifier = modifier,
         leadingContent = { leadingContent() },
         trailingContent = {
