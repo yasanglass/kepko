@@ -103,24 +103,16 @@ private fun PreferenceRadioGroupPickerContent(
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
+    val selectedTitle = items.firstOrNull { it.id == selectedId }?.title()
+
     Button(
         text = title,
         onClick = { showSheet = true },
         enabled = enabled,
         badge = badge,
-        badgePosition = ButtonBadgePosition.BOTTOM,
+        description = selectedTitle,
         modifier = modifier,
         leadingContent = { leadingContent() },
-        trailingContent = {
-            val selectedTitle = items.firstOrNull { it.id == selectedId }?.title()
-            if (selectedTitle != null) {
-                Text(
-                    text = selectedTitle.uppercase(),
-                    color = KepkoTheme.colors.contentSubtle,
-                    modifier = Modifier.padding(start = 8.dp),
-                )
-            }
-        },
     )
 
     PreferenceRadioGroupSheet(
