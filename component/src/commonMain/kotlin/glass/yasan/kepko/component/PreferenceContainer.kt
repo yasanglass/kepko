@@ -57,21 +57,23 @@ public fun PreferenceContainer(
             .background(animated.containerColor)
             .padding(vertical = 16.dp),
     ) {
-        Text(
-            text = title.uppercase(),
-            color = animated.contentColor,
-            fontWeight = FontWeight.Bold,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(contentPadding),
-        )
-        description?.let {
+        Column {
             Text(
-                text = it,
-                color = animated.descriptionColor,
-                lineHeight = 16.sp,
-                fontSize = 12.sp,
+                text = title.uppercase(),
+                color = animated.contentColor,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
                 modifier = Modifier.padding(contentPadding),
             )
+            description?.let {
+                Text(
+                    text = it,
+                    color = animated.descriptionColor,
+                    lineHeight = 16.sp,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(contentPadding),
+                )
+            }
         }
         ProvideLocalContentColor(animated.contentColor) {
             content(contentPadding)
@@ -131,19 +133,21 @@ public fun PreferenceContainer(
                 verticalArrangement = Arrangement.spacedBy(4.dp),
                 modifier = Modifier.weight(1f).padding(vertical = 4.dp),
             ) {
-                Text(
-                    text = title.uppercase(),
-                    color = animated.contentColor,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
-                )
-                description?.let {
+                Column {
                     Text(
-                        text = it,
-                        color = animated.descriptionColor,
-                        lineHeight = 16.sp,
-                        fontSize = 12.sp,
+                        text = title.uppercase(),
+                        color = animated.contentColor,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp,
                     )
+                    description?.let {
+                        Text(
+                            text = it,
+                            color = animated.descriptionColor,
+                            lineHeight = 16.sp,
+                            fontSize = 12.sp,
+                        )
+                    }
                 }
                 additionalContent?.invoke()
                 badge?.let {

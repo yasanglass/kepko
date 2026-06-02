@@ -102,7 +102,6 @@ internal fun ModalBottomSheetTitleContent(
                     color = KepkoTheme.colors.content,
                 )
                 if (title.description != null) {
-                    Spacer(Modifier.height(4.dp))
                     Text(
                         text = title.description,
                         color = KepkoTheme.colors.contentSubtle,
