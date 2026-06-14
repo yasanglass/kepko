@@ -18,7 +18,6 @@ internal fun SampleLightReadmePreview() {
             HomeScreen(
                 onNavigateToTheme = {},
                 onNavigateToIcons = {},
-                onNavigateToOnboarding = {},
                 onNavigateToSerialization = {},
                 onNavigateToTitleBar = {},
             )
@@ -34,7 +33,6 @@ internal fun SampleDarkReadmePreview() {
             HomeScreen(
                 onNavigateToTheme = {},
                 onNavigateToIcons = {},
-                onNavigateToOnboarding = {},
                 onNavigateToSerialization = {},
                 onNavigateToTitleBar = {},
             )

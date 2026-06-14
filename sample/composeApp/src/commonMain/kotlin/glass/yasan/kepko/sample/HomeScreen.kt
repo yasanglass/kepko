@@ -63,7 +63,6 @@ import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextField
 import glass.yasan.kepko.component.TextPill
 import glass.yasan.kepko.composeapp.generated.resources.Res
-import glass.yasan.kepko.composeapp.generated.resources.onboarding
 import glass.yasan.kepko.composeapp.generated.resources.app_name
 import glass.yasan.kepko.composeapp.generated.resources.ic_bolt
 import glass.yasan.kepko.composeapp.generated.resources.ic_eco
@@ -87,7 +86,6 @@ import org.jetbrains.compose.resources.stringResource
 internal fun HomeScreen(
     onNavigateToTheme: () -> Unit,
     onNavigateToIcons: () -> Unit,
-    onNavigateToOnboarding: () -> Unit,
     onNavigateToSerialization: () -> Unit,
     onNavigateToTitleBar: () -> Unit,
 ) {
@@ -108,7 +106,6 @@ internal fun HomeScreen(
                 navigationButtons(
                     onThemeClick = onNavigateToTheme,
                     onIconsClick = onNavigateToIcons,
-                    onOnboardingClick = onNavigateToOnboarding,
                     onSerializationClick = onNavigateToSerialization,
                     onTitleBarClick = onNavigateToTitleBar,
                 )
@@ -183,7 +180,6 @@ private fun LazyListScope.colorPalette() {
 private fun LazyListScope.navigationButtons(
     onThemeClick: () -> Unit,
     onIconsClick: () -> Unit,
-    onOnboardingClick: () -> Unit,
     onSerializationClick: () -> Unit,
     onTitleBarClick: () -> Unit,
 ) {
@@ -203,14 +199,6 @@ private fun LazyListScope.navigationButtons(
             description = "View the full icon set with snapshot previews.",
             onClick = onIconsClick,
             leadingIcon = Icons.shapes,
-            trailingIcon = Icons.chevronForward,
-        )
-    }
-    item {
-        Button(
-            text = stringResource(Res.string.onboarding),
-            onClick = onOnboardingClick,
-            leadingIcon = Icons.palette,
             trailingIcon = Icons.chevronForward,
         )
     }

@@ -16,10 +16,6 @@ internal sealed interface Route {
         override val path = "icons"
     }
 
-    data object Onboarding : Route {
-        override val path = "onboarding"
-    }
-
     data object Serialization : Route {
         override val path = "serialization"
     }
