@@ -72,8 +72,8 @@ import glass.yasan.kepko.composeapp.generated.resources.ic_new_releases
 import glass.yasan.kepko.foundation.border.border
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.persistence.PersistentPreferenceThemeButton
 import glass.yasan.kepko.resource.Icons
-import glass.yasan.kepko.resource.Strings
 import glass.yasan.kepko.sample.home.exampleCheckboxText
 import glass.yasan.kepko.sample.home.exampleKeyValue
 import glass.yasan.kepko.sample.home.exampleSegmentedPicker
@@ -185,12 +185,8 @@ private fun LazyListScope.navigationButtons(
 ) {
     item { HorizontalDivider() }
     item {
-        Button(
-            text = Strings.preferenceThemeScreenTitle,
-            description = "Browse and switch between color palettes.",
+        PersistentPreferenceThemeButton(
             onClick = onThemeClick,
-            leadingIcon = Icons.palette,
-            trailingIcon = Icons.chevronForward,
         )
     }
     item {
