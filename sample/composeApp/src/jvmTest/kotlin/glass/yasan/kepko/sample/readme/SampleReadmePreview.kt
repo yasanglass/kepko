@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.persistence.PreviewPersistentKepkoTheme
 import glass.yasan.kepko.sample.HomeScreen
 import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewHeight
 import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
@@ -13,7 +13,7 @@ import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
 @ReadmePreview
 @Composable
 internal fun SampleLightReadmePreview() {
-    KepkoTheme(palette = defaultLight) {
+    PreviewPersistentKepkoTheme(isSystemInDarkTheme = false) {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
             HomeScreen(
                 onNavigateToTheme = {},
@@ -28,7 +28,7 @@ internal fun SampleLightReadmePreview() {
 @ReadmePreview
 @Composable
 internal fun SampleDarkReadmePreview() {
-    KepkoTheme(palette = defaultDark) {
+    PreviewPersistentKepkoTheme(isSystemInDarkTheme = true) {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
             HomeScreen(
                 onNavigateToTheme = {},
