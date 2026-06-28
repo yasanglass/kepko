@@ -34,6 +34,10 @@ kotlin {
         }
 
         androidResources { enable = true }
+
+        withHostTest {
+            isIncludeAndroidResources = true
+        }
     }
     jvm()
     iosArm64()
@@ -51,7 +55,7 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     sourceSets {
-        val commonMain by getting {
+        val commonMain = getByName("commonMain") {
             dependencies {
                 api(project(":component"))
                 implementation(libs.multiplatform.settings.no.arg)
@@ -62,18 +66,18 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui)
             }
         }
-        val commonTest by getting {
+        val commonTest = getByName("commonTest") {
             dependencies {
                 implementation(libs.jetbrains.kotlin.test)
                 implementation(libs.multiplatform.settings.test)
             }
         }
-        val jvmMain by getting {
+        val jvmMain = getByName("jvmMain") {
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
         }
-        val jvmTest by getting {
+        val jvmTest = getByName("jvmTest") {
             dependencies {
                 implementation(libs.composable.preview.scanner.jvm)
                 implementation(libs.roborazzi.compose.desktop)

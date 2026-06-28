@@ -80,7 +80,7 @@ kotlin {
                 implementation(libs.kotlinx.serialization.json)
             }
         }
-        val nonMobileMain by creating {
+        val nonMobileMain = create("nonMobileMain") {
             dependsOn(commonMain.get())
         }
         jvmMain {

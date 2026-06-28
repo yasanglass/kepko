@@ -51,7 +51,7 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     sourceSets {
-        val commonMain by getting {
+        val commonMain = getByName("commonMain") {
             dependencies {
                 api(project(":resource"))
 
@@ -71,37 +71,37 @@ kotlin {
             }
         }
 
-        val nonAndroidMain by creating {
+        val nonAndroidMain = create("nonAndroidMain") {
             dependsOn(commonMain)
         }
 
-        val iosMain by getting {
+        val iosMain = getByName("iosMain") {
             dependsOn(nonAndroidMain)
         }
 
-        val nonMobileMain by creating {
+        val nonMobileMain = create("nonMobileMain") {
             dependsOn(nonAndroidMain)
         }
 
-        val jvmMain by getting {
+        val jvmMain = getByName("jvmMain") {
             dependsOn(nonMobileMain)
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
         }
 
-        val jvmTest by getting {
+        val jvmTest = getByName("jvmTest") {
             dependencies {
                 implementation(libs.jetbrains.kotlin.reflect)
                 implementation(libs.jetbrains.kotlin.test)
             }
         }
 
-        val jsMain by getting {
+        val jsMain = getByName("jsMain") {
             dependsOn(nonMobileMain)
         }
 
-        val wasmJsMain by getting {
+        val wasmJsMain = getByName("wasmJsMain") {
             dependsOn(nonMobileMain)
         }
     }

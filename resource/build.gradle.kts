@@ -51,7 +51,7 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     sourceSets {
-        val commonMain by getting {
+        val commonMain = getByName("commonMain") {
             dependencies {
                 implementation(libs.jetbrains.compose.components.resources)
                 implementation(libs.jetbrains.compose.runtime)
@@ -59,7 +59,7 @@ kotlin {
             }
         }
 
-        val jvmTest by getting {
+        val jvmTest = getByName("jvmTest") {
             dependencies {
                 implementation(compose.desktop.currentOs)
                 implementation(libs.jetbrains.compose.foundation)

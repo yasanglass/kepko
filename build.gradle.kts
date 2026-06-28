@@ -1,3 +1,4 @@
+import com.vanniktech.maven.publish.DeploymentValidation
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.plugins.signing.Sign
 
@@ -51,7 +52,7 @@ allprojects {
 }
 
 fun Project.configureDetekt() {
-    apply(plugin = "io.gitlab.arturbosch.detekt")
+    pluginManager.apply("io.gitlab.arturbosch.detekt")
     detekt {
         buildUponDefaultConfig = true
         config.setFrom(
@@ -73,11 +74,11 @@ fun Project.configureDetekt() {
 }
 
 fun Project.configurePublishing() {
-    apply(plugin = "com.vanniktech.maven.publish")
+    pluginManager.apply("com.vanniktech.maven.publish")
     configure<MavenPublishBaseExtension> {
         publishToMavenCentral(
             automaticRelease = true,
-            validateDeployment = false,
+            validateDeployment = DeploymentValidation.NONE,
         )
 
         signAllPublications()
@@ -120,8 +121,8 @@ subprojects {
     configureDetekt()
 
     if (isSample.not()) {
-        apply(plugin = "org.jetbrains.dokka")
-        apply(plugin = "org.jetbrains.kotlinx.kover")
+        pluginManager.apply("org.jetbrains.dokka")
+        pluginManager.apply("org.jetbrains.kotlinx.kover")
         configurePublishing()
 
         tasks.withType<Jar>().configureEach {
