@@ -22,8 +22,9 @@ public fun PersistentPreferenceThemeButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
+    targetProfile: UserVisibleProfile? = null,
     text: String = Strings.preferenceThemeScreenTitle,
-    description: String = persistence.themeButtonDescription(),
+    description: String = persistence.themeButtonDescription(targetProfile),
 ) {
     Button(
         text = text,
@@ -37,11 +38,23 @@ public fun PersistentPreferenceThemeButton(
 
 @ExperimentalKepkoApi
 @Composable
-public fun PersistenceManager.themeButtonDescription(): String {
-    val paletteDescription = palettePrimary?.title?.invoke()
+public fun PersistenceManager.themeButtonDescription(
+    targetProfile: UserVisibleProfile? = null,
+): String {
+    if (targetProfile != null) {
+        val overrides = listOfNotNull(
+            profileManager.getProfilePalette(targetProfile.id)?.title?.invoke(),
+            profileManager.getProfileGrayscale(targetProfile.id)
+                ?.let { if (it) Strings.grayscaleEnabled else Strings.grayscaleDisabled },
+        )
+
+        return if (overrides.isEmpty()) Strings.preferenceFollowGlobalTitle else overrides.joinToString(", ")
+    }
+
+    val paletteDescription = getPalettePrimary(null)?.title?.invoke()
         ?: "${paletteLight.title()} / ${paletteDark.title()}"
     val descriptions = listOf(paletteDescription) +
-            listOfNotNull(Strings.preferenceGrayscaleTitle.takeIf { grayscale })
+            listOfNotNull(Strings.preferenceGrayscaleTitle.takeIf { isGrayscaleEnabled(null) })
 
     return descriptions.joinToString(", ")
 }
@@ -58,7 +71,7 @@ internal fun PersistentPreferenceThemeButtonPreview() {
         PreviewPreferenceThemeButton(
             isSystemInDarkTheme = true,
             configure = {
-                palettePrimary = ColorPalette.SOLARIZED_DARK
+                setPalettePrimary(null, ColorPalette.SOLARIZED_DARK)
                 paletteDark = ColorPalette.SOLARIZED_DARK
             },
         )
@@ -69,7 +82,23 @@ internal fun PersistentPreferenceThemeButtonPreview() {
             },
         )
         PreviewPreferenceThemeButton(
-            configure = { grayscale = true },
+            configure = { setGrayscaleEnabled(null, true) },
+        )
+        PreviewPreferenceThemeButton(targetProfile = previewProfile)
+        PreviewPreferenceThemeButton(
+            targetProfile = previewProfile,
+            configure = { profileManager.setProfilePalette(previewProfile.id, ColorPalette.SOLARIZED_DARK) },
+        )
+        PreviewPreferenceThemeButton(
+            targetProfile = previewProfile,
+            configure = { profileManager.setProfileGrayscale(previewProfile.id, false) },
+        )
+        PreviewPreferenceThemeButton(
+            targetProfile = previewProfile,
+            configure = {
+                profileManager.setProfilePalette(previewProfile.id, ColorPalette.SOLARIZED_DARK)
+                profileManager.setProfileGrayscale(previewProfile.id, true)
+            },
         )
     }
 }
@@ -78,12 +107,16 @@ internal fun PersistentPreferenceThemeButtonPreview() {
 @Composable
 private fun PreviewPreferenceThemeButton(
     isSystemInDarkTheme: Boolean = false,
+    targetProfile: UserVisibleProfile? = null,
     configure: PreviewPersistenceManager.() -> Unit = {},
 ) {
     PreviewPersistentKepkoTheme(
         isSystemInDarkTheme = isSystemInDarkTheme,
         configure = configure,
     ) {
-        PersistentPreferenceThemeButton(onClick = {})
+        PersistentPreferenceThemeButton(
+            onClick = {},
+            targetProfile = targetProfile,
+        )
     }
 }

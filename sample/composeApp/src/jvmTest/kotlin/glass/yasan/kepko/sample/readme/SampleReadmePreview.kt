@@ -17,6 +17,7 @@ internal fun SampleLightReadmePreview() {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
             HomeScreen(
                 onNavigateToTheme = {},
+                onNavigateToProfiles = {},
                 onNavigateToIcons = {},
                 onNavigateToSerialization = {},
                 onNavigateToTitleBar = {},
@@ -32,6 +33,7 @@ internal fun SampleDarkReadmePreview() {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
             HomeScreen(
                 onNavigateToTheme = {},
+                onNavigateToProfiles = {},
                 onNavigateToIcons = {},
                 onNavigateToSerialization = {},
                 onNavigateToTitleBar = {},

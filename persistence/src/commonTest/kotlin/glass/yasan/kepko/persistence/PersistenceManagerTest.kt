@@ -2,11 +2,15 @@ package glass.yasan.kepko.persistence
 
 import com.russhwolf.settings.MapSettings
 import glass.yasan.kepko.foundation.theme.ColorPalette
+import glass.yasan.kepko.foundation.theme.ColorPalette.BLACK
+import glass.yasan.kepko.foundation.theme.ColorPalette.SOLARIZED_DARK
+import glass.yasan.kepko.foundation.theme.ColorPalette.SOLARIZED_LIGHT
 import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 @Suppress("VisibleForTests")
 internal class PersistenceManagerTest {
@@ -26,10 +30,10 @@ internal class PersistenceManagerTest {
         val manager = createManager()
 
         // Then
-        assertNull(manager.palettePrimary)
+        assertNull(manager.getPalettePrimary(null))
         assertEquals(ColorPalette.defaultLight, manager.paletteLight)
         assertEquals(ColorPalette.defaultDark, manager.paletteDark)
-        assertFalse(manager.grayscale)
+        assertFalse(manager.isGrayscaleEnabled(null))
     }
 
     @Test
@@ -39,10 +43,10 @@ internal class PersistenceManagerTest {
         val manager = PersistenceManagerImpl(settings)
 
         // When
-        manager.palettePrimary = SOLARIZED_DARK
+        manager.setPalettePrimary(null, SOLARIZED_DARK)
 
         // Then
-        assertEquals(ColorPalette.SOLARIZED_DARK, manager.palettePrimary)
+        assertEquals(ColorPalette.SOLARIZED_DARK, manager.getPalettePrimary(null))
         assertEquals(
             ColorPalette.SOLARIZED_DARK.id,
             settings.getString(PersistenceManagerImpl.KEY_STYLE, "")
@@ -54,13 +58,13 @@ internal class PersistenceManagerTest {
         // Given
         val settings = MapSettings()
         val manager = PersistenceManagerImpl(settings)
-        manager.palettePrimary = BLACK
+        manager.setPalettePrimary(null, BLACK)
 
         // When
-        manager.palettePrimary = null
+        manager.setPalettePrimary(null, null)
 
         // Then
-        assertNull(manager.palettePrimary)
+        assertNull(manager.getPalettePrimary(null))
         assertEquals(
             PersistenceManager.PALETTE_ID_SYSTEM,
             settings.getString(PersistenceManagerImpl.KEY_STYLE, "")
@@ -108,10 +112,10 @@ internal class PersistenceManagerTest {
         val manager = PersistenceManagerImpl(settings)
 
         // When
-        manager.grayscale = true
+        manager.setGrayscaleEnabled(null, true)
 
         // Then
-        assertEquals(true, manager.grayscale)
+        assertTrue(manager.isGrayscaleEnabled(null))
         assertEquals(
             true,
             settings.getBoolean(PersistenceManagerImpl.KEY_GRAYSCALE, false)
@@ -129,10 +133,10 @@ internal class PersistenceManagerTest {
         )
 
         // Then
-        assertEquals(ColorPalette.BLACK, manager.palettePrimary)
+        assertEquals(ColorPalette.BLACK, manager.getPalettePrimary(null))
         assertEquals(ColorPalette.SOLARIZED_LIGHT, manager.paletteLight)
         assertEquals(ColorPalette.SOLARIZED_DARK, manager.paletteDark)
-        assertEquals(true, manager.grayscale)
+        assertTrue(manager.isGrayscaleEnabled(null))
     }
 
     @Test
@@ -145,7 +149,7 @@ internal class PersistenceManagerTest {
         )
 
         // Then
-        assertNull(manager.palettePrimary)
+        assertNull(manager.getPalettePrimary(null))
         assertEquals(ColorPalette.defaultLight, manager.paletteLight)
         assertEquals(ColorPalette.defaultDark, manager.paletteDark)
     }
@@ -157,7 +161,7 @@ internal class PersistenceManagerTest {
             createManager(PersistenceManagerImpl.KEY_STYLE to PersistenceManager.PALETTE_ID_SYSTEM)
 
         // Then
-        assertNull(manager.palettePrimary)
+        assertNull(manager.getPalettePrimary(null))
     }
 
     @Test
@@ -167,10 +171,10 @@ internal class PersistenceManagerTest {
         val manager = PersistenceManagerImpl(settings)
 
         // When
-        manager.grayscale = false
+        manager.setGrayscaleEnabled(null, false)
 
         // Then
-        assertFalse(manager.grayscale)
+        assertFalse(manager.isGrayscaleEnabled(null))
         assertEquals(
             false,
             settings.getBoolean(PersistenceManagerImpl.KEY_GRAYSCALE, true)
@@ -181,7 +185,7 @@ internal class PersistenceManagerTest {
     fun givenPrimaryPaletteSet_whenResolvedPalette_thenAlwaysUsesPrimaryPalette() {
         // Given
         val manager = createManager() as PersistenceManagerImpl
-        manager.palettePrimary = BLACK
+        manager.setPalettePrimary(null, BLACK)
         manager.paletteLight = SOLARIZED_LIGHT
         manager.paletteDark = SOLARIZED_DARK
 
@@ -198,7 +202,7 @@ internal class PersistenceManagerTest {
     fun givenNoPrimaryPalette_whenResolvedPalette_thenUsesLightOrDarkPaletteByDarkFlag() {
         // Given
         val manager = createManager() as PersistenceManagerImpl
-        manager.palettePrimary = null
+        manager.setPalettePrimary(null, null)
         manager.paletteLight = SOLARIZED_LIGHT
         manager.paletteDark = SOLARIZED_DARK
 
@@ -209,5 +213,110 @@ internal class PersistenceManagerTest {
         // Then
         assertEquals(ColorPalette.SOLARIZED_LIGHT, lightResolved)
         assertEquals(ColorPalette.SOLARIZED_DARK, darkResolved)
+    }
+
+    @Test
+    fun givenNoProfileOverride_whenGetPalettePrimaryWithProfileId_thenFallsBackToGlobal() {
+        // Given
+        val manager = createManager()
+        manager.setPalettePrimary(null, BLACK)
+
+        // Then
+        assertEquals(ColorPalette.BLACK, manager.getPalettePrimary("work"))
+    }
+
+    @Test
+    fun givenProfileOverride_whenGetPalettePrimaryWithProfileId_thenOverrideWins() {
+        // Given
+        val manager = createManager()
+        manager.setPalettePrimary(null, BLACK)
+
+        // When
+        manager.setPalettePrimary("work", SOLARIZED_DARK)
+
+        // Then
+        assertEquals(ColorPalette.SOLARIZED_DARK, manager.getPalettePrimary("work"))
+        assertEquals(ColorPalette.BLACK, manager.getPalettePrimary(null))
+        assertEquals(ColorPalette.BLACK, manager.getPalettePrimary("other"))
+    }
+
+    @Test
+    fun givenProfileOverride_whenClearedWithNull_thenFallsBackToGlobal() {
+        // Given
+        val manager = createManager()
+        manager.setPalettePrimary(null, BLACK)
+        manager.setPalettePrimary("work", SOLARIZED_DARK)
+
+        // When
+        manager.setPalettePrimary("work", null)
+
+        // Then
+        assertEquals(ColorPalette.BLACK, manager.getPalettePrimary("work"))
+    }
+
+    @Test
+    fun givenNoProfileOverride_whenIsGrayscaleEnabledWithProfileId_thenFallsBackToGlobal() {
+        // Given
+        val manager = createManager()
+        manager.setGrayscaleEnabled(null, true)
+
+        // Then
+        assertTrue(manager.isGrayscaleEnabled("work"))
+    }
+
+    @Test
+    fun givenProfileGrayscaleFalse_whenGlobalTrue_thenOverrideWins() {
+        // Given
+        val manager = createManager()
+        manager.setGrayscaleEnabled(null, true)
+
+        // When
+        manager.setGrayscaleEnabled("work", false)
+
+        // Then
+        assertFalse(manager.isGrayscaleEnabled("work"))
+        assertTrue(manager.isGrayscaleEnabled(null))
+        assertTrue(manager.isGrayscaleEnabled("other"))
+    }
+
+    @Test
+    fun givenProfileGrayscaleTrue_whenGlobalFalse_thenOverrideWins() {
+        // Given
+        val manager = createManager()
+
+        // When
+        manager.setGrayscaleEnabled("work", true)
+
+        // Then
+        assertTrue(manager.isGrayscaleEnabled("work"))
+        assertFalse(manager.isGrayscaleEnabled(null))
+    }
+
+    @Test
+    fun givenProfileSetters_whenUsed_thenWriteThroughProfileManager() {
+        // Given
+        val settings = MapSettings()
+        val manager = PersistenceManagerImpl(settings)
+
+        // When
+        manager.setPalettePrimary("work", SOLARIZED_DARK)
+        manager.setGrayscaleEnabled("work", true)
+
+        // Then
+        assertEquals(ColorPalette.SOLARIZED_DARK, manager.profileManager.getProfilePalette("work"))
+        assertEquals(true, manager.profileManager.getProfileGrayscale("work"))
+    }
+
+    @Test
+    fun givenProfileOverrides_whenSnapshotTaken_thenSnapshotOnlyReflectsGlobals() {
+        // Given
+        val manager = createManager()
+        manager.setPalettePrimary("work", SOLARIZED_DARK)
+        manager.setGrayscaleEnabled("work", true)
+
+        // Then
+        assertNull(manager.toSnapshot().palettePrimary)
+        assertFalse(manager.toSnapshot().grayscale)
+        assertTrue(manager.isDefault)
     }
 }

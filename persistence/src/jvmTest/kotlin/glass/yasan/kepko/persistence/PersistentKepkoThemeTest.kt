@@ -165,4 +165,86 @@ internal class PersistentKepkoThemeTest {
         // Then
         assertEquals(ColorPalette.SOLARIZED_DARK, palette)
     }
+
+    @Test
+    fun givenProfilePaletteOverride_whenRenderedWithProfileId_thenAppliesProfilePalette() {
+        // Given
+        var palette: ColorPalette? = null
+        val provided = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ColorPalette.BLACK.id)),
+        )
+        provided.profileManager.setProfilePalette("work", ColorPalette.SOLARIZED_DARK)
+
+        // When
+        runDesktopComposeUiTest {
+            setContent {
+                PersistentKepkoTheme(persistenceManager = provided, profileId = "work") {
+                    palette = KepkoTheme.colors.palette
+                }
+            }
+
+            waitForIdle()
+        }
+
+        // Then
+        assertEquals(ColorPalette.SOLARIZED_DARK, palette)
+    }
+
+    @Test
+    fun givenNoProfileOverride_whenRenderedWithProfileId_thenFallsBackToGlobalPalette() {
+        // Given
+        var palette: ColorPalette? = null
+        val provided = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ColorPalette.BLACK.id)),
+        )
+
+        // When
+        runDesktopComposeUiTest {
+            setContent {
+                PersistentKepkoTheme(persistenceManager = provided, profileId = "work") {
+                    palette = KepkoTheme.colors.palette
+                }
+            }
+
+            waitForIdle()
+        }
+
+        // Then
+        assertEquals(ColorPalette.BLACK, palette)
+    }
+
+    @Test
+    fun givenProfileGrayscaleOverride_whenRenderedWithProfileId_thenColorsAreGrayscale() {
+        // When
+        var grayscaleSuccess: Color? = null
+        var normalSuccess: Color? = null
+        val grayscaleManager = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ColorPalette.LIGHT.id)),
+        )
+        grayscaleManager.profileManager.setProfileGrayscale("work", true)
+        runDesktopComposeUiTest {
+            setContent {
+                PersistentKepkoTheme(persistenceManager = grayscaleManager, profileId = "work") {
+                    grayscaleSuccess = KepkoTheme.colors.success
+                }
+            }
+
+            waitForIdle()
+        }
+        val normalManager = PersistenceManagerImpl(
+            MapSettings(mutableMapOf(KEY_STYLE to ColorPalette.LIGHT.id)),
+        )
+        runDesktopComposeUiTest {
+            setContent {
+                PersistentKepkoTheme(persistenceManager = normalManager, profileId = "work") {
+                    normalSuccess = KepkoTheme.colors.success
+                }
+            }
+
+            waitForIdle()
+        }
+
+        // Then
+        assertNotEquals(normalSuccess, grayscaleSuccess)
+    }
 }

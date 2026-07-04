@@ -47,4 +47,9 @@
     <string name="preference_outline_title">Outline</string>
     <string name="preference_roundness_title">Roundness</string>
     <string name="reset">Reset</string>
+    <string name="preference_follow_global_title">Follow global setting</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="grayscale_enabled">Grayscale enabled</string>
+    <string name="grayscale_disabled">Grayscale disabled</string>
 </resources>

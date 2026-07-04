@@ -1,11 +1,16 @@
 package glass.yasan.kepko.sample
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.savedstate.read
 import glass.yasan.kepko.foundation.system.SystemBarColorsEffect
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.persistence.PersistentKepkoTheme
@@ -15,7 +20,9 @@ import glass.yasan.kepko.sample.home.serialization.SerializationScreen
 @Preview
 @Composable
 fun SampleApp() {
-    PersistentKepkoTheme {
+    var activeProfileId by rememberSaveable { mutableStateOf(sampleProfiles.first().id) }
+
+    PersistentKepkoTheme(profileId = activeProfileId) {
         val navController = rememberNavController()
 
         SystemBarColorsEffect(
@@ -23,7 +30,11 @@ fun SampleApp() {
             navigationBarBackgroundColor = KepkoTheme.colors.midground,
         )
 
-        SampleNavHost(navController = navController)
+        SampleNavHost(
+            navController = navController,
+            activeProfileId = activeProfileId,
+            onProfileSelect = { activeProfileId = it },
+        )
     }
 }
 
@@ -31,6 +42,8 @@ fun SampleApp() {
 @Composable
 private fun SampleNavHost(
     navController: NavHostController,
+    activeProfileId: String,
+    onProfileSelect: (String) -> Unit,
 ) {
         NavHost(
             navController = navController,
@@ -40,6 +53,9 @@ private fun SampleNavHost(
                 HomeScreen(
                     onNavigateToTheme = {
                         navController.navigate(Route.Theme.path)
+                    },
+                    onNavigateToProfiles = {
+                        navController.navigate(Route.Profiles.path)
                     },
                     onNavigateToIcons = {
                         navController.navigate(Route.Icons.path)
@@ -57,6 +73,31 @@ private fun SampleNavHost(
                     onBackClick = {
                         navController.popBackStack()
                     },
+                    activeProfileId = activeProfileId,
+                )
+            }
+            composable(Route.Profiles.path) {
+                ProfilesScreen(
+                    activeProfileId = activeProfileId,
+                    onProfileSelect = onProfileSelect,
+                    onProfileThemeClick = { profile ->
+                        navController.navigate(Route.ProfileTheme.pathFor(profile.id))
+                    },
+                    onBackClick = {
+                        navController.popBackStack()
+                    },
+                )
+            }
+            composable(Route.ProfileTheme.path) { backStackEntry ->
+                val profileId = backStackEntry.arguments?.read { getStringOrNull("profileId") }
+                val targetProfile = sampleProfiles.first { it.id == profileId }
+
+                PersistentPreferenceThemeScreen(
+                    onBackClick = {
+                        navController.popBackStack()
+                    },
+                    activeProfileId = activeProfileId,
+                    targetProfile = targetProfile,
                 )
             }
             composable(Route.Icons.path) {

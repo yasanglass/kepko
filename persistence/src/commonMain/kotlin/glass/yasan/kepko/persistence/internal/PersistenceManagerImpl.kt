@@ -1,7 +1,6 @@
 package glass.yasan.kepko.persistence.internal
 
 import androidx.annotation.VisibleForTesting
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -11,6 +10,7 @@ import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.persistence.PersistenceManager
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.PALETTE_ID_SYSTEM
+import glass.yasan.kepko.persistence.ProfilePersistenceManager
 
 internal class PersistenceManagerImpl(
     private val settings: Settings,
@@ -38,24 +38,33 @@ internal class PersistenceManagerImpl(
         const val KEY_ROUNDNESS = "$PREFIX.dimension.roundness"
     }
 
-    @Composable
-    override fun activePalette(
-        isSystemInDarkTheme: Boolean,
-    ): ColorPalette = resolvedPalette(isSystemInDarkTheme)
+    override val profileManager: ProfilePersistenceManager = ProfilePersistenceManagerImpl(settings)
 
     internal fun resolvedPalette(
         isSystemInDarkTheme: Boolean,
-    ): ColorPalette = palettePrimary ?: if (isSystemInDarkTheme) paletteDark else paletteLight
+    ): ColorPalette = getPalettePrimary(null) ?: if (isSystemInDarkTheme) paletteDark else paletteLight
 
     private var _palettePrimary by mutableStateOf(
         settings.getStringOrNull(KEY_STYLE)?.let { ColorPalette.fromIdOrNull(it) }
     )
-    override var palettePrimary: ColorPalette?
-        get() = _palettePrimary
-        set(value) {
+
+    override fun getPalettePrimary(profileId: String?): ColorPalette? {
+        if (profileId != null) {
+            val profilePalette = profileManager.getProfilePalette(profileId)
+            if (profilePalette != null) return profilePalette
+        }
+
+        return _palettePrimary
+    }
+
+    override fun setPalettePrimary(profileId: String?, value: ColorPalette?) {
+        if (profileId != null) {
+            profileManager.setProfilePalette(profileId, value)
+        } else {
             _palettePrimary = value
             settings.putString(KEY_STYLE, value?.id ?: PALETTE_ID_SYSTEM)
         }
+    }
 
     private var _paletteLight by mutableStateOf(
         value = ColorPalette.fromIdOrNull(
@@ -87,12 +96,24 @@ internal class PersistenceManagerImpl(
             getDefaultSnapshot().grayscale
         )
     )
-    override var grayscale: Boolean
-        get() = _grayscale
-        set(value) {
+
+    override fun isGrayscaleEnabled(profileId: String?): Boolean {
+        if (profileId != null) {
+            val profileGrayscale = profileManager.getProfileGrayscale(profileId)
+            if (profileGrayscale != null) return profileGrayscale
+        }
+
+        return _grayscale
+    }
+
+    override fun setGrayscaleEnabled(profileId: String?, value: Boolean) {
+        if (profileId != null) {
+            profileManager.setProfileGrayscale(profileId, value)
+        } else {
             _grayscale = value
             settings.putBoolean(KEY_GRAYSCALE, value)
         }
+    }
 
     private var _outline by mutableStateOf(
         settings.getFloat(KEY_OUTLINE, getDefaultSnapshot().outline.value).dp

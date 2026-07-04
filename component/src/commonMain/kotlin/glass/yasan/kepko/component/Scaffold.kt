@@ -40,6 +40,7 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     badge: Badge? = null,
+    subtitle: (@Composable () -> Subtitle)? = null,
     textAlign: TextAlign = TextAlign.Unspecified,
     reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
@@ -47,14 +48,20 @@ public fun Scaffold(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TitleBar(
-                title = title,
-                leadingContent = leadingContent,
-                trailingContent = trailingContent,
-                badge = badge,
-                textAlign = textAlign,
-                reverse = reverse,
-            )
+            Column {
+                TitleBar(
+                    title = title,
+                    leadingContent = leadingContent,
+                    trailingContent = trailingContent,
+                    badge = badge,
+                    textAlign = textAlign,
+                    reverse = reverse,
+                )
+                subtitle?.let {
+                    HorizontalDivider()
+                    SubtitleBar(subtitle = it())
+                }
+            }
         },
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
@@ -82,6 +89,7 @@ public fun Scaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     badge: Badge? = null,
+    subtitle: (@Composable () -> Subtitle)? = null,
     textAlign: TextAlign = TextAlign.Unspecified,
     reverse: Boolean = false,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
@@ -89,15 +97,21 @@ public fun Scaffold(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TitleBar(
-                title = title,
-                onBackClick = onBackClick,
-                backIcon = backIcon,
-                trailingContent = trailingContent,
-                badge = badge,
-                textAlign = textAlign,
-                reverse = reverse,
-            )
+            Column {
+                TitleBar(
+                    title = title,
+                    onBackClick = onBackClick,
+                    backIcon = backIcon,
+                    trailingContent = trailingContent,
+                    badge = badge,
+                    textAlign = textAlign,
+                    reverse = reverse,
+                )
+                subtitle?.let {
+                    HorizontalDivider()
+                    SubtitleBar(subtitle = it())
+                }
+            }
         },
         bottomBar = bottomBar,
         snackbarHost = snackbarHost,
@@ -358,6 +372,33 @@ internal fun ScaffoldWithCustomTopBarAndBottomBarPreview() {
                     modifier = Modifier.padding(16.dp),
                 )
             },
+        ) { paddingValues ->
+            PreviewScaffoldContent(paddingValues)
+        }
+    }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ScaffoldWithSubtitlePreview() {
+    KepkoTheme {
+        Scaffold(
+            title = "Title",
+            subtitle = { Subtitle(text = "Work", icon = Icons.person) },
+        ) { paddingValues ->
+            PreviewScaffoldContent(paddingValues)
+        }
+    }
+}
+
+@PreviewWithTest
+@Composable
+internal fun ScaffoldWithBackIconAndSubtitlePreview() {
+    KepkoTheme {
+        Scaffold(
+            title = "Title",
+            onBackClick = {},
+            subtitle = { Subtitle(text = "Work", icon = Icons.person) },
         ) { paddingValues ->
             PreviewScaffoldContent(paddingValues)
         }

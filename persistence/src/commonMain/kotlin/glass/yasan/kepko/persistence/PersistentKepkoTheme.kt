@@ -26,6 +26,7 @@ import glass.yasan.kepko.persistence.internal.SingletonPersistenceManager
 public fun PersistentKepkoTheme(
     dimensions: Dimensions = KepkoTheme.dimensions,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
+    profileId: String? = null,
     content: @Composable () -> Unit,
 ) {
     val persistenceManager = remember { SingletonPersistenceManager.instance }
@@ -34,6 +35,7 @@ public fun PersistentKepkoTheme(
         persistenceManager = persistenceManager,
         dimensions = dimensions,
         isSystemInDarkTheme = isSystemInDarkTheme,
+        profileId = profileId,
         content = content,
     )
 }
@@ -51,9 +53,11 @@ public fun PersistentKepkoTheme(
     persistenceManager: PersistenceManager,
     dimensions: Dimensions = KepkoTheme.dimensions,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
+    profileId: String? = null,
     content: @Composable () -> Unit,
 ) {
-    val palette = persistenceManager.activePalette(
+    val palette = persistenceManager.getActivePalette(
+        profileId = profileId,
         isSystemInDarkTheme = isSystemInDarkTheme,
     )
 
@@ -72,7 +76,7 @@ public fun PersistentKepkoTheme(
 
     KepkoTheme(
         palette = palette,
-        grayscale = persistenceManager.grayscale,
+        grayscale = persistenceManager.isGrayscaleEnabled(profileId),
         dimensions = resolvedDimensions,
         shapes = resolvedShapes,
     ) {

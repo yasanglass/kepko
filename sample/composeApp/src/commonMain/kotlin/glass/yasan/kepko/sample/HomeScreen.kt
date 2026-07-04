@@ -85,6 +85,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun HomeScreen(
     onNavigateToTheme: () -> Unit,
+    onNavigateToProfiles: () -> Unit,
     onNavigateToIcons: () -> Unit,
     onNavigateToSerialization: () -> Unit,
     onNavigateToTitleBar: () -> Unit,
@@ -105,6 +106,7 @@ internal fun HomeScreen(
                 colorPalette()
                 navigationButtons(
                     onThemeClick = onNavigateToTheme,
+                    onProfilesClick = onNavigateToProfiles,
                     onIconsClick = onNavigateToIcons,
                     onSerializationClick = onNavigateToSerialization,
                     onTitleBarClick = onNavigateToTitleBar,
@@ -179,6 +181,7 @@ private fun LazyListScope.colorPalette() {
 
 private fun LazyListScope.navigationButtons(
     onThemeClick: () -> Unit,
+    onProfilesClick: () -> Unit,
     onIconsClick: () -> Unit,
     onSerializationClick: () -> Unit,
     onTitleBarClick: () -> Unit,
@@ -187,6 +190,15 @@ private fun LazyListScope.navigationButtons(
     item {
         PersistentPreferenceThemeButton(
             onClick = onThemeClick,
+        )
+    }
+    item {
+        Button(
+            text = "Profiles",
+            description = "Switch the active profile and customize per-profile themes.",
+            onClick = onProfilesClick,
+            leadingIcon = Icons.person,
+            trailingIcon = Icons.chevronForward,
         )
     }
     item {

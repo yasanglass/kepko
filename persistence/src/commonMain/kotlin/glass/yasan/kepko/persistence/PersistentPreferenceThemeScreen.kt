@@ -10,6 +10,8 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +35,7 @@ import glass.yasan.kepko.component.PreferenceRadioGroupPicker
 import glass.yasan.kepko.component.PreferenceSlider
 import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.Scaffold
+import glass.yasan.kepko.component.Subtitle
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
@@ -53,21 +56,35 @@ public fun PersistentPreferenceThemeScreen(
     modifier: Modifier = Modifier,
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
+    activeProfileId: String? = null,
+    targetProfile: UserVisibleProfile? = null,
 ) {
     AnimatedPersistentKepkoTheme(
         persistence = persistence,
         isSystemInDarkTheme = isSystemInDarkTheme,
+        profileId = activeProfileId,
     ) {
         Scaffold(
             title = Strings.preferenceThemeScreenTitle,
             onBackClick = onBackClick,
-            trailingContent = { PersistentPreferenceThemeResetButton(persistence) },
+            trailingContent = { PersistentPreferenceThemeResetButton(persistence, targetProfile) },
+            subtitle = targetProfile?.let {
+                {
+                    Subtitle(
+                        text = it.name(),
+                        icon = it.icon(),
+                        modifier = Modifier.testTag(PersistentPreferenceThemeScreenSemantics.PROFILE_HEADER),
+                    )
+                }
+            },
             modifier = modifier
                 .testTag(PersistentPreferenceThemeScreenSemantics.SCREEN)
         ) { contentPadding ->
             PersistentPreferenceThemeContent(
                 persistence = persistence,
                 isSystemInDarkTheme = isSystemInDarkTheme,
+                activeProfileId = activeProfileId,
+                targetProfile = targetProfile,
                 modifier = Modifier
                     .padding(top = 16.dp)
                     .padding(contentPadding),
@@ -81,62 +98,104 @@ public fun PersistentPreferenceThemeScreen(
 public fun PersistentPreferenceThemeContent(
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean,
+    activeProfileId: String? = null,
+    targetProfile: UserVisibleProfile? = null,
     modifier: Modifier = Modifier,
 ) {
     AnimatedPersistentKepkoTheme(
         persistence = persistence,
         isSystemInDarkTheme = isSystemInDarkTheme,
+        profileId = activeProfileId,
     ) {
-        val sizeSpring = spring(
-            dampingRatio = Spring.DampingRatioLowBouncy,
-            stiffness = Spring.StiffnessMediumLow,
-            visibilityThreshold = IntSize.VisibilityThreshold,
-        )
-        val fadeSpring = spring<Float>(stiffness = Spring.StiffnessMedium)
-        val enterTransition = expandVertically(animationSpec = sizeSpring) +
-            fadeIn(animationSpec = fadeSpring)
-        val exitTransition = shrinkVertically(animationSpec = sizeSpring) +
-            fadeOut(animationSpec = fadeSpring)
-
-        Column(
-            modifier = modifier,
-        ) {
-            PersistentPreferenceThemeMode(persistence)
-            AnimatedVisibility(
-                visible = persistence.palettePrimary == null,
-                enter = enterTransition,
-                exit = exitTransition,
-            ) {
-                PersistentPreferenceThemeSystem(
-                    persistence = persistence,
-                    isSystemInDarkTheme = isSystemInDarkTheme,
-                )
-            }
-            AnimatedVisibility(
-                visible = persistence.palettePrimary != null,
-                enter = enterTransition,
-                exit = exitTransition,
-            ) {
-                PersistentPreferenceThemeStatic(persistence)
-            }
-            Spacer(Modifier.height(24.dp))
-            PersistentPreferenceThemeGrayscale(persistence)
-            Spacer(Modifier.height(8.dp))
-            PersistentPreferenceThemeOutline(persistence)
-            Spacer(Modifier.height(8.dp))
-            PersistentPreferenceThemeRoundness(persistence)
+        if (targetProfile != null) {
+            PersistentPreferenceThemeProfileContent(
+                persistence = persistence,
+                profile = targetProfile,
+                modifier = modifier,
+            )
+        } else {
+            PersistentPreferenceThemeGlobalContent(
+                persistence = persistence,
+                isSystemInDarkTheme = isSystemInDarkTheme,
+                modifier = modifier,
+            )
         }
     }
 }
 
 @Composable
-private fun PersistentPreferenceThemeResetButton(persistence: PersistenceManager) {
-    Crossfade(targetState = !persistence.isDefault) { showResetButton ->
-        if (showResetButton) {
+private fun PersistentPreferenceThemeGlobalContent(
+    persistence: PersistenceManager,
+    isSystemInDarkTheme: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    val sizeSpring = spring(
+        dampingRatio = Spring.DampingRatioLowBouncy,
+        stiffness = Spring.StiffnessMediumLow,
+        visibilityThreshold = IntSize.VisibilityThreshold,
+    )
+    val fadeSpring = spring<Float>(stiffness = Spring.StiffnessMedium)
+    val enterTransition = expandVertically(animationSpec = sizeSpring) +
+        fadeIn(animationSpec = fadeSpring)
+    val exitTransition = shrinkVertically(animationSpec = sizeSpring) +
+        fadeOut(animationSpec = fadeSpring)
+
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState()),
+    ) {
+        PersistentPreferenceThemeMode(persistence)
+        AnimatedVisibility(
+            visible = persistence.getPalettePrimary(profileId = null) == null,
+            enter = enterTransition,
+            exit = exitTransition,
+        ) {
+            PersistentPreferenceThemeSystem(
+                persistence = persistence,
+                isSystemInDarkTheme = isSystemInDarkTheme,
+            )
+        }
+        AnimatedVisibility(
+            visible = persistence.getPalettePrimary(profileId = null) != null,
+            enter = enterTransition,
+            exit = exitTransition,
+        ) {
+            PersistentPreferenceThemeStatic(persistence)
+        }
+        Spacer(Modifier.height(24.dp))
+        PersistentPreferenceThemeGrayscale(persistence)
+        Spacer(Modifier.height(8.dp))
+        PersistentPreferenceThemeOutline(persistence)
+        Spacer(Modifier.height(8.dp))
+        PersistentPreferenceThemeRoundness(persistence)
+    }
+}
+
+@Composable
+private fun PersistentPreferenceThemeResetButton(
+    persistence: PersistenceManager,
+    targetProfile: UserVisibleProfile? = null,
+) {
+    val showResetButton = if (targetProfile != null) {
+        persistence.profileManager.getProfilePalette(targetProfile.id) != null ||
+            persistence.profileManager.getProfileGrayscale(targetProfile.id) != null
+    } else {
+        !persistence.isDefault
+    }
+
+    Crossfade(targetState = showResetButton) { show ->
+        if (show) {
             IconButton(
                 painter = Icons.restartAlt,
                 contentDescription = Strings.reset,
-                onClick = persistence::reset,
+                onClick = {
+                    if (targetProfile != null) {
+                        persistence.profileManager.setProfilePalette(targetProfile.id, null)
+                        persistence.profileManager.setProfileGrayscale(targetProfile.id, null)
+                    } else {
+                        persistence.reset()
+                    }
+                },
             )
         }
     }
@@ -146,21 +205,20 @@ private fun PersistentPreferenceThemeResetButton(persistence: PersistenceManager
 private fun PersistentPreferenceThemeMode(
     persistence: PersistenceManager,
 ) {
-    val primaryPalette = persistence.palettePrimary
+    val primaryPalette = persistence.getPalettePrimary(null)
     var lastPrimaryPalette by remember { mutableStateOf(primaryPalette) }
     if (primaryPalette != null) lastPrimaryPalette = primaryPalette
-    val fallbackPrimaryPalette = persistence.activePalette()
+    val fallbackPrimaryPalette = persistence.getActivePalette(profileId = null)
 
     PreferenceSwitch(
         title = Strings.preferencePaletteModeDynamic,
         description = Strings.preferencePaletteModeDynamicDescription,
         checked = primaryPalette == null,
         onCheckedChange = { followSystem ->
-            persistence.palettePrimary = if (followSystem) {
-                null
-            } else {
-                lastPrimaryPalette ?: fallbackPrimaryPalette
-            }
+            persistence.setPalettePrimary(
+                null,
+                if (followSystem) null else lastPrimaryPalette ?: fallbackPrimaryPalette,
+            )
         },
         modifier = Modifier.testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE),
     )
@@ -196,12 +254,12 @@ private fun PersistentPreferenceThemeStatic(
         Spacer(Modifier.height(8.dp))
         PreferenceRadioGroupPicker(
             title = Strings.preferenceStaticPaletteTitle,
-            selectedId = persistence.palettePrimary?.id,
+            selectedId = persistence.getPalettePrimary(null)?.id,
             items = ColorPalette.entries.map { palette ->
                 palette.asPreferenceRadioGroupItem(segment = palette.category.ordinal)
             },
             onSelectId = { id ->
-                ColorPalette.fromIdOrNull(id)?.let { persistence.palettePrimary = it }
+                ColorPalette.fromIdOrNull(id)?.let { persistence.setPalettePrimary(null, it) }
             },
             modifier = Modifier
                 .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
@@ -289,8 +347,8 @@ private fun PersistentPreferenceThemeGrayscale(
     PreferenceSwitch(
         title = Strings.preferenceGrayscaleTitle,
         description = Strings.preferenceGrayscaleDescription,
-        checked = persistence.grayscale,
-        onCheckedChange = { persistence.grayscale = it },
+        checked = persistence.isGrayscaleEnabled(null),
+        onCheckedChange = { persistence.setGrayscaleEnabled(null, it) },
         modifier = Modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE)
     )
@@ -332,7 +390,7 @@ private fun PersistentPreferenceThemeRoundness(
     )
 }
 
-private fun ColorPalette.asPreferenceRadioGroupItem(
+internal fun ColorPalette.asPreferenceRadioGroupItem(
     segment: Int = 0,
     isDefault: Boolean = false,
 ): PreferenceRadioGroupItem = PreferenceRadioGroupItem(
@@ -373,7 +431,7 @@ internal fun PersistentPreferenceThemeScreenSystemDarkPreview() {
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
-    PreviewPersistentKepkoTheme(configure = { palettePrimary = ColorPalette.LIGHT }) {
+    PreviewPersistentKepkoTheme(configure = { setPalettePrimary(null, ColorPalette.LIGHT) }) {
         PersistentPreferenceThemeScreen(onBackClick = {})
     }
 }
@@ -382,10 +440,16 @@ internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
 @PreviewWithTest
 @Composable
 internal fun PersistentPreferenceThemeScreenGrayscalePreview() {
-    PreviewPersistentKepkoTheme(configure = { grayscale = true }) {
+    PreviewPersistentKepkoTheme(configure = { setGrayscaleEnabled(null, true) }) {
         PersistentPreferenceThemeScreen(onBackClick = {})
     }
 }
+
+internal val previewProfile = UserVisibleProfile(
+    id = "work",
+    name = { "Work" },
+    icon = { Icons.person },
+)
 
 @VisibleForTesting
 internal object PersistentPreferenceThemeScreenSemantics {
@@ -397,4 +461,7 @@ internal object PersistentPreferenceThemeScreenSemantics {
     const val GRAYSCALE = "theme_grayscale"
     const val OUTLINE = "theme_outline"
     const val ROUNDNESS = "theme_roundness"
+    const val PROFILE_HEADER = "theme_profile_header"
+    const val PROFILE_PALETTE_PICKER = "theme_profile_palette_picker"
+    const val PROFILE_GRAYSCALE_PICKER = "theme_profile_grayscale_picker"
 }
