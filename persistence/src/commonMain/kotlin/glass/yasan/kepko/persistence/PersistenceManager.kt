@@ -36,12 +36,20 @@ public interface PersistenceManager {
         val roundness: Float,
     )
 
-    public var palettePrimary: ColorPalette?
+    public val profileManager: ProfilePersistenceManager
+
     public var paletteLight: ColorPalette
     public var paletteDark: ColorPalette
-    public var grayscale: Boolean
     public var outline: Dp
     public var roundness: Float
+
+    public fun getPalettePrimary(profileId: String?): ColorPalette?
+
+    public fun setPalettePrimary(profileId: String?, value: ColorPalette?)
+
+    public fun isGrayscaleEnabled(profileId: String?): Boolean
+
+    public fun setGrayscaleEnabled(profileId: String?, value: Boolean)
 
     public fun getDefaultSnapshot(): Snapshot = Snapshot(
         palettePrimary = null,
@@ -53,19 +61,19 @@ public interface PersistenceManager {
     )
 
     public fun toSnapshot(): Snapshot = Snapshot(
-        palettePrimary = palettePrimary,
+        palettePrimary = getPalettePrimary(profileId = null),
         paletteLight = paletteLight,
         paletteDark = paletteDark,
-        grayscale = grayscale,
+        grayscale = isGrayscaleEnabled(profileId = null),
         outline = outline,
         roundness = roundness,
     )
 
     public fun applySnapshot(snapshot: Snapshot) {
-        palettePrimary = snapshot.palettePrimary
+        setPalettePrimary(profileId = null, snapshot.palettePrimary)
         paletteLight = snapshot.paletteLight
         paletteDark = snapshot.paletteDark
-        grayscale = snapshot.grayscale
+        setGrayscaleEnabled(profileId = null, snapshot.grayscale)
         outline = snapshot.outline
         roundness = snapshot.roundness
     }
@@ -88,9 +96,11 @@ public interface PersistenceManager {
     }
 
     @Composable
-    public fun activePalette(
+    public fun getActivePalette(
+        profileId: String?,
         isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
-    ): ColorPalette = palettePrimary ?: if (isSystemInDarkTheme) paletteDark else paletteLight
+    ): ColorPalette = getPalettePrimary(profileId)
+        ?: if (isSystemInDarkTheme) paletteDark else paletteLight
 
 }
 

@@ -12,6 +12,16 @@ internal sealed interface Route {
         override val path = "theme"
     }
 
+    data object Profiles : Route {
+        override val path = "profiles"
+    }
+
+    data object ProfileTheme : Route {
+        override val path = "profile-theme/{profileId}"
+
+        fun pathFor(profileId: String) = "profile-theme/$profileId"
+    }
+
     data object Icons : Route {
         override val path = "icons"
     }

@@ -15,9 +15,13 @@ import glass.yasan.kepko.foundation.theme.isSystemInDarkTheme
 public fun AnimatedPersistentKepkoTheme(
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
+    profileId: String? = null,
     content: @Composable () -> Unit,
 ) {
-    val palette = persistence.activePalette(isSystemInDarkTheme = isSystemInDarkTheme)
+    val palette = persistence.getActivePalette(
+        isSystemInDarkTheme = isSystemInDarkTheme,
+        profileId = profileId,
+    )
 
     val animatedOutline by animateDpAsState(persistence.outline)
     val animatedRoundness by animateFloatAsState(persistence.roundness)
@@ -35,7 +39,7 @@ public fun AnimatedPersistentKepkoTheme(
 
     KepkoTheme(
         palette = palette,
-        grayscale = persistence.grayscale,
+        grayscale = persistence.isGrayscaleEnabled(profileId),
         dimensions = animatedDimensions,
         shapes = animatedShapes,
         content = content,

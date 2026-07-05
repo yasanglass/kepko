@@ -2,6 +2,7 @@ package glass.yasan.kepko.persistence
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -9,10 +10,17 @@ import androidx.compose.ui.test.v2.runDesktopComposeUiTest
 import com.russhwolf.settings.MapSettings
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
+import glass.yasan.kepko.foundation.theme.ColorPalette.BLACK
+import glass.yasan.kepko.foundation.theme.ColorPalette.DARK
+import glass.yasan.kepko.foundation.theme.ColorPalette.LIGHT
+import glass.yasan.kepko.foundation.theme.ColorPalette.SOLARIZED_DARK
+import glass.yasan.kepko.foundation.theme.ColorPalette.SOLARIZED_LIGHT
 import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
+import glass.yasan.kepko.resource.Icons
 import glass.yasan.kepko.resource.Strings
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -39,7 +47,7 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
-            assertNull(persistenceManager.palettePrimary)
+            assertNull(persistenceManager.getPalettePrimary(null))
         }
     }
 
@@ -47,7 +55,7 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenSystemSetting_whenRendered_thenLightAndDarkOptionsAreVisible() {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            persistenceManager.palettePrimary = null
+            persistenceManager.setPalettePrimary(null, null)
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
                     PersistentPreferenceThemeScreen(onBackClick = {})
@@ -55,7 +63,7 @@ internal class PersistentPreferenceThemeScreenTest {
             }
 
             waitForIdle()
-            assertNull(persistenceManager.palettePrimary)
+            assertNull(persistenceManager.getPalettePrimary(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertExists()
         }
@@ -65,7 +73,7 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenStaticSetting_whenRendered_thenMatchingPrimaryPaletteIsVisibleAndSubPickersHidden() {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            persistenceManager.palettePrimary = SOLARIZED_DARK
+            persistenceManager.setPalettePrimary(null, SOLARIZED_DARK)
             lateinit var solarizedDarkString: String
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
@@ -75,7 +83,7 @@ internal class PersistentPreferenceThemeScreenTest {
             }
 
             waitForIdle()
-            assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
+            assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.getPalettePrimary(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
                 .assertTextContains(solarizedDarkString, ignoreCase = true)
@@ -88,7 +96,7 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenDynamicSetting_whenModeToggledAndPaletteSelected_thenStaticSelectionReflectedOnScreen() {
         runDesktopComposeUiTest(width = 1024, height = 1200) {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            persistenceManager.palettePrimary = null
+            persistenceManager.setPalettePrimary(null, null)
             persistenceManager.paletteLight = LIGHT
             persistenceManager.paletteDark = DARK
             lateinit var blackString: String
@@ -103,19 +111,19 @@ internal class PersistentPreferenceThemeScreenTest {
             }
 
             waitForIdle()
-            assertNull(persistenceManager.palettePrimary)
+            assertNull(persistenceManager.getPalettePrimary(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             onNodeWithText(blackString, ignoreCase = true).assertDoesNotExist()
 
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).performClick()
-            waitUntil { persistenceManager.palettePrimary != null }
+            waitUntil { persistenceManager.getPalettePrimary(null) != null }
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).performClick()
             waitForIdle()
             onNodeWithText(blackString, ignoreCase = true).assertExists()
             onNodeWithText(blackString, ignoreCase = true).performClick()
-            waitUntil { persistenceManager.palettePrimary == ColorPalette.BLACK }
+            waitUntil { persistenceManager.getPalettePrimary(null) == ColorPalette.BLACK }
 
-            assertEquals(ColorPalette.BLACK, persistenceManager.palettePrimary)
+            assertEquals(ColorPalette.BLACK, persistenceManager.getPalettePrimary(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
                 .assertTextContains(blackString, ignoreCase = true)
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertDoesNotExist()
@@ -127,7 +135,7 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenStaticSetting_whenModeToggled_thenDynamicOptionsAreVisible() {
         runDesktopComposeUiTest {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            persistenceManager.palettePrimary = SOLARIZED_DARK
+            persistenceManager.setPalettePrimary(null, SOLARIZED_DARK)
             setContent {
                 PersistentKepkoTheme(persistenceManager = persistenceManager) {
                     PersistentPreferenceThemeScreen(onBackClick = {})
@@ -135,13 +143,13 @@ internal class PersistentPreferenceThemeScreenTest {
             }
 
             waitForIdle()
-            assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.palettePrimary)
+            assertEquals(ColorPalette.SOLARIZED_DARK, persistenceManager.getPalettePrimary(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertExists()
 
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).performClick()
             waitForIdle()
 
-            assertNull(persistenceManager.palettePrimary)
+            assertNull(persistenceManager.getPalettePrimary(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertExists()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertExists()
@@ -152,7 +160,7 @@ internal class PersistentPreferenceThemeScreenTest {
     fun givenSystemSetting_whenLightAndDarkPickersOpenedAndPalettesSelected_thenSelectionsReflectedOnScreen() {
         runDesktopComposeUiTest(width = 1024, height = 1200) {
             val persistenceManager = PersistenceManagerImpl(MapSettings())
-            persistenceManager.palettePrimary = null
+            persistenceManager.setPalettePrimary(null, null)
             persistenceManager.paletteLight = BLACK
             persistenceManager.paletteDark = SOLARIZED_LIGHT
             lateinit var blackString: String
@@ -209,11 +217,165 @@ internal class PersistentPreferenceThemeScreenTest {
             }
 
             waitForIdle()
-            assertEquals(false, persistenceManager.grayscale)
+            assertFalse(persistenceManager.isGrayscaleEnabled(null))
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE).performClick()
             waitForIdle()
 
-            assertTrue(persistenceManager.grayscale)
+            assertTrue(persistenceManager.isGrayscaleEnabled(null))
         }
+    }
+
+    @Test
+    fun givenTargetProfile_whenRendered_thenOnlyProfileControlsVisible() {
+        runDesktopComposeUiTest {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    PersistentPreferenceThemeScreen(onBackClick = {}, targetProfile = testProfile)
+                }
+            }
+
+            waitForIdle()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_HEADER).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_PALETTE_PICKER).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_GRAYSCALE_PICKER).assertExists()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_MODE).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.OUTLINE).assertDoesNotExist()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.ROUNDNESS).assertDoesNotExist()
+        }
+    }
+
+    @Test
+    fun givenTargetProfile_whenRendered_thenFollowGlobalIsDefaultSelection() {
+        runDesktopComposeUiTest {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            lateinit var followGlobalString: String
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    followGlobalString = Strings.preferenceFollowGlobalTitle
+                    PersistentPreferenceThemeScreen(onBackClick = {}, targetProfile = testProfile)
+                }
+            }
+
+            waitForIdle()
+            assertNull(persistenceManager.profileManager.getProfilePalette(testProfile.id))
+            assertNull(persistenceManager.profileManager.getProfileGrayscale(testProfile.id))
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_PALETTE_PICKER)
+                .assertTextContains(followGlobalString, ignoreCase = true)
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_GRAYSCALE_PICKER)
+                .assertTextContains(followGlobalString, ignoreCase = true)
+        }
+    }
+
+    @Test
+    fun givenTargetProfile_whenPaletteSelected_thenProfileOverrideSetAndGlobalUntouched() {
+        runDesktopComposeUiTest(width = 1024, height = 1200) {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            lateinit var blackString: String
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    blackString = ColorPalette.BLACK.title()
+                    PersistentPreferenceThemeScreen(onBackClick = {}, targetProfile = testProfile)
+                }
+            }
+
+            waitForIdle()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_PALETTE_PICKER).performClick()
+            waitForIdle()
+            onNodeWithText(blackString, ignoreCase = true).performClick()
+            waitUntil {
+                persistenceManager.profileManager.getProfilePalette(testProfile.id) == ColorPalette.BLACK
+            }
+
+            assertNull(persistenceManager.getPalettePrimary(null))
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_PALETTE_PICKER)
+                .assertTextContains(blackString, ignoreCase = true)
+        }
+    }
+
+    @Test
+    fun givenProfilePaletteOverride_whenFollowGlobalSelected_thenOverrideCleared() {
+        runDesktopComposeUiTest(width = 1024, height = 1200) {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            persistenceManager.profileManager.setProfilePalette(testProfile.id, SOLARIZED_DARK)
+            persistenceManager.profileManager.setProfileGrayscale(testProfile.id, true)
+            lateinit var followGlobalString: String
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    followGlobalString = Strings.preferenceFollowGlobalTitle
+                    PersistentPreferenceThemeScreen(onBackClick = {}, targetProfile = testProfile)
+                }
+            }
+
+            waitForIdle()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_PALETTE_PICKER).performClick()
+            waitForIdle()
+            onNodeWithText(followGlobalString, ignoreCase = true).performClick()
+            waitUntil {
+                persistenceManager.profileManager.getProfilePalette(testProfile.id) == null
+            }
+        }
+    }
+
+    @Test
+    fun givenTargetProfile_whenGrayscaleEnabledSelected_thenProfileOverrideSetAndGlobalUntouched() {
+        runDesktopComposeUiTest(width = 1024, height = 1200) {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            lateinit var enabledString: String
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    enabledString = Strings.enabled
+                    PersistentPreferenceThemeScreen(onBackClick = {}, targetProfile = testProfile)
+                }
+            }
+
+            waitForIdle()
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_GRAYSCALE_PICKER).performClick()
+            waitForIdle()
+            onNodeWithText(enabledString, ignoreCase = true).performClick()
+            waitUntil {
+                persistenceManager.profileManager.getProfileGrayscale(testProfile.id) == true
+            }
+
+            assertFalse(persistenceManager.isGrayscaleEnabled(null))
+            onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_GRAYSCALE_PICKER)
+                .assertTextContains(enabledString, ignoreCase = true)
+        }
+    }
+
+    @Test
+    fun givenProfileOverrides_whenResetClicked_thenOverridesCleared() {
+        runDesktopComposeUiTest {
+            val persistenceManager = PersistenceManagerImpl(MapSettings())
+            persistenceManager.profileManager.setProfilePalette(testProfile.id, SOLARIZED_DARK)
+            persistenceManager.profileManager.setProfileGrayscale(testProfile.id, true)
+            lateinit var resetString: String
+            setContent {
+                PersistentKepkoTheme(persistenceManager = persistenceManager) {
+                    resetString = Strings.reset
+                    PersistentPreferenceThemeScreen(onBackClick = {}, targetProfile = testProfile)
+                }
+            }
+
+            waitForIdle()
+            onNodeWithContentDescription(resetString).performClick()
+            waitUntil {
+                persistenceManager.profileManager.getProfilePalette(testProfile.id) == null
+            }
+
+            assertNull(persistenceManager.profileManager.getProfileGrayscale(testProfile.id))
+        }
+    }
+
+    private companion object {
+        val testProfile = UserVisibleProfile(
+            id = "work",
+            name = { "Work" },
+            icon = { Icons.person },
+        )
     }
 }

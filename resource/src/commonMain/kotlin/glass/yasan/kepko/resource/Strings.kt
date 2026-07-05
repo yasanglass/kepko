@@ -11,6 +11,18 @@ public object Strings {
     public val goBack: String
         @Composable get() = stringResource(Res.string.go_back)
 
+    public val enabled: String
+        @Composable get() = stringResource(Res.string.enabled)
+
+    public val disabled: String
+        @Composable get() = stringResource(Res.string.disabled)
+
+    public val grayscaleEnabled: String
+        @Composable get() = stringResource(Res.string.grayscale_enabled)
+
+    public val grayscaleDisabled: String
+        @Composable get() = stringResource(Res.string.grayscale_disabled)
+
     public val preferenceBadgeActive: String
         @Composable get() = stringResource(Res.string.preference_badge_active)
 
@@ -34,6 +46,10 @@ public object Strings {
 
     public val preferenceBadgeNew: String
         @Composable get() = stringResource(Res.string.preference_badge_new)
+
+    @Composable
+    public fun preferenceBadgeOverriddenBy(profileName: String): String =
+        stringResource(Res.string.preference_badge_overridden_by, profileName)
 
     public val preferenceBadgePreview: String
         @Composable get() = stringResource(Res.string.preference_badge_preview)
@@ -79,6 +95,9 @@ public object Strings {
 
     public val preferenceDarkPaletteTitle: String
         @Composable get() = stringResource(Res.string.preference_dark_palette_title)
+
+    public val preferenceFollowGlobalTitle: String
+        @Composable get() = stringResource(Res.string.preference_follow_global_title)
 
     public val preferenceGrayscaleDescription: String
         @Composable get() = stringResource(Res.string.preference_grayscale_description)
