@@ -31,6 +31,7 @@
     <string name="preference_badge_experimental">Experimental</string>
     <string name="preference_badge_legacy">Legacy</string>
     <string name="preference_badge_new">New</string>
+    <string name="preference_badge_overridden_by">Overridden by %1$s</string>
     <string name="preference_badge_preview">Preview</string>
     <string name="color_palette_black">Black (AMOLED)</string>
     <string name="color_palette_dark">Dark</string>

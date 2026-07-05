@@ -30,6 +30,11 @@ public data class Badge(
             containerColor = { KepkoTheme.colors.information },
         )
 
+        public fun overriddenBy(profileName: @Composable () -> String): Badge = Badge(
+            text = { Strings.preferenceBadgeOverriddenBy(profileName()) },
+            containerColor = { KepkoTheme.colors.caution },
+        )
+
         public val default: Badge = Badge(
             text = { Strings.preferenceBadgeDefault },
             containerColor = { KepkoTheme.colors.content },

@@ -47,6 +47,10 @@ public object Strings {
     public val preferenceBadgeNew: String
         @Composable get() = stringResource(Res.string.preference_badge_new)
 
+    @Composable
+    public fun preferenceBadgeOverriddenBy(profileName: String): String =
+        stringResource(Res.string.preference_badge_overridden_by, profileName)
+
     public val preferenceBadgePreview: String
         @Composable get() = stringResource(Res.string.preference_badge_preview)
 
