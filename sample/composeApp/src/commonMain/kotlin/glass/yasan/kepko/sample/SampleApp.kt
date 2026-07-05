@@ -15,6 +15,7 @@ import glass.yasan.kepko.foundation.system.SystemBarColorsEffect
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.persistence.PersistentKepkoTheme
 import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
+import glass.yasan.kepko.persistence.UserVisibleProfile
 import glass.yasan.kepko.sample.home.serialization.SerializationScreen
 
 @Preview
@@ -73,7 +74,7 @@ private fun SampleNavHost(
                     onBackClick = {
                         navController.popBackStack()
                     },
-                    activeProfile = sampleProfiles.first { it.id == activeProfileId },
+                    activeProfile = getSampleProfileById(activeProfileId),
                 )
             }
             composable(Route.Profiles.path) {
@@ -90,14 +91,13 @@ private fun SampleNavHost(
             }
             composable(Route.ProfileTheme.path) { backStackEntry ->
                 val profileId = backStackEntry.arguments?.read { getStringOrNull("profileId") }
-                val targetProfile = sampleProfiles.first { it.id == profileId }
 
                 PersistentPreferenceThemeScreen(
                     onBackClick = {
                         navController.popBackStack()
                     },
-                    activeProfile = sampleProfiles.first { it.id == activeProfileId },
-                    targetProfile = targetProfile,
+                    activeProfile = getSampleProfileById(activeProfileId),
+                    targetProfile = getSampleProfileById(profileId),
                 )
             }
             composable(Route.Icons.path) {
@@ -119,3 +119,6 @@ private fun SampleNavHost(
             }
         }
 }
+
+private fun getSampleProfileById(id: String?): UserVisibleProfile =
+    sampleProfiles.firstOrNull { it.id == id } ?: sampleProfiles.first()
