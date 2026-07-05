@@ -5,7 +5,7 @@ import com.russhwolf.settings.Settings
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.persistence.ProfilePersistenceManager
 
-public class ProfilePersistenceManagerImpl(
+internal class ProfilePersistenceManagerImpl(
     private val settings: Settings,
 ) : ProfilePersistenceManager {
 
