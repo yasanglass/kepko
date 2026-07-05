@@ -137,7 +137,7 @@ internal fun PersistentPreferenceThemeScreenProfileOverriddenPreview() {
     }) {
         PersistentPreferenceThemeScreen(
             onBackClick = {},
-            activeProfileId = previewProfile.id,
+            activeProfile = previewProfile,
             targetProfile = previewProfile,
         )
     }

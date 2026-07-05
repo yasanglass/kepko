@@ -48,6 +48,9 @@ import glass.yasan.kepko.resource.Strings
  * A theme preferences screen which allows easy integration when used with [PersistentKepkoTheme].
  *
  * This preference screen allows the user to customize the appearance of the theme using [PersistenceManager].
+ *
+ * @param activeProfile The profile that is actively being used to render the interface
+ * @param targetProfile The profile that is being targeted for customization
  */
 @ExperimentalKepkoApi
 @Composable
@@ -56,13 +59,13 @@ public fun PersistentPreferenceThemeScreen(
     modifier: Modifier = Modifier,
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
-    activeProfileId: String? = null,
+    activeProfile: UserVisibleProfile? = null,
     targetProfile: UserVisibleProfile? = null,
 ) {
     AnimatedPersistentKepkoTheme(
         persistence = persistence,
         isSystemInDarkTheme = isSystemInDarkTheme,
-        profileId = activeProfileId,
+        profileId = activeProfile?.id,
     ) {
         Scaffold(
             title = Strings.preferenceThemeScreenTitle,
@@ -83,7 +86,7 @@ public fun PersistentPreferenceThemeScreen(
             PersistentPreferenceThemeContent(
                 persistence = persistence,
                 isSystemInDarkTheme = isSystemInDarkTheme,
-                activeProfileId = activeProfileId,
+                activeProfile = activeProfile,
                 targetProfile = targetProfile,
                 modifier = Modifier
                     .padding(top = 16.dp)
@@ -98,14 +101,14 @@ public fun PersistentPreferenceThemeScreen(
 public fun PersistentPreferenceThemeContent(
     persistence: PersistenceManager = LocalKepkoPersistenceManager.current,
     isSystemInDarkTheme: Boolean,
-    activeProfileId: String? = null,
+    activeProfile: UserVisibleProfile? = null,
     targetProfile: UserVisibleProfile? = null,
     modifier: Modifier = Modifier,
 ) {
     AnimatedPersistentKepkoTheme(
         persistence = persistence,
         isSystemInDarkTheme = isSystemInDarkTheme,
-        profileId = activeProfileId,
+        profileId = activeProfile?.id,
     ) {
         if (targetProfile != null) {
             PersistentPreferenceThemeProfileContent(
@@ -117,6 +120,7 @@ public fun PersistentPreferenceThemeContent(
             PersistentPreferenceThemeGlobalContent(
                 persistence = persistence,
                 isSystemInDarkTheme = isSystemInDarkTheme,
+                activeProfile = activeProfile,
                 modifier = modifier,
             )
         }
@@ -127,8 +131,16 @@ public fun PersistentPreferenceThemeContent(
 private fun PersistentPreferenceThemeGlobalContent(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
+    activeProfile: UserVisibleProfile?,
     modifier: Modifier = Modifier,
 ) {
+    val paletteOverriddenBadge = activeProfile
+        ?.takeIf { persistence.profileManager.getProfilePalette(it.id) != null }
+        ?.let { Badge.overriddenBy(it.name) }
+    val grayscaleOverriddenBadge = activeProfile
+        ?.takeIf { persistence.profileManager.getProfileGrayscale(it.id) != null }
+        ?.let { Badge.overriddenBy(it.name) }
+
     val sizeSpring = spring(
         dampingRatio = Spring.DampingRatioLowBouncy,
         stiffness = Spring.StiffnessMediumLow,
@@ -153,6 +165,7 @@ private fun PersistentPreferenceThemeGlobalContent(
             PersistentPreferenceThemeSystem(
                 persistence = persistence,
                 isSystemInDarkTheme = isSystemInDarkTheme,
+                overriddenBadge = paletteOverriddenBadge,
             )
         }
         AnimatedVisibility(
@@ -160,10 +173,10 @@ private fun PersistentPreferenceThemeGlobalContent(
             enter = enterTransition,
             exit = exitTransition,
         ) {
-            PersistentPreferenceThemeStatic(persistence)
+            PersistentPreferenceThemeStatic(persistence, overriddenBadge = paletteOverriddenBadge)
         }
         Spacer(Modifier.height(24.dp))
-        PersistentPreferenceThemeGrayscale(persistence)
+        PersistentPreferenceThemeGrayscale(persistence, overriddenBadge = grayscaleOverriddenBadge)
         Spacer(Modifier.height(8.dp))
         PersistentPreferenceThemeOutline(persistence)
         Spacer(Modifier.height(8.dp))
@@ -228,20 +241,27 @@ private fun PersistentPreferenceThemeMode(
 private fun PersistentPreferenceThemeSystem(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
+    overriddenBadge: Badge?,
 ) {
     Column {
         Spacer(Modifier.height(8.dp))
-        PersistentPreferenceThemePaletteRow(
-            persistence = persistence,
-            isSystemInDarkTheme = isSystemInDarkTheme,
-            isLight = true,
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            PersistentPreferenceThemeLight(
+                persistence = persistence,
+                isSystemInDarkTheme = isSystemInDarkTheme,
+                overriddenBadge = overriddenBadge,
+                modifier = Modifier.weight(1f),
+            )
+        }
         Spacer(Modifier.height(8.dp))
-        PersistentPreferenceThemePaletteRow(
-            persistence = persistence,
-            isSystemInDarkTheme = isSystemInDarkTheme,
-            isLight = false,
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            PersistentPreferenceThemeDark(
+                persistence = persistence,
+                isSystemInDarkTheme = isSystemInDarkTheme,
+                overriddenBadge = overriddenBadge,
+                modifier = Modifier.weight(1f),
+            )
+        }
     }
 }
 
@@ -249,6 +269,7 @@ private fun PersistentPreferenceThemeSystem(
 @Composable
 private fun PersistentPreferenceThemeStatic(
     persistence: PersistenceManager,
+    overriddenBadge: Badge?,
 ) {
     Column {
         Spacer(Modifier.height(8.dp))
@@ -261,34 +282,10 @@ private fun PersistentPreferenceThemeStatic(
             onSelectId = { id ->
                 ColorPalette.fromIdOrNull(id)?.let { persistence.setPalettePrimary(null, it) }
             },
+            badge = overriddenBadge,
             modifier = Modifier
                 .testTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER)
         )
-    }
-}
-
-@Composable
-private fun PersistentPreferenceThemePaletteRow(
-    persistence: PersistenceManager,
-    isSystemInDarkTheme: Boolean,
-    isLight: Boolean,
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        if (isLight) {
-            PersistentPreferenceThemeLight(
-                persistence = persistence,
-                isSystemInDarkTheme = isSystemInDarkTheme,
-                modifier = Modifier.weight(1f),
-            )
-        } else {
-            PersistentPreferenceThemeDark(
-                persistence = persistence,
-                isSystemInDarkTheme = isSystemInDarkTheme,
-                modifier = Modifier.weight(1f),
-            )
-        }
     }
 }
 
@@ -297,6 +294,7 @@ private fun PersistentPreferenceThemePaletteRow(
 private fun PersistentPreferenceThemeLight(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
+    overriddenBadge: Badge?,
     modifier: Modifier = Modifier,
 ) {
     PreferenceRadioGroupPicker(
@@ -310,7 +308,7 @@ private fun PersistentPreferenceThemeLight(
         },
         onSelectId = { id -> ColorPalette.fromIdOrNull(id)?.let { persistence.paletteLight = it } },
         description = Strings.preferenceLightPaletteDescription,
-        badge = Badge.active.takeIf { !isSystemInDarkTheme },
+        badge = overriddenBadge ?: Badge.active.takeIf { !isSystemInDarkTheme },
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER)
     )
@@ -321,6 +319,7 @@ private fun PersistentPreferenceThemeLight(
 private fun PersistentPreferenceThemeDark(
     persistence: PersistenceManager,
     isSystemInDarkTheme: Boolean,
+    overriddenBadge: Badge?,
     modifier: Modifier = Modifier,
 ) {
     PreferenceRadioGroupPicker(
@@ -334,7 +333,7 @@ private fun PersistentPreferenceThemeDark(
         },
         onSelectId = { id -> ColorPalette.fromIdOrNull(id)?.let { persistence.paletteDark = it } },
         description = Strings.preferenceDarkPaletteDescription,
-        badge = Badge.active.takeIf { isSystemInDarkTheme },
+        badge = overriddenBadge ?: Badge.active.takeIf { isSystemInDarkTheme },
         modifier = modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER)
     )
@@ -343,12 +342,14 @@ private fun PersistentPreferenceThemeDark(
 @Composable
 private fun PersistentPreferenceThemeGrayscale(
     persistence: PersistenceManager,
+    overriddenBadge: Badge?,
 ) {
     PreferenceSwitch(
         title = Strings.preferenceGrayscaleTitle,
         description = Strings.preferenceGrayscaleDescription,
         checked = persistence.isGrayscaleEnabled(null),
         onCheckedChange = { persistence.setGrayscaleEnabled(null, it) },
+        badge = overriddenBadge,
         modifier = Modifier
             .testTag(PersistentPreferenceThemeScreenSemantics.GRAYSCALE)
     )
@@ -442,6 +443,37 @@ internal fun PersistentPreferenceThemeScreenStyleSelectedPreview() {
 internal fun PersistentPreferenceThemeScreenGrayscalePreview() {
     PreviewPersistentKepkoTheme(configure = { setGrayscaleEnabled(null, true) }) {
         PersistentPreferenceThemeScreen(onBackClick = {})
+    }
+}
+
+@ExperimentalKepkoApi
+@PreviewWithTest
+@Composable
+internal fun PersistentPreferenceThemeScreenGlobalOverriddenSystemPreview() {
+    PreviewPersistentKepkoTheme(configure = {
+        profileManager.setProfilePalette(previewProfile.id, ColorPalette.SOLARIZED_DARK)
+        profileManager.setProfileGrayscale(previewProfile.id, true)
+    }) {
+        PersistentPreferenceThemeScreen(
+            onBackClick = {},
+            activeProfile = previewProfile,
+        )
+    }
+}
+
+@ExperimentalKepkoApi
+@PreviewWithTest
+@Composable
+internal fun PersistentPreferenceThemeScreenGlobalOverriddenStaticPreview() {
+    PreviewPersistentKepkoTheme(configure = {
+        setPalettePrimary(null, ColorPalette.LIGHT)
+        profileManager.setProfilePalette(previewProfile.id, ColorPalette.SOLARIZED_DARK)
+        profileManager.setProfileGrayscale(previewProfile.id, true)
+    }) {
+        PersistentPreferenceThemeScreen(
+            onBackClick = {},
+            activeProfile = previewProfile,
+        )
     }
 }
 

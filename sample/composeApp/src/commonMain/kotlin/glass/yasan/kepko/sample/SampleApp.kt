@@ -73,7 +73,7 @@ private fun SampleNavHost(
                     onBackClick = {
                         navController.popBackStack()
                     },
-                    activeProfileId = activeProfileId,
+                    activeProfile = sampleProfiles.first { it.id == activeProfileId },
                 )
             }
             composable(Route.Profiles.path) {
@@ -96,7 +96,7 @@ private fun SampleNavHost(
                     onBackClick = {
                         navController.popBackStack()
                     },
-                    activeProfileId = activeProfileId,
+                    activeProfile = sampleProfiles.first { it.id == activeProfileId },
                     targetProfile = targetProfile,
                 )
             }
