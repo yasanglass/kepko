@@ -67,7 +67,7 @@ jobs:
 
       - name: Upload Coverage to Codecov (Token)
         if: ${{ !cancelled() && env.CODECOV_TOKEN != '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ env.CODECOV_TOKEN }}
           files: build/reports/kover/report.xml
@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload Coverage to Codecov (OIDC)
         if: ${{ !cancelled() && env.CODECOV_TOKEN == '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           use_oidc: true
           files: build/reports/kover/report.xml
@@ -83,7 +83,7 @@ jobs:
 
       - name: Upload Test Results to Codecov (Token)
         if: ${{ !cancelled() && env.CODECOV_TOKEN != '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ env.CODECOV_TOKEN }}
           report_type: test_results
@@ -91,7 +91,7 @@ jobs:
 
       - name: Upload Test Results to Codecov (OIDC)
         if: ${{ !cancelled() && env.CODECOV_TOKEN == '' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           use_oidc: true
           report_type: test_results
