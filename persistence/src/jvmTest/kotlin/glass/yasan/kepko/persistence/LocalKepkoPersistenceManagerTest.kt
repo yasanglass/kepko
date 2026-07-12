@@ -4,15 +4,37 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.v2.runDesktopComposeUiTest
 import com.russhwolf.settings.MapSettings
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.persistence.internal.PersistenceManagerImpl
+import glass.yasan.kepko.persistence.internal.SingletonPersistenceManager
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 import kotlin.test.assertSame
 
-@OptIn(ExperimentalTestApi::class)
+@OptIn(ExperimentalTestApi::class, ExperimentalKepkoApi::class)
 internal class LocalKepkoPersistenceManagerTest {
+
+    @Test
+    fun givenDefaultPersistentTheme_whenReadingManager_thenReturnsPublicDefaultInstance() {
+        // Given
+        var current: PersistenceManager? = null
+
+        // When
+        runDesktopComposeUiTest {
+            setContent {
+                PersistentKepkoTheme {
+                    current = LocalKepkoPersistenceManager.current
+                }
+            }
+
+            waitForIdle()
+        }
+
+        // Then
+        assertSame(SingletonPersistenceManager.instance, current)
+    }
 
     @Test
     fun givenNoProvider_whenAccessingLocalKepkoPersistenceManager_thenThrowsHelpfulError() {
