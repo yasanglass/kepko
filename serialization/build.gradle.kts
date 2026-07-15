@@ -35,6 +35,8 @@ kotlin {
         }
 
         androidResources { enable = true }
+
+        withHostTest {}
     }
     jvm()
     iosArm64()
@@ -84,7 +86,7 @@ kotlin {
             dependsOn(nonAndroidMain)
         }
 
-        val jvmTest = getByName("jvmTest") {
+        val commonTest = getByName("commonTest") {
             dependencies {
                 implementation(libs.jetbrains.kotlin.test)
             }
@@ -95,4 +97,3 @@ kotlin {
 configure<MavenPublishBaseExtension> {
     coordinates(artifactId = artifactId)
 }
-
