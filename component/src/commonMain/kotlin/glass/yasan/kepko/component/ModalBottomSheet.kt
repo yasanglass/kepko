@@ -21,10 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.foundation.system.DialogNavigationBarContrastEffect
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import androidx.compose.material3.ModalBottomSheet as Material3ModalBottomSheet
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalKepkoApi::class)
 @Composable
 public fun ModalBottomSheet(
     onDismissRequest: () -> Unit,
@@ -58,6 +60,7 @@ public fun ModalBottomSheet(
         properties = properties,
         modifier = modifier,
     ) {
+        DialogNavigationBarContrastEffect()
         header()
         if (title != null) {
             ModalBottomSheetTitleContent(
