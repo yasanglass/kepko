@@ -63,6 +63,9 @@ See the full list of components [here](https://github.com/yasanglass/kepko/tree/
 | Gruvbox Dark | ![Gruvbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxDarkReadmePreview.png) |
 | Tokyo Night | ![Tokyo Night](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteTokyoNightReadmePreview.png) |
 | Tokyo Day | ![Tokyo Day](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteTokyoDayReadmePreview.png) |
+| Baby Pink | ![Baby Pink](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteBabyPinkReadmePreview.png) |
+| Dark Pink | ![Dark Pink](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteDarkPinkReadmePreview.png) |
+| Hot Pink | ![Hot Pink](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteHotPinkReadmePreview.png) |
 
 ## Persistence
 

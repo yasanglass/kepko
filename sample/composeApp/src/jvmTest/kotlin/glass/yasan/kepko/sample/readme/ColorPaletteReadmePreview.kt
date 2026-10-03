@@ -117,6 +117,30 @@ internal fun ColorPaletteTokyoDayReadmePreview() {
     }
 }
 
+@ReadmePreview
+@Composable
+internal fun ColorPaletteBabyPinkReadmePreview() {
+    KepkoTheme(palette = BABY_PINK) {
+        ColorPaletteReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ColorPaletteDarkPinkReadmePreview() {
+    KepkoTheme(palette = DARK_PINK) {
+        ColorPaletteReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ColorPaletteHotPinkReadmePreview() {
+    KepkoTheme(palette = HOT_PINK) {
+        ColorPaletteReadmeContent()
+    }
+}
+
 @OptIn(DelicateKepkoShapesApi::class)
 @Composable
 private fun ColorPaletteReadmeContent() {

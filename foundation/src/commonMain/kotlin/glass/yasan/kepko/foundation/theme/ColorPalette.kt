@@ -87,6 +87,24 @@ public enum class ColorPalette(
         isDark = false,
         title = { Strings.colorPaletteTokyoDay }
     ),
+    BABY_PINK(
+        id = "baby-pink",
+        category = Category.PINK,
+        isDark = false,
+        title = { Strings.colorPaletteBabyPink }
+    ),
+    DARK_PINK(
+        id = "dark-pink",
+        category = Category.PINK,
+        isDark = true,
+        title = { Strings.colorPaletteDarkPink }
+    ),
+    HOT_PINK(
+        id = "hot-pink",
+        category = Category.PINK,
+        isDark = true,
+        title = { Strings.colorPaletteHotPink }
+    ),
     ;
 
     public enum class Category {
@@ -95,6 +113,7 @@ public enum class ColorPalette(
         CATPPUCCIN,
         GRUVBOX,
         TOKYO_NIGHT,
+        PINK,
     }
 
     public companion object {

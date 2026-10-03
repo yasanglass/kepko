@@ -1,5 +1,6 @@
 package glass.yasan.kepko.persistence
 
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
@@ -8,6 +9,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.v2.runDesktopComposeUiTest
 import com.russhwolf.settings.MapSettings
 import glass.yasan.kepko.component.Text
@@ -123,7 +125,7 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PALETTE_PICKER).performClick()
             waitForIdle()
             onNodeWithText(blackString, ignoreCase = true).assertExists()
-            onNodeWithText(blackString, ignoreCase = true).performClick()
+            onNodeWithText(blackString, ignoreCase = true).performSemanticsAction(SemanticsActions.OnClick)
             waitUntil { persistenceManager.getPalettePrimary(null) == ColorPalette.BLACK }
 
             assertEquals(ColorPalette.BLACK, persistenceManager.getPalettePrimary(null))
@@ -190,7 +192,7 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.LIGHT_PICKER).performClick()
             waitForIdle()
             onNodeWithText(darkString, ignoreCase = true).assertExists()
-            onNodeWithText(darkString, ignoreCase = true).performClick()
+            onNodeWithText(darkString, ignoreCase = true).performSemanticsAction(SemanticsActions.OnClick)
             waitForIdle()
 
             assertEquals(ColorPalette.DARK, persistenceManager.paletteLight)
@@ -200,7 +202,7 @@ internal class PersistentPreferenceThemeScreenTest {
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.DARK_PICKER).performClick()
             waitForIdle()
             onNodeWithText(blackString, ignoreCase = true).assertExists()
-            onNodeWithText(blackString, ignoreCase = true).performClick()
+            onNodeWithText(blackString, ignoreCase = true).performSemanticsAction(SemanticsActions.OnClick)
             waitForIdle()
 
             assertEquals(ColorPalette.BLACK, persistenceManager.paletteDark)
@@ -289,7 +291,7 @@ internal class PersistentPreferenceThemeScreenTest {
             waitForIdle()
             onNodeWithTag(PersistentPreferenceThemeScreenSemantics.PROFILE_PALETTE_PICKER).performClick()
             waitForIdle()
-            onNodeWithText(blackString, ignoreCase = true).performClick()
+            onNodeWithText(blackString, ignoreCase = true).performSemanticsAction(SemanticsActions.OnClick)
             waitUntil {
                 persistenceManager.profileManager.getProfilePalette(testProfile.id) == ColorPalette.BLACK
             }

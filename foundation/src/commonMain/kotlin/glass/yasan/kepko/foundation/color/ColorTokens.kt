@@ -151,6 +151,54 @@ public object ColorTokens {
     private val dangerCatppuccinMacchiato: Color = Color(0xFFED8796)
     private val dangerCatppuccinMocha: Color = Color(0xFFF38BA8)
 
+    private val foregroundBabyPink: Color = Color(0xFFFDF2F8)
+    private val midgroundBabyPink: Color = Color(0xFFFCE7F3)
+    private val backgroundBabyPink: Color = Color(0xFFFBCFE8)
+    private val outlineBabyPink: Color = Color(0xFFF9A8D4)
+    private val contentBabyPink: Color = Color(0xFF500724)
+    private val contentSubtleBabyPink: Color = Color(0xFF9D174D)
+    private val contentDisabledBabyPink: Color = Color(0xFFF472B6)
+    private val successBabyPink: Color = Color(0xFF15803D)
+    private val informationBabyPink: Color = Color(0xFF0369A1)
+    private val cautionBabyPink: Color = Color(0xFFB45309)
+    private val dangerBabyPink: Color = Color(0xFFB91C1C)
+    private val onSuccessBabyPink: Color = Color(0xFFFDF2F8)
+    private val onInformationBabyPink: Color = Color(0xFFFDF2F8)
+    private val onCautionBabyPink: Color = Color(0xFFFDF2F8)
+    private val onDangerBabyPink: Color = Color(0xFFFDF2F8)
+
+    private val foregroundDarkPink: Color = Color(0xFF9D174D)
+    private val midgroundDarkPink: Color = Color(0xFF831843)
+    private val backgroundDarkPink: Color = Color(0xFF500724)
+    private val outlineDarkPink: Color = Color(0xFFBE185D)
+    private val contentDarkPink: Color = Color(0xFFFDF2F8)
+    private val contentSubtleDarkPink: Color = Color(0xFFFBCFE8)
+    private val contentDisabledDarkPink: Color = Color(0xFFEC4899)
+    private val successDarkPink: Color = Color(0xFF86EFAC)
+    private val informationDarkPink: Color = Color(0xFF7DD3FC)
+    private val cautionDarkPink: Color = Color(0xFFFCD34D)
+    private val dangerDarkPink: Color = Color(0xFFFCA5A5)
+    private val onSuccessDarkPink: Color = Color(0xFF500724)
+    private val onInformationDarkPink: Color = Color(0xFF500724)
+    private val onCautionDarkPink: Color = Color(0xFF500724)
+    private val onDangerDarkPink: Color = Color(0xFF500724)
+
+    private val foregroundHotPink: Color = Color(0xFFDB2777)
+    private val midgroundHotPink: Color = Color(0xFFBE185D)
+    private val backgroundHotPink: Color = Color(0xFF9D174D)
+    private val outlineHotPink: Color = Color(0xFFEC4899)
+    private val contentHotPink: Color = Color(0xFFFFFFFF)
+    private val contentSubtleHotPink: Color = Color(0xFFFBCFE8)
+    private val contentDisabledHotPink: Color = Color(0xFFF472B6)
+    private val successHotPink: Color = Color(0xFFBBF7D0)
+    private val informationHotPink: Color = Color(0xFFBAE6FD)
+    private val cautionHotPink: Color = Color(0xFFFDE68A)
+    private val dangerHotPink: Color = Color(0xFFFECACA)
+    private val onSuccessHotPink: Color = Color(0xFF500724)
+    private val onInformationHotPink: Color = Color(0xFF500724)
+    private val onCautionHotPink: Color = Color(0xFF500724)
+    private val onDangerHotPink: Color = Color(0xFF500724)
+
     private val successStandard: Color = Color(0xFF04B34F)
     private val onSuccessStandard: Color = Color(0xFFFFFFFF)
     private val informationStandard: Color = Color(0xFF0057B8)
@@ -180,6 +228,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> successGruvboxDark
         TOKYO_NIGHT -> successTokyoNight
         TOKYO_DAY -> successTokyoDay
+        BABY_PINK -> successBabyPink
+        DARK_PINK -> successDarkPink
+        HOT_PINK -> successHotPink
     }
 
     internal fun onSuccess(palette: ColorPalette): Color = when (palette) {
@@ -193,6 +244,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> foregroundGruvboxDark
         TOKYO_NIGHT -> foregroundTokyoNight
         TOKYO_DAY -> onSuccessTokyoDay
+        BABY_PINK -> onSuccessBabyPink
+        DARK_PINK -> onSuccessDarkPink
+        HOT_PINK -> onSuccessHotPink
     }
 
     internal fun information(palette: ColorPalette): Color = when (palette) {
@@ -206,6 +260,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> informationGruvboxDark
         TOKYO_NIGHT -> informationTokyoNight
         TOKYO_DAY -> informationTokyoDay
+        BABY_PINK -> informationBabyPink
+        DARK_PINK -> informationDarkPink
+        HOT_PINK -> informationHotPink
     }
 
     internal fun onInformation(palette: ColorPalette): Color = when (palette) {
@@ -219,6 +276,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> foregroundGruvboxDark
         TOKYO_NIGHT -> foregroundTokyoNight
         TOKYO_DAY -> onInformationTokyoDay
+        BABY_PINK -> onInformationBabyPink
+        DARK_PINK -> onInformationDarkPink
+        HOT_PINK -> onInformationHotPink
     }
 
     internal fun caution(palette: ColorPalette): Color = when (palette) {
@@ -232,6 +292,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> cautionGruvboxDark
         TOKYO_NIGHT -> cautionTokyoNight
         TOKYO_DAY -> cautionTokyoDay
+        BABY_PINK -> cautionBabyPink
+        DARK_PINK -> cautionDarkPink
+        HOT_PINK -> cautionHotPink
     }
 
     internal fun onCaution(palette: ColorPalette): Color = when (palette) {
@@ -245,6 +308,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> foregroundGruvboxDark
         TOKYO_NIGHT -> foregroundTokyoNight
         TOKYO_DAY -> onCautionTokyoDay
+        BABY_PINK -> onCautionBabyPink
+        DARK_PINK -> onCautionDarkPink
+        HOT_PINK -> onCautionHotPink
     }
 
     internal fun danger(palette: ColorPalette): Color = when (palette) {
@@ -258,6 +324,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> dangerGruvboxDark
         TOKYO_NIGHT -> dangerTokyoNight
         TOKYO_DAY -> dangerTokyoDay
+        BABY_PINK -> dangerBabyPink
+        DARK_PINK -> dangerDarkPink
+        HOT_PINK -> dangerHotPink
     }
 
     internal fun onDanger(palette: ColorPalette): Color = when (palette) {
@@ -271,6 +340,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> foregroundGruvboxDark
         TOKYO_NIGHT -> foregroundTokyoNight
         TOKYO_DAY -> onDangerTokyoDay
+        BABY_PINK -> onDangerBabyPink
+        DARK_PINK -> onDangerDarkPink
+        HOT_PINK -> onDangerHotPink
     }
 
 
@@ -290,6 +362,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> foregroundGruvboxDark
         TOKYO_NIGHT -> foregroundTokyoNight
         TOKYO_DAY -> foregroundTokyoDay
+        BABY_PINK -> foregroundBabyPink
+        DARK_PINK -> foregroundDarkPink
+        HOT_PINK -> foregroundHotPink
     }
 
     internal fun midground(palette: ColorPalette): Color = when (palette) {
@@ -306,6 +381,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> midgroundGruvboxDark
         TOKYO_NIGHT -> midgroundTokyoNight
         TOKYO_DAY -> midgroundTokyoDay
+        BABY_PINK -> midgroundBabyPink
+        DARK_PINK -> midgroundDarkPink
+        HOT_PINK -> midgroundHotPink
     }
 
     internal fun background(palette: ColorPalette): Color = when (palette) {
@@ -322,6 +400,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> backgroundGruvboxDark
         TOKYO_NIGHT -> backgroundTokyoNight
         TOKYO_DAY -> backgroundTokyoDay
+        BABY_PINK -> backgroundBabyPink
+        DARK_PINK -> backgroundDarkPink
+        HOT_PINK -> backgroundHotPink
     }
 
     internal fun outline(palette: ColorPalette): Color = when (palette) {
@@ -338,6 +419,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> outlineGruvboxDark
         TOKYO_NIGHT -> outlineTokyoNight
         TOKYO_DAY -> outlineTokyoDay
+        BABY_PINK -> outlineBabyPink
+        DARK_PINK -> outlineDarkPink
+        HOT_PINK -> outlineHotPink
     }
 
     internal fun content(palette: ColorPalette): Color = when (palette) {
@@ -353,6 +437,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> contentGruvboxDark
         TOKYO_NIGHT -> contentTokyoNight
         TOKYO_DAY -> contentTokyoDay
+        BABY_PINK -> contentBabyPink
+        DARK_PINK -> contentDarkPink
+        HOT_PINK -> contentHotPink
     }
 
     internal fun contentSubtle(palette: ColorPalette): Color = when (palette) {
@@ -368,6 +455,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> contentSubtleGruvboxDark
         TOKYO_NIGHT -> contentSubtleTokyoNight
         TOKYO_DAY -> contentSubtleTokyoDay
+        BABY_PINK -> contentSubtleBabyPink
+        DARK_PINK -> contentSubtleDarkPink
+        HOT_PINK -> contentSubtleHotPink
     }
 
     internal fun contentDisabled(palette: ColorPalette): Color = when (palette) {
@@ -384,6 +474,9 @@ public object ColorTokens {
         GRUVBOX_DARK -> contentDisabledGruvboxDark
         TOKYO_NIGHT -> contentDisabledTokyoNight
         TOKYO_DAY -> contentDisabledTokyoDay
+        BABY_PINK -> contentDisabledBabyPink
+        DARK_PINK -> contentDisabledDarkPink
+        HOT_PINK -> contentDisabledHotPink
     }
 
 }

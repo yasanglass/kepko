@@ -27,6 +27,9 @@ public class Colors internal constructor(
             GRUVBOX_DARK -> GRUVBOX_LIGHT
             TOKYO_NIGHT -> TOKYO_DAY
             TOKYO_DAY -> TOKYO_NIGHT
+            BABY_PINK -> DARK_PINK
+            DARK_PINK -> BABY_PINK
+            HOT_PINK -> BABY_PINK
         }
 
     private fun Color.applyGrayscale(): Color {
