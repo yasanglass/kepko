@@ -84,6 +84,15 @@ public object Strings {
     public val colorPaletteTokyoDay: String
         @Composable get() = stringResource(Res.string.color_palette_tokyo_day)
 
+    public val colorPaletteBabyPink: String
+        @Composable get() = stringResource(Res.string.color_palette_baby_pink)
+
+    public val colorPaletteDarkPink: String
+        @Composable get() = stringResource(Res.string.color_palette_dark_pink)
+
+    public val colorPaletteHotPink: String
+        @Composable get() = stringResource(Res.string.color_palette_hot_pink)
+
     public val colorPaletteDark: String
         @Composable get() = stringResource(Res.string.color_palette_dark)
 

@@ -46,6 +46,9 @@
     <string name="color_palette_gruvbox_dark">Gruvbox Dark</string>
     <string name="color_palette_tokyo_night">Tokyo Night</string>
     <string name="color_palette_tokyo_day">Tokyo Day</string>
+    <string name="color_palette_baby_pink">Baby Pink</string>
+    <string name="color_palette_dark_pink">Dark Pink</string>
+    <string name="color_palette_hot_pink">Hot Pink</string>
     <string name="color_palette_system">System</string>
     <string name="preference_outline_title">Outline</string>
     <string name="preference_roundness_title">Roundness</string>
