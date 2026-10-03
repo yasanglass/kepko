@@ -12,6 +12,8 @@ internal fun ColorPalette.asPreferenceRadioGroupItem(
     segment = segment,
     badge = when {
         isDefault -> Badge.default
+        category == ColorPalette.Category.TOKYO_NIGHT -> Badge.experimental
+        category == ColorPalette.Category.PINK -> Badge.experimental
         else -> null
     },
 ) {
