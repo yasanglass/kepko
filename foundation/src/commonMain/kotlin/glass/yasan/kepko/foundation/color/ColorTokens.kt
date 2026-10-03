@@ -96,6 +96,35 @@ public object ColorTokens {
     private val contentSubtleGruvboxDark: Color = Color(0xFFa89984)
     private val contentDisabledGruvboxDark: Color = Color(0xFF665c54)
 
+    private val foregroundTokyoNight: Color = Color(0xFF1A1B26)
+    private val midgroundTokyoNight: Color = Color(0xFF16161E)
+    private val backgroundTokyoNight: Color = Color(0xFF14141B)
+    private val outlineTokyoNight: Color = Color(0xFF363B54)
+    private val contentTokyoNight: Color = Color(0xFFA9B1D6)
+    private val contentSubtleTokyoNight: Color = Color(0xFF787C99)
+    private val contentDisabledTokyoNight: Color = Color(0xFF545C7E)
+
+    private val foregroundTokyoDay: Color = Color(0xFFE1E2E7)
+    private val midgroundTokyoDay: Color = Color(0xFFD0D5E3)
+    private val backgroundTokyoDay: Color = Color(0xFFC1C9DF)
+    private val outlineTokyoDay: Color = Color(0xFFA8AECB)
+    private val contentTokyoDay: Color = Color(0xFF3760BF)
+    private val contentSubtleTokyoDay: Color = Color(0xFF6172B0)
+    private val contentDisabledTokyoDay: Color = Color(0xFF848CB5)
+
+    private val successTokyoNight: Color = Color(0xFF73DACA)
+    private val successTokyoDay: Color = Color(0xFF496529)
+    private val informationTokyoNight: Color = Color(0xFF7AA2F7)
+    private val informationTokyoDay: Color = Color(0xFF0057C0)
+    private val cautionTokyoNight: Color = Color(0xFFE0AF68)
+    private val cautionTokyoDay: Color = Color(0xFF765728)
+    private val dangerTokyoNight: Color = Color(0xFFF7768E)
+    private val dangerTokyoDay: Color = Color(0xFFBA0038)
+    private val onSuccessTokyoDay: Color = Color(0xFFFFFFFF)
+    private val onInformationTokyoDay: Color = Color(0xFFFFFFFF)
+    private val onCautionTokyoDay: Color = Color(0xFFFFFFFF)
+    private val onDangerTokyoDay: Color = Color(0xFFFFFFFF)
+
     private val successGruvboxLight: Color = Color(0xFF79740e)
     private val successGruvboxDark: Color = Color(0xFFb8bb26)
     private val informationGruvboxLight: Color = Color(0xFF076678)
@@ -149,6 +178,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> successCatppuccinMocha
         GRUVBOX_LIGHT -> successGruvboxLight
         GRUVBOX_DARK -> successGruvboxDark
+        TOKYO_NIGHT -> successTokyoNight
+        TOKYO_DAY -> successTokyoDay
     }
 
     internal fun onSuccess(palette: ColorPalette): Color = when (palette) {
@@ -160,6 +191,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
         GRUVBOX_LIGHT -> foregroundGruvboxLight
         GRUVBOX_DARK -> foregroundGruvboxDark
+        TOKYO_NIGHT -> foregroundTokyoNight
+        TOKYO_DAY -> onSuccessTokyoDay
     }
 
     internal fun information(palette: ColorPalette): Color = when (palette) {
@@ -171,6 +204,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> informationCatppuccinMocha
         GRUVBOX_LIGHT -> informationGruvboxLight
         GRUVBOX_DARK -> informationGruvboxDark
+        TOKYO_NIGHT -> informationTokyoNight
+        TOKYO_DAY -> informationTokyoDay
     }
 
     internal fun onInformation(palette: ColorPalette): Color = when (palette) {
@@ -182,6 +217,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
         GRUVBOX_LIGHT -> foregroundGruvboxLight
         GRUVBOX_DARK -> foregroundGruvboxDark
+        TOKYO_NIGHT -> foregroundTokyoNight
+        TOKYO_DAY -> onInformationTokyoDay
     }
 
     internal fun caution(palette: ColorPalette): Color = when (palette) {
@@ -193,6 +230,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> cautionCatppuccinMocha
         GRUVBOX_LIGHT -> cautionGruvboxLight
         GRUVBOX_DARK -> cautionGruvboxDark
+        TOKYO_NIGHT -> cautionTokyoNight
+        TOKYO_DAY -> cautionTokyoDay
     }
 
     internal fun onCaution(palette: ColorPalette): Color = when (palette) {
@@ -204,6 +243,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
         GRUVBOX_LIGHT -> foregroundGruvboxLight
         GRUVBOX_DARK -> foregroundGruvboxDark
+        TOKYO_NIGHT -> foregroundTokyoNight
+        TOKYO_DAY -> onCautionTokyoDay
     }
 
     internal fun danger(palette: ColorPalette): Color = when (palette) {
@@ -215,6 +256,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> dangerCatppuccinMocha
         GRUVBOX_LIGHT -> dangerGruvboxLight
         GRUVBOX_DARK -> dangerGruvboxDark
+        TOKYO_NIGHT -> dangerTokyoNight
+        TOKYO_DAY -> dangerTokyoDay
     }
 
     internal fun onDanger(palette: ColorPalette): Color = when (palette) {
@@ -226,6 +269,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
         GRUVBOX_LIGHT -> foregroundGruvboxLight
         GRUVBOX_DARK -> foregroundGruvboxDark
+        TOKYO_NIGHT -> foregroundTokyoNight
+        TOKYO_DAY -> onDangerTokyoDay
     }
 
 
@@ -243,6 +288,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> foregroundCatppuccinMocha
         GRUVBOX_LIGHT -> foregroundGruvboxLight
         GRUVBOX_DARK -> foregroundGruvboxDark
+        TOKYO_NIGHT -> foregroundTokyoNight
+        TOKYO_DAY -> foregroundTokyoDay
     }
 
     internal fun midground(palette: ColorPalette): Color = when (palette) {
@@ -257,6 +304,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> midgroundCatppuccinMocha
         GRUVBOX_LIGHT -> midgroundGruvboxLight
         GRUVBOX_DARK -> midgroundGruvboxDark
+        TOKYO_NIGHT -> midgroundTokyoNight
+        TOKYO_DAY -> midgroundTokyoDay
     }
 
     internal fun background(palette: ColorPalette): Color = when (palette) {
@@ -271,6 +320,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> backgroundCatppuccinMocha
         GRUVBOX_LIGHT -> backgroundGruvboxLight
         GRUVBOX_DARK -> backgroundGruvboxDark
+        TOKYO_NIGHT -> backgroundTokyoNight
+        TOKYO_DAY -> backgroundTokyoDay
     }
 
     internal fun outline(palette: ColorPalette): Color = when (palette) {
@@ -285,6 +336,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> outlineCatppuccinMocha
         GRUVBOX_LIGHT -> outlineGruvboxLight
         GRUVBOX_DARK -> outlineGruvboxDark
+        TOKYO_NIGHT -> outlineTokyoNight
+        TOKYO_DAY -> outlineTokyoDay
     }
 
     internal fun content(palette: ColorPalette): Color = when (palette) {
@@ -298,6 +351,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> contentCatppuccinMocha
         GRUVBOX_LIGHT -> contentGruvboxLight
         GRUVBOX_DARK -> contentGruvboxDark
+        TOKYO_NIGHT -> contentTokyoNight
+        TOKYO_DAY -> contentTokyoDay
     }
 
     internal fun contentSubtle(palette: ColorPalette): Color = when (palette) {
@@ -311,6 +366,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> contentSubtleCatppuccinMocha
         GRUVBOX_LIGHT -> contentSubtleGruvboxLight
         GRUVBOX_DARK -> contentSubtleGruvboxDark
+        TOKYO_NIGHT -> contentSubtleTokyoNight
+        TOKYO_DAY -> contentSubtleTokyoDay
     }
 
     internal fun contentDisabled(palette: ColorPalette): Color = when (palette) {
@@ -325,6 +382,8 @@ public object ColorTokens {
         CATPPUCCIN_MOCHA -> contentDisabledCatppuccinMocha
         GRUVBOX_LIGHT -> contentDisabledGruvboxLight
         GRUVBOX_DARK -> contentDisabledGruvboxDark
+        TOKYO_NIGHT -> contentDisabledTokyoNight
+        TOKYO_DAY -> contentDisabledTokyoDay
     }
 
 }

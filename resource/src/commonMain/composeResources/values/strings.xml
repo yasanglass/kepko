@@ -44,6 +44,8 @@
     <string name="color_palette_catppuccin_mocha">Catppuccin Mocha</string>
     <string name="color_palette_gruvbox_light">Gruvbox Light</string>
     <string name="color_palette_gruvbox_dark">Gruvbox Dark</string>
+    <string name="color_palette_tokyo_night">Tokyo Night</string>
+    <string name="color_palette_tokyo_day">Tokyo Day</string>
     <string name="color_palette_system">System</string>
     <string name="preference_outline_title">Outline</string>
     <string name="preference_roundness_title">Roundness</string>
