@@ -25,6 +25,8 @@ public class Colors internal constructor(
             CATPPUCCIN_MOCHA -> CATPPUCCIN_LATTE
             GRUVBOX_LIGHT -> GRUVBOX_DARK
             GRUVBOX_DARK -> GRUVBOX_LIGHT
+            TOKYO_NIGHT -> TOKYO_DAY
+            TOKYO_DAY -> TOKYO_NIGHT
         }
 
     private fun Color.applyGrayscale(): Color {

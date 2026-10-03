@@ -75,6 +75,18 @@ public enum class ColorPalette(
         isDark = true,
         title = { Strings.colorPaletteGruvboxDark }
     ),
+    TOKYO_NIGHT(
+        id = "tokyo-night",
+        category = Category.TOKYO_NIGHT,
+        isDark = true,
+        title = { Strings.colorPaletteTokyoNight }
+    ),
+    TOKYO_DAY(
+        id = "tokyo-night-day",
+        category = Category.TOKYO_NIGHT,
+        isDark = false,
+        title = { Strings.colorPaletteTokyoDay }
+    ),
     ;
 
     public enum class Category {
@@ -82,6 +94,7 @@ public enum class ColorPalette(
         SOLARIZED,
         CATPPUCCIN,
         GRUVBOX,
+        TOKYO_NIGHT,
     }
 
     public companion object {

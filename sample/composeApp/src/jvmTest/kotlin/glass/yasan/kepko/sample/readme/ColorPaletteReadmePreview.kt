@@ -101,6 +101,22 @@ internal fun ColorPaletteGruvboxDarkReadmePreview() {
     }
 }
 
+@ReadmePreview
+@Composable
+internal fun ColorPaletteTokyoNightReadmePreview() {
+    KepkoTheme(palette = TOKYO_NIGHT) {
+        ColorPaletteReadmeContent()
+    }
+}
+
+@ReadmePreview
+@Composable
+internal fun ColorPaletteTokyoDayReadmePreview() {
+    KepkoTheme(palette = TOKYO_DAY) {
+        ColorPaletteReadmeContent()
+    }
+}
+
 @OptIn(DelicateKepkoShapesApi::class)
 @Composable
 private fun ColorPaletteReadmeContent() {

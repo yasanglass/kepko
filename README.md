@@ -61,6 +61,8 @@ See the full list of components [here](https://github.com/yasanglass/kepko/tree/
 | Catppuccin Mocha | ![Catppuccin Mocha](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteCatppuccinMochaReadmePreview.png) |
 | Gruvbox Light | ![Gruvbox Light](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxLightReadmePreview.png) |
 | Gruvbox Dark | ![Gruvbox Dark](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteGruvboxDarkReadmePreview.png) |
+| Tokyo Night | ![Tokyo Night](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteTokyoNightReadmePreview.png) |
+| Tokyo Day | ![Tokyo Day](https://raw.githubusercontent.com/yasanglass/kepko/main/sample/composeApp/assets/readme/ColorPaletteTokyoDayReadmePreview.png) |
 
 ## Persistence
 

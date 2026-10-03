@@ -5,8 +5,8 @@ Kepko itself is licensed under the Apache License, Version 2.0.
 See the root LICENSE file for the full Apache-2.0 license text.
 
 This NOTICE file also includes attribution and license information for
-color palettes derived from the following third-party projects, each licensed
-under the MIT License:
+color palettes derived from third-party projects. The following projects are
+licensed under the MIT License:
 ================================================================================
 Solarized
 ================================================================================
@@ -24,6 +24,12 @@ Gruvbox
 ================================================================================
 Copyright (c) 2018 Pavel Pertsev
 https://github.com/morhetz/gruvbox
+
+================================================================================
+Tokyo Night
+================================================================================
+Copyright (c) 2018-present Enkia
+https://github.com/enkia/tokyo-night-vscode-theme
 
 ================================================================================
 MIT License
@@ -46,3 +52,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+================================================================================
+Tokyo Day
+================================================================================
+The Tokyo Day color palette is adapted from the tokyonight.nvim project by
+Folke Lemaitre, licensed under the Apache License, Version 2.0. Its status
+colors were darkened for contrast. See the root LICENSE file for the full
+Apache-2.0 license text.
+https://github.com/folke/tokyonight.nvim
