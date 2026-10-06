@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.takeOrElse
 import glass.yasan.kepko.foundation.border.borderStrokeFor
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.color.contentColorFor
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -85,6 +86,7 @@ public fun TextPill(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier
+            .focusBorder(shape)
             .then(if (border != null) Modifier.border(border, shape) else Modifier)
             .clip(shape = shape)
             .background(color = animatedContainerColor)

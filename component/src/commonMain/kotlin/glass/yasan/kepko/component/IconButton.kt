@@ -12,9 +12,11 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 
@@ -38,6 +40,7 @@ public fun IconButton(
         tint = if (enabled) tint else KepkoTheme.colors.contentDisabled,
         modifier = modifier
             .padding(outerPadding)
+            .focusBorder(KepkoTheme.shapes.extraLarge)
             .clip(KepkoTheme.shapes.extraLarge)
             .clickable(
                 enabled = enabled,
@@ -70,6 +73,7 @@ public fun IconButton(
         tint = if (enabled) tint else KepkoTheme.colors.contentDisabled,
         modifier = modifier
             .padding(outerPadding)
+            .focusBorder(KepkoTheme.shapes.extraLarge)
             .clip(KepkoTheme.shapes.extraLarge)
             .clickable(
                 enabled = enabled,
@@ -110,6 +114,33 @@ internal fun IconButtonSolarizedLightPreview() {
 @Composable
 internal fun IconButtonSolarizedDarkPreview() {
     KepkoTheme(palette = SOLARIZED_DARK) { PreviewIconButtonContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun IconButtonFocusedLightPreview() {
+    KepkoTheme(palette = LIGHT) { FocusedPreviewIconButtonContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun IconButtonFocusedDarkPreview() {
+    KepkoTheme(palette = DARK) { FocusedPreviewIconButtonContent() }
+}
+
+@Composable
+private fun FocusedPreviewIconButtonContent() {
+    Midground {
+        Row {
+            IconButton(
+                painter = Icons.settings,
+                contentDescription = null,
+                onClick = {},
+                modifier = Modifier.focusRequester(rememberPreviewFocusRequester()),
+            )
+            IconButton(painter = Icons.info, contentDescription = null, onClick = {})
+        }
+    }
 }
 
 @Composable

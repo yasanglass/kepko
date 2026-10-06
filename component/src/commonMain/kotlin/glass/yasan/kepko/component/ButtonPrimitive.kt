@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.color.getSemanticColors
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -76,6 +77,7 @@ public fun ButtonPrimitive(
         Surface(
             modifier = modifier
                 .minimumInteractiveComponentSize()
+                .focusBorder(shape)
                 .clip(shape)
                 .combinedClickable(
                     interactionSource = resolvedInteractionSource,
