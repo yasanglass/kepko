@@ -48,6 +48,7 @@ import glass.yasan.kepko.component.SegmentedPickerDisplayMode.ICON_WITH_TEXT
 import glass.yasan.kepko.component.SegmentedPickerDisplayMode.ICON_WITH_TEXT_EXPAND
 import glass.yasan.kepko.component.SegmentedPickerDisplayMode.ICON_WITH_TEXT_REVEAL
 import glass.yasan.kepko.foundation.border.border
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import kotlinx.coroutines.delay
 import kotlin.time.Duration
@@ -101,6 +102,7 @@ public fun <T> SegmentedPicker(
                     contentPadding = contentPadding,
                     maxLines = maxLines,
                     colors = colors,
+                    modifier = Modifier.focusBorder(shape),
                 )
             }
         },

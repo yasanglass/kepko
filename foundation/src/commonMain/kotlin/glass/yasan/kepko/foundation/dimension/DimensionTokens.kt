@@ -9,4 +9,5 @@ public object DimensionTokens {
 
     public val borderThickness: Dp = 1.dp
     public val iconSize: Dp = 24.dp
+    public val focusBorderThickness: Dp = 3.dp
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -59,7 +60,9 @@ public fun PreferenceRadioButton(
             selected = selected,
             onClick = onClick,
             minimumInteractiveComponentSize = 0.dp,
-            modifier = Modifier.padding(vertical = 12.dp),
+            modifier = Modifier
+                .padding(vertical = 12.dp)
+                .focusProperties { canFocus = false },
         )
     }
     val leading = if (reverse) radio else leadingContent

@@ -11,6 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import androidx.compose.material3.Slider as Material3Slider
@@ -28,6 +35,7 @@ public fun Slider(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     val animatedValue by animateFloatAsState(value)
+    val focusManager = LocalFocusManager.current
 
     Material3Slider(
         value = animatedValue,
@@ -49,7 +57,15 @@ public fun Slider(
             inactiveTrackColor = KepkoTheme.colors.background,
             thumbColor = KepkoTheme.colors.content,
         ),
-        modifier = modifier,
+        // Material's slider consumes every arrow key, so Up and Down would never leave it.
+        modifier = modifier.onPreviewKeyEvent { event ->
+            val direction = when (event.key) {
+                Key.DirectionUp -> FocusDirection.Up
+                Key.DirectionDown -> FocusDirection.Down
+                else -> return@onPreviewKeyEvent false
+            }
+            event.type == KeyEventType.KeyDown && focusManager.moveFocus(direction)
+        },
     )
 }
 
