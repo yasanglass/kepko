@@ -25,6 +25,9 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import kotlin.math.abs
 
+/**
+ * Moves focus from the top bar down into the content it overlaps.
+ */
 internal fun Modifier.downIntoContent(
     contentFocusRequester: FocusRequester,
     focusManager: FocusManager,
@@ -41,6 +44,9 @@ internal fun Modifier.downIntoContent(
             (focusManager.moveFocus(FocusDirection.Down) || contentFocusRequester.requestFocus())
     }
 
+/**
+ * Hosts the scaffold content and keeps focused items out from under the bars.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ScaffoldContent(
@@ -51,15 +57,15 @@ internal fun ScaffoldContent(
     val density = LocalDensity.current
     val parentBringIntoViewSpec = LocalBringIntoViewSpec.current
     val contentHeight = remember { mutableIntStateOf(0) }
-    val bringIntoViewSpec = remember(parentBringIntoViewSpec, contentPadding, density) {
-        with(density) {
-            BarsCoveredBringIntoViewSpec(
-                parent = parentBringIntoViewSpec,
-                topCovered = contentPadding.calculateTopPadding().toPx(),
-                bottomCovered = contentPadding.calculateBottomPadding().toPx(),
-                contentHeight = { contentHeight.intValue },
-            )
-        }
+    val topCovered = with(density) { contentPadding.calculateTopPadding().toPx() }
+    val bottomCovered = with(density) { contentPadding.calculateBottomPadding().toPx() }
+    val bringIntoViewSpec = remember(parentBringIntoViewSpec, topCovered, bottomCovered) {
+        BarsCoveredBringIntoViewSpec(
+            parent = parentBringIntoViewSpec,
+            topCovered = topCovered,
+            bottomCovered = bottomCovered,
+            contentHeight = { contentHeight.intValue },
+        )
     }
 
     CompositionLocalProvider(LocalBringIntoViewSpec provides bringIntoViewSpec) {
@@ -75,6 +81,9 @@ internal fun ScaffoldContent(
     }
 }
 
+/**
+ * Scrolls focused items into the area left visible between the bars.
+ */
 private class BarsCoveredBringIntoViewSpec(
     private val parent: BringIntoViewSpec,
     private val topCovered: Float,

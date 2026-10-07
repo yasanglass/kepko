@@ -47,6 +47,9 @@ public fun Modifier.focusBorder(
     outset = outset,
 )
 
+/**
+ * Makes a non-interactive element focusable and outlines it with [focusBorder].
+ */
 @ExperimentalKepkoApi
 @Composable
 public fun Modifier.focusableWithBorder(
