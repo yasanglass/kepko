@@ -27,6 +27,7 @@ public fun PersistentPreferenceThemeButton(
     targetProfile: UserVisibleProfile? = null,
     text: String = Strings.preferenceThemeScreenTitle,
     description: String? = null,
+    selected: Boolean = false,
 ) {
     Button(
         text = text,
@@ -34,6 +35,7 @@ public fun PersistentPreferenceThemeButton(
         onClick = onClick,
         leadingIcon = Icons.palette,
         trailingIcon = Icons.chevronForward,
+        selected = selected,
         modifier = modifier,
     )
 }
