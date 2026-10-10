@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -128,19 +129,22 @@ public fun TitleBar(
     textAlign: TextAlign = TextAlign.Unspecified,
     reverse: Boolean = false,
 ) {
+    val backButton: @Composable RowScope.() -> Unit = {
+        IconButton(
+            painter = backIcon,
+            contentDescription = Strings.back,
+            onClick = onBackClick,
+            onClickLabel = Strings.goBack,
+            modifier = Modifier
+                .testTag(TitleBarSemantics.BACK_BUTTON)
+                .let { if (reverse) it.graphicsLayer(scaleX = -1f) else it },
+        )
+    }
+
     TitleBar(
         title = title,
         modifier = modifier,
-        leadingContent = {
-            IconButton(
-                painter = backIcon,
-                contentDescription = Strings.back,
-                onClick = onBackClick,
-                onClickLabel = Strings.goBack,
-                modifier = Modifier
-                    .let { if (reverse) it.graphicsLayer(scaleX = -1f) else it },
-            )
-        },
+        leadingContent = if (LocalTitleBarBackButtonVisible.current) backButton else null,
         trailingContent = trailingContent,
         badge = badge,
         textAlign = textAlign,
@@ -259,4 +263,11 @@ internal fun TitleBarSlotPreview() {
             )
         }
     }
+}
+
+/**
+ * Test tags for [TitleBar].
+ */
+public object TitleBarSemantics {
+    public const val BACK_BUTTON: String = "title_bar_back_button"
 }

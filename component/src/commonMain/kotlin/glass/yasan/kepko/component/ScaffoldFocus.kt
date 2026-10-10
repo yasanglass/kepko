@@ -78,7 +78,9 @@ internal fun ScaffoldContent(
                 .focusRequester(contentFocusRequester)
                 .focusGroup(),
         ) {
-            content(contentPadding)
+            CompositionLocalProvider(LocalTitleBarBackButtonVisible provides true) {
+                content(contentPadding)
+            }
         }
     }
 }
