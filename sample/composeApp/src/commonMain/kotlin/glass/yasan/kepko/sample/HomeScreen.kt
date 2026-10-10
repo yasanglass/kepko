@@ -86,6 +86,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun HomeScreen(
     onNavigate: (Route) -> Unit,
+    selectedRoute: Route? = null,
 ) {
     Scaffold(
         title = stringResource(Res.string.app_name),
@@ -103,6 +104,7 @@ internal fun HomeScreen(
                 colorPalette()
                 navigationButtons(
                     onNavigate = onNavigate,
+                    selectedRoute = selectedRoute,
                 )
                 examplePreferenceSlider()
                 examplePreferenceCheckbox()
@@ -174,11 +176,13 @@ private fun LazyListScope.colorPalette() {
 
 private fun LazyListScope.navigationButtons(
     onNavigate: (Route) -> Unit,
+    selectedRoute: Route?,
 ) {
     item { HorizontalDivider() }
     item {
         PersistentPreferenceThemeButton(
             onClick = { onNavigate(Route.Theme) },
+            selected = selectedRoute == Route.Theme,
         )
     }
     item {
@@ -188,6 +192,7 @@ private fun LazyListScope.navigationButtons(
                 text = "Profiles",
                 description = "Switch the active profile and customize per-profile themes.",
                 onClick = { onNavigate(Route.Profiles) },
+                selected = selectedRoute == Route.Profiles || selectedRoute is Route.ProfileTheme,
                 leadingIcon = Icons.person,
                 trailingIcon = Icons.chevronForward,
             )
@@ -198,6 +203,7 @@ private fun LazyListScope.navigationButtons(
             text = "Icons",
             description = "View the full icon set with snapshot previews.",
             onClick = { onNavigate(Route.Icons) },
+            selected = selectedRoute == Route.Icons,
             leadingIcon = Icons.shapes,
             trailingIcon = Icons.chevronForward,
         )
@@ -207,6 +213,7 @@ private fun LazyListScope.navigationButtons(
             text = "Serialization",
             description = "Inspect persisted preference payloads.",
             onClick = { onNavigate(Route.Serialization) },
+            selected = selectedRoute == Route.Serialization,
             leadingIcon = Icons.code,
             trailingIcon = Icons.chevronForward,
         )
@@ -215,6 +222,7 @@ private fun LazyListScope.navigationButtons(
         Button(
             text = "TitleBar",
             onClick = { onNavigate(Route.TitleBar) },
+            selected = selectedRoute == Route.TitleBar,
             leadingIcon = Icons.shapes,
             trailingIcon = Icons.chevronForward,
         )
