@@ -2,7 +2,7 @@ style:
   ForbiddenImport:
     active: true
     excludes: ['**/glass/yasan/kepko/component/**']
-    imports:
+    forbiddenImports:
       - 'androidx.compose.material3.Button'
       - 'androidx.compose.material3.Checkbox'
       - 'androidx.compose.material3.CircularProgressIndicator'
