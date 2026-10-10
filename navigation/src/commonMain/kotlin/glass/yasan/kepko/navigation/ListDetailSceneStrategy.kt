@@ -21,9 +21,14 @@ public class ListDetailSceneStrategy<T : Any> internal constructor(
     private val paneState: ListDetailPaneState,
 ) : SceneStrategy<T> {
     public companion object {
-        private object ListKey : NavMetadataKey<Boolean>
+        // Navigation 3 stores metadata under toString(), which is "[object Object]" for any plain object on JS.
+        private object ListKey : NavMetadataKey<Boolean> {
+            override fun toString(): String = "glass.yasan.kepko.navigation.ListDetailSceneStrategy.List"
+        }
 
-        private object DetailKey : NavMetadataKey<Boolean>
+        private object DetailKey : NavMetadataKey<Boolean> {
+            override fun toString(): String = "glass.yasan.kepko.navigation.ListDetailSceneStrategy.Detail"
+        }
 
         public fun list(): Map<String, Any> = metadata { put(ListKey, true) }
 
