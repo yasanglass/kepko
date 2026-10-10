@@ -109,7 +109,7 @@ An optional experimental module with [Navigation 3](https://developer.android.co
 implementation("glass.yasan.kepko:navigation:<version>")
 ```
 
-[`ListDetailSceneStrategy`](https://github.com/yasanglass/kepko/blob/main/navigation/src/commonMain/kotlin/glass/yasan/kepko/navigation/ListDetailSceneStrategy.kt) shows the entry marked with `list()` beside the `detail()` entry above it on large windows, with a divider that can be dragged:
+[`ListDetailSceneStrategy`](https://github.com/yasanglass/kepko/blob/main/navigation/src/commonMain/kotlin/glass/yasan/kepko/navigation/ListDetailSceneStrategy.kt) shows the entry marked with `list()` beside the `detail()` entry above it on large windows, with a divider that can be dragged. The divider's position is saved across launches, so wrap the content in `PersistentKepkoTheme`:
 
 ```kotlin
 NavDisplay(

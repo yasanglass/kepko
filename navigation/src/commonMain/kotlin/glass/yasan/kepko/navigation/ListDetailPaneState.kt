@@ -4,26 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.Saver
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.persistence.LocalKepkoPersistenceManager
 
 /**
- * The list pane's width, which dragging the divider between the panes changes.
+ * The list pane's width, which dragging the divider changes and [saveListWidth] hands to [onSave].
  */
 @Stable
 internal class ListDetailPaneState(
     listWidth: Dp,
+    private val onSave: (Dp) -> Unit = {},
 ) {
-    companion object {
-        val Saver: Saver<ListDetailPaneState, Float> = Saver(
-            save = { state -> state.listWidth.value },
-            restore = { width -> ListDetailPaneState(listWidth = width.dp) },
-        )
-    }
-
     var listWidth: Dp by mutableStateOf(listWidth)
         private set
 
@@ -33,9 +26,22 @@ internal class ListDetailPaneState(
     ) {
         listWidth = (listWidth.coerceIn(range) + by).coerceIn(range)
     }
+
+    fun saveListWidth() {
+        onSave(listWidth)
+    }
 }
 
+/**
+ * Starts from the width the user last dragged the list to in this app, and saves it when a drag ends.
+ */
 @Composable
-internal fun rememberListDetailPaneState(): ListDetailPaneState = rememberSaveable(saver = ListDetailPaneState.Saver) {
-    ListDetailPaneState(listWidth = ListDetailDefaults.ListWidth)
+internal fun rememberListDetailPaneState(): ListDetailPaneState {
+    val persistenceManager = LocalKepkoPersistenceManager.current
+    return remember(persistenceManager) {
+        ListDetailPaneState(
+            listWidth = persistenceManager.listPaneWidth ?: ListDetailDefaults.ListWidth,
+            onSave = { width -> persistenceManager.listPaneWidth = width },
+        )
+    }
 }

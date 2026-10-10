@@ -102,6 +102,7 @@ private fun <T : Any> ListDetailPanes(
             DividerHandle(
                 x = panes.dividerX,
                 onDrag = { delta -> paneState.resizeList(by = delta, range = listWidthRange) },
+                onDragStop = paneState::saveListWidth,
             )
         }
     }
@@ -127,6 +128,7 @@ private fun <T : Any> DetailPaneContent(detail: DetailPane<T>) {
 private fun DividerHandle(
     x: Dp,
     onDrag: (Dp) -> Unit,
+    onDragStop: () -> Unit,
 ) {
     val density = LocalDensity.current
     Box(
@@ -137,6 +139,7 @@ private fun DividerHandle(
             .draggable(
                 orientation = Orientation.Horizontal,
                 state = rememberDraggableState { delta -> onDrag(with(density) { delta.toDp() }) },
+                onDragStopped = { onDragStop() },
             ),
     )
 }

@@ -54,6 +54,7 @@ kotlin {
                 api(libs.androidx.navigation3.runtime)
                 api(libs.androidx.navigation3.ui)
 
+                implementation(project(":persistence"))
                 implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.ui)
