@@ -1,6 +1,8 @@
 package glass.yasan.kepko.persistence
 
+import androidx.compose.ui.unit.dp
 import com.russhwolf.settings.MapSettings
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.BLACK
 import glass.yasan.kepko.foundation.theme.ColorPalette.SOLARIZED_DARK
@@ -12,6 +14,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalKepkoApi::class)
 @Suppress("VisibleForTests")
 internal class PersistenceManagerTest {
 
@@ -318,5 +321,56 @@ internal class PersistenceManagerTest {
         assertNull(manager.toSnapshot().palettePrimary)
         assertFalse(manager.toSnapshot().grayscale)
         assertTrue(manager.isDefault)
+    }
+
+    @Test
+    fun givenEmptySettings_whenListPaneWidthSet_thenPersistsAndReadsBack() {
+        // Given
+        val settings = MapSettings()
+        val manager = PersistenceManagerImpl(settings)
+
+        // When
+        manager.listPaneWidth = 420.dp
+
+        // Then
+        assertEquals(420.dp, manager.listPaneWidth)
+        assertEquals(420f, settings.getFloat(PersistenceManagerImpl.KEY_LIST_PANE_WIDTH, 0f))
+    }
+
+    @Test
+    fun givenAStoredListPaneWidth_whenCreated_thenRestoresIt() {
+        // Given
+        val manager = createManager(PersistenceManagerImpl.KEY_LIST_PANE_WIDTH to 420f)
+
+        // Then
+        assertEquals(420.dp, manager.listPaneWidth)
+    }
+
+    @Test
+    fun givenAListPaneWidth_whenSetToNull_thenRemovesIt() {
+        // Given
+        val settings = MapSettings()
+        val manager = PersistenceManagerImpl(settings)
+        manager.listPaneWidth = 420.dp
+
+        // When
+        manager.listPaneWidth = null
+
+        // Then
+        assertNull(manager.listPaneWidth)
+        assertFalse(settings.hasKey(PersistenceManagerImpl.KEY_LIST_PANE_WIDTH))
+    }
+
+    @Test
+    fun givenAListPaneWidth_whenReset_thenItIsKept() {
+        // Given
+        val manager = createManager()
+        manager.listPaneWidth = 420.dp
+
+        // When
+        manager.reset()
+
+        // Then
+        assertEquals(420.dp, manager.listPaneWidth)
     }
 }
