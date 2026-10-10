@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -63,6 +64,7 @@ public fun PreferenceCheckbox(
                 enabled = enabled,
                 checked = checked,
                 onCheckedChange = onCheckedChange,
+                modifier = Modifier.focusProperties { canFocus = false },
             )
         }
     )

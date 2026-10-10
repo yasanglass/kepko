@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -66,6 +68,7 @@ public fun PreferenceSwitch(
                 enabled = enabled,
                 checked = checked,
                 onCheckedChange = onCheckedChange,
+                modifier = Modifier.focusProperties { canFocus = false },
             )
         }
     )
@@ -99,6 +102,40 @@ internal fun PreferenceSwitchSolarizedLightPreview() {
 @Composable
 internal fun PreferenceSwitchSolarizedDarkPreview() {
     KepkoTheme(palette = SOLARIZED_DARK) { PreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun PreferenceSwitchFocusedLightPreview() {
+    KepkoTheme(palette = LIGHT) { FocusedPreviewContent() }
+}
+
+@PreviewWithTest
+@Composable
+internal fun PreferenceSwitchFocusedDarkPreview() {
+    KepkoTheme(palette = DARK) { FocusedPreviewContent() }
+}
+
+@Composable
+private fun FocusedPreviewContent() {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier
+            .background(KepkoTheme.colors.midground)
+            .padding(16.dp),
+    ) {
+        PreferenceSwitch(
+            title = "Focused",
+            checked = true,
+            onCheckedChange = {},
+            modifier = Modifier.focusRequester(rememberPreviewFocusRequester()),
+        )
+        PreferenceSwitch(
+            title = "Unfocused",
+            checked = false,
+            onCheckedChange = {},
+        )
+    }
 }
 
 @Composable

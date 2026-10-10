@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.russhwolf.settings.Settings
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.persistence.PersistenceManager
 import glass.yasan.kepko.persistence.PersistenceManager.Companion.PALETTE_ID_SYSTEM
@@ -36,6 +37,9 @@ internal class PersistenceManagerImpl(
 
         @VisibleForTesting
         const val KEY_ROUNDNESS = "$PREFIX.dimension.roundness"
+
+        @VisibleForTesting
+        const val KEY_LIST_PANE_WIDTH = "$PREFIX.dimension.list_pane_width"
     }
 
     override val profileManager: ProfilePersistenceManager = ProfilePersistenceManagerImpl(settings)
@@ -133,5 +137,19 @@ internal class PersistenceManagerImpl(
         set(value) {
             _roundness = value
             settings.putFloat(KEY_ROUNDNESS, value)
+        }
+
+    private var _listPaneWidth by mutableStateOf(settings.getFloatOrNull(KEY_LIST_PANE_WIDTH)?.dp)
+
+    @ExperimentalKepkoApi
+    override var listPaneWidth: Dp?
+        get() = _listPaneWidth
+        set(value) {
+            _listPaneWidth = value
+            if (value == null) {
+                settings.remove(KEY_LIST_PANE_WIDTH)
+            } else {
+                settings.putFloat(KEY_LIST_PANE_WIDTH, value.value)
+            }
         }
 }

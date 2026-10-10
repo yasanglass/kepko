@@ -66,6 +66,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":navigation"))
                 implementation(project(":persistence"))
                 implementation(project(":serialization"))
 
@@ -75,7 +76,8 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui)
                 implementation(libs.jetbrains.compose.components.resources)
                 implementation(libs.jetbrains.compose.ui.tooling.preview)
-                implementation(libs.androidx.navigation.compose)
+                implementation(libs.androidx.navigation3.runtime)
+                implementation(libs.androidx.navigation3.ui)
                 implementation(libs.platformtools.darkmodedetector)
                 implementation(libs.kotlinx.serialization.json)
             }

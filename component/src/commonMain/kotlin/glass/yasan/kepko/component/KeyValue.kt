@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.resource.Icons
 
@@ -38,6 +39,7 @@ public fun KeyValue(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
+            .focusBorder(KepkoTheme.shapes.extraLarge)
             .clip(shape = KepkoTheme.shapes.extraLarge)
             .clickableIfPresent(
                 onClick = onClick,

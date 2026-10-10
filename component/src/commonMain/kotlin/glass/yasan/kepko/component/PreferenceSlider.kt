@@ -15,9 +15,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import kotlin.math.pow
 import kotlin.math.roundToLong
@@ -102,7 +104,7 @@ public fun PreferenceSlider(
         description = description,
         enabled = enabled,
         badge = badge,
-        modifier = modifier,
+        modifier = modifier.focusProperties { canFocus = false },
         interactionSource = null,
         indication = null,
         content = { contentPadding: PaddingValues ->
@@ -120,7 +122,9 @@ public fun PreferenceSlider(
                         valueRange = valueRange,
                         steps = steps,
                         enabled = enabled,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .focusBorder(KepkoTheme.shapes.extraLarge),
                     )
                     valueLabel?.invoke()
                 }

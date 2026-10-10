@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.foundation.border.border
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.color.ProvideLocalContentColor
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 
@@ -46,6 +47,7 @@ public fun PreferenceContainer(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxWidth()
+            .focusBorder(shape)
             .border(color = KepkoTheme.colors.outline, shape)
             .clip(shape)
             .clickable(
@@ -108,6 +110,7 @@ public fun PreferenceContainer(
 
     Column(
         modifier = modifier
+            .focusBorder(shape)
             .border(color = KepkoTheme.colors.outline, shape)
             .clip(shape)
             .clickable(

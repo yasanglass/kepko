@@ -6,6 +6,7 @@ import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.dimension.DimensionTokens
 import glass.yasan.kepko.foundation.theme.ColorPalette
 import glass.yasan.kepko.foundation.theme.ColorPalette.Companion.defaultDark
@@ -42,6 +43,15 @@ public interface PersistenceManager {
     public var paletteDark: ColorPalette
     public var outline: Dp
     public var roundness: Float
+
+    /**
+     * The width the list pane of list-detail layouts was dragged to, or null for their default.
+     * Managers that don't store it keep reporting null.
+     */
+    @ExperimentalKepkoApi
+    public var listPaneWidth: Dp?
+        get() = null
+        set(value) = Unit
 
     public fun getPalettePrimary(profileId: String?): ColorPalette?
 

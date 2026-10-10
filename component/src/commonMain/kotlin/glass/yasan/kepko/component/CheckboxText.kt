@@ -13,8 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.foundation.border.focusBorder
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 
 @Composable
@@ -31,6 +33,7 @@ public fun CheckboxText(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier
+            .focusBorder(KepkoTheme.shapes.extraLarge)
             .clip(KepkoTheme.shapes.extraLarge)
             .clickable(
                 interactionSource = interactionSource,
@@ -44,6 +47,7 @@ public fun CheckboxText(
             checked = checked,
             onCheckedChange = onCheckedChange,
             enabled = enabled,
+            modifier = Modifier.focusProperties { canFocus = false },
         )
         Text(
             text = text,

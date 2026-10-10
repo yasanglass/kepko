@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -137,10 +140,19 @@ public fun Scaffold(
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
+    val focusManager = LocalFocusManager.current
+    val contentFocusRequester = remember { FocusRequester() }
+    val maxWidth = LocalScaffoldContentMaxWidth.current
+
     Material3Scaffold(
         modifier = modifier,
         topBar = {
-            Column {
+            Column(
+                modifier = Modifier.downIntoContent(
+                    contentFocusRequester = contentFocusRequester,
+                    focusManager = focusManager,
+                ),
+            ) {
                 topBar()
                 HorizontalDivider(
                     modifier = Modifier.windowInsetsPadding(
@@ -161,7 +173,8 @@ public fun Scaffold(
                     content = bottomBar,
                     modifier = Modifier
                         .background(KepkoTheme.colors.midground)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .centeredMaxWidth(maxWidth),
                 )
             }
         },
@@ -171,8 +184,13 @@ public fun Scaffold(
         containerColor = containerColor,
         contentColor = contentColor,
         contentWindowInsets = contentWindowInsets,
-        content = content,
-    )
+    ) { contentPadding ->
+        ScaffoldContent(
+            contentPadding = contentPadding,
+            contentFocusRequester = contentFocusRequester,
+            content = content,
+        )
+    }
 }
 
 @PreviewWithTest
