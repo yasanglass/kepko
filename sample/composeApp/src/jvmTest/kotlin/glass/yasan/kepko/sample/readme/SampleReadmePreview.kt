@@ -15,13 +15,7 @@ import glass.yasan.kepko.sample.ReadmeScreenshotTests.Companion.previewWidth
 internal fun SampleLightReadmePreview() {
     PreviewPersistentKepkoTheme(isSystemInDarkTheme = false) {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
-            HomeScreen(
-                onNavigateToTheme = {},
-                onNavigateToProfiles = {},
-                onNavigateToIcons = {},
-                onNavigateToSerialization = {},
-                onNavigateToTitleBar = {},
-            )
+            HomeScreen(onNavigate = {})
         }
     }
 }
@@ -31,13 +25,7 @@ internal fun SampleLightReadmePreview() {
 internal fun SampleDarkReadmePreview() {
     PreviewPersistentKepkoTheme(isSystemInDarkTheme = true) {
         Box(modifier = Modifier.width(previewWidth).height(previewHeight)) {
-            HomeScreen(
-                onNavigateToTheme = {},
-                onNavigateToProfiles = {},
-                onNavigateToIcons = {},
-                onNavigateToSerialization = {},
-                onNavigateToTitleBar = {},
-            )
+            HomeScreen(onNavigate = {})
         }
     }
 }

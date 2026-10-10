@@ -55,6 +55,7 @@ internal fun ScaffoldContent(
     content: @Composable (contentPadding: PaddingValues) -> Unit,
 ) {
     val density = LocalDensity.current
+    val maxWidth = LocalScaffoldContentMaxWidth.current
     val parentBringIntoViewSpec = LocalBringIntoViewSpec.current
     val contentHeight = remember { mutableIntStateOf(0) }
     val topCovered = with(density) { contentPadding.calculateTopPadding().toPx() }
@@ -73,10 +74,13 @@ internal fun ScaffoldContent(
             propagateMinConstraints = true,
             modifier = Modifier
                 .onSizeChanged { size -> contentHeight.intValue = size.height }
+                .centeredMaxWidth(maxWidth)
                 .focusRequester(contentFocusRequester)
                 .focusGroup(),
         ) {
-            content(contentPadding)
+            CompositionLocalProvider(LocalTitleBarBackButtonVisible provides true) {
+                content(contentPadding)
+            }
         }
     }
 }

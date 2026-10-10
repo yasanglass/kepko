@@ -142,6 +142,7 @@ public fun Scaffold(
 ) {
     val focusManager = LocalFocusManager.current
     val contentFocusRequester = remember { FocusRequester() }
+    val maxWidth = LocalScaffoldContentMaxWidth.current
 
     Material3Scaffold(
         modifier = modifier,
@@ -172,7 +173,8 @@ public fun Scaffold(
                     content = bottomBar,
                     modifier = Modifier
                         .background(KepkoTheme.colors.midground)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .centeredMaxWidth(maxWidth),
                 )
             }
         },

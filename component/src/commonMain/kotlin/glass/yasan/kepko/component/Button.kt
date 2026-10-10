@@ -16,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
@@ -39,7 +41,8 @@ public fun Button(
     onLongClickLabel: String? = null,
     onDoubleClick: (() -> Unit)? = null,
     contentModifier: Modifier = Modifier,
-    containerColor: Color = KepkoTheme.colors.foreground,
+    selected: Boolean = false,
+    containerColor: Color = ButtonDefaults.containerColor(selected),
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
     shape: Shape = ButtonDefaults.shape(),
@@ -57,7 +60,7 @@ public fun Button(
     ButtonInternal(
         text = text,
         description = description,
-        modifier = modifier,
+        modifier = modifier.selectedSemantics(selected),
         onClick = onClick,
         onClickLabel = onClickLabel,
         onLongClick = onLongClick,
@@ -124,7 +127,8 @@ public fun Button(
     onLongClickLabel: String? = null,
     onDoubleClick: (() -> Unit)? = null,
     contentModifier: Modifier = Modifier,
-    containerColor: Color = KepkoTheme.colors.foreground,
+    selected: Boolean = false,
+    containerColor: Color = ButtonDefaults.containerColor(selected),
     contentColor: Color = contentColorFor(containerColor),
     enabled: Boolean = true,
     shape: Shape = ButtonDefaults.shape(),
@@ -143,7 +147,7 @@ public fun Button(
     ButtonInternal(
         text = text,
         description = description,
-        modifier = modifier,
+        modifier = modifier.selectedSemantics(selected),
         onClick = onClick,
         onClickLabel = onClickLabel,
         onLongClick = onLongClick,
@@ -421,3 +425,6 @@ private fun PreviewContent() {
         }
     }
 }
+
+private fun Modifier.selectedSemantics(selected: Boolean): Modifier =
+    if (selected) semantics { this.selected = true } else this
