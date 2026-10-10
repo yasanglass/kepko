@@ -1,4 +1,4 @@
-package glass.yasan.kepko.sample.navigation
+package glass.yasan.kepko.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -9,23 +9,25 @@ import androidx.navigation3.runtime.metadata
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.scene.SceneStrategyScope
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 
 /**
  * On large windows, shows the [list] entry beside the [detail] entry above it, sliding the panes as room changes.
  */
-internal class ListDetailSceneStrategy<T : Any>(
+@ExperimentalKepkoApi
+public class ListDetailSceneStrategy<T : Any> internal constructor(
     private val isLargeWindow: Boolean,
     private val isTwoPane: Boolean,
     private val paneState: ListDetailPaneState,
 ) : SceneStrategy<T> {
-    companion object {
+    public companion object {
         private object ListKey : NavMetadataKey<Boolean>
 
         private object DetailKey : NavMetadataKey<Boolean>
 
-        fun list(): Map<String, Any> = metadata { put(ListKey, true) }
+        public fun list(): Map<String, Any> = metadata { put(ListKey, true) }
 
-        fun detail(): Map<String, Any> = metadata { put(DetailKey, true) }
+        public fun detail(): Map<String, Any> = metadata { put(DetailKey, true) }
     }
 
     override fun SceneStrategyScope<T>.calculateScene(entries: List<NavEntry<T>>): Scene<T>? {
@@ -47,8 +49,9 @@ internal class ListDetailSceneStrategy<T : Any>(
     }
 }
 
+@ExperimentalKepkoApi
 @Composable
-internal fun <T : Any> rememberListDetailSceneStrategy(
+public fun <T : Any> rememberListDetailSceneStrategy(
     isLargeWindow: Boolean,
     isTwoPane: Boolean,
 ): ListDetailSceneStrategy<T> {

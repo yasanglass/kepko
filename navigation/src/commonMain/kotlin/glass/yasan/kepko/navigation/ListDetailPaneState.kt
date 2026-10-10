@@ -1,4 +1,4 @@
-package glass.yasan.kepko.sample.navigation
+package glass.yasan.kepko.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

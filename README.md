@@ -101,6 +101,32 @@ PersistentPreferenceThemeScreen(
 - [`LocalKepkoColorPalette`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the currently active [`ColorPalette`](https://github.com/yasanglass/kepko/blob/main/foundation/src/commonMain/kotlin/glass/yasan/kepko/foundation/theme/ColorPalette.kt)
 - [`LocalKepkoPersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt): the [`PersistenceManager`](https://github.com/yasanglass/kepko/blob/main/persistence/src/commonMain/kotlin/glass/yasan/kepko/persistence/PersistenceManager.kt) instance for direct access to persistence state
 
+## Navigation
+
+An optional experimental module with [Navigation 3](https://developer.android.com/guide/navigation/navigation-3) scenes for large windows. On Android it needs API 23 or later.
+
+```kotlin
+implementation("glass.yasan.kepko:navigation:<version>")
+```
+
+[`ListDetailSceneStrategy`](https://github.com/yasanglass/kepko/blob/main/navigation/src/commonMain/kotlin/glass/yasan/kepko/navigation/ListDetailSceneStrategy.kt) shows the entry marked with `list()` beside the `detail()` entry above it on large windows, with a divider that can be dragged:
+
+```kotlin
+NavDisplay(
+    backStack = backStack,
+    sceneStrategies = listOf(
+        rememberListDetailSceneStrategy(
+            isLargeWindow = isLargeWindow(),
+            isTwoPane = isTwoPaneWindow(),
+        ),
+    ),
+    entryProvider = { route ->
+        val metadata = if (route == Home) ListDetailSceneStrategy.list() else ListDetailSceneStrategy.detail()
+        NavEntry(route, metadata = metadata) { /* screen */ }
+    },
+)
+```
+
 ## Serialization
 
 An optional experimental module that allows constructing Kepko components from JSON strings by providing serialization contracts for the components.

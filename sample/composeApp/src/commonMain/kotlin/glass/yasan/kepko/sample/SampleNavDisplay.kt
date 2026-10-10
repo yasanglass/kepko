@@ -13,15 +13,15 @@ import androidx.navigation3.ui.defaultPopTransitionSpec
 import androidx.navigation3.ui.defaultTransitionSpec
 import glass.yasan.kepko.component.ProvideScaffoldContentMaxWidth
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.navigation.ListDetailSceneStrategy
+import glass.yasan.kepko.navigation.isLargeWindow
+import glass.yasan.kepko.navigation.isLayoutChange
+import glass.yasan.kepko.navigation.isTwoPaneWindow
+import glass.yasan.kepko.navigation.layoutChangeTransform
+import glass.yasan.kepko.navigation.rememberListDetailSceneStrategy
 import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
 import glass.yasan.kepko.persistence.UserVisibleProfile
 import glass.yasan.kepko.sample.home.serialization.SerializationScreen
-import glass.yasan.kepko.sample.navigation.ListDetailSceneStrategy
-import glass.yasan.kepko.sample.navigation.isLargeWindow
-import glass.yasan.kepko.sample.navigation.isLayoutChange
-import glass.yasan.kepko.sample.navigation.isTwoPaneWindow
-import glass.yasan.kepko.sample.navigation.layoutChangeTransform
-import glass.yasan.kepko.sample.navigation.rememberListDetailSceneStrategy
 
 @OptIn(ExperimentalKepkoApi::class)
 @Composable

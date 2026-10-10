@@ -1,4 +1,4 @@
-package glass.yasan.kepko.sample.navigation
+package glass.yasan.kepko.navigation
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Animatable
@@ -33,7 +33,6 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.scene.Scene
 import glass.yasan.kepko.component.ProvideTitleBarBackButton
 import glass.yasan.kepko.component.VerticalDivider
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 
 internal data class ListDetailScene<T : Any>(
@@ -108,7 +107,6 @@ private fun <T : Any> ListDetailPanes(
     }
 }
 
-@OptIn(ExperimentalKepkoApi::class)
 @Composable
 private fun <T : Any> DetailPaneContent(detail: DetailPane<T>) {
     // Each pane keeps its own back button state, so an outgoing pane does not change while it fades out.
